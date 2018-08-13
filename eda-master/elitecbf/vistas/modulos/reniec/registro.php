@@ -19,6 +19,8 @@
 		$FechaControlPolicial = $_POST['FechaControlPolicial'];
 		$FechaControlPolicial = $_POST['FechaControlPolicial'];
 		$TipoCertificado = $_POST['TipoCertificado'];
+		$easytaxi=$_POST['easytaxi'];
+		$cabify=$_POST['cabify'];
 
 		if(buscaRepetido($dni,$conexion)==1){
 			echo 2;
@@ -26,13 +28,15 @@
 			$sql="INSERT into conductores 
 										(dni,nombre, apellido,soat,placa, orden_captura, fecha_inicio_soat,
 										 fecha_fin_soat, fecha_nacimiento, nombrecompania, numeropoliza,
-										 NombreUsoVehiculo, nombreclasevehiculo, 
+										 NombreUsoVehiculo, easytaxi, cabify, nombreclasevehiculo, 
 										 fechacontrolpolicial, TipoCertificado, fecha)
 				values 
 									('$dni','$nombre', '$apellidos', '$estado', '$placa', '$crv', 
 									 '$FechaInicio', '$FechaFin', '$fecha_nacimiento', '$NombreCompania', 
-									 '$NumeroPoliza', '$NombreUsoVehiculo', '$NombreClaseVehiculo', 
-									 '$FechaControlPolicial', '$TipoCertificado', NOW( ))";
+									 '$NumeroPoliza', '$NombreUsoVehiculo', '$easytaxi', '$cabify', 
+									 '$NombreClaseVehiculo', '$FechaControlPolicial', '$TipoCertificado', 
+									 NOW( ))";
+				
 			$result=mysqli_query($conexion,$sql);
 			//var_dump($sql);
 			echo "1";

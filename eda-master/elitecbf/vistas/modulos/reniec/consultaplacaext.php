@@ -3,18 +3,37 @@ $nombre =$_POST['nombre'];
 $fecha_nacimiento= $_POST['fechaNacimiento'];
 $apellidos= $_POST['apellidos'];
 $dni = $_POST['dni'];
+$easytaxi=$_POST['easytaxi'];
+$cabify=$_POST['cabify'];
+    
+    if ($easytaxi == "undefined") {
+        $easytaxi = "0" ;
+    }
 
+    if ($cabify == "undefined") {
+        $cabify = "0" ;
+    }
+if ($cabify == "0" && $easytaxi == "0") {
+            echo '<script type="text/javascript">
+                     swal({
+                          type: "warning",
+                          title: "¡Debe seleccionar una opción!",
+                          showConfirmButton: true,
+                          confirmButtonColor: "#8cd4f5",
+                          confirmButtonText: "Cerrar"
 
+                        }).then(function(result){
+
+                        });
+                </script>';
+        } else {
 if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('/^[a-zA-Z]+$/', $nombre) &&
    preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $apellidos) && preg_match('/^[a-zA-Z]+$/', $apellidos) &&
    strlen($dni) >= 8  && strlen($fecha_nacimiento) == 10 && isset($_POST['si'])){
 
-strlen($nombre);
-strlen($fecha_nacimiento);
-strlen($apellidos);
-strlen($dni);
 
 ?>
+
 
 <script type="text/javascript">
 
@@ -23,6 +42,8 @@ strlen($dni);
         "&dni=" + $('#ptp').val() +
         "&nombre=" + $('#nombre').val() +
         "&fechaNacimiento=" + $('#fechaNacimiento').val()+
+        "&cabify=" + cabify +
+        "&easytaxi=" + easytaxi +
         "&apellidos=" + $('#apellidos').val();
         $.ajax({
                 data:  cadena, 
@@ -92,5 +113,6 @@ Introduce placa
 
 </script>
 <?php
+}
 }
 ?>

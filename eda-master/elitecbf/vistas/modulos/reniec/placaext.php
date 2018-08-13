@@ -68,7 +68,16 @@ $NombreUsoVehiculo = $out['NombreUsoVehiculo'];
 $NombreClaseVehiculo = $out['NombreClaseVehiculo'];
 $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
+$easytaxi=$_POST['easytaxi'];
+$cabify=$_POST['cabify'];
+    
+    if ($easytaxi == "undefined") {
+        $easytaxi = "0" ;
+    }
 
+    if ($cabify == "undefined") {
+        $cabify = "0" ;
+    }
 if ($estado == "VIGENTE") {
   $soat = 'VIGENTE';
 } else {
@@ -171,6 +180,8 @@ if ($estado == "VIGENTE") {
           "&NombreClaseVehiculo=" + $('#NombreClaseVehiculo').val()+
           "&FechaControlPolicial=" + $('#FechaControlPolicial').val()+
           "&TipoCertificado=" + $('#TipoCertificado').val()+
+          "&cabify=" + cabify +
+          "&easytaxi=" + easytaxi +
           "&estado=" + $('#estado').val();
 
 					$.ajax({

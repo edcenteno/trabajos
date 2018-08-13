@@ -4,6 +4,14 @@ $fechaNacimiento= $_POST['fechaNacimiento'];
 $apellidos= $_POST['apellidos'];
 $dni = $_POST['dni'];
 
+if ($easytaxi == "undefined") {
+            $easytaxi = "0" ;
+        }
+
+        if ($cabify == "undefined") {
+            $cabify = "0" ;
+        }
+
 if (isset($_POST['si'])){
 
 

@@ -50,6 +50,16 @@ function realizaProceso(){
 		//console.log(msg)
 	
 	});
+
+	$.ajax({
+    type: "GET",
+    url: 'https://captcharh.ddns.net/api/record/multas/'+ dni
+    
+	}).done(function(msg){
+		$("#resultado").html(msg);
+		//console.log(msg)
+	
+	});
 }
 
 </script>

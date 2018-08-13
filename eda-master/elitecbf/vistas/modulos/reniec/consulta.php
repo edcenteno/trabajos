@@ -201,8 +201,7 @@ echo '
 
 
 <script>
-  $(document).ready(function()
-{
+  $(document).ready(function(){
   $("#consultarPlaca").click(function () {  
     easytaxi = ($('input:checkbox[name=easytaxi]:checked').val());
     cabify = ($('input:checkbox[name=cabify]:checked').val());

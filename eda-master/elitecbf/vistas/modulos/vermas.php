@@ -134,6 +134,26 @@
                                              }
                                         ?></p>
                                 </div>
+                                <div class="col-md-2 col-xs-6"> <strong>Empresa</strong>
+                                    <br>
+                                    <p class="text-muted">
+                                        <?php 
+                                            $cbf = $value['cabify'];
+                                            $easy = $value['easytaxi'];
+
+                                            if ($cbf == 1) {
+                                                echo 'Cabify &nbsp&nbsp   <img width="30" src="vistas/img/plantilla/favicon.ico">';
+                                            } 
+
+                                            if ($easy == 1 && $cbf == 1) {
+                                                echo '<br> EasyTaxi <img width="30" src="vistas/img/plantilla/easy.png">' ;
+                                            }else{
+                                                echo 'EasyTaxi <img width="30" src="vistas/img/plantilla/easy.png">';
+                                            }
+
+                                        ?>
+                                    </p>
+                                </div>
                                
                             </div>
                            

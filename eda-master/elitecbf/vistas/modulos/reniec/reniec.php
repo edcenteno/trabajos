@@ -94,7 +94,7 @@ function realizaProceso(dni){
                                       <div class="col-sm-10">
                                         <div class="input-group">
                                           <div class="input-group-prepend"><span class="input-group-text"><i class="ti-user"></i></span></div>
-                                          <input type="text" style="text-transform: uppercase;" class="form-control" name="nombre" id="nombre" placeholder="Nombre">
+                                          <input type="text" style="text-transform: uppercase;" class="form-control" name="nombreext" id="nombreext" placeholder="Nombre">
                                         </div>
                                       </div>
                                     </div>
@@ -104,7 +104,7 @@ function realizaProceso(dni){
                                       <div class="col-sm-10">
                                         <div class="input-group">
                                           <div class="input-group-prepend"><span class="input-group-text"><i class="ti-user"></i></span></div>
-                                          <input style="text-transform: uppercase;" type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellido">
+                                          <input style="text-transform: uppercase;" type="text" class="form-control" name="apellidosext" id="apellidosext" placeholder="Apellido">
                                         </div>
                                       </div>
                                     </div>
@@ -114,7 +114,7 @@ function realizaProceso(dni){
                                       <div class="col-sm-10">
                                         <div class="input-group">
                                           <div class="input-group-prepend"><span class="input-group-text"><i class="ti-calendar"></i></span></div>
-                                          <input type="text" class="form-control" name="fechaNacimiento" id="fechaNacimiento" data-mask="99/99/9999" placeholder="dd/mm/yyyy">
+                                          <input type="text" class="form-control" name="fechaNacimientoext" id="fechaNacimiento" data-mask="99/99/9999" placeholder="dd/mm/yyyy">
 
                                         </div>
                                         <span class="font-13 text-muted">dd/mm/yyyy</span>
@@ -188,8 +188,8 @@ $(document).ready(function(){
 
     $('#registrarNuevo').click(function(){
 
-      cadena="nombre=" + $('#nombre').val() +
-          "&apellidos=" + $('#apellidos').val() +
+      cadena="nombre=" + $('#nombreext').val() +
+          "&apellidos=" + $('#apellidosext').val() +
           "&dni=" + $('#ptp').val() +
           "&cabify=" + cabify2 +
           "&easytaxi=" + easytaxi2 +
@@ -265,13 +265,21 @@ $(document).ready(function(){
 
 </script>
 <script>
+
+  $(document).ready(function(){
+  $("#consultarPlaca").click(function () {  
+    easytaxi = ($('input:checkbox[name=easytaxi]:checked').val());
+    cabify = ($('input:checkbox[name=cabify]:checked').val());
+  });
+});
+
 $(document).ready(function(){
 
-      $('#consultarPlaca').click(function(){
+    $('#consultarPlaca').click(function(){
 
    
-    cadena="nombre=" + $('#nombre').val() +
-          "&apellidos=" + $('#apellidos').val() +
+    cadena="nombre=" + $('#nombreext').val() +
+          "&apellidos=" + $('#apellidosext').val() +
           "&dni=" + $('#ptp').val() +
           "&cabify=" + cabify +
           "&easytaxi=" + easytaxi +
