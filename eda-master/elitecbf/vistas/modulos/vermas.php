@@ -147,7 +147,7 @@
 
                                             if ($easy == 1 && $cbf == 1) {
                                                 echo '<br> EasyTaxi <img width="30" src="vistas/img/plantilla/easy.png">' ;
-                                            }else{
+                                            }if($easy == 1){
                                                 echo 'EasyTaxi <img width="30" src="vistas/img/plantilla/easy.png">';
                                             }
 
