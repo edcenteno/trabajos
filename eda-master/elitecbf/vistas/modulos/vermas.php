@@ -457,9 +457,9 @@ $placa=$value['placa'];
                                     if ($value['nombrecompania']== "La Positiva") {
                                         echo '<img width="90" src="vistas/img/plantilla/lapositiva.png">';
                                     } 
-                                    /*if ($value['nombrecompania']= "La Positiva") {
-                                        echo '<img width="90" src="vistas/img/plantilla/favicon.ico">';
-                                    } */
+                                    if ($value['nombrecompania']= "Interseguro") {
+                                        echo '<img width="90" src="vistas/img/plantilla/interbank.png">';
+                                    } 
 
                                     ?></p>
                                 </div>
