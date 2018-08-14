@@ -143,7 +143,7 @@ $bloque3 = <<<EOF
 
 		
 	</table>
-
+<br><br><br><br>
 EOF;
 
 $pdf->writeHTML($bloque3, false, false, false, false, '');
