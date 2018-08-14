@@ -27,7 +27,7 @@ $placa=$value['placa'];
     
     }).done(function(msg){
         //$("#resultado").html(msg);
-        //console.log(msg)
+        console.log(msg)
         //
         $('.licencia')[0].innerText = msg['var_direccion'];
         $('.licencia')[1].innerText = msg['var_departamento'];
@@ -458,7 +458,7 @@ $placa=$value['placa'];
                                         echo '<img width="90" src="vistas/img/plantilla/lapositiva.png">';
                                     } 
                                     /*if ($value['nombrecompania']= "La Positiva") {
-                                        echo '<img width="30" src="vistas/img/plantilla/favicon.ico">';
+                                        echo '<img width="90" src="vistas/img/plantilla/favicon.ico">';
                                     } */
 
                                     ?></p>

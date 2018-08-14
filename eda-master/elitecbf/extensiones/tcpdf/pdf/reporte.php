@@ -20,6 +20,8 @@ require_once "../../../modelos/conductores.modelo.php";
     } else {
       $bl="Si se encuentra en lista negra";
     }
+    $placa=$value['placa'];
+
 require_once('tcpdf_include.php');
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -133,25 +135,11 @@ $bloque3 = <<<EOF
 		
 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
 			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">FECHA DE NACIMIENTO</td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>FECHA DE NACIMIENTO</b></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$value[fecha_nacimiento]</b></td>
 			
 		</tr>
 
-		<tr>
 		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">DIGITO VERIFICADOR</td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>DIGITO VERIFICADOR</b></td>
-			
-		</tr>
-
-		<tr>
-		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">ESTADO CIVIL</td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>ESTADO CIVIL</b></td>
-			
-		</tr>
 
 		
 	</table>
@@ -363,3 +351,87 @@ $factura -> codigo = $_GET["codigo"];
 $factura -> traerImpresionFactura();
 
 ?>
+<script type="text/javascript">
+    
+    var dni = '<?php echo $idconductor ?>'
+    var placa = '<?php echo $placa ?>'
+
+    $.ajax({
+    type: "GET",
+    url: 'https://captcharh.ddns.net/api/record/principal/'+ dni
+    
+    }).done(function(msg){
+        //$("#resultado").html(msg);
+        //console.log(msg)
+        //
+        $('.licencia')[0].innerText = msg['var_direccion'];
+        $('.licencia')[1].innerText = msg['var_departamento'];
+        $('.licencia')[2].innerText = msg['var_distrito'];
+        $('.licencia')[3].innerText = msg['var_estado_licencia'];
+        $('.licencia')[4].innerText = msg['dat_fecha_expedicion'];
+        $('.licencia')[5].innerText = msg['dat_fecha_revalidacion'];
+        $('.licencia')[6].innerText = msg['num_cod_administrado'];
+        $('.licencia')[7].innerText = msg['var_num_licencia'];
+        $('.licencia')[8].innerText = msg['var_restricciones1'];
+        $('.licencia')[9].innerText = msg['var_restricciones2'];
+
+    });
+
+    $.ajax({
+    type: "GET",
+    url: 'https://captcharh.ddns.net/api/record/multas/'+ dni
+    
+    }).done(function(msg){
+        //$("#resultado").html(msg);
+        //console.log(msg)
+
+        $('.multas')[0].innerText = msg[0]['dat_fecha_firme'];
+        $('.multas')[1].innerText = msg[0]['dat_fecha_papeleta'];
+        $('.multas')[2].innerText = msg[0]['dat_fecha_registro'];
+        $('.multas')[3].innerText = msg[0]['falta'];
+        $('.multas')[4].innerText = msg[0]['fec_infraccion'];
+        $('.multas')[5].innerText = msg[0]['papeleta'];
+        $('.multas')[6].innerText = msg[0]['str_entidad'];
+        $('.multas')[7].innerText = msg[0]['str_estado'];
+        $('.multas')[8].innerText = msg[0]['str_fec_firme'];
+        $('.multas')[9].innerText = msg[0]['str_num_infraccion'];
+        $('.multas')[10].innerText = msg[0]['str_num_entidad'];
+        $('.multas')[11].innerText = msg[0]['str_puntos'];
+        record = $('.record')[0].innerText = msg['suma']+"%";
+        if (record> "55") {
+            $('.record')[1].innerText = msg['suma']+"%";
+        }else{
+            $('.record')[1].innerText = msg['suma']+"%";
+
+        }
+
+        
+    });
+
+    
+    $.ajax({
+    type: "GET",
+    url: 'https://captcharh.ddns.net/api/record/placa/'+placa
+    
+    }).done(function(msg){
+        //$("#resultado").html(msg);
+       // console.log(msg)//msg.vin.co
+        $('.vehiculo')[0].innerText = msg['Marca']; 
+        $('.vehiculo')[1].innerText = msg['Modelo']; 
+        $('.vehiculo')[2].innerText = msg['Vin']['modelYear']; 
+        $('.vehiculo')[3].innerText = msg['Nro_Serie']; 
+        $('.vehiculo')[4].innerText = msg['Placa_Anterior']; 
+        $('.vehiculo')[5].innerText = msg['Fecha_Entrega']; 
+        $('.vehiculo')[6].innerText = msg['Propietario']; 
+        $('.vehiculo')[7].innerText = msg['Estado']; 
+        $('.vehiculo')[8].innerText = msg['Punto_Entrega']; 
+        $('.vehiculo')[9].innerText = msg['Tipo_Uso']; 
+        $('.vehiculo')[10].innerText = msg['Tipo_de_Sol']; 
+        $('.vehiculo')[11].innerText = msg['Vin']['continent']; 
+        $('.vehiculo')[12].innerText = msg['Vin']['countries']; 
+        $('.vehiculo')[13].innerText = msg['Vin']['manufacture']; 
+        $('.vehiculo')[14].innerText = msg['Vin']['sequentialNumber']; 
+        
+    });
+
+</script>
