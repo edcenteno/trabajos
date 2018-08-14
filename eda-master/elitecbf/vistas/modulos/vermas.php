@@ -27,7 +27,7 @@ $placa=$value['placa'];
     
     }).done(function(msg){
         //$("#resultado").html(msg);
-        console.log(msg)
+        //console.log(msg)
         //
         $('.licencia')[0].innerText = msg['var_direccion'];
         $('.licencia')[1].innerText = msg['var_departamento'];
@@ -50,7 +50,7 @@ $placa=$value['placa'];
     
     }).done(function(msg){
         //$("#resultado").html(msg);
-        console.log(msg)
+        //console.log(msg)
 
         $('.multas')[0].innerText = msg[0]['dat_fecha_firme'];
         $('.multas')[1].innerText = msg[0]['dat_fecha_papeleta'];
@@ -61,6 +61,19 @@ $placa=$value['placa'];
         $('.multas')[6].innerText = msg[0]['str_entidad'];
         $('.multas')[7].innerText = msg[0]['str_estado'];
         $('.multas')[8].innerText = msg[0]['str_fec_firme'];
+        $('.multas')[9].innerText = msg[0]['str_num_infraccion'];
+        $('.multas')[10].innerText = msg[0]['str_num_entidad'];
+        $('.multas')[11].innerText = msg[0]['str_puntos'];
+        record = $('.record')[0].innerText = msg['suma']+"%";
+        if (record> "55") {
+            $('.record')[1].innerText = msg['suma']+"%";
+        }else{
+            $('.record')[1].innerText = msg['suma']+"%";
+
+        }
+
+            
+      
 
     });
 
@@ -71,9 +84,23 @@ $placa=$value['placa'];
     
     }).done(function(msg){
         //$("#resultado").html(msg);
-        console.log(msg)
-        $('.vehiculo')[0].innerText = msg['Vin']['continent']; //msg.vin.co
-    
+       // console.log(msg)//msg.vin.co
+        $('.vehiculo')[0].innerText = msg['Marca']; 
+        $('.vehiculo')[1].innerText = msg['Modelo']; 
+        $('.vehiculo')[2].innerText = msg['Vin']['modelYear']; 
+        $('.vehiculo')[3].innerText = msg['Nro_Serie']; 
+        $('.vehiculo')[4].innerText = msg['Placa_Anterior']; 
+        $('.vehiculo')[5].innerText = msg['Fecha_Entrega']; 
+        $('.vehiculo')[6].innerText = msg['Propietario']; 
+        $('.vehiculo')[7].innerText = msg['Estado']; 
+        $('.vehiculo')[8].innerText = msg['Punto_Entrega']; 
+        $('.vehiculo')[9].innerText = msg['Tipo_Uso']; 
+        $('.vehiculo')[10].innerText = msg['Tipo_de_Sol']; 
+        $('.vehiculo')[11].innerText = msg['Vin']['continent']; 
+        $('.vehiculo')[12].innerText = msg['Vin']['countries']; 
+        $('.vehiculo')[13].innerText = msg['Vin']['manufacture']; 
+        $('.vehiculo')[14].innerText = msg['Vin']['sequentialNumber']; 
+        
     });
 
 </script>
@@ -147,11 +174,17 @@ $placa=$value['placa'];
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#antecedentes" role="tab"><i class="icon-docs"></i> Antecedentes</a> </li>
                     <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li> 
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>-->
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>
-                    <li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>
+                    <?php
+
+                        if($_SESSION["perfil"] !="RRHH"){
+                            echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>
+                                <li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>
+                               ';
+                        }
+                    ?>
                                
                 </ul>
                 <!-- Tab panes -->
@@ -275,13 +308,7 @@ $placa=$value['placa'];
                                                 <h3 class="text-muted">Record del conductor</h3>
                                             </div>
                                             <div class="ml-auto">
-                                                <?php
-                                                if ($value['record_cond'] <= "55") {
-                                                    echo '<h2 class="counter text-success">'.$value['record_cond'].'%</h2>';
-                                                } else {
-                                                   echo '<h2 class="counter text-danger">'.$value['record_cond'].'%</h2>';
-                                                }
-                                            ?>
+                                                <h2 class="counter record"></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -331,34 +358,72 @@ $placa=$value['placa'];
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Marca</strong>
                                     <br>
-                                    <p class="text-muted">marca<?php /*echo $value['ant_judicial'];*/ ?></p>
+                                    <p class="text-muted vehiculo"></p>
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Modelo</strong>
                                     <br>
-                                    <p class="text-muted">modelo<?php //echo $value['ant_policial']; ?></p>
+                                    <p class="text-muted vehiculo"></p>
                                 </div>
                                 <div class="col-md-3 col-xs-6"> <strong>Año</strong>
                                     <br>
-                                    <p class="text-muted">año<?php //echo $value['observacion']; ?></p>
+                                    <p class="text-muted vehiculo"></p>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Nro. Serie </strong>
                                     <br>
-                                    <p class="text-muted">Nro Serie <?php //echo $value['placa']; ?></p>
+                                    <p class="text-muted vehiculo"></p>
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Placa Anterior</strong>
                                     <br>
-                                    <p class="text-muted">Placa Anterior<?php /*echo $value['ant_judicial'];*/ ?></p>
+                                    <p class="text-muted vehiculo"></p>
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha Entrega</strong>
                                     <br>
-                                    <p class="text-muted">Fecha Entrega<?php //echo $value['ant_policial']; ?></p>
+                                    <p class="text-muted vehiculo"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6"> <strong>Propietario</strong>
+                                <div class="col-md-2 col-xs-6"> <strong>Propietario</strong>
                                     <br>
-                                    <p class="text-muted">Propietario<?php //echo $value['observacion']; ?></p>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Punto de Entrega</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo Uso</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-2 col-xs-6"> <strong>Tipo de Sol</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Continente</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>País</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fabrica</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6"> <strong>Números secuenciales</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
                                 </div>
                             </div>
                         </div>
@@ -381,7 +446,22 @@ $placa=$value['placa'];
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Compañia Aseguradora</strong>
                                     <br>
-                                    <p class="text-muted"><?php echo $value['nombrecompania']; ?></p>
+                                    <p class="text-muted">
+                                    <?php 
+                                    if ($value['nombrecompania']== "Mapfre PerÃº") {
+                                        echo '<img width="90" src="vistas/img/plantilla/mapfre.png">';
+                                    } else{
+
+                                    }
+
+                                    if ($value['nombrecompania']== "La Positiva") {
+                                        echo '<img width="90" src="vistas/img/plantilla/lapositiva.png">';
+                                    } 
+                                    /*if ($value['nombrecompania']= "La Positiva") {
+                                        echo '<img width="30" src="vistas/img/plantilla/favicon.ico">';
+                                    } */
+
+                                    ?></p>
                                 </div>
                                 
                             </div>
@@ -423,74 +503,91 @@ $placa=$value['placa'];
                             <div class="row">
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
                                     <br>
-                                    <p class="text-muted licencia ">var_estado_licencia</p>
+                                    <p class="text-muted licencia "></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_expedicion</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de Expedicion</strong>
                                     <br>
-                                    <p class="text-muted licencia">dat_fecha_expedicion</p>
+                                    <p class="text-muted licencia"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_revalidacion</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de Revalidacion</strong>
                                     <br>
-                                    <p class="text-muted licencia">dat_fecha_revalidacion</p>
+                                    <p class="text-muted licencia"></p>
+                                </div>
+                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Nº de Licencia Correlativo</strong>
+                                    <br>
+                                    <p class="text-muted licencia"></p>
                                 </div>
                             </div>
                             <hr>
                              <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>num_cod_administrado</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Codigo Administrado</strong>
                                     <br>
-                                    <p class="text-muted licencia">num_cod_administrado</p>
+                                    <p class="text-muted licencia"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>var_num_licencia</strong>
+                               
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Restricciones</strong>
                                     <br>
-                                    <p class="text-muted licencia">var_num_licencia</p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>var_restricciones1</strong>
-                                    <br>
-                                    <p class="text-muted licencia">var_restricciones1</p>
+                                    <p class="text-muted licencia"></p>
                                 </div>
                             </div>
                             <hr>
                             <b><font color="#fb9678">Multas</font></b>
                             <hr>
                              <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_firme</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de Firme</strong>
                                     <br>
-                                    <p class="text-muted multas">dat_fecha_firme</p>
+                                    <p class="text-muted multas"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_papeleta</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de Papeleta</strong>
                                     <br>
-                                    <p class="text-muted multas">dat_fecha_papeleta</p>
+                                    <p class="text-muted multas"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_registrofalta</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de Registro</strong>
                                     <br>
-                                    <p class="text-muted multas">dat_fecha_registro</p>
+                                    <p class="text-muted multas">Falta</p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_registrofalta</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Falta</strong>
                                     <br>
-                                    <p class="text-muted multas">dat_fecha_registrofalta</p>
+                                    <p class="text-muted multas"></p>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>fec_infraccionpapeletas</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha Infraccion</strong>
                                     <br>
-                                    <p class="text-muted multas">fec_infraccionpapeletas</p>
+                                    <p class="text-muted multas"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>tr_entidadstr_estados</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Papeleta</strong>
                                     <br>
-                                    <p class="text-muted multas">tr_entidadstr_estados</p>
+                                    <p class="text-muted multas"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>tr_fec_firmes</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Entidad</strong>
                                     <br>
-                                    <p class="text-muted multas">tr_fec_firmes</p>
+                                    <p class="text-muted multas"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>tr_fec_firmes</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Firmes</strong>
                                     <br>
-                                    <p class="text-muted multas">tr_fec_firmes</p>
+                                    <p class="text-muted multas"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>tr_fec_firmes</strong>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha Firmes</strong>
                                     <br>
-                                    <p class="text-muted multas">tr_fec_firmes</p>
+                                    <p class="text-muted multas"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>N° de Infraccion</strong>
+                                    <br>
+                                    <p class="text-muted multas"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>N° de Entidad</strong>
+                                    <br>
+                                    <p class="text-muted multas"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Puntos</strong>
+                                    <br>
+                                    <p class="text-muted multas"></p>
                                 </div>
                             </div>
                         </div>
