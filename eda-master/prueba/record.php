@@ -51,7 +51,7 @@ function realizaProceso(){
 	
 	});
 
-	$.ajax({
+	/*$.ajax({
     type: "GET",
     url: 'https://captcharh.ddns.net/api/record/multas/'+ dni
     
@@ -59,7 +59,7 @@ function realizaProceso(){
 		$("#resultado").html(msg);
 		//console.log(msg)
 	
-	});
+	});*/
 }
 
 </script>

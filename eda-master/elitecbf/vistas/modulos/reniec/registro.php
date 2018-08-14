@@ -36,6 +36,7 @@
 									 '$NumeroPoliza', '$NombreUsoVehiculo', '$easytaxi', '$cabify', 
 									 '$NombreClaseVehiculo', '$FechaControlPolicial', '$TipoCertificado', 
 									 NOW( ))";
+								//echo $sql;
 				
 			$result=mysqli_query($conexion,$sql);
 			//var_dump($sql);

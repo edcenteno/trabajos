@@ -3,12 +3,28 @@
 
 
 <script>
-function realizaProceso(dni){
+function realizaProceso(){
       
-        var parametros = {
-                
-                "dni" : dni
-        };
+        type= $('#tipo').val();
+        dni = $('#dni').val();
+
+        $.ajax({
+          type: "POST",
+          url: 'https://captcharh.ddns.net/api/record',
+          data: {
+              type: type, //tipo de documento 
+              documento: dni, //numero de documento
+              datas: 'record' //tipo de solicitud
+          }
+          
+        }).done(function(msg){
+         // $("#resultado").html(msg);
+          //console.log(msg)
+        
+        });
+
+        parametros="&dni=" + $('#dni').val();
+     
         $.ajax({
                 data:  parametros, 
                 url:   'vistas/modulos/reniec/consulta.php',
@@ -55,7 +71,7 @@ function realizaProceso(dni){
                                           <div class="input-group">
                                               <div class="input-group-prepend" id="div"><span class="input-group-text"><i id="ico" class="ti-id-badge"></i></span></div>
                                               <input type="text" class="form-control" pattern="[0-9]{8}" minlength="8" maxlength="8" name="dni" id="dni" value="" placeholder="DNI" /> 
-                                  
+                                              <input type="text" hidden="" class="form-control" name="tipo" id="tipo" value="1" /> 
                                           </div>
                                          
                                       </div>
@@ -63,7 +79,7 @@ function realizaProceso(dni){
 
                                   <div class="form-group row m-b-0">
                                       <div class="offset-sm-3 col-sm-9">
-                                          <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProceso($('#dni').val());return false;" id="consultadni" name="consultadni">Consultar</button>
+                                          <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProceso()" id="consultadni" name="consultadni">Consultar</button>
                                       </div>
                                   </div>
                                 </form>
@@ -82,6 +98,14 @@ function realizaProceso(dni){
                                         <label for="exampleInputEmail3" class="col-sm-4 control-label">PTP/Carné</label>
                                         <div class="col-sm-10">
                                           <div class="input-group">
+                                            <select id="tipoext" class="form-control"> 
+                                              <option value="0">SELECCIONE</option>
+                                              <option value="2">CARNE DE EXTRANJERIA</option>
+                                              <option value="3">CARNE DE SOLICITANTE</option>
+                                              <option value="4">TARJETA DE IDENTIDAD</option>
+                                              <option value="5">PERMISO TEMPORAL DE PERMANENCIA</option>
+                                            </select>
+                                        
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="ti-id-badge"></i></span></div>
                                             <input type="text" class="form-control" pattern="[0-9]{9-11}" minlength="9" maxlength="11" name="ptp" id="ptp" value="" placeholder="PTP-Carné de Extranjeria" /> 
 
@@ -191,6 +215,7 @@ $(document).ready(function(){
       cadena="nombre=" + $('#nombreext').val() +
           "&apellidos=" + $('#apellidosext').val() +
           "&dni=" + $('#ptp').val() +
+          "&tipoext=" + $('#tipoext').val() +
           "&cabify=" + cabify2 +
           "&easytaxi=" + easytaxi2 +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
@@ -281,6 +306,7 @@ $(document).ready(function(){
     cadena="nombre=" + $('#nombreext').val() +
           "&apellidos=" + $('#apellidosext').val() +
           "&dni=" + $('#ptp').val() +
+          "&tipoext=" + $('#tipoext').val() +
           "&cabify=" + cabify +
           "&easytaxi=" + easytaxi +
           "&si=" + $('#si').val() +

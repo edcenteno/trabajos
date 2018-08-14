@@ -20,7 +20,7 @@ function realizaProceso(){
 	type= $('#tipo').val();
     placa = $('#placa').val();
           
-	/*$.ajax({
+	$.ajax({
     type: "POST",
     url: 'https://captcharh.ddns.net/api/record',
     data: {
@@ -30,16 +30,16 @@ function realizaProceso(){
     }
     
 	}).done(function(msg){
-		$("#resultado").html(msg);
+		//$("#resultado").html(msg);
 		console.log(msg)
-	});*/
+	});	
 	$.ajax({
     type: "GET",
     url: 'https://captcharh.ddns.net/api/record/placa/'+ placa
     
 	}).done(function(msg){
-		$("#resultado").html(msg);
-		//console.log(msg)
+		//$("#resultado").html(msg);
+		console.log(msg)
 	
 	});
 }

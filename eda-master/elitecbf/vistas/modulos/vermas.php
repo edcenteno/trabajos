@@ -13,10 +13,70 @@
     } else {
       $bl="Si se encuentra en lista negra";
     }
-
+$placa=$value['placa'];
 ?>
 
+<script type="text/javascript">
+    
+    var dni = '<?php echo $idconductor ?>'
+    var placa = '<?php echo $placa ?>'
 
+    $.ajax({
+    type: "GET",
+    url: 'https://captcharh.ddns.net/api/record/principal/'+ dni
+    
+    }).done(function(msg){
+        //$("#resultado").html(msg);
+        console.log(msg)
+        //
+        $('.licencia')[0].innerText = msg['var_direccion'];
+        $('.licencia')[1].innerText = msg['var_departamento'];
+        $('.licencia')[2].innerText = msg['var_distrito'];
+        $('.licencia')[3].innerText = msg['var_estado_licencia'];
+        $('.licencia')[4].innerText = msg['dat_fecha_expedicion'];
+        $('.licencia')[5].innerText = msg['dat_fecha_revalidacion'];
+        $('.licencia')[6].innerText = msg['num_cod_administrado'];
+        $('.licencia')[7].innerText = msg['var_num_licencia'];
+        $('.licencia')[8].innerText = msg['var_restricciones1'];
+        $('.licencia')[9].innerText = msg['var_restricciones2'];
+
+        
+
+    });
+
+    $.ajax({
+    type: "GET",
+    url: 'https://captcharh.ddns.net/api/record/multas/'+ dni
+    
+    }).done(function(msg){
+        //$("#resultado").html(msg);
+        console.log(msg)
+
+        $('.multas')[0].innerText = msg[0]['dat_fecha_firme'];
+        $('.multas')[1].innerText = msg[0]['dat_fecha_papeleta'];
+        $('.multas')[2].innerText = msg[0]['dat_fecha_registro'];
+        $('.multas')[3].innerText = msg[0]['falta'];
+        $('.multas')[4].innerText = msg[0]['fec_infraccion'];
+        $('.multas')[5].innerText = msg[0]['papeleta'];
+        $('.multas')[6].innerText = msg[0]['str_entidad'];
+        $('.multas')[7].innerText = msg[0]['str_estado'];
+        $('.multas')[8].innerText = msg[0]['str_fec_firme'];
+
+    });
+
+    
+    $.ajax({
+    type: "GET",
+    url: 'https://captcharh.ddns.net/api/record/placa/'+placa
+    
+    }).done(function(msg){
+        //$("#resultado").html(msg);
+        console.log(msg)
+        $('.vehiculo')[0].innerText = msg['Vin']['continent']; //msg.vin.co
+    
+    });
+
+</script>
 <div class="container-fluid">
 
     <div class="row page-titles">
@@ -87,17 +147,12 @@
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#antecedentes" role="tab"><i class="icon-docs"></i> Antecedentes</a> </li>
                     <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li> 
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>-->
-                    <?php
-
-                        if($_SESSION["perfil"] !="RRHH"){
-                            echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>
-                                <li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>
-                               ';
-                        }
-                    ?>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>
+                    <li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>
+                               
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -145,16 +200,30 @@
                                                 echo 'Cabify &nbsp&nbsp   <img width="30" src="vistas/img/plantilla/favicon.ico">';
                                             } 
 
-                                            if ($easy == 1 && $cbf == 1) {
-                                                echo '<br> EasyTaxi <img width="30" src="vistas/img/plantilla/easy.png">' ;
-                                            }if($easy == 1){
-                                                echo 'EasyTaxi <img width="30" src="vistas/img/plantilla/easy.png">';
+                                            if($easy == 1){
+                                                echo '<br>EasyTaxi <img width="30" src="vistas/img/plantilla/easy.png">';
                                             }
 
                                         ?>
                                     </p>
                                 </div>
                                
+                            </div>
+
+                            <hr>
+                             <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Direccion</strong>
+                                    <br>
+                                    <p class="text-muted licencia"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Departamento</strong>
+                                    <br>
+                                    <p class="text-muted licencia"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Distrito</strong>
+                                    <br>
+                                    <p class="text-muted licencia"></p>
+                                </div>
                             </div>
                            
                             
@@ -354,18 +423,76 @@
                             <div class="row">
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
                                     <br>
-                                    <p class="text-muted">prueba<?php// echo $value['soat']; ?></p>
+                                    <p class="text-muted licencia ">var_estado_licencia</p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>prueba</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_expedicion</strong>
                                     <br>
-                                    <p class="text-muted">prueba<?php //echo $value['fecha_inicio_soat']; ?></p>
+                                    <p class="text-muted licencia">dat_fecha_expedicion</p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>prueba</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_revalidacion</strong>
                                     <br>
-                                    <p class="text-muted">prueba<?php //echo $value['fecha_fin_soat']; ?></p>
+                                    <p class="text-muted licencia">dat_fecha_revalidacion</p>
                                 </div>
                             </div>
                             <hr>
+                             <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>num_cod_administrado</strong>
+                                    <br>
+                                    <p class="text-muted licencia">num_cod_administrado</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>var_num_licencia</strong>
+                                    <br>
+                                    <p class="text-muted licencia">var_num_licencia</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>var_restricciones1</strong>
+                                    <br>
+                                    <p class="text-muted licencia">var_restricciones1</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <b><font color="#fb9678">Multas</font></b>
+                            <hr>
+                             <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_firme</strong>
+                                    <br>
+                                    <p class="text-muted multas">dat_fecha_firme</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_papeleta</strong>
+                                    <br>
+                                    <p class="text-muted multas">dat_fecha_papeleta</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_registrofalta</strong>
+                                    <br>
+                                    <p class="text-muted multas">dat_fecha_registro</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>dat_fecha_registrofalta</strong>
+                                    <br>
+                                    <p class="text-muted multas">dat_fecha_registrofalta</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>fec_infraccionpapeletas</strong>
+                                    <br>
+                                    <p class="text-muted multas">fec_infraccionpapeletas</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>tr_entidadstr_estados</strong>
+                                    <br>
+                                    <p class="text-muted multas">tr_entidadstr_estados</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>tr_fec_firmes</strong>
+                                    <br>
+                                    <p class="text-muted multas">tr_fec_firmes</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>tr_fec_firmes</strong>
+                                    <br>
+                                    <p class="text-muted multas">tr_fec_firmes</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>tr_fec_firmes</strong>
+                                    <br>
+                                    <p class="text-muted multas">tr_fec_firmes</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
