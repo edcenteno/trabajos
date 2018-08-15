@@ -131,7 +131,7 @@ $blacklist=$row['blacklist'];
                 <label for="agraviado_penal">AGRAVIADO: </label>
                 <input type="text" name="agraviado_penal" class="form-control" id="agraviado_penal" placeholder="agraviado_penal" value="<?php echo $row['agraviado_penal'] ?>">
 
-                <label for="definicion_delito_penal">DEFINICIoN DEL DELITO:</label>
+                <label for="definicion_delito_penal">DEFINICIÓN DEL DELITO:</label>
                 <textarea class="form-control " rows="6" name="definicion_delito_penal"><?php echo $row['definicion_delito_penal'] ?></textarea>
 
                 <label for="observacion">RESUMEN:</label>

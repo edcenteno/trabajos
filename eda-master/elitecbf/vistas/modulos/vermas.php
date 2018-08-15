@@ -27,7 +27,7 @@ $placa=$value['placa'];
     
     }).done(function(msg){
         //$("#resultado").html(msg);
-        console.log(msg)
+        //console.log(msg)
         //
         $('.licencia')[0].innerText = msg['var_direccion'];
         $('.licencia')[1].innerText = msg['var_departamento'];

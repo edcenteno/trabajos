@@ -20,7 +20,25 @@ require_once "../../../modelos/conductores.modelo.php";
     } else {
       $bl="Si se encuentra en lista negra";
     }
+
+	if ($value['nombrecompania']== "Mapfre PerÃº") {
+	$seguro = '<img width="120" src="images/soat/mapfre.png">';
+	}
+
+	if ($value['nombrecompania']== "La Positiva") {
+	$seguro = '<img width="120" src="images/soat/lapositiva.png">';
+	}
+	 
+	if ($value['nombrecompania']== "Interseguro") {
+	$seguro = '<img width="120" src="images/soat/interbank.png">';
+	} 
+
+	if ($value['nombrecompania']== "Pacifico Seguros") {
+	$seguro = '<img width="120" src="images/soat/pacifico.png">';
+	}
+
     $placa=$value['placa'];
+
     
 
 require_once('tcpdf_include.php');
@@ -32,6 +50,7 @@ $pdf->startPageGroup();
 $pdf->AddPage();
 // Image example with resizing
 $pdf->Image('images/conductores/conductor.png', 35, 80, 45, 45, 'PNG');
+$pdf->SetAuthor('Edgar Centeno');
 
 // ---------------------------------------------------------
 
@@ -246,6 +265,7 @@ $bloque6 = <<<EOF
 
 		
 	</table>
+	<br><br><br>
 
 EOF;
 
@@ -257,14 +277,6 @@ $bloque7 = <<<EOF
 
 		<tr>
 		
-			<td style="width:260px; text-align:right"></td>
-			<td style="width:260px; text-align:left"><b></b></td>
-
-		</tr>
-
-		<tr>
-		
-			
 			<td style="width:260px; text-align:right"></td>
 			<td style="width:260px; text-align:left"><b></b></td>
 
@@ -298,7 +310,6 @@ $bloque7 = <<<EOF
 EOF;
 
 $pdf->writeHTML($bloque7, false, false, false, false, '');
-$pdf->writeHTML($bloque1, false, false, false, false, '');
 
 // ---------------------------------------------------------
 
@@ -365,7 +376,7 @@ $bloquePolicial = <<<EOF
 		<tr>
 		
 			<td style="width:260px; text-align:right">ESTADO:</td>
-			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$estadopolicial</b></font></td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[estado_Policial]</b></font></td>
 
 		</tr>
 
@@ -386,21 +397,41 @@ $bloquePolicial = <<<EOF
 		<tr>
 			
 			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
-			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_judicial]</b></font></td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_Policial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
+
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_penal]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">RESUMEN:</td>
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[observacionPenales]</b></font></td>
 
 		</tr>
 
 		
 	</table>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br>
 
 EOF;
-
+if ($value['ant_policial'] == 'POSITIVO') {
+$pdf->writeHTML($bloque1, false, false, false, false, '');
+	
 $pdf->writeHTML($bloquePolicial, false, false, false, false, '');
 $pdf->writeHTML($bloque7, false, false, false, false, '');
+$pdf->writeHTML($bloque1, false, false, false, false, '');
+} 
+
 // ---------------------------------------------------------
 
-$bloque8 = <<<EOF
+$bloquePenal = <<<EOF
 
 	<table>
 		
@@ -418,7 +449,7 @@ $bloque8 = <<<EOF
 		
 			<td style="border: 3px solid #5b9bd4; background-color:white; width:540px" align="center">
 
-				RECORD DE CONDUCTOR
+				ANTECEDENTES PENALES
 
 			</td>
 
@@ -428,25 +459,467 @@ $bloque8 = <<<EOF
 
 		
 	</table>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br>
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+		
+			<td style="width:260px; text-align:right">MOTIVO:</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[motivo_penal]</b></font></td>
+
+		</tr>
+
+		<tr>		
+			
+			<td style="width:260px; text-align:right">AUTORIDAD:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[autoridad_penal]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">DOCUMENTO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[documento_penal]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_penal]</b></font></td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="width:260px; text-align:right">ESTADO:</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[estado_penal]</b></font></td>
+
+		</tr>
+
+		<tr>		
+			
+			<td style="width:260px; text-align:right">TIPO DE OCURRENCIA:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_ocurrecia_penal]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">TIPO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_penal]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_penal]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
+
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_penal]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">RESUMEN:</td>
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[observacionPenales]</b></font></td>
+
+		</tr>
+
+		
+	</table>
+	<br><br><br><br><br><br><br>
+
+EOF;
+if ($value['ant_penales'] == 'POSITIVO') {
+	
+$pdf->writeHTML($bloquePenal, false, false, false, false, '');
+$pdf->writeHTML($bloque7, false, false, false, false, '');
+$pdf->writeHTML($bloque1, false, false, false, false, '');
+} 
+
+// ---------------------------------------------------------
+
+$bloquejudicial = <<<EOF
+
+	<table>
+		
+		<tr>
+			
+			<td style="width:540px"><img src="images/back.jpg"></td>
+		
+		</tr>
+
+	</table>
+
+	<table style="font-size:10px; padding:5px 10px;">
+	
+		<tr>
+		
+			<td style="border: 3px solid #5b9bd4; background-color:white; width:540px" align="center">
+
+				ANTECEDENTES JUDIALES
+
+			</td>
+
+			
+
+		</tr>
+
+		
+	</table>
+	<br>
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+		
+			<td style="width:260px; text-align:right">MOTIVO:</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[motivo_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>		
+			
+			<td style="width:260px; text-align:right">AUTORIDAD:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[autoridad_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">DOCUMENTO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[documento_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="width:260px; text-align:right">ESTADO:</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[estado_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>		
+			
+			<td style="width:260px; text-align:right">TIPO DE OCURRENCIA:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_ocurrecia_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">TIPO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
+
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">RESUMEN:</td>
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[observacionJudicial]</b></font></td>
+
+		</tr>
+
+		
+	</table>
+	<br><br><br><br><br><br><br>
+
+EOF;
+if ($value['ant_judicial'] == 'POSITIVO') {
+	
+$pdf->writeHTML($bloquejudicial, false, false, false, false, '');
+$pdf->writeHTML($bloque7, false, false, false, false, '');
+//$pdf->writeHTML($bloque1, false, false, false, false, '');
+} 
+
+// ---------------------------------------------------------
+$bloquelogosoat = <<<EOF
+
+	<table border="0">
+		
+		<tr>
+			
+			<td style="width:150px"><img src="images/arhuint.jpg"></td>
+
+			<td style="background-color:white; width:140px">
+				
+				
+
+			</td>
+
+			
+
+			<td style="background-color:white; width:310px; text-align:center; color:#6f42c1"><font size="72">SOAT</font></td>
+
+		</tr>
+
+	</table>
+	<hr style="height: 3px; background-color: #6f42c1">
+
+EOF;
+	//-------------------------
+$bloquesoat = <<<EOF
+
+	<table>
+		
+		<tr>
+			
+			<td style="width:540px"><img src="images/back.jpg"></td>
+		
+		</tr>
+
+	</table>
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+		
+			<td style="width:520px; text-align:center"><font size="20">COMPAÑÍA DE SEGUROS</font></td>
+			
+
+		</tr>
+
+		<tr>		
+			<td style="width:520px; text-align:center"><font color="red" size="10"><b>$seguro</b></font></td>
+			
+		</tr>
+		<hr>
+		<tr>
+			
+			<td style="width:260px; text-align:right"><font size="12">VIGENCIA DE LA PÓLIZA</font></td>
+			<td style="width:260px; text-align:right"><font size="12">CERTIFICADO SOAT CONTROL POLICIAL</font></td>
+			
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right"><font size="12">No Póliza - Certificado</font></td>
+			<td style="width:260px; text-align:left"><font size="10">Vigencia de uso exclusivo para control policial</font></td>
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right"><font size="14"><b>$value[numeropoliza]</b></font></td>
+			
+			
+		</tr>
+
+		<tr>		
+			<td style="width:260px; text-align:right"><font size="12">Desde</font></td>
+			<td style="width:260px; text-align:left"><font size="12">Desde</font></td>
+			
+			
+		</tr>
+
+		<tr>
+			
+	
+			<td style="width:260px; text-align:right"><font size="14"><b>$value[fecha_inicio_soat]</b></font></td>
+			<td style="width:260px; text-align:left"><font size="14"><b>$value[fecha_inicio_soat]</b></font></td>
+
+		</tr>
+
+		<tr>		
+			<td style="width:260px; text-align:right"><font size="12">Hasta</font></td>
+			<td style="width:260px; text-align:left"><font size="12">Hasta</font></td>
+			
+			
+		</tr>
+
+		<tr>
+			
+	
+			<td style="width:260px; text-align:right"><font size="14"><b>$value[fecha_fin_soat]</b></font></td>
+			<td style="width:260px; text-align:left"><font size="14"><b>$value[fecha_fin_soat]</b></font></td>
+
+		</tr>
+		<hr>
+		<tr>
+			
+			<td style="width:520px; text-align:center"><font size="20">VEHÍCULO ASEGURADO</font></td>
+			
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right"><font size="12">Placa</font></td>
+			<td style="width:260px; text-align:left"><font size="12">Categoría / Clase</font></td>
+			<td style="width:260px; text-align:right"><font size="12">Uso</font></td>
+
+		</tr>
+
+		<tr>
+			<td style="width:260px; text-align:right"><font size="14"><b>$value[placa]</b></font></td>
+			<td style="width:260px; text-align:left"><font size="14"><b>$value[nombreclasevehiculo]</b></font></td>
+			
+		</tr>
+		<tr>
+			<td style="width:260px; text-align:right"><font size="12">Uso</font></td>
+			<td style="width:260px; text-align:left"><font size="12">Estado</font></td>
+			
+		</tr>
+		<tr>
+			<td style="width:260px; text-align:right"><font size="14"><b>$value[NombreUsoVehiculo]</b></font></td>
+			<td style="width:260px; text-align:left"><font size="14"><b>$value[soat]</b></font></td>
+			
+		</tr>
+		<tr>
+			<td style="width:260px; text-align:right"><font size="12">Tipo de Certificado</font></td>
+			<td style="width:260px; text-align:left"><font size="12">Orden de Captura</font></td>
+			
+		</tr>
+		<tr>
+			<td style="width:260px; text-align:right"><font size="14"><b>$value[TipoCertificado]</b></font></td>
+			<td style="width:260px; text-align:justify"><font size="10"><b>$value[orden_captura]</b></font></td>
+			
+		</tr>
+
+		
+	</table>
+
 
 EOF;
 
-$pdf->writeHTML($bloque8, false, false, false, false, '');
+$pdf->writeHTML($bloquelogosoat, false, false, false, false, '');	
+$pdf->writeHTML($bloquesoat, false, false, false, false, '');
 $pdf->writeHTML($bloque7, false, false, false, false, '');
+
+
+
+// ---------------------------------------------------------
+
+$bloquerecord = <<<EOF
+
+	<table>
+		
+		<tr>
+			
+			<td style="width:540px"><img src="images/back.jpg"></td>
+		
+		</tr>
+
+	</table>
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+		
+			<td style="width:260px; text-align:right">COMPAÑÍA DE SEGUROS</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[motivo_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>		
+			
+			<td style="width:260px; text-align:right">AUTORIDAD:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[autoridad_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">DOCUMENTO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[documento_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="width:260px; text-align:right">ESTADO:</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[estado_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>		
+			
+			<td style="width:260px; text-align:right">TIPO DE OCURRENCIA:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_ocurrecia_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">TIPO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
+
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_judicial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">RESUMEN:</td>
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[observacionJudicial]</b></font></td>
+
+		</tr>
+
+		
+	</table>
+	
+
+EOF;
+
+//$pdf->writeHTML($bloquerecord, false, false, false, false, '');
+//$pdf->writeHTML($bloque7, false, false, false, false, '');
 
 
 // ---------------------------------------------------------
 //SALIDA DEL ARCHIVO 
 }
-$pdf->Output('factura.pdf');
-
-
-
-
-$factura = new imprimirFactura();
-$factura -> codigo = $_GET["codigo"];
-$factura -> traerImpresionFactura();
+$nombre="REPORTE_".$value['nombre']."_".$value['apellido'].".pdf";
+$pdf->Output($nombre);
 
 ?>
 <script type="text/javascript">

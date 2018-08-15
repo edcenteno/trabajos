@@ -4,6 +4,6 @@
     </div>
     <strong>Copyright &copy; 2018 ARHU INTERNACIONAL.</strong>
 
-	Todos los derechos reservados. <b>Version</b> 2.2.0 
+	Todos los derechos reservados. <b>Version</b> 3.0.0 
 
 </footer>
