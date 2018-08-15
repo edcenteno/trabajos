@@ -21,6 +21,7 @@ require_once "../../../modelos/conductores.modelo.php";
       $bl="Si se encuentra en lista negra";
     }
     $placa=$value['placa'];
+    
 
 require_once('tcpdf_include.php');
 
@@ -239,7 +240,7 @@ $bloque6 = <<<EOF
 		
 			
 			<td style="width:260px; text-align:right">REQUISITORIAS:</td>
-			<td style="width:260px; text-align:left"><b>REQUISITORIAS</b></td>
+			<td style="width:260px; text-align:left"><b>REFERENCIA POLICIALES</b></td>
 
 		</tr>
 
@@ -299,7 +300,104 @@ EOF;
 $pdf->writeHTML($bloque7, false, false, false, false, '');
 $pdf->writeHTML($bloque1, false, false, false, false, '');
 
+// ---------------------------------------------------------
 
+$bloquePolicial = <<<EOF
+
+	<table>
+		
+		<tr>
+			
+			<td style="width:540px"><img src="images/back.jpg"></td>
+		
+		</tr>
+
+	</table>
+
+	<table style="font-size:10px; padding:5px 10px;">
+	
+		<tr>
+		
+			<td style="border: 3px solid #5b9bd4; background-color:white; width:540px" align="center">
+
+				ANTECEDENTES POLICIALES
+
+			</td>
+
+			
+
+		</tr>
+
+		
+	</table>
+	<br>
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+		
+			<td style="width:260px; text-align:right">MOTIVO:</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[motivo_Policial]</b></font></td>
+
+		</tr>
+
+		<tr>		
+			
+			<td style="width:260px; text-align:right">AUTORIDAD:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[autoridad_Policial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">DOCUMENTO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[documento_Policial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_Policial]</b></font></td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="width:260px; text-align:right">ESTADO:</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$estadopolicial</b></font></td>
+
+		</tr>
+
+		<tr>		
+			
+			<td style="width:260px; text-align:right">TIPO DE OCURRENCIA:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_ocurrecia_Policial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">TIPO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_Policial]</b></font></td>
+
+		</tr>
+
+		<tr>
+			
+			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_judicial]</b></font></td>
+
+		</tr>
+
+		
+	</table>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+EOF;
+
+$pdf->writeHTML($bloquePolicial, false, false, false, false, '');
+$pdf->writeHTML($bloque7, false, false, false, false, '');
 // ---------------------------------------------------------
 
 $bloque8 = <<<EOF

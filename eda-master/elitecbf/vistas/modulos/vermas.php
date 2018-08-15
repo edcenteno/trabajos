@@ -51,7 +51,8 @@ $placa=$value['placa'];
     }).done(function(msg){
         //$("#resultado").html(msg);
         //console.log(msg)
-
+        if (typeof msg[0]['dat_fecha_firme']!= "undefined") {
+        $('#multa').show();
         $('.multas')[0].innerText = msg[0]['dat_fecha_firme'];
         $('.multas')[1].innerText = msg[0]['dat_fecha_papeleta'];
         $('.multas')[2].innerText = msg[0]['dat_fecha_registro'];
@@ -64,6 +65,8 @@ $placa=$value['placa'];
         $('.multas')[9].innerText = msg[0]['str_num_infraccion'];
         $('.multas')[10].innerText = msg[0]['str_num_entidad'];
         $('.multas')[11].innerText = msg[0]['str_puntos'];
+        }
+        
         record = $('.record')[0].innerText = msg['suma']+"%";
         if (record> "55") {
             $('.record')[1].innerText = msg['suma']+"%";
@@ -93,13 +96,12 @@ $placa=$value['placa'];
         $('.vehiculo')[5].innerText = msg['Fecha_Entrega']; 
         $('.vehiculo')[6].innerText = msg['Propietario']; 
         $('.vehiculo')[7].innerText = msg['Estado']; 
-        $('.vehiculo')[8].innerText = msg['Punto_Entrega']; 
-        $('.vehiculo')[9].innerText = msg['Tipo_Uso']; 
-        $('.vehiculo')[10].innerText = msg['Tipo_de_Sol']; 
-        $('.vehiculo')[11].innerText = msg['Vin']['continent']; 
-        $('.vehiculo')[12].innerText = msg['Vin']['countries']; 
-        $('.vehiculo')[13].innerText = msg['Vin']['manufacture']; 
-        $('.vehiculo')[14].innerText = msg['Vin']['sequentialNumber']; 
+        $('.vehiculo')[8].innerText = msg['Tipo_Uso']; 
+        $('.vehiculo')[9].innerText = msg['Tipo_de_Sol']; 
+        $('.vehiculo')[10].innerText = msg['Vin']['continent']; 
+        $('.vehiculo')[11].innerText = msg['Vin']['countries']; 
+        $('.vehiculo')[12].innerText = msg['Vin']['manufacture']; 
+        $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber']; 
         
     });
 
@@ -304,7 +306,7 @@ $placa=$value['placa'];
                                     <p class="text-muted"><?php echo $bl; ?></p>
                                 </div>
                             </div>
-                            
+
                          </div>
                     </div>
 
@@ -376,7 +378,7 @@ $placa=$value['placa'];
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6"> <strong>Año</strong>
+                                <div class="col-md-3 col-xs-6"> <strong>Año de Fabricación</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
@@ -406,11 +408,11 @@ $placa=$value['placa'];
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Punto de Entrega</strong>
+                                <!-- <div class="col-md-3 col-xs-6 b-r"> <strong>Punto de Entrega</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo Uso</strong>
+                                </div> -->
+                                <div class="col-md-4 col-xs-6 b-r"> <strong>Tipo Uso</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
@@ -468,9 +470,18 @@ $placa=$value['placa'];
 
                                     if ($value['nombrecompania']== "La Positiva") {
                                         echo '<img width="90" src="vistas/img/plantilla/lapositiva.png">';
+                                    }else{
+
                                     } 
-                                    if ($value['nombrecompania']= "Interseguro") {
+                                    if ($value['nombrecompania']== "Interseguro") {
                                         echo '<img width="90" src="vistas/img/plantilla/interbank.png">';
+                                    } else{
+
+                                    } 
+                                    if ($value['nombrecompania']== "Pacifico Seguros") {
+                                        echo '<img width="90" src="vistas/img/plantilla/pacifico.png">';
+                                    }else{
+
                                     } 
 
                                     ?></p>
@@ -543,9 +554,12 @@ $placa=$value['placa'];
                                 </div>
                             </div>
                             <hr>
+                            <div id="multa" style="display: none">
                             <b><font color="#fb9678">Multas</font></b>
                             <hr>
-                             <div class="row">
+                             <div class="row" >
+                            
+
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de Firme</strong>
                                     <br>
                                     <p class="text-muted multas"></p>
@@ -601,6 +615,7 @@ $placa=$value['placa'];
                                     <br>
                                     <p class="text-muted multas"></p>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>

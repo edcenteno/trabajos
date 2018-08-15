@@ -107,8 +107,35 @@ $blacklist=$row['blacklist'];
                 </select>
               </div>
               <div class="form-group targetpenales">
-                <label for="observacion">Observación Penal:</label>
-                <textarea class="form-control " rows="6" name="observacionPenales"></textarea>
+                <label for="motivo_penal">MOTIVO: </label>
+                <input type="text" name="motivo_penal" class="form-control" id="motivo_penal" placeholder="motivo_penal" value="<?php echo $row['motivo_penal'] ?>">
+
+                <label for="autoridad_penal">AUTORIDAD: </label>
+                <input type="text" name="autoridad_penal" class="form-control" id="autoridad_penal" placeholder="autoridad_penal" value="<?php echo $row['autoridad_penal'] ?>">
+                
+                <label for="documento_penal">DOCUMENTO: </label>
+                <input type="text" name="documento_penal" class="form-control" id="documento_penal" placeholder="documento_penal" value="<?php echo $row['documento_penal'] ?>">
+
+                <label for="fecha_proceso_penal">FECHA DE PROCESO: </label>
+                <input type="text" name="fecha_proceso_penal" class="form-control" id="fecha_proceso_penal" placeholder="fecha_proceso_penal" value="<?php echo $row['fecha_proceso_penal'] ?>">
+
+                <label for="estado_penal">ESTADO: </label>
+                <input type="text" name="estado_penal" class="form-control" id="estado_penal" placeholder="estado_penal" value="<?php echo $row['estado_penal'] ?>">
+
+                <label for="tipo_ocurrecia_penal">TIPO DE OCURRENCIA: </label>
+                <input type="text" name="tipo_ocurrecia_penal" class="form-control" id="tipo_ocurrecia_penal" placeholder="tipo_ocurrecia_penal" value="<?php echo $row['tipo_ocurrecia_penal'] ?>">
+
+                <label for="tipo_penal">TIPO: </label>
+                <input type="text" name="tipo_penal" class="form-control" id="tipo_penal" placeholder="tipo_penal" value="<?php echo $row['tipo_penal'] ?>">
+
+                <label for="agraviado_penal">AGRAVIADO: </label>
+                <input type="text" name="agraviado_penal" class="form-control" id="agraviado_penal" placeholder="agraviado_penal" value="<?php echo $row['agraviado_penal'] ?>">
+
+                <label for="definicion_delito_penal">DEFINICIoN DEL DELITO:</label>
+                <textarea class="form-control " rows="6" name="definicion_delito_penal"><?php echo $row['definicion_delito_penal'] ?></textarea>
+
+                <label for="observacion">RESUMEN:</label>
+                <textarea class="form-control " rows="6" name="observacionPenales"><?php echo $row['observacionPenales'] ?></textarea>
               </div>
             </div>
 
@@ -122,8 +149,35 @@ $blacklist=$row['blacklist'];
                 </select>
               </div>
               <div class="form-group targetjudicial">
-                <label for="observacion">Observación Judicial:</label>
-                <textarea class="form-control " rows="6" name="observacionJudicial"></textarea>
+               <label for="motivo_penal">MOTIVO: </label>
+                <input type="text" name="motivo_judicial" class="form-control" id="motivo_judicial" placeholder="motivo_judicial" value="<?php echo $row['motivo_judicial'] ?>">
+
+                <label for="autoridad_judicial">AUTORIDAD: </label>
+                <input type="text" name="autoridad_judicial" class="form-control" id="autoridad_judicial" placeholder="autoridad_judicial" value="<?php echo $row['autoridad_judicial'] ?>">
+                
+                <label for="documento_judicial">DOCUMENTO: </label>
+                <input type="text" name="documento_judicial" class="form-control" id="documento_judicial" placeholder="documento_judicial" value="<?php echo $row['documento_judicial'] ?>">
+
+                <label for="fecha_proceso_judicial">FECHA DE PROCESO: </label>
+                <input type="text" name="fecha_proceso_judicial" class="form-control" id="fecha_proceso_judicial" placeholder="fecha_proceso_judicial" value="<?php echo $row['fecha_proceso_judicial'] ?>">
+
+                <label for="estado_judicial">ESTADO: </label>
+                <input type="text" name="estado_judicial" class="form-control" id="estado_judicial" placeholder="estado_judicial" value="<?php echo $row['estado_judicial'] ?>">
+
+                <label for="tipo_ocurrecia_judicial">TIPO DE OCURRENCIA: </label>
+                <input type="text" name="tipo_ocurrecia_judicial" class="form-control" id="tipo_ocurrecia_judicial" placeholder="tipo_ocurrecia_judicial" value="<?php echo $row['tipo_ocurrecia_judicial'] ?>">
+
+                <label for="tipo_judicial">TIPO: </label>
+                <input type="text" name="tipo_judicial" class="form-control" id="tipo_judicial" placeholder="tipo_judicial" value="<?php echo $row['tipo_judicial'] ?>">
+
+                <label for="agraviado_judicial">AGRAVIADO: </label>
+                <input type="text" name="agraviado_judicial" class="form-control" id="agraviado_judicial" placeholder="agraviado_judicial" value="<?php echo $row['agraviado_judicial'] ?>">
+
+                <label for="definicion_delito_judicial">DEFINICIoN DEL DELITO:</label>
+                <textarea class="form-control " rows="6" name="definicion_delito_judicial"><?php echo $row['definicion_delito_judicial'] ?></textarea>
+
+                <label for="observacion">RESUMEN:</label>
+                <textarea class="form-control " rows="6" name="observacionJudicial"><?php echo $row['observacionJudicial'] ?></textarea>
               </div>
             </div>
 
@@ -137,8 +191,36 @@ $blacklist=$row['blacklist'];
                 </select>
               </div>
               <div class="form-group targetpolicial">
-                <label for="observacion">Observación Policial</label>
-                <textarea class="form-control " rows="6" name="observacionPolicial"></textarea>
+                <label for="motivo_Policial">MOTIVO: </label>
+                <input type="text" name="motivo_Policial" class="form-control" id="motivo_Policial" placeholder="motivo_Policial" value="<?php echo $row['motivo_Policial'] ?>">
+
+                <label for="autoridad_Policial">AUTORIDAD: </label>
+                <input type="text" name="autoridad_Policial" class="form-control" id="autoridad_Policial" placeholder="autoridad_Policial" value="<?php echo $row['autoridad_Policial'] ?>">
+                
+                <label for="documento_Policial">DOCUMENTO: </label>
+                <input type="text" name="documento_Policial" class="form-control" id="documento_Policial" placeholder="documento_Policial" value="<?php echo $row['documento_Policial'] ?>">
+
+                <label for="fecha_proceso_Policial">FECHA DE PROCESO: </label>
+                <input type="text" name="fecha_proceso_Policial" class="form-control" id="fecha_proceso_Policial" placeholder="fecha_proceso_Policial" value="<?php echo $row['fecha_proceso_Policial'] ?>">
+
+                <label for="estado_Policial">ESTADO: </label>
+                <input type="text" name="estado_Policial" class="form-control" id="estado_Policial" placeholder="estado_Policial" value="<?php echo $row['estado_Policial'] ?>">
+
+                <label for="tipo_ocurrecia_Policial">TIPO DE OCURRENCIA: </label>
+                <input type="text" name="tipo_ocurrecia_Policial" class="form-control" id="tipo_ocurrecia_Policial" placeholder="tipo_ocurrecia_Policial" value="<?php echo $row['tipo_ocurrecia_Policial'] ?>">
+
+                <label for="tipo_Policial">TIPO: </label>
+                <input type="text" name="tipo_Policial" class="form-control" id="tipo_Policial" placeholder="tipo_Policial" value="<?php echo $row['tipo_Policial'] ?>">
+
+                <label for="agraviado_Policial">AGRAVIADO: </label>
+                <input type="text" name="agraviado_Policial" class="form-control" id="agraviado_Policial" placeholder="agraviado_Policial" value="<?php echo $row['agraviado_Policial'] ?>">
+
+                <label for="definicion_delito_Policial">DEFINICIoN DEL DELITO:</label>
+                <textarea class="form-control " rows="6" name="definicion_delito_Policial"><?php echo $row['definicion_delito_Policial'] ?></textarea>
+
+                <label for="observacion">RESUMEN:</label>
+                <textarea class="form-control " rows="6" name="observacionPolicial"><?php echo $row['observacionPolicial'] ?></textarea>
+
               </div>
             </div>
             

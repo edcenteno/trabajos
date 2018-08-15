@@ -35,11 +35,9 @@ if (strlen($pdf) == '0' || strlen($pdf) == '79') {
 	$pdf;
 }
 
+	ModificarPersona($_POST['dni'], $_POST['nombre'], $_POST['apellido'], $_POST['placa'],  $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $_POST['soat'], $_POST['cont'],$_POST['observacion'], $pdf, $blacklist,$_POST['observacionPenales'], $_POST['observacionJudicial'], $_POST['observacionPolicial'],$_POST['motivo_penal'], $_POST['autoridad_penal'], $_POST['documento_penal'], $_POST['fecha_proceso_penal'],  $_POST['estado_penal'], $_POST['tipo_ocurrecia_penal'],$_POST['tipo_penal'], $_POST['agraviado_penal'], $_POST['definicion_delito_penal'], $_POST['motivo_judicial'], $_POST['autoridad_judicial'], $_POST['documento_judicial'], $_POST['fecha_proceso_judicial'], $_POST['tipo_ocurrecia_judicial'], $_POST['tipo_judicial'],$_POST['agraviado_judicial'], $_POST['definicion_delito_judicial'], $_POST['motivo_Policial'], $_POST['autoridad_Policial'],$_POST['documento_Policial'], $_POST['fecha_proceso_Policial'], $_POST['estado_Policial'], $_POST['tipo_ocurrecia_Policial'], $_POST['tipo_Policial'],$_POST['agraviado_Policial'], $_POST['definicion_delito_Policial'], $_POST['estado_judicial']);
 
-	
-	ModificarPersona($_POST['dni'], $_POST['nombre'], $_POST['apellido'], $_POST['placa'],  $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $_POST['soat'], $_POST['cont'],$_POST['observacion'], $pdf, $blacklist,$_POST['observacionPenales'], $_POST['observacionJudicial'], $_POST['observacionPolicial']);
-
-	function ModificarPersona($dni, $nombre, $apellido, $placa, $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $soat, $cont, $observacion, $pdf, $blacklist, $observacionPenales, $observacionJudicial, $observacionPolicial)
+	function ModificarPersona($dni, $nombre, $apellido, $placa, $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $soat, $cont, $observacion, $pdf, $blacklist, $observacionPenales, $observacionJudicial, $observacionPolicial, $motivo_penal, $autoridad_penal, $documento_penal, $fecha_proceso_penal, $estado_penal, $tipo_ocurrecia_penal, $tipo_penal, $agraviado_penal, $definicion_delito_penal, $motivo_judicial, $autoridad_judicial, $documento_judicial, $fecha_proceso_judicial, $tipo_ocurrecia_judicial, $tipo_judicial, $agraviado_judicial, $definicion_delito_judicial, $motivo_Policial, $autoridad_Policial, $documento_Policial, $fecha_proceso_Policial, $estado_Policial, $tipo_ocurrecia_Policial, $tipo_Policial, $agraviado_Policial, $definicion_delito_Policial, $estado_judicial)
 	{
 		include 'conexion.php';
 		 $sentencia="UPDATE conductores SET dni ='".$dni."',
@@ -56,6 +54,33 @@ if (strlen($pdf) == '0' || strlen($pdf) == '79') {
 									   observacionPenales='".$observacionPenales."',
 									   observacionJudicial='".$observacionJudicial."',
 									   observacionPolicial='".$observacionPolicial."',
+									   motivo_penal='".$motivo_penal."', 
+									   autoridad_penal ='".$autoridad_penal."', 
+		 							   documento_penal='".$documento_penal."', 
+									   fecha_proceso_penal='".$fecha_proceso_penal."', 
+									   tipo_ocurrecia_penal='".$tipo_ocurrecia_penal."',
+									   tipo_penal='".$tipo_penal."',
+									   agraviado_penal='".$agraviado_penal."',
+									   definicion_delito_penal='".$definicion_delito_penal."',
+									   motivo_judicial='".$motivo_judicial."',
+									   autoridad_judicial='".$autoridad_judicial."',
+									   documento_judicial='".$documento_judicial."',
+									   fecha_proceso_judicial='".$fecha_proceso_judicial."',
+									   tipo_ocurrecia_judicial='".$tipo_ocurrecia_judicial."',
+									   tipo_judicial='".$tipo_judicial."',
+									   agraviado_judicial='".$agraviado_judicial."', 
+									   definicion_delito_judicial ='".$definicion_delito_judicial."', 
+		 							   motivo_Policial='".$motivo_Policial."', 
+									   autoridad_Policial='".$autoridad_Policial."', 
+									   documento_Policial='".$documento_Policial."',
+									   fecha_proceso_Policial='".$fecha_proceso_Policial."',
+									   estado_Policial='".$estado_Policial."',
+									   tipo_ocurrecia_Policial='".$tipo_ocurrecia_Policial."',
+									   tipo_Policial='".$tipo_Policial."',
+									   agraviado_Policial='".$agraviado_Policial."',
+									   definicion_delito_Policial='".$definicion_delito_Policial."',
+									   estado_penal='".$estado_penal."',
+									   estado_judicial='".$estado_judicial."',
 									   pdf = '".addslashes($pdf)."',
 									   blacklist = '".$blacklist."'
 									   WHERE cont='".$cont."' ";
