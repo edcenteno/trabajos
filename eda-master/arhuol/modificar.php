@@ -8,20 +8,53 @@ $id = $_GET['id'];
 $sql = "SELECT * FROM conductores WHERE cont = '$id'";
 $resultado = $mysqli->query($sql);
 $row = $resultado->fetch_array(MYSQLI_ASSOC);
-
-?>
-<html lang="es">
-<head>
-  <title>ARHU Internacional</title>
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/ico" />
-</head>
-<?php
 $dni=$row['dni'];
 $pdf=$row['pdf'];
 $blacklist=$row['blacklist'];
 /*var_dump($pdf);*/
-
 ?>
+<html lang="es">
+
+<head>
+  <title>ARHU Internacional</title>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/ico" />
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+          $('.targetpolicial').hide();
+          $('.targetjudicial').hide();
+          $('.targetpenales').hide();
+    });
+    $(document).ready(function(){
+    $("#mostrarpolicial").click(function(){
+      $('.targetpolicial').show("swing");
+     });
+    $("#ocultarpolicial").click(function(){
+      $('.targetpolicial').hide("linear");
+    });
+  });
+    $(document).ready(function(){
+    $("#mostrarjudicial").click(function(){
+      $('.targetjudicial').show("swing");
+     });
+    $("#ocultarjudicial").click(function(){
+      $('.targetjudicial').hide("linear");
+    });
+  });
+    $(document).ready(function(){
+    $("#mostrarpenales").click(function(){
+      $('.targetpenales').show("swing");
+     });
+    $("#ocultarpenales").click(function(){
+      $('.targetpenales').hide("linear");
+    });
+  });
+
+
+  </script>
+
+</head>
+
 <body>
   <div class="container">
     <div class="row">
@@ -69,9 +102,13 @@ $blacklist=$row['blacklist'];
               <div class="form-group">
                 <select class="form-control" id="sel1" name ="ant_penales">
                   <option><?php echo $row['ant_penales'] ?></option>
-                  <option>POSITIVO</option>
-                  <option>NEGATIVO</option>
+                  <option id="mostrarpenales">POSITIVO</option>
+                  <option id="ocultarpenales">NEGATIVO</option>
                 </select>
+              </div>
+              <div class="form-group targetpenales">
+                <label for="observacion">Observación Penal:</label>
+                <textarea class="form-control " rows="6" name="observacionPenales"></textarea>
               </div>
             </div>
 
@@ -80,9 +117,13 @@ $blacklist=$row['blacklist'];
               <div class="form-group">
                 <select class="form-control" id="sel1" name ="ant_judicial">
                   <option> <?php echo $row['ant_judicial'] ?></option>
-                  <option>POSITIVO</option>
-                  <option>NEGATIVO</option>
+                  <option id="mostrarjudicial">POSITIVO</option>
+                  <option id="ocultarjudicial">NEGATIVO</option>
                 </select>
+              </div>
+              <div class="form-group targetjudicial">
+                <label for="observacion">Observación Judicial:</label>
+                <textarea class="form-control " rows="6" name="observacionJudicial"></textarea>
               </div>
             </div>
 
@@ -91,9 +132,13 @@ $blacklist=$row['blacklist'];
               <div class="form-group">
                 <select class="form-control" id="sel1" name ="ant_policial">
                   <option> <?php echo $row['ant_policial'] ?></option>
-                  <option>POSITIVO</option>
-                  <option>NEGATIVO</option>
+                  <option id="mostrarpolicial">POSITIVO</option>
+                  <option id="ocultarpolicial">NEGATIVO</option>
                 </select>
+              </div>
+              <div class="form-group targetpolicial">
+                <label for="observacion">Observación Policial</label>
+                <textarea class="form-control " rows="6" name="observacionPolicial"></textarea>
               </div>
             </div>
             
@@ -105,16 +150,6 @@ $blacklist=$row['blacklist'];
           </div>
 
           <div class="col-6 col-sm-4">
-          <!--   <div class="form-group">
-              <label for="resultado">Resultado: </label>
-              <div class="form-group">
-                <select class="form-control" id="sel1" name ="resultado" required="">
-                  <option><?php echo $row['resultado'] ?></option>
-                  <option>APTO</option>
-                  <option>NO APTO</option>
-                </select>
-              </div> -->
-
               <div class="form-group">
                 <label for="soat">SOAT : </label>
                 <div class="form-group">
@@ -125,6 +160,7 @@ $blacklist=$row['blacklist'];
                     <option>NO POSEE</option>
                   </select>
                 </div>
+                
               </div>
 
              <div class="form-group">

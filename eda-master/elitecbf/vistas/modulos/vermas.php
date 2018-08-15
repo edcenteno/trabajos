@@ -285,14 +285,26 @@ $placa=$value['placa'];
                                 </div>
                             </div>
 
-                                <hr>
+                            <hr>
                             <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Antecedentes Penales</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $value['observacionPenales']; ?></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Antecedentes Judiciales</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $value['observacionJudicial']; ?></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Antecedentes Policiales</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $value['observacionPolicial']; ?></p>
+                                </div>
                                 <div class="col-md-3 col-xs-6"> <strong>Lista Negra</strong>
                                     <br>
                                     <p class="text-muted"><?php echo $bl; ?></p>
                                 </div>
-                           
                             </div>
+                            
                          </div>
                     </div>
 

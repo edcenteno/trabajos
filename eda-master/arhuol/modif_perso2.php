@@ -37,9 +37,9 @@ if (strlen($pdf) == '0' || strlen($pdf) == '79') {
 
 
 	
-	ModificarPersona($_POST['dni'], $_POST['nombre'], $_POST['apellido'], $_POST['placa'],  $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $_POST['soat'], $_POST['cont'],$_POST['observacion'], $pdf, $blacklist);
+	ModificarPersona($_POST['dni'], $_POST['nombre'], $_POST['apellido'], $_POST['placa'],  $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $_POST['soat'], $_POST['cont'],$_POST['observacion'], $pdf, $blacklist,$_POST['observacionPenales'], $_POST['observacionJudicial'], $_POST['observacionPolicial']);
 
-	function ModificarPersona($dni, $nombre, $apellido, $placa, $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $soat, $cont, $observacion, $pdf, $blacklist)
+	function ModificarPersona($dni, $nombre, $apellido, $placa, $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $soat, $cont, $observacion, $pdf, $blacklist, $observacionPenales, $observacionJudicial, $observacionPolicial)
 	{
 		include 'conexion.php';
 		 $sentencia="UPDATE conductores SET dni ='".$dni."',
@@ -53,6 +53,9 @@ if (strlen($pdf) == '0' || strlen($pdf) == '79') {
 									   placa='".$placa."',
 									   soat='".$soat."',
 									   observacion='".$observacion."',
+									   observacionPenales='".$observacionPenales."',
+									   observacionJudicial='".$observacionJudicial."',
+									   observacionPolicial='".$observacionPolicial."',
 									   pdf = '".addslashes($pdf)."',
 									   blacklist = '".$blacklist."'
 									   WHERE cont='".$cont."' ";
