@@ -42,8 +42,26 @@
 			if(buscaRepetido($dni,$conexion)==1){
 				echo 2;
 			}else{
-				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha)
-					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ))";
+				$sqlsecu = "SELECT * FROM conductores ORDER BY fecha DESC LIMIT 1";
+				$resultado = $mysqli->query($sqlsecu);
+				$row = $resultado->fetch_array(MYSQLI_ASSOC);
+				$secuencia_arhu_ant = $row['secuencia_arhu_ant'];
+				$secu = substr($secuencia_arhu_ant, 7, -5);
+				$mes = date("M");
+				if ($secu == $mes) {
+					$saa=str_pad($secuencia_arhu_ant, 5, "0", STR_PAD_LEFT);
+					$secuencia_arhu_ant++;
+					$secuencia = $secuencia_arhu_ant;
+				}else{
+					$año = date("Y");
+					$mes = date("M");
+					$secuencia_arhu_ant = "00000";
+					$secuencia_arhu_ant++;
+					$saa=str_pad($secuencia_arhu_ant, 5, "0", STR_PAD_LEFT);
+					$secuencia =  "RA-" .$año . $mes. $saa;
+				}
+				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant)
+					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), $secuencia)";
 				$result=mysqli_query($conexion,$sql);
 				//var_dump($sql);
 				echo "1";

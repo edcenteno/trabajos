@@ -105,6 +105,11 @@ $placa=$value['placa'];
         
     });
 
+$(document).ready(function(){
+    url = 'recibearchivo.php';
+    $('#modalcapture').captureDevice(dni, url)
+})
+
 </script>
 <div class="container-fluid">
 
@@ -141,6 +146,8 @@ $placa=$value['placa'];
                         }
                         
                         ?>
+                        <div id="modalcapture"></div>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
                         <h4 class="card-title m-t-10"><?php echo $value['nombre'] ." " . $value['apellido']; ?></h4>
                         <h5 class="card-subtitle">DNI <?php echo $value['dni']; ?></h5>
                         <h6 class="card-subtitle">Conductor</h6>

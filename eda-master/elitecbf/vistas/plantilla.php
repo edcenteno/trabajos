@@ -221,6 +221,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/conductores.js"></script>
 <script src="vistas/js/prospectos.js"></script>
 <script src="vistas/js/datapicker.js"></script>
+<script src="vistas/js/ModalCapture.js"></script>
 
 </body>
 </html>

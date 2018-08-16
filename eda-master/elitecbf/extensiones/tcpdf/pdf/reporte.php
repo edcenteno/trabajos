@@ -36,11 +36,9 @@ require_once "../../../modelos/conductores.modelo.php";
 	if ($value['nombrecompania']== "Pacifico Seguros") {
 	$seguro = '<img width="120" src="images/soat/pacifico.png">';
 	}
-
-    $placa=$value['placa'];
-
-    
-
+	
+	
+	
 require_once('tcpdf_include.php');
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -49,8 +47,12 @@ $pdf->startPageGroup();
 
 $pdf->AddPage();
 // Image example with resizing
+//$pdf->Image('images/confidencial.png', -10, -10, 250, 175, 'PNG');
 $pdf->Image('images/conductores/conductor.png', 35, 80, 45, 45, 'PNG');
 $pdf->SetAuthor('Edgar Centeno');
+//$img_file = K_PATH_IMAGES.'images/confidencial.png';
+
+
 
 // ---------------------------------------------------------
 
@@ -69,12 +71,12 @@ $bloque1 = <<<EOF
 			</td>
 
 			<td style="background-color:white; width:140px">
-
+			
 				
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:black"><br><br><b>secuencia_arhu_ant</b></td>
+			<td style="background-color:white; width:110px; text-align:center; color:black"><br><br><b>$value[secuencia_arhu_ant]</b></td>
 
 		</tr>
 
@@ -670,7 +672,7 @@ $bloquelogosoat = <<<EOF
 		
 		<tr>
 			
-			<td style="width:150px"><img src="images/arhuint.jpg"></td>
+			<td style="width:200px"><img src="images/min.png"></td>
 
 			<td style="background-color:white; width:140px">
 				
@@ -680,7 +682,7 @@ $bloquelogosoat = <<<EOF
 
 			
 
-			<td style="background-color:white; width:310px; text-align:center; color:#6f42c1"><font size="72">SOAT</font></td>
+			<td style="background-color:white; width:210px; text-align:center; color:#6f42c1"><font size="72">SOAT</font></td>
 
 		</tr>
 
@@ -811,10 +813,57 @@ $bloquesoat = <<<EOF
 
 
 EOF;
+$bloquepiesoat = <<<EOF
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+		
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+		
+			
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+		
+			<br><br>
+			<br>
+			<td style="width:540px; text-align:center">
+				<font size="8" color="#aaaaaa">Los establecimientos de salud públicos y privados están obligados
+					a prestar atención médico quirúrgica de emergencia en caso de la
+					ocurrencia de un accidente de tránsito conforme en la Ley No
+					26842, Ley General de Salud y su Reglamento.</font>
+			</td>
+			</tr>
+			<tr>
+			<td style="width:540px; text-align:center">
+				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y 
+				exclusivo del tenedor.<br>
+				Es confidencial incomunicable a terceros.<br>
+				Su divulgación, distribución,
+				retransmisión y/o alteración, total o parcial está expresamente 
+				prohibida.</font>
+			</td>
+
+		</tr>
+
+		
+	</table>
+
+EOF;
 
 $pdf->writeHTML($bloquelogosoat, false, false, false, false, '');	
 $pdf->writeHTML($bloquesoat, false, false, false, false, '');
-$pdf->writeHTML($bloque7, false, false, false, false, '');
+$pdf->writeHTML($bloquepiesoat, false, false, false, false, '');
+//$pdf->writeHTML($bloque7, false, false, false, false, '');
 
 
 
@@ -918,91 +967,32 @@ EOF;
 // ---------------------------------------------------------
 //SALIDA DEL ARCHIVO 
 }
+
+
 $nombre="REPORTE_".$value['nombre']."_".$value['apellido'].".pdf";
+/*require 'vendor/autoload.php';
+	$client = new GuzzleHttp\Client();
+	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
+	$res->getStatusCode();
+
+	$res->getHeader('content-type');
+
+	$arr = json_decode($res->getBody(), true);
+	echo "<pre>";
+	//var_dump($arr);
+	echo "</pre>";
+
+	foreach ($arr as $key => $value) {
+		$papeleta = $value{'papeleta'};
+		echo $value{'dat_fecha_papeleta'}."<br>";
+		echo $value{'str_fec_firme'}."<br>";
+		echo $value{'str_estado'}."<br>";
+		echo $value{'falta'}."<br>";
+		echo $value{'fec_infraccion'}."<br>";
+		echo $value{'str_num_infraccion'}."<br>";
+		echo $value{'str_num_entidad'}."<br>";
+		echo $value{'str_num_entidad'}."<br>";
+	}*/
 $pdf->Output($nombre);
 
 ?>
-<script type="text/javascript">
-    
-    var dni = '<?php echo $idconductor ?>'
-    var placa = '<?php echo $placa ?>'
-
-    $.ajax({
-    type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/principal/'+ dni
-    
-    }).done(function(msg){
-        //$("#resultado").html(msg);
-        //console.log(msg)
-        //
-        $('.licencia')[0].innerText = msg['var_direccion'];
-        $('.licencia')[1].innerText = msg['var_departamento'];
-        $('.licencia')[2].innerText = msg['var_distrito'];
-        $('.licencia')[3].innerText = msg['var_estado_licencia'];
-        $('.licencia')[4].innerText = msg['dat_fecha_expedicion'];
-        $('.licencia')[5].innerText = msg['dat_fecha_revalidacion'];
-        $('.licencia')[6].innerText = msg['num_cod_administrado'];
-        $('.licencia')[7].innerText = msg['var_num_licencia'];
-        $('.licencia')[8].innerText = msg['var_restricciones1'];
-        $('.licencia')[9].innerText = msg['var_restricciones2'];
-
-    });
-
-    $.ajax({
-    type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/multas/'+ dni
-    
-    }).done(function(msg){
-        //$("#resultado").html(msg);
-        //console.log(msg)
-
-        $('.multas')[0].innerText = msg[0]['dat_fecha_firme'];
-        $('.multas')[1].innerText = msg[0]['dat_fecha_papeleta'];
-        $('.multas')[2].innerText = msg[0]['dat_fecha_registro'];
-        $('.multas')[3].innerText = msg[0]['falta'];
-        $('.multas')[4].innerText = msg[0]['fec_infraccion'];
-        $('.multas')[5].innerText = msg[0]['papeleta'];
-        $('.multas')[6].innerText = msg[0]['str_entidad'];
-        $('.multas')[7].innerText = msg[0]['str_estado'];
-        $('.multas')[8].innerText = msg[0]['str_fec_firme'];
-        $('.multas')[9].innerText = msg[0]['str_num_infraccion'];
-        $('.multas')[10].innerText = msg[0]['str_num_entidad'];
-        $('.multas')[11].innerText = msg[0]['str_puntos'];
-        record = $('.record')[0].innerText = msg['suma']+"%";
-        if (record> "55") {
-            $('.record')[1].innerText = msg['suma']+"%";
-        }else{
-            $('.record')[1].innerText = msg['suma']+"%";
-
-        }
-
-        
-    });
-
-    
-    $.ajax({
-    type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/placa/'+placa
-    
-    }).done(function(msg){
-        //$("#resultado").html(msg);
-       // console.log(msg)//msg.vin.co
-        $('.vehiculo')[0].innerText = msg['Marca']; 
-        $('.vehiculo')[1].innerText = msg['Modelo']; 
-        $('.vehiculo')[2].innerText = msg['Vin']['modelYear']; 
-        $('.vehiculo')[3].innerText = msg['Nro_Serie']; 
-        $('.vehiculo')[4].innerText = msg['Placa_Anterior']; 
-        $('.vehiculo')[5].innerText = msg['Fecha_Entrega']; 
-        $('.vehiculo')[6].innerText = msg['Propietario']; 
-        $('.vehiculo')[7].innerText = msg['Estado']; 
-        $('.vehiculo')[8].innerText = msg['Punto_Entrega']; 
-        $('.vehiculo')[9].innerText = msg['Tipo_Uso']; 
-        $('.vehiculo')[10].innerText = msg['Tipo_de_Sol']; 
-        $('.vehiculo')[11].innerText = msg['Vin']['continent']; 
-        $('.vehiculo')[12].innerText = msg['Vin']['countries']; 
-        $('.vehiculo')[13].innerText = msg['Vin']['manufacture']; 
-        $('.vehiculo')[14].innerText = msg['Vin']['sequentialNumber']; 
-        
-    });
-
-</script>
