@@ -430,7 +430,7 @@ $bloquePolicial = <<<EOF
 			
 			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
 
-			<td style="width:260px; text-align:justify"><font size="8"><b></b></font></td>
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_Policial]</b></font></td>
 
 		</tr>
 
@@ -548,7 +548,7 @@ $bloquePenal = <<<EOF
 			
 			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
 
-			<td style="width:260px; text-align:justify"><font size="8"><b></b></font></td>
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_judicial]</b></font></td>
 
 		</tr>
 
@@ -665,7 +665,7 @@ $bloquejudicial = <<<EOF
 			
 			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
 
-			<td style="width:260px; text-align:justify"><font size="8"><b></b></font></td>
+			<td style="width:260px; text-align:justify"><font size="8"><b></b></font></td>$value[definicion_delito_judicial]
 
 		</tr>
 
