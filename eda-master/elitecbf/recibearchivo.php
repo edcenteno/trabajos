@@ -22,5 +22,9 @@ if (isset($_POST['id_file']) && isset($_FILES["file"])){
 }
 
 echo json_encode($return);
+require_once "php/conexion.php";
+$sql="INSERT into conductores (foto, fecha_foto)
+					values ('$name',NOW( ))";
+				$result=mysqli_query($conexion,$sql);
 
 ?>

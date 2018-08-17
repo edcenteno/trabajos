@@ -4,7 +4,7 @@
 require_once "../../../controladores/conductores.controlador.php";
 require_once "../../../modelos/conductores.modelo.php";
 
-
+require 'vendor/autoload.php';
 	//$idconductor=0;
  	$idconductor = $_GET['idconductor'];
     $item = null;
@@ -37,7 +37,7 @@ require_once "../../../modelos/conductores.modelo.php";
 	$seguro = '<img width="120" src="images/soat/pacifico.png">';
 	}
 	
-	require 'vendor/autoload.php';
+	
 
 	$client = new GuzzleHttp\Client();
 	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/principal/'.$idconductor);
@@ -47,15 +47,17 @@ require_once "../../../modelos/conductores.modelo.php";
 
 	$arr = json_decode($res->getBody(), true);
 
-
 	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
 	$res->getStatusCode();
 
 	$res->getHeader('content-type');
 
 	$arrmultas = json_decode($res->getBody(), true);
+	/*echo "<pre>";
+	var_dump($value);
+*/
 
-
+	
 require_once('tcpdf_include.php');
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -213,8 +215,6 @@ $bloque3 = <<<EOF
 
 
 		
-
-		
 	</table>
 
 EOF;
@@ -228,7 +228,7 @@ $pdf->writeHTML($bloque3, false, false, false, false, '');
 // ---------------------------------------------------------
 
 $bloque5 = <<<EOF
-<br><br><br><br>
+
 	<table>
 		
 		<tr>
@@ -430,14 +430,14 @@ $bloquePolicial = <<<EOF
 			
 			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
 
-			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_penal]</b></font></td>
+			<td style="width:260px; text-align:justify"><font size="8"><b></b></font></td>
 
 		</tr>
 
 		<tr>
 			
 			<td style="width:260px; text-align:right">RESUMEN:</td>
-			<td style="width:260px; text-align:justify"><font size="8"><b>$value[observacionPenales]</b></font></td>
+			<td style="width:260px; text-align:justify"><font size="8"><b>$value[observacionPolicial]</b></font></td>
 
 		</tr>
 
@@ -548,7 +548,7 @@ $bloquePenal = <<<EOF
 			
 			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
 
-			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_penal]</b></font></td>
+			<td style="width:260px; text-align:justify"><font size="8"><b></b></font></td>
 
 		</tr>
 
@@ -665,7 +665,7 @@ $bloquejudicial = <<<EOF
 			
 			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
 
-			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_judicial]</b></font></td>
+			<td style="width:260px; text-align:justify"><font size="8"><b></b></font></td>
 
 		</tr>
 
@@ -678,8 +678,7 @@ $bloquejudicial = <<<EOF
 
 		
 	</table>
-	<br><br><br><br><br><br><br>
-
+	<br><br><br><br>
 EOF;
 if ($value['ant_judicial'] == 'POSITIVO') {
 	
@@ -900,7 +899,7 @@ EOF;
 $pdf->writeHTML($bloquelogosoat, false, false, false, false, '');	
 $pdf->writeHTML($bloquesoat, false, false, false, false, '');
 $pdf->writeHTML($bloquepiesoat, false, false, false, false, '');
-$pdf->writeHTML($bloque1, false, false, false, false, '');
+
 
 /////////-----------------------------------------------
 $bloqueencabezadorecord = <<<EOF
@@ -927,7 +926,7 @@ $bloqueencabezadorecord = <<<EOF
 			
 
 		</tr>
-
+		
 		
 	
 		<thead>
@@ -943,8 +942,13 @@ $bloqueencabezadorecord = <<<EOF
 	<br><br>
 
 EOF;
-	$pdf->writeHTML($bloqueencabezadorecord, false, false, false, false, '');
+
+
 // ---------------------------------------------------------
+
+ if (is_array($arrmultas)) {
+ 	$pdf->writeHTML($bloque1, false, false, false, false, '');
+ $pdf->writeHTML($bloqueencabezadorecord, false, false, false, false, '');	
 foreach ($arrmultas as $key => $keymultas) {
 
 	
@@ -978,12 +982,16 @@ $bloquerecord = <<<EOF
 
 EOF;
 
-
 $pdf->writeHTML($bloquerecord, false, false, false, false, '');
 }
 
-
 $pdf->writeHTML($bloque7, false, false, false, false, '');
+} else {
+
+}
+
+
+
 
 
 // ---------------------------------------------------------

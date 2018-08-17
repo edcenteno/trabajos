@@ -138,19 +138,36 @@ $(document).ready(function(){
             <div class="card">
                 <div class="card-body">
                     <center class="m-t-30"> 
-                        <?php
-                     
-                            echo '<img src="vistas/img/conductores/'.$idconductor.'.jpg" class="img-circle" width="100" height="100" />';
-                       
-                        ?>
+
+                        <a class="image-popup-vertical-fit" href="vistas/img/conductores/<?php echo $idconductor ?>.jpg">
+                            <img src="vistas/img/conductores/<?php echo $idconductor ?>.jpg" class="img-circle" width="100" height="100" /> 
+                        </a>
+
+
                         <div id="modalcapture"></div>
                        
                         <h4 class="card-title m-t-10"><?php echo $value['nombre'] ." " . $value['apellido']; ?></h4>
                         <h5 class="card-subtitle">DNI <?php echo $value['dni']; ?></h5>
                         <h6 class="card-subtitle">Conductor</h6>
                         <div class="row text-center justify-content-md-center">
-                          <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture">Capturar</button>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
+                        <button class="btn btn-warning"  id="act" onclick="deshabilitar_btnEnviar()">Actualizar</button>
+                        <a download="<?php echo $idconductor ?>.jpg" href="vistas/img/conductores/<?php echo $idconductor ?>.jpg"><button class="btn btn-primary" data-toggle="modal" data-target="#">Descargar Imagen</button></a>
                         </div>
+                        <script>
+
+                            function deshabilitar_btnEnviar(){
+                            document.getElementById("act").disabled = true;
+                            document.getElementById("act").innerHTML="Actualizando...";
+                            setTimeout(function() {
+                                document.getElementById("act").disabled = false;
+                            document.getElementById("act").innerHTML="Actualizado";
+                            
+                            }, 3000);
+
+                            }   
+                            </script>
+                          
                     </center>
                 </div>
                 <!-- <div>

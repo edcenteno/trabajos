@@ -53,10 +53,10 @@ $.fn.captureDevice = function(idFile, arg){
 
                 if(!status) {
                     $(this).text("Capturar");
-                    if(obj.hasCaptureMedia()){
+                    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
                         obj.objVideo();
                     }else{
-                        console.log("No existe dispositivo");
+                        alert("No existe dispositivo");
                     }
                 }
                 else {
@@ -92,7 +92,7 @@ $.fn.captureDevice = function(idFile, arg){
         },
         btnCancel: function(){
             let stop = this.stop;
-            $element.find("#btn-cancel").click(function(){
+            $element.find("#btn-cancel, #btn-close").click(function(){
                 $element.find("#btn-capture").text("Iniciar");
                 $element.find("#btn-capture").attr("shot", false);
                 stop();
@@ -107,7 +107,6 @@ $.fn.captureDevice = function(idFile, arg){
             this.btnCapture();
             this.btnCancel();
             this.btnSave();
-            console.log(this);
         }
     }
     let id = $(this).attr('id');
@@ -119,8 +118,9 @@ $.fn.captureDevice = function(idFile, arg){
         .attr("aria-labelledby", id+"Label")
         .attr("aria-hidden", "true");
 
-    $(this).html('<!-- Modal --><div class="modal-dialog modal-lg" role="document">        <div class="modal-content">            <div class="modal-header">            <h5 class="modal-title" id="captureModalLabel">Capturar Foto</h5>            <button type="button" class="close" data-dismiss="modal" aria-label="Close">                <span aria-hidden="true">&times;</span>            </button>            </div>            <div class="modal-body">                <div class="row">                    <div class="col-10">                        <div class="embed-responsive embed-responsive-16by9 bg-dark img-thumbnail">                            <video id="video-container" style="width: 100%; height: 100%" autoplay></video>                        </div>                    </div>                    <div class="col-2">                        <div class="btn-group-vertical m-auto" role="group">                            <button shot="false" id="btn-capture" type="button" class="btn btn-primary">Iniciar</button>                            <button type="button" id="btn-save" class="btn btn-success">Guardar</button>                            <button type="button" id="btn-cancel" class="btn btn-danger">Cancelar</button>                        </div>                        <img class="img-thumbnail" style="position: absolute; bottom: 0; left: 0; width:80%; display:none" id="img-preview" src="" alt="">                    </div>                </div>            </div>            <div class="modal-footer" style="border-top: thin solid #e9ecef">                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>            </div>        </div>    </div>');
-    object.start();
+    $(this).html('<!-- Modal --><div class="modal-dialog modal-lg" role="document">        <div class="modal-content">            <div class="modal-header">            <h5 class="modal-title" id="captureModalLabel">Capturar Foto</h5>            <button type="button" class="close" data-dismiss="modal" aria-label="Close">                <span aria-hidden="true">&times;</span>            </button>            </div>            <div class="modal-body">                <div class="row">                    <div class="col-8 col-sm-9 col-lg-10">                        <div class="embed-responsive embed-responsive-16by9 bg-dark img-thumbnail">                            <video id="video-container" style="width: 100%; height: 100%" autoplay></video>                        </div>                    </div>                    <div class="col-4 col-sm-3 col-lg-2">                        <div class="btn-group-vertical m-auto" role="group">                            <button shot="false" id="btn-capture" type="button" class="btn btn-primary">Iniciar</button>                            <button type="button" id="btn-save" class="btn btn-success">Guardar</button>                            <button type="button" id="btn-cancel" class="btn btn-danger" data-dismiss="modal">Cancelar</button>                        </div>                        <img class="img-thumbnail" style="position: absolute; bottom: 0; left: 0; width:80%; display:none" id="img-preview" src="" alt="">                    </div>                </div>            </div>            <div class="modal-footer" style="border-top: thin solid #e9ecef">                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>            </div>        </div>    </div>');
+    setTimeout(object.start(), 400);
+    
     $(this).modal("hide");
     
 }

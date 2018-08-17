@@ -35,7 +35,7 @@
                                     <th>DNI</th>
                                     <th>NOMBRE</th>
                                     <th>APELLIDO</th>
-                                    <th>PLACA</th>
+                                    <th>RESULTADO</th>
                                     <th>VER MAS</th>
                                 </tr>
                             </thead>
@@ -45,7 +45,7 @@
                                    <th>DNI</th>
                                    <th>NOMBRE</th>
                                    <th>APELLIDO</th>
-                                   <th>PLACA</th>
+                                   <th>RESULTADO</th>
                                    <th>VER MAS</th>
                                 </tr>
                             </tfoot>
