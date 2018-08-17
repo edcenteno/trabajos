@@ -139,21 +139,17 @@ $(document).ready(function(){
                 <div class="card-body">
                     <center class="m-t-30"> 
                         <?php
-                        if ($value['foto'] == "") {
-                            echo '<img src="vistas/img/conductores/conductor.png" class="img-circle" width="150" />';
-                        } else {
-                            echo '<img src="vistas/img/conductores/'.$value['foto'].'" class="img-circle" width="150" />';
-                        }
-                        
+                     
+                            echo '<img src="vistas/img/conductores/'.$idconductor.'.jpg" class="img-circle" width="100" height="100" />';
+                       
                         ?>
                         <div id="modalcapture"></div>
-                        <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
+                       
                         <h4 class="card-title m-t-10"><?php echo $value['nombre'] ." " . $value['apellido']; ?></h4>
                         <h5 class="card-subtitle">DNI <?php echo $value['dni']; ?></h5>
                         <h6 class="card-subtitle">Conductor</h6>
                         <div class="row text-center justify-content-md-center">
-                           <!--  <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                           <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div> -->
+                          <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture">Capturar</button>
                         </div>
                     </center>
                 </div>

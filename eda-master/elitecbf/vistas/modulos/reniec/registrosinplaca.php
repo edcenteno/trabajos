@@ -42,6 +42,7 @@
 			if(buscaRepetido($dni,$conexion)==1){
 				echo 2;
 			}else{
+				require_once "conex.php";
 				$sqlsecu = "SELECT * FROM conductores ORDER BY fecha DESC LIMIT 1";
 				$resultado = $mysqli->query($sqlsecu);
 				$row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -61,7 +62,7 @@
 					$secuencia =  "RA-" .$año . $mes. $saa;
 				}
 				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant)
-					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), $secuencia)";
+					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), '$secuencia')";
 				$result=mysqli_query($conexion,$sql);
 				//var_dump($sql);
 				echo "1";

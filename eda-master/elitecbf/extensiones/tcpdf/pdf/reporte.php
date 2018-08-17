@@ -37,8 +37,25 @@ require_once "../../../modelos/conductores.modelo.php";
 	$seguro = '<img width="120" src="images/soat/pacifico.png">';
 	}
 	
-	
-	
+	require 'vendor/autoload.php';
+
+	$client = new GuzzleHttp\Client();
+	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/principal/'.$idconductor);
+	$res->getStatusCode();
+
+	$res->getHeader('content-type');
+
+	$arr = json_decode($res->getBody(), true);
+
+
+	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
+	$res->getStatusCode();
+
+	$res->getHeader('content-type');
+
+	$arrmultas = json_decode($res->getBody(), true);
+
+
 require_once('tcpdf_include.php');
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -67,7 +84,6 @@ $bloque1 = <<<EOF
 			<td style="background-color:white; width:140px">
 				
 				
-
 			</td>
 
 			<td style="background-color:white; width:140px">
@@ -76,7 +92,9 @@ $bloque1 = <<<EOF
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:black"><br><br><b>$value[secuencia_arhu_ant]</b></td>
+			<td style="background-color:white; width:110px; text-align:center; color:black"><br><br><b>
+			$value[secuencia_arhu_ant]
+			</b></td>
 
 		</tr>
 
@@ -161,38 +179,51 @@ $bloque3 = <<<EOF
 			
 		</tr>
 
+		<tr>
+		
+			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">DEPARTAMENTO</td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[var_departamento]</b></td>
+			
+		</tr>
+
+		<tr>
+		
+			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">PROVINCIA</td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[var_provincia]</b></td>
+			
+		</tr>
+
+		<tr>
+		
+			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">DISTRITO</td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[var_distrito]</b></td>
+			
+		</tr>
+		
+		<tr>
+		
+			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">DIRECCION</td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[var_direccion]</b></td>
+			
+		</tr>
+
+
 		
 
 		
 	</table>
-<br><br><br><br>
+
 EOF;
 
 $pdf->writeHTML($bloque3, false, false, false, false, '');
 
 // ---------------------------------------------------------
 
-/*foreach ($productos as $key => $item) {
 
-$itemProducto = "descripcion";
-$valorProducto = $item["descripcion"];
-$orden = null;
-
-$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-
-$valorUnitario = number_format($respuestaProducto["precio_venta"], 2);
-
-$precioTotal = number_format($item["total"], 2);*/
-
-$bloque4 = <<<EOF
-
-	
-
-EOF;
-
-$pdf->writeHTML($bloque4, false, false, false, false, '');
-
-/*}*/
 
 // ---------------------------------------------------------
 
@@ -224,7 +255,7 @@ $bloque5 = <<<EOF
 
 		
 	</table>
-	<br><br><br><br>
+	
 
 EOF;
 
@@ -254,14 +285,6 @@ $bloque6 = <<<EOF
 			
 			<td style="width:260px; text-align:right">ANTECEDENTES PENALES:</td>
 			<td style="width:260px; text-align:left"><b>$value[ant_penales]</b></td>
-
-		</tr>
-
-		<tr>
-		
-			
-			<td style="width:260px; text-align:right">REQUISITORIAS:</td>
-			<td style="width:260px; text-align:left"><b>REFERENCIA POLICIALES</b></td>
 
 		</tr>
 
@@ -834,25 +857,39 @@ $bloquepiesoat = <<<EOF
 
 		<tr>
 		
-			<br><br>
-			<br>
 			<td style="width:540px; text-align:center">
-				<font size="8" color="#aaaaaa">Los establecimientos de salud públicos y privados están obligados
+				<font size="8" color="#aaaaaa">
+					Los establecimientos de salud públicos y privados están obligados
 					a prestar atención médico quirúrgica de emergencia en caso de la
 					ocurrencia de un accidente de tránsito conforme en la Ley No
-					26842, Ley General de Salud y su Reglamento.</font>
+					26842, Ley General de Salud y su Reglamento.
+				</font>
 			</td>
-			</tr>
-			<tr>
+		</tr>
+		<tr>
+	
+			<td style="width:540px; text-align:center;" bgcolor="#6e42c1" border-radius: 150px;>
+				<font size="8" color="#fff">
+					La información sobre las obligaciones derechos del
+					contratante/asegurado, coberturas, exclusiones, las podrás encontrar
+					ingresando a www.apeseg.org.pe/soat o solicitando tu cartilla
+					informativa en las oficinas de tu compañía de seguros.
+				</font>
+			</td>
+			
+		</tr>
+		<tr>
 			<td style="width:540px; text-align:center">
-				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y 
-				exclusivo del tenedor.<br>
-				Es confidencial incomunicable a terceros.<br>
-				Su divulgación, distribución,
-				retransmisión y/o alteración, total o parcial está expresamente 
-				prohibida.</font>
+				<font size="8" color="#aaaaaa">
+					Este documento no es de uso oficial, la información proporcionada en 
+					el mismo es de uso interno y 
+					exclusivo del tenedor.<br>
+					Es confidencial incomunicable a terceros.<br>
+					Su divulgación, distribución,
+					retransmisión y/o alteración, total o parcial está expresamente 
+					prohibida.
+				</font>
 			</td>
-
 		</tr>
 
 		
@@ -863,15 +900,12 @@ EOF;
 $pdf->writeHTML($bloquelogosoat, false, false, false, false, '');	
 $pdf->writeHTML($bloquesoat, false, false, false, false, '');
 $pdf->writeHTML($bloquepiesoat, false, false, false, false, '');
-//$pdf->writeHTML($bloque7, false, false, false, false, '');
+$pdf->writeHTML($bloque1, false, false, false, false, '');
 
+/////////-----------------------------------------------
+$bloqueencabezadorecord = <<<EOF
 
-
-// ---------------------------------------------------------
-
-$bloquerecord = <<<EOF
-
-	<table>
+		<table>
 		
 		<tr>
 			
@@ -880,88 +914,76 @@ $bloquerecord = <<<EOF
 		</tr>
 
 	</table>
+	<table style="font-size:10px; padding:5px 10px;">
+	
+		<tr>
+		
+			<td style="border: 3px solid #5b9bd4; background-color:white; width:540px" align="center">
+
+				RECORD DEL CONDUCTOR
+
+			</td>
+
+			
+
+		</tr>
+
+		
+	
+		<thead>
+	    <tr>
+		    <th>ENTIDAD</th>
+			<th>PAPELETAS</th>
+			<th>FECHA</th>
+			<th>FECHA FIRME</th>
+			<th>FALTA</th>
+		</tr>
+		</thead>
+		</table>
+	<br><br>
+
+EOF;
+	$pdf->writeHTML($bloqueencabezadorecord, false, false, false, false, '');
+// ---------------------------------------------------------
+foreach ($arrmultas as $key => $keymultas) {
+
+	
+$bloquerecord = <<<EOF
 
 	<table style="font-size:10px; padding:5px 10px;">
 
+	<tbody>
+
 		<tr>
+			<td style="width:100px; text-align:left"><font color="red" size="10"><b>
+			$keymultas[str_entidad]</b></font></td>
+			
+			<td style="width:100px; text-align:left"><font color="red" size="10"><b>
+			$keymultas[papeleta]</b></font></td>
+
+			<td style="width:100px; text-align:left"><font color="red" size="10"><b>
+			$keymultas[dat_fecha_papeleta]</b></font></td>
+	
+			<td style="width:140px; text-align:left"><font color="red" size="10"><b>
+			$keymultas[dat_fecha_firme]</b></font></td>
+	
+			<td style="width:100px; text-align:left"><font color="red" size="10"><b>
+			$keymultas[falta]</b></font></td>
+
+		</tr>
+	</tbody>
 		
-			<td style="width:260px; text-align:right">COMPAÑÍA DE SEGUROS</td>
-			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[motivo_judicial]</b></font></td>
-
-		</tr>
-
-		<tr>		
-			
-			<td style="width:260px; text-align:right">AUTORIDAD:</td>
-			<td style="width:260px; text-align:left"><font size="8"><b>$value[autoridad_judicial]</b></font></td>
-
-		</tr>
-
-		<tr>
-			
-			<td style="width:260px; text-align:right">DOCUMENTO:</td>
-			<td style="width:260px; text-align:left"><font size="8"><b>$value[documento_judicial]</b></font></td>
-
-		</tr>
-
-		<tr>
-			
-			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
-			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_judicial]</b></font></td>
-
-		</tr>
-
-		<tr>
-		
-			<td style="width:260px; text-align:right">ESTADO:</td>
-			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$value[estado_judicial]</b></font></td>
-
-		</tr>
-
-		<tr>		
-			
-			<td style="width:260px; text-align:right">TIPO DE OCURRENCIA:</td>
-			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_ocurrecia_judicial]</b></font></td>
-
-		</tr>
-
-		<tr>
-			
-			<td style="width:260px; text-align:right">TIPO:</td>
-			<td style="width:260px; text-align:left"><font size="8"><b>$value[tipo_judicial]</b></font></td>
-
-		</tr>
-
-		<tr>
-			
-			<td style="width:260px; text-align:right">FECHA DE PROCESO:</td>
-			<td style="width:260px; text-align:left"><font size="8"><b>$value[fecha_proceso_judicial]</b></font></td>
-
-		</tr>
-
-		<tr>
-			
-			<td style="width:260px; text-align:right">DEFINICIÓN DEL DELITO:</td>
-
-			<td style="width:260px; text-align:justify"><font size="8"><b>$value[definicion_delito_judicial]</b></font></td>
-
-		</tr>
-
-		<tr>
-			
-			<td style="width:260px; text-align:right">RESUMEN:</td>
-			<td style="width:260px; text-align:justify"><font size="8"><b>$value[observacionJudicial]</b></font></td>
-
-		</tr>
-
-		
-	</table>
+</table>
 	
 
 EOF;
 
-//$pdf->writeHTML($bloquerecord, false, false, false, false, '');
-//$pdf->writeHTML($bloque7, false, false, false, false, '');
+
+$pdf->writeHTML($bloquerecord, false, false, false, false, '');
+}
+
+
+$pdf->writeHTML($bloque7, false, false, false, false, '');
 
 
 // ---------------------------------------------------------
@@ -970,29 +992,7 @@ EOF;
 
 
 $nombre="REPORTE_".$value['nombre']."_".$value['apellido'].".pdf";
-/*require 'vendor/autoload.php';
-	$client = new GuzzleHttp\Client();
-	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
-	$res->getStatusCode();
 
-	$res->getHeader('content-type');
-
-	$arr = json_decode($res->getBody(), true);
-	echo "<pre>";
-	//var_dump($arr);
-	echo "</pre>";
-
-	foreach ($arr as $key => $value) {
-		$papeleta = $value{'papeleta'};
-		echo $value{'dat_fecha_papeleta'}."<br>";
-		echo $value{'str_fec_firme'}."<br>";
-		echo $value{'str_estado'}."<br>";
-		echo $value{'falta'}."<br>";
-		echo $value{'fec_infraccion'}."<br>";
-		echo $value{'str_num_infraccion'}."<br>";
-		echo $value{'str_num_entidad'}."<br>";
-		echo $value{'str_num_entidad'}."<br>";
-	}*/
 $pdf->Output($nombre);
 
 ?>
