@@ -237,6 +237,56 @@ class ControladorConductor{
 
 	return $respuesta;
 	}
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarConductorMesCabify($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresMesCabify($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+
+	static public function ctrMostrarConductorhoyCabify($item, $valor){
+
+	$tabla = "conductores";
+
+	$respuesta = ModeloConductor::mdlMostrarConductorhoyCabify($tabla, $item, $valor);
+
+	return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarConductorMesEasy($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresMesEasy($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+
+	static public function ctrMostrarConductorhoyEasy($item, $valor){
+
+	$tabla = "conductores";
+
+	$respuesta = ModeloConductor::mdlMostrarConductorhoyEasy($tabla, $item, $valor);
+
+	return $respuesta;
+	}
+
+
+
 
 	/*=============================================
 	MOSTRAR 1 Conductores

@@ -95,6 +95,125 @@ class ModeloConductor{
 
 	}
 
+	/*=============================================
+	CABIFY
+	=============================================*/
+	static public function mdlMostrarConductorhoyCabify($tabla, $item, $valor){
+
+		if($item != null){
+		
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
+			
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+		static public function mdlMostrarConductoresMesCabify($tabla, $item2, $valor2){
+
+		if($item2 != null){
+		
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like '2018-07%'");
+			
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like '2018-07%'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
+	EASY
+	=============================================*/
+	static public function mdlMostrarConductorhoyEasy($tabla, $item, $valor){
+
+		if($item != null){
+		
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1'");
+			
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+		static public function mdlMostrarConductoresMesEasy($tabla, $item2, $valor2){
+
+		if($item2 != null){
+		
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '2018-07%'");
+			
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '2018-07%'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+
 
 
 	/*=============================================

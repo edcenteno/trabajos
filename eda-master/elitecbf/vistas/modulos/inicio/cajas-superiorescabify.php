@@ -10,12 +10,14 @@ $valor2 = null;
 //$ventas = ControladorVentas::ctrSumaTotalVentas();
 
 
-$clientes = ControladorConductor::ctrMostrarConductorhoy($item, $valor);
+$clientes = ControladorConductor::ctrMostrarConductorhoyCabify($item, $valor);
 $totalClientes = count($clientes);
 
-$clientes2 = ControladorConductor::ctrMostrarConductorMes($item2, $valor2);
-$totalClientes2 = count($clientes2);
+$clientes2 = ControladorConductor::ctrMostrarConductorMesCabify($item2, $valor2);
+$cabify = count($clientes2);
+
 $a = number_format($totalClientes);
+$c = number_format($cabify);
 $fecha_actual = date("M-Y");
 ?>
 
@@ -60,13 +62,16 @@ $fecha_actual = date("M-Y");
                         <h3 class="text-muted">Reporte de conductores cabify</h3>
                     </div>
                     <div class="ml-auto">
-                        <h2 class="counter text-info"><?php echo number_format($totalClientes2); ?></h2>
+                        <h2 class="counter text-info"><?php echo number_format($cabify); ?></h2>
+                        <?php 
+                         $cbf = ($c *100)/20000;
+                        ?>
                     </div>
                 </div>
             </div>
             <div class="col-12">
                 <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 85%; height: 25px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-info" role="progressbar" style="width:<?php echo intval($cbf) ?>%; height: 25px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <?php echo intval($cbf) ?></div>
                 </div>
             </div>
         </div>
