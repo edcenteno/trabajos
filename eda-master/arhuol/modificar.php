@@ -20,12 +20,42 @@ $blacklist=$row['blacklist'];
   <link rel="shortcut icon" href="img/favicon.ico" type="image/ico" />
 
   <script type="text/javascript">
-    $(document).ready(function(){
+   
+     $(document).ready(function(){
           $('.targetpolicial').hide();
           $('.targetjudicial').hide();
           $('.targetpenales').hide();
+
+          $('#selpolicial').on("change",function(e){
+            if (e.target.value==0){
+              $('.targetpolicial').show();
+            }else if (e.target.value==1) {
+              $('.targetpolicial').find('input, textarea').val('');
+              $('.targetpolicial').hide();
+            }
+          });
+
+          $('#seljudicial').on("change",function(e){
+            if (e.target.value==0){
+              $('.targetjudicial').show();
+            }else if (e.target.value==1) {
+              $('.targetjudicial').find('input, textarea').val('');
+              $('.targetjudicial').hide();
+            }
+          });
+
+           $('#selpenales').on("change",function(e){
+            if (e.target.value==0){
+              $('.targetpenales').show();
+            }else if (e.target.value==1) {
+              $('.targetpenales').find('input, textarea').val('');
+              $('.targetpenales').hide();
+            }
+          });
+          
     });
-    $(document).ready(function(){
+
+   /* $(document).ready(function(){
     $("#mostrarpolicial").click(function(){
       $('.targetpolicial').show("swing");
      });
@@ -48,7 +78,9 @@ $blacklist=$row['blacklist'];
     $("#ocultarpenales").click(function(){
       $('.targetpenales').hide("linear");
     });
-  });
+  });*/
+
+
 
 
   </script>
@@ -100,10 +132,10 @@ $blacklist=$row['blacklist'];
             <div class="form-group">
               <label for="ant_penales">Antecedentes Penales: </label>
               <div class="form-group">
-                <select class="form-control" id="sel1" name ="ant_penales">
+                <select class="form-control" id="selpenales" name ="ant_penales">
                   <option><?php echo $row['ant_penales'] ?></option>
-                  <option id="mostrarpenales">POSITIVO</option>
-                  <option id="ocultarpenales">NEGATIVO</option>
+                  <option id="mostrarpenales" value="0">POSITIVO</option>
+                  <option id="ocultarpenales" value="1">NEGATIVO</option>
                 </select>
               </div>
               <div class="form-group targetpenales">
@@ -142,10 +174,10 @@ $blacklist=$row['blacklist'];
             <div class="form-group">
               <label for="ant_judicial">Antecedentes Judiciales: </label>
               <div class="form-group">
-                <select class="form-control" id="sel1" name ="ant_judicial">
+                <select class="form-control" id="seljudicial" name ="ant_judicial">
                   <option> <?php echo $row['ant_judicial'] ?></option>
-                  <option id="mostrarjudicial">POSITIVO</option>
-                  <option id="ocultarjudicial">NEGATIVO</option>
+                  <option id="mostrarjudicial" value="0">POSITIVO</option>
+                  <option id="ocultarjudicial" value="1">NEGATIVO</option>
                 </select>
               </div>
               <div class="form-group targetjudicial">
@@ -184,10 +216,10 @@ $blacklist=$row['blacklist'];
             <div class="form-group">
               <label for="ant_policial">Antecedentes Policiales: </label>
               <div class="form-group">
-                <select class="form-control" id="sel1" name ="ant_policial">
+                <select class="form-control" id="selpolicial" name ="ant_policial">
                   <option> <?php echo $row['ant_policial'] ?></option>
-                  <option id="mostrarpolicial">POSITIVO</option>
-                  <option id="ocultarpolicial">NEGATIVO</option>
+                  <option id="mostrarpolicial" value="0">POSITIVO</option>
+                  <option id="ocultarpolicial" value="1">NEGATIVO</option>
                 </select>
               </div>
               <div class="form-group targetpolicial">
