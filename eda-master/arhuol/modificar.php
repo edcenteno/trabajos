@@ -27,27 +27,27 @@ $blacklist=$row['blacklist'];
           $('.targetpenales').hide();
 
           $('#selpolicial').on("change",function(e){
-            if (e.target.value==0){
+            if (e.target.value=='POSITIVO'){
               $('.targetpolicial').show();
-            }else if (e.target.value==1) {
+            }else if (e.target.value=='NEGATIVO') {
               $('.targetpolicial').find('input, textarea').val('');
               $('.targetpolicial').hide();
             }
           });
 
           $('#seljudicial').on("change",function(e){
-            if (e.target.value==0){
+            if (e.target.value=='POSITIVO'){
               $('.targetjudicial').show();
-            }else if (e.target.value==1) {
+            }else if (e.target.value=='NEGATIVO') {
               $('.targetjudicial').find('input, textarea').val('');
               $('.targetjudicial').hide();
             }
           });
 
            $('#selpenales').on("change",function(e){
-            if (e.target.value==0){
+            if (e.target.value=='POSITIVO'){
               $('.targetpenales').show();
-            }else if (e.target.value==1) {
+            }else if (e.target.value=='NEGATIVO') {
               $('.targetpenales').find('input, textarea').val('');
               $('.targetpenales').hide();
             }
@@ -134,8 +134,8 @@ $blacklist=$row['blacklist'];
               <div class="form-group">
                 <select class="form-control" id="selpenales" name ="ant_penales">
                   <option><?php echo $row['ant_penales'] ?></option>
-                  <option id="mostrarpenales" value="0">POSITIVO</option>
-                  <option id="ocultarpenales" value="1">NEGATIVO</option>
+                  <option id="mostrarpenales" value="POSITIVO">POSITIVO</option>
+                  <option id="ocultarpenales" value="NEGATIVO">NEGATIVO</option>
                 </select>
               </div>
               <div class="form-group targetpenales">
@@ -176,8 +176,8 @@ $blacklist=$row['blacklist'];
               <div class="form-group">
                 <select class="form-control" id="seljudicial" name ="ant_judicial">
                   <option> <?php echo $row['ant_judicial'] ?></option>
-                  <option id="mostrarjudicial" value="0">POSITIVO</option>
-                  <option id="ocultarjudicial" value="1">NEGATIVO</option>
+                  <option id="mostrarjudicial" value="POSITIVO">POSITIVO</option>
+                  <option id="ocultarjudicial" value="NEGATIVO">NEGATIVO</option>
                 </select>
               </div>
               <div class="form-group targetjudicial">
@@ -218,8 +218,8 @@ $blacklist=$row['blacklist'];
               <div class="form-group">
                 <select class="form-control" id="selpolicial" name ="ant_policial">
                   <option> <?php echo $row['ant_policial'] ?></option>
-                  <option id="mostrarpolicial" value="0">POSITIVO</option>
-                  <option id="ocultarpolicial" value="1">NEGATIVO</option>
+                  <option id="mostrarpolicial" value="POSITIVO">POSITIVO</option>
+                  <option id="ocultarpolicial" value="NEGATIVO">NEGATIVO</option>
                 </select>
               </div>
               <div class="form-group targetpolicial">

@@ -50,8 +50,8 @@ CARGAR LA TABLA DINÁMICA
     $('.tablarrhh').DataTable( {
     "ajax": "ajax/datatable-conductoresrrhh.ajax.php",
     "deferRender": true,
-		"retrieve": true,
-		"processing": true,
+	"retrieve": true,
+	"processing": true,
     "order": [[0, "desc"]],
 		"language": {
 
