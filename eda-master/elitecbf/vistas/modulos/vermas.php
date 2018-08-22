@@ -168,11 +168,41 @@ $(document).ready(function(){
                                 $foto = $value['foto'];
                                 echo '
                                     <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
-                                    Descargar Imagen</button></a>';
+                                    Descargar Foto</button></a>';
                             }
                         ?>
 
                         </div>
+
+                    <hr>
+                    <div class="card-body"> <small class="text-muted">DNI Digital</small></br>
+                    <?php
+                            if($value['dni_digital']){
+                                $foto = $value['dni_digital'];
+                                echo '
+                                    <a class="image-popup-vertical-fit" href="vistas/img/dni/'.$foto.'">
+                                    <img src="vistas/img/dni/'.$foto.'" class="img-circle" width="100" height="100" />
+                                    </a> ';
+                            }else{
+                                 echo '
+                                    <img src="vistas/img/dni/conductor.png" class="img-circle" width="100" height="100" />
+                                    ';
+                            }
+                        ?>
+                    <?php
+                            if($value['dni_digital']){
+                                $foto = $value['dni_digital'];
+                                echo '
+                                    <a download="'.$foto.'" href="vistas/img/dni/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
+                                    Descargar DNI</button></a>';
+                            }
+                        ?>
+
+                        </div>
+
+                    <br/>
+
+
                         <script>
                             function deshabilitar_btnEnviar(){
                                swal({
