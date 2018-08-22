@@ -11,7 +11,7 @@ if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $placa) &&
 
   	// Modo de Uso
 	require_once("crv/src/autoload.php");
-	
+
 	$test = new \Pit\Pit();
 	$out=$test->check( "$placa" ); // Sin Requisitoria
 
@@ -70,7 +70,8 @@ $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
 $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
-    
+$tipoext=$_POST['tipoext'];
+
     if ($easytaxi == "undefined") {
         $easytaxi = "0" ;
     }
@@ -86,13 +87,13 @@ if ($estado == "VIGENTE") {
 
 ?>
     <input type="text" hidden readonly="" class="form-control" name="fechaNacimiento" id="fechaNacimiento" value="<?php echo $fechaNacimiento ?>">
-    <input type="text" hidden name="FechaInicio" id="FechaInicio" value="<?php echo $FechaInicio ?>"/> 
+    <input type="text" hidden name="FechaInicio" id="FechaInicio" value="<?php echo $FechaInicio ?>"/>
     <input type="text" hidden name="FechaFin" id="FechaFin" value="<?php echo $FechaFin?>"/>
     <input type="text" hidden readonly="" class="form-control" name="NombreCompania" id="NombreCompania" value="<?php echo $NombreCompania ?>">
-    <input type="text" hidden name="NumeroPoliza" id="NumeroPoliza" value="<?php echo $NumeroPoliza ?>"/> 
+    <input type="text" hidden name="NumeroPoliza" id="NumeroPoliza" value="<?php echo $NumeroPoliza ?>"/>
     <input type="text" hidden name="NombreUsoVehiculo" id="NombreUsoVehiculo" value="<?php echo $NombreUsoVehiculo ?>"/>
      <input type="text" hidden readonly="" class="form-control" name="NombreClaseVehiculo" id="NombreClaseVehiculo" value="<?php echo $NombreClaseVehiculo ?>">
-    <input type="text" hidden name="FechaControlPolicial" id="FechaControlPolicial" value="<?php echo $FechaControlPolicial ?>"/> 
+    <input type="text" hidden name="FechaControlPolicial" id="FechaControlPolicial" value="<?php echo $FechaControlPolicial ?>"/>
     <input type="text" hidden name="TipoCertificado" id="TipoCertificado" value="<?php echo $TipoCertificado?>"/>
 
 <form class="form-horizontal p-t-20">
@@ -147,11 +148,11 @@ if ($estado == "VIGENTE") {
             <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text"><i class="ti-location-pin"></i></span></div>
                 <textarea name="crv" id="crv" readonly="" class="form-control"></textarea>
-                
+
             </div>
         </div>
     </div>
-    
+
 </form>
 
 
@@ -204,7 +205,7 @@ if ($estado == "VIGENTE") {
                 }).then(function(result){
 
                   if(result.value){
-                  
+
                     window.location = "conductores";
 
                   }
@@ -221,7 +222,7 @@ if ($estado == "VIGENTE") {
                   }).then(function(result){
 
                     if(result.value){
-                    
+
                       window.location = "conductores";
 
                     }
@@ -235,7 +236,7 @@ if ($estado == "VIGENTE") {
 </script>
 
 
-  
+
 <?php
 } else {
   echo '<script>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	require_once "php/conexion.php";
 	$conexion=conexion();
@@ -21,7 +21,7 @@
 		$TipoCertificado = $_POST['TipoCertificado'];
 		$easytaxi=$_POST['easytaxi'];
 		$cabify=$_POST['cabify'];
-
+		$tipoext=$_POST['tipoext'];
 		if(buscaRepetido($dni,$conexion)==1){
 			echo 2;
 		}else{
@@ -44,27 +44,27 @@
 					$saa=str_pad($secuencia_arhu_ant, 5, "0", STR_PAD_LEFT);
 					$secuencia =  "RA-" .$año . $mes. $saa;
 				}
-			$sql="INSERT into conductores 
+			$sql="INSERT into conductores
 								(dni,nombre, apellido,soat,placa, orden_captura, fecha_inicio_soat,
 								 fecha_fin_soat, fecha_nacimiento, nombrecompania, numeropoliza,
-								 NombreUsoVehiculo, easytaxi, cabify, nombreclasevehiculo, 
-								 fechacontrolpolicial, TipoCertificado, fecha, secuencia_arhu_ant)
-						values 
-								('$dni','$nombre', '$apellidos', '$estado', '$placa', '$crv', 
-								 '$FechaInicio', '$FechaFin', '$fecha_nacimiento', '$NombreCompania', 
-								 '$NumeroPoliza', '$NombreUsoVehiculo', '$easytaxi', '$cabify', 
-								 '$NombreClaseVehiculo', '$FechaControlPolicial', '$TipoCertificado', 
-								 NOW( ), '$secuencia')";
+								 NombreUsoVehiculo, easytaxi, cabify, nombreclasevehiculo,
+								 fechacontrolpolicial, TipoCertificado, fecha, secuencia_arhu_ant, extr)
+						values
+								('$dni','$nombre', '$apellidos', '$estado', '$placa', '$crv',
+								 '$FechaInicio', '$FechaFin', '$fecha_nacimiento', '$NombreCompania',
+								 '$NumeroPoliza', '$NombreUsoVehiculo', '$easytaxi', '$cabify',
+								 '$NombreClaseVehiculo', '$FechaControlPolicial', '$TipoCertificado',
+								 NOW( ), '$secuencia', '$tipoext')";
 								//echo $sql;
-				
+
 			$result=mysqli_query($conexion,$sql);
-			
+
 			echo "1";
 		}
 
 
 		function buscaRepetido($dni,$conexion){
-			$sql="SELECT * from conductores 
+			$sql="SELECT * from conductores
 				where dni='$dni'";
 			$result=mysqli_query($conexion,$sql);
 

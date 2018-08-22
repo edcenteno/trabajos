@@ -1,11 +1,46 @@
 <?php
+include 'php/conexion.php';
 $nombre =$_POST['nombre'];
 $fecha_nacimiento= $_POST['fechaNacimiento'];
 $apellidos= $_POST['apellidos'];
 $dni = $_POST['dni'];
 $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
-    
+$tipoext=$_POST['tipoext'];
+$tipoext=$_POST['tipoext'];
+
+$conexion=conexion();
+function buscaRepetido($dni,$conexion){
+    $sql="SELECT * from conductores where dni='$dni'";
+    $result=mysqli_query($conexion,$sql);
+    while($row = $result->fetch_array(MYSQLI_ASSOC)){
+      $rows[] = $row;
+    }
+
+    if(mysqli_num_rows($result) > 0){
+      return 1;
+    }else{
+      return 0;
+    }
+  }
+
+if(buscaRepetido($dni,$conexion)==1){
+      echo '<script>
+
+                swal({
+                    type: "warning",
+                    title: "¡Conductor ya existe, intente con otro DNI!",
+                    showConfirmButton: true,
+                    confirmButtonColor: "#fec107",
+                    confirmButtonText: "Cerrar"
+                    }).then(function(result) {
+                      $("#consul")[0].reset();
+
+                  })
+
+                </script>';
+    }else{
+
     if ($easytaxi == "undefined") {
         $easytaxi = "0" ;
     }
@@ -44,18 +79,19 @@ if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('
         "&fechaNacimiento=" + $('#fechaNacimiento').val()+
         "&cabify=" + cabify +
         "&easytaxi=" + easytaxi +
+        "&tipoext=" + tipoext +
         "&apellidos=" + $('#apellidos').val();
         $.ajax({
-                data:  cadena, 
+                data:  cadena,
                 url:   'vistas/modulos/reniec/placaext.php',
-                type:  'post', 
+                type:  'post',
                 beforeSend: function () {
                         $("#resultado2").html("Procesando, espere por favor...");
                 },
-                success:  function (response) { 
+                success:  function (response) {
                         $("#resultado2").html(response);
                         var rsp=response;
-                       
+
                        if (rsp.length > "1000"){
                           $("#consultaplaca").hide("slow");
                           $("#x").hide("slow");
@@ -64,7 +100,6 @@ if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('
         });
 }
 </script>
-
 Introduce placa
 
 <form class="form-horizontal p-t-20">
@@ -73,18 +108,18 @@ Introduce placa
         <div class="col-sm-9">
             <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text"><i class="ti-car"></i></span></div>
-                <input style="text-transform: uppercase;" maxlength="6" minlength="6" type="text" name="caja_texto" id="placa" value="" class="form-control" pattern="[A-Z0-9]{6}"/> 
+                <input style="text-transform: uppercase;" maxlength="6" minlength="6" type="text" name="caja_texto" id="placa" value="" class="form-control" pattern="[A-Z0-9]{6}"/>
             </div>
         </div>
 
       <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProcesoplaca();return false;" id="consultaplaca" name="consultaplaca">Consultar</button>
 
     </div>
-    
+
 </form>
 
 
-<!-- <input type="button" href="javascript:;" onclick="realizaProcesoplaca();return false;" value="enviar2" pattern="[A-Z0-9]{5,40}" title="Letras y números. Tamaño mínimo: 5. Tamaño máximo: 40"/> -->
+<input type="button" href="javascript:;" onclick="realizaProcesoplaca();return false;" value="enviar2" pattern="[A-Z0-9]{5,40}" title="Letras y números. Tamaño mínimo: 5. Tamaño máximo: 40"/>
 
 <input type="text" hidden readonly="" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre ?>">
 
@@ -93,7 +128,8 @@ Introduce placa
 <input type="text" hidden readonly="" class="form-control" name="fechaNacimiento" id="fechaNacimiento" value="<?php echo $fecha_nacimiento ?>">
 
 <input type="text" hidden readonly="" class="form-control" name="dni" id="dni" value="<?php echo $dni ?>" >
-            
+<input type="text" hidden readonly="" class="form-control" name="tipoext" id="tipoext" value="<?php echo $tipoext ?>" >
+
 <span id="resultado2">
 <?php
 }else{
@@ -108,11 +144,12 @@ Introduce placa
         confirmButtonColor: "#dd6b55",
         confirmButtonText: "Cerrar"
         }).then(function(result) {
-          
+
       })
 
 </script>
 <?php
+}
 }
 }
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 22-08-2018 a las 15:34:52
+-- Tiempo de generación: 22-08-2018 a las 15:35:03
 -- Versión del servidor: 5.6.39-cll-lve
 -- Versión de PHP: 5.6.30
 
@@ -4759,6 +4759,108 @@ INSERT INTO `conductores` (`plus`, `dni`, `nombre`, `apellido`, `ant_penales`, `
 ('', '09886696', 'ENGELS JAVIER', 'SOTO CARRION', '', '', '', '', '2018-08-22 16:09:51', '', '', 'ASW-076', '', 4661, '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
 ('', '44816289', 'CARLOS ALBERTO', 'CASTRO HUARANGA', '', '', '', '', '2018-08-22 16:22:47', '', '', 'AFV-156', '', 4662, '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `login_arhu`
+--
+
+CREATE TABLE `login_arhu` (
+  `id` int(11) NOT NULL,
+  `correo` varchar(123) NOT NULL,
+  `usuario` varchar(100) NOT NULL,
+  `clave` varchar(200) NOT NULL
+) ENGINE=MEMORY DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `apellido` varchar(50) DEFAULT NULL,
+  `usuario` varchar(50) DEFAULT NULL,
+  `password` tinytext
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `usuario`, `password`) VALUES
+(2, 'Edgar', 'Centeno', 'edcenteno', '40bd001563085fc35165329ea1ff5c5ecbdbbeef'),
+(6, 'operador1', 'op3r4d0r1', 'operador1', 'd67e2c9dbc939c7d016fceb544e48a7093fd7fd5'),
+(7, 'operador2', 'op3r4d0r2', 'operador2', '399b672324a2bbde986e1a31463d4248847242e7');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuariosarhu`
+--
+
+CREATE TABLE `usuariosarhu` (
+  `id` int(11) NOT NULL,
+  `nombre` text COLLATE utf8_spanish_ci NOT NULL,
+  `usuario` text COLLATE utf8_spanish_ci NOT NULL,
+  `password` text COLLATE utf8_spanish_ci NOT NULL,
+  `perfil` text COLLATE utf8_spanish_ci NOT NULL,
+  `foto` text COLLATE utf8_spanish_ci NOT NULL,
+  `estado` int(11) NOT NULL,
+  `ultimo_login` datetime NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dni` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `correo` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(150) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuariosarhu`
+--
+
+INSERT INTO `usuariosarhu` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`, `dni`, `correo`, `telefono`) VALUES
+(1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/191.jpg', 1, '2018-02-06 17:25:57', '2018-05-17 15:08:33', '', '', ''),
+(62, 'Edgar Centeno', 'edcenteno', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'Administrador', 'vistas/img/usuarios/edcenteno/388.png', 0, '0000-00-00 00:00:00', '2018-05-18 19:37:19', '144024579', 'ed@gmail.com', '916667214');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarioscabify`
+--
+
+CREATE TABLE `usuarioscabify` (
+  `id` int(11) NOT NULL,
+  `nombre` text COLLATE utf8_spanish_ci NOT NULL,
+  `usuario` text COLLATE utf8_spanish_ci NOT NULL,
+  `password` text COLLATE utf8_spanish_ci NOT NULL,
+  `perfil` text COLLATE utf8_spanish_ci NOT NULL,
+  `foto` text COLLATE utf8_spanish_ci NOT NULL,
+  `estado` int(11) NOT NULL,
+  `ultimo_login` datetime NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dni` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `correo` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `empresa` varchar(250) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuarioscabify`
+--
+
+INSERT INTO `usuarioscabify` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`, `dni`, `correo`, `telefono`, `empresa`) VALUES
+(1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5au/kPkrnS/eE90dUHo8oJ1vOUcSR2BuPG', 'Administrador', 'vistas/img/usuarios/admin/439.jpg', 1, '2018-08-15 09:03:30', '2018-08-15 14:03:30', '', '', '', ''),
+(5, 'Cabify Administrador', 'cabifyadmin', '$2a$07$asxx54ahjppf45sd87a5autcmHBuE7qXCrPNbwRaurVynfEPDZj/m', 'Administrador', '', 1, '2018-08-21 16:09:43', '2018-08-21 21:09:43', '20548704261', 'admincabify@gmail.com', '000000000', ''),
+(6, 'Renato Effio', 'renatoeffio', '$2a$07$asxx54ahjppf45sd87a5autGCkyPCl83euLAqUPKBf.mk/1Gf01ga', 'Operador', '', 1, '2018-08-22 09:03:44', '2018-08-22 14:03:44', '71936933', 'renato.effio@cabify.com', '989064223', ''),
+(7, 'Bania Sifuentes', 'baniasifuentes', '$2a$07$asxx54ahjppf45sd87a5audWKBvZiUNzNeElYXdiE9oM.ijFzx44m', 'Operador', '', 1, '2018-08-22 16:34:48', '2018-08-22 21:34:48', '72729124', 'bania.sifuentes@cabify.com', '958158727', ''),
+(8, 'Andrea Ponte', 'andreaponte', '$2a$07$asxx54ahjppf45sd87a5au5cz/SnRro.RVoVlPz21YUhjtrS4SlgG', 'Operador', '', 1, '2018-08-22 16:19:53', '2018-08-22 21:19:53', '75770334', 'afiliacion.cabify1@gmail.com', '933637422', ''),
+(9, 'Suni Tandaipan', 'sunitandaipan', '$2a$07$asxx54ahjppf45sd87a5auaDG/uiLQZUdPyWgWQ26Bj2O6TzPQdSW', 'Operador', '', 1, '2018-08-22 15:51:12', '2018-08-22 20:51:12', '43953674', 'afiliacion.cabify5@gmail.com', '930649287', ''),
+(10, 'yare chahuara', 'yarechahuara', '$2a$07$asxx54ahjppf45sd87a5auSnNZ6XfmeRdZsyewsCvvrMzxokEfT3W', 'Operador', '', 1, '2018-05-30 17:39:02', '2018-05-30 22:39:02', '75467300', 'afiliacion.cabify3@gmail.com', '942512880', ''),
+(11, 'Maria Jose Mayta', 'mariajosem', '$2a$07$asxx54ahjppf45sd87a5auajnKPNgcIMFewux4p6lr25UuAF5biBu', 'Operador', '', 1, '2018-06-25 22:45:06', '2018-06-26 03:45:06', ' 76658641', 'mariajose.mayta@cabify.com', '961806067', ''),
+(12, 'Edgar', 'edcenteno', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'Administrador', '', 1, '2018-08-22 14:50:28', '2018-08-22 19:50:28', '144024579', 'ed@gmail.com', '916667214', '');
+
 --
 -- Índices para tablas volcadas
 --
@@ -4771,6 +4873,30 @@ ALTER TABLE `conductores`
   ADD KEY `cont` (`cont`);
 
 --
+-- Indices de la tabla `login_arhu`
+--
+ALTER TABLE `login_arhu`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuariosarhu`
+--
+ALTER TABLE `usuariosarhu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarioscabify`
+--
+ALTER TABLE `usuarioscabify`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -4779,6 +4905,30 @@ ALTER TABLE `conductores`
 --
 ALTER TABLE `conductores`
   MODIFY `cont` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4663;
+
+--
+-- AUTO_INCREMENT de la tabla `login_arhu`
+--
+ALTER TABLE `login_arhu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `usuariosarhu`
+--
+ALTER TABLE `usuariosarhu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarioscabify`
+--
+ALTER TABLE `usuarioscabify`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

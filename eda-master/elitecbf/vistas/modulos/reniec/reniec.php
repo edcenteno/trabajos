@@ -4,7 +4,7 @@
 
 <script>
 function realizaProceso(){
-      
+
         type= $('#tipo').val();
         dni = $('#dni').val();
 
@@ -12,23 +12,23 @@ function realizaProceso(){
           type: "POST",
           url: 'https://captcharh.ddns.net/api/record',
           data: {
-              type: type, //tipo de documento 
+              type: type, //tipo de documento
               documento: dni, //numero de documento
               datas: 'record' //tipo de solicitud
           }
-          
+
         }).done(function(msg){
          // $("#resultado").html(msg);
           //console.log(msg)
-        
+
         });
 
         parametros="&dni=" + $('#dni').val();
-     
+
         $.ajax({
-                data:  parametros, 
+                data:  parametros,
                 url:   'vistas/modulos/reniec/consulta.php',
-                type:  'post', 
+                type:  'post',
                 beforeSend: function () {
                         $("#resultado").html("Procesando, espere por favor...");
                 },
@@ -42,8 +42,8 @@ function realizaProceso(){
                           $("#consultadni").hide("slow");
                           $("#x").hide("slow");
                        }
-                         
-                        
+
+
                 }
         });
 }
@@ -70,10 +70,10 @@ function realizaProceso(){
                                       <div class="col-sm-9">
                                           <div class="input-group">
                                               <div class="input-group-prepend" id="div"><span class="input-group-text"><i id="ico" class="ti-id-badge"></i></span></div>
-                                              <input type="text" class="form-control" pattern="[0-9]{8}" minlength="8" maxlength="8" name="dni" id="dni" value="" placeholder="DNI" /> 
-                                              <input type="text" hidden="" class="form-control" name="tipo" id="tipo" value="1" /> 
+                                              <input type="text" class="form-control" pattern="[0-9]{8}" minlength="8" maxlength="8" name="dni" id="dni" value="" placeholder="DNI" />
+                                              <input type="text" hidden="" class="form-control" name="tipo" id="tipo" value="1" />
                                           </div>
-                                         
+
                                       </div>
                                   </div>
 
@@ -98,21 +98,21 @@ function realizaProceso(){
                                         <label for="exampleInputEmail3" class="col-sm-4 control-label">PTP/Carné</label>
                                         <div class="col-sm-10">
                                           <div class="input-group">
-                                            <select id="tipoext" class="form-control"> 
+                                            <select id="tipoext" class="form-control">
                                               <option value="0">SELECCIONE</option>
                                               <option value="2">CARNE DE EXTRANJERIA</option>
                                               <option value="3">CARNE DE SOLICITANTE</option>
                                               <option value="4">TARJETA DE IDENTIDAD</option>
                                               <option value="5">PERMISO TEMPORAL DE PERMANENCIA</option>
                                             </select>
-                                        
+
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="ti-id-badge"></i></span></div>
-                                            <input type="text" class="form-control" pattern="[0-9]{9-11}" minlength="9" maxlength="11" name="ptp" id="ptp" value="" placeholder="PTP-Carné de Extranjeria" /> 
+                                            <input type="text" class="form-control" pattern="[0-9]{9-11}" minlength="9" maxlength="11" name="ptp" id="ptp" value="" placeholder="PTP-Carné de Extranjeria" />
 
                                           </div>
                                         </div>
                                       </div>
-                                           
+
                                      <div class="form-group row">
                                       <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
                                       <div class="col-sm-10">
@@ -157,25 +157,25 @@ function realizaProceso(){
                                     </div>
                                   </div>
                                   </div>
-                                  
+
                                 </form>
                                 <form class="form-horizontal p-t-20" id="form">
                                   <div class="form-group row">
                                       <label for="exampleInputuname3" class="col-sm-4 control-label" id="posee">¿Posee Vehiculo?</label>
                                       <div class="col-sm-10">
                                           <div class="input-group">
-                                              
+
                                               <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlaca"">SI</span>
-                                              
+
                                               <input type="text" hidden class="form-control" name="si" id="si" value="Si">
-                                              
+
                                               <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevo">NO</span>
 
 
                                           </div>
                                       </div>
                                     </div>
-                                  
+
                               </form>
                             <span id="resultado2"></span>
                           </div>
@@ -185,14 +185,14 @@ function realizaProceso(){
 
                     </div>
                 </div>
-            
-                    
+
+
                             <hr>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 <!-- Column -->
     </div>
 
@@ -200,14 +200,14 @@ function realizaProceso(){
 <script type="text/javascript">
 
 $(document).ready(function(){
-  
-  $("#registrarNuevo").click(function () {  
+
+  $("#registrarNuevo").click(function () {
   easytaxi2 = ($('input:checkbox[name=easytaxi]:checked').val());
   cabify2 = ($('input:checkbox[name=cabify]:checked').val());
     //$("#formulario").submit();
   });
 });
-  
+
   $(document).ready(function(){
 
     $('#registrarNuevo').click(function(){
@@ -237,7 +237,7 @@ $(document).ready(function(){
                 }).then(function(result){
 
                   if(result.value){
-                  
+
                     window.location = "conductores";
 
                   }
@@ -254,7 +254,7 @@ $(document).ready(function(){
                   }).then(function(result){
 
                     if(result.value){
-                    
+
                       window.location = "conductores";
 
                     }
@@ -269,7 +269,7 @@ $(document).ready(function(){
                     confirmButtonText: "Cerrar"
                     }).then(function(result) {
                       $("#consul")[0].reset();
-                    
+
                   })
               }if(r==4){
               swal({
@@ -292,7 +292,7 @@ $(document).ready(function(){
 <script>
 
   $(document).ready(function(){
-  $("#consultarPlaca").click(function () {  
+  $("#consultarPlaca").click(function () {
     easytaxi = ($('input:checkbox[name=easytaxi]:checked').val());
     cabify = ($('input:checkbox[name=cabify]:checked').val());
   });
@@ -302,7 +302,7 @@ $(document).ready(function(){
 
     $('#consultarPlaca').click(function(){
 
-   
+
     cadena="nombre=" + $('#nombreext').val() +
           "&apellidos=" + $('#apellidosext').val() +
           "&dni=" + $('#ptp').val() +
@@ -314,9 +314,9 @@ $(document).ready(function(){
 
 
     $.ajax({
-            data:  cadena, 
+            data:  cadena,
             url:   'vistas/modulos/reniec/consultaplacaext.php',
-            type:  'post', 
+            type:  'post',
             beforeSend: function () {
                     $("#resultado2").html("Procesando, espere por favor...");
             },
