@@ -181,7 +181,7 @@ $(document).ready(function(){
                                 $foto = $value['dni_digital'];
                                 echo '
                                     <a class="image-popup-vertical-fit" href="vistas/img/dni/'.$foto.'">
-                                    <img src="vistas/img/dni/'.$foto.'" class="img-circle" width="100" height="100" />
+                                    <img src="vistas/img/dni/'.$foto.'" class="img-responsive radius" width="200" height="200" />
                                     </a> ';
                             }else{
                                  echo '
