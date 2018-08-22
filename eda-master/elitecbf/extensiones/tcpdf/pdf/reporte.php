@@ -44,8 +44,10 @@ require 'vendor/autoload.php';
 	$res->getStatusCode();
 
 	$res->getHeader('content-type');
-
+	if(!is_object($res)) {
+	}else{
 	$arr = json_decode($res->getBody(), true);
+	}
 
 	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
 	$res->getStatusCode();
@@ -57,7 +59,7 @@ require 'vendor/autoload.php';
 	var_dump($value);
 */
 
-	
+	$foto = $value['foto'];
 require_once('tcpdf_include.php');
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -67,7 +69,7 @@ $pdf->startPageGroup();
 $pdf->AddPage();
 // Image example with resizing
 //$pdf->Image('images/confidencial.png', -10, -10, 250, 175, 'PNG');
-$pdf->Image('images/conductores/conductor.png', 35, 80, 45, 45, 'PNG');
+$pdf->Image('images/conductores/'.$foto.'', 35, 80, 45, 45, 'JPG');
 $pdf->SetAuthor('Edgar Centeno');
 //$img_file = K_PATH_IMAGES.'images/confidencial.png';
 
@@ -219,10 +221,59 @@ $bloque3 = <<<EOF
 
 EOF;
 
-$pdf->writeHTML($bloque3, false, false, false, false, '');
+
 
 // ---------------------------------------------------------
 
+$bloque3extr = <<<EOF
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+		
+			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">PRENOMBRES</td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$value[nombre] </b></td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">APELLIDOS</td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$value[apellido]</b></td>
+
+		</tr>
+
+
+		<tr>
+		
+			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">DNI</td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$value[dni]</b></td>
+
+		</tr>
+
+		<tr>
+		
+			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">FECHA DE NACIMIENTO</td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$value[fecha_nacimiento]</b></td>
+			
+		</tr>
+
+		
+	</table>
+
+EOF;
+	//echo "<pre>";
+	//var_dump($arr);
+if(!is_object($res)) {
+$pdf->writeHTML($bloque3extr, false, false, false, false, '');
+}else{
+$pdf->writeHTML($bloque3, false, false, false, false, '');
+}
+// ---------------------------------------------------------
 
 
 // ---------------------------------------------------------
@@ -946,9 +997,9 @@ EOF;
 
 // ---------------------------------------------------------
 
- if (is_array($arrmultas)) {
- 	$pdf->writeHTML($bloque1, false, false, false, false, '');
- $pdf->writeHTML($bloqueencabezadorecord, false, false, false, false, '');	
+if (is_array($arrmultas)) {
+$pdf->writeHTML($bloque1, false, false, false, false, '');
+$pdf->writeHTML($bloqueencabezadorecord, false, false, false, false, '');	
 foreach ($arrmultas as $key => $keymultas) {
 
 	

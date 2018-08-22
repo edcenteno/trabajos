@@ -10,7 +10,7 @@ if (isset($file) && isset($_FILES["file"])){
 	        // basename() puede evitar ataques de denegación de sistema de ficheros;
 	        // podría ser apropiada más validación/saneamiento del nombre del fichero
 	        $name = basename($file.".jpg");
-	        
+
 	        move_uploaded_file($tmp_name, "$uploads_dirpdf/$name");
 	        $return = [
 				'error' => false,

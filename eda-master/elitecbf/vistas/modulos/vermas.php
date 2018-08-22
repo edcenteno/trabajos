@@ -1,11 +1,11 @@
-<?php 
-    
+<?php
+
     $idconductor = $_GET['idconductor'];
     $item = null;
     $valor = null;
 
     $unconductor = ControladorConductor::ctrMostrarunConductor($item, $valor, $idconductor);
-    //var_dump($unconductor); 
+    //var_dump($unconductor);
     foreach ($unconductor as $key => $value){
 
     if ($value['blacklist'] == 0) {
@@ -17,14 +17,14 @@ $placa=$value['placa'];
 ?>
 
 <script type="text/javascript">
-    
+
     var dni = '<?php echo $idconductor ?>'
     var placa = '<?php echo $placa ?>'
 
     $.ajax({
     type: "GET",
     url: 'https://captcharh.ddns.net/api/record/principal/'+ dni
-    
+
     }).done(function(msg){
         //$("#resultado").html(msg);
         //console.log(msg)
@@ -40,14 +40,14 @@ $placa=$value['placa'];
         $('.licencia')[8].innerText = msg['var_restricciones1'];
         $('.licencia')[9].innerText = msg['var_restricciones2'];
 
-        
+
 
     });
 
     $.ajax({
     type: "GET",
     url: 'https://captcharh.ddns.net/api/record/multas/'+ dni
-    
+
     }).done(function(msg){
         //$("#resultado").html(msg);
         //console.log(msg)
@@ -66,7 +66,7 @@ $placa=$value['placa'];
         $('.multas')[10].innerText = msg[0]['str_num_entidad'];
         $('.multas')[11].innerText = msg[0]['str_puntos'];
         }
-        
+
         record = $('.record')[0].innerText = msg['suma']+"%";
         if (record> "55") {
             $('.record')[1].innerText = msg['suma']+"%";
@@ -75,39 +75,42 @@ $placa=$value['placa'];
 
         }
 
-            
-      
+
+
 
     });
 
-    
+
     $.ajax({
     type: "GET",
     url: 'https://captcharh.ddns.net/api/record/placa/'+placa
-    
+
     }).done(function(msg){
         //$("#resultado").html(msg);
        // console.log(msg)//msg.vin.co
-        $('.vehiculo')[0].innerText = msg['Marca']; 
-        $('.vehiculo')[1].innerText = msg['Modelo']; 
-        $('.vehiculo')[2].innerText = msg['Vin']['modelYear']; 
-        $('.vehiculo')[3].innerText = msg['Nro_Serie']; 
-        $('.vehiculo')[4].innerText = msg['Placa_Anterior']; 
-        $('.vehiculo')[5].innerText = msg['Fecha_Entrega']; 
-        $('.vehiculo')[6].innerText = msg['Propietario']; 
-        $('.vehiculo')[7].innerText = msg['Estado']; 
-        $('.vehiculo')[8].innerText = msg['Tipo_Uso']; 
-        $('.vehiculo')[9].innerText = msg['Tipo_de_Sol']; 
-        $('.vehiculo')[10].innerText = msg['Vin']['continent']; 
-        $('.vehiculo')[11].innerText = msg['Vin']['countries']; 
-        $('.vehiculo')[12].innerText = msg['Vin']['manufacture']; 
-        $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber']; 
-        
+        $('.vehiculo')[0].innerText = msg['Marca'];
+        $('.vehiculo')[1].innerText = msg['Modelo'];
+        $('.vehiculo')[2].innerText = msg['Vin']['modelYear'];
+        $('.vehiculo')[3].innerText = msg['Nro_Serie'];
+        $('.vehiculo')[4].innerText = msg['Placa_Anterior'];
+        $('.vehiculo')[5].innerText = msg['Fecha_Entrega'];
+        $('.vehiculo')[6].innerText = msg['Propietario'];
+        $('.vehiculo')[7].innerText = msg['Estado'];
+        $('.vehiculo')[8].innerText = msg['Tipo_Uso'];
+        $('.vehiculo')[9].innerText = msg['Tipo_de_Sol'];
+        $('.vehiculo')[10].innerText = msg['Vin']['continent'];
+        $('.vehiculo')[11].innerText = msg['Vin']['countries'];
+        $('.vehiculo')[12].innerText = msg['Vin']['manufacture'];
+        $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber'];
+
     });
 
 $(document).ready(function(){
     url = 'recibearchivo.php';
-    $('#modalcapture').captureDevice(dni, url)
+    url2 = 'recibearchivo2.php';
+    $('#modalcapture').captureDevice([dni, dni], [url, url2])
+
+
 })
 
 </script>
@@ -123,7 +126,7 @@ $(document).ready(function(){
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Conductores</a></li>
                     <li class="breadcrumb-item active">Ver+</li>
                 </ol>
-                
+
             </div>
         </div>
     </div>
@@ -137,53 +140,73 @@ $(document).ready(function(){
         <div class="col-lg-2 col-xlg-3 col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <center class="m-t-30"> 
+                    <center class="m-t-30">
 
-                        <a class="image-popup-vertical-fit" href="vistas/img/conductores/<?php echo $idconductor ?>.jpg">
-                            <img src="vistas/img/conductores/<?php echo $idconductor ?>.jpg" class="img-circle" width="100" height="100" /> 
-                        </a>
-
-
+                        <?php
+                            if($value['foto']){
+                                $foto = $value['foto'];
+                                echo '
+                                    <a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'">
+                                    <img src="extensiones/tcpdf/pdf/images/conductores/'.$foto.'" class="img-circle" width="100" height="100" />
+                                    </a> ';
+                            }else{
+                                 echo '
+                                    <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100" />
+                                    ';
+                            }
+                        ?>
                         <div id="modalcapture"></div>
-                       
+
                         <h4 class="card-title m-t-10"><?php echo $value['nombre'] ." " . $value['apellido']; ?></h4>
                         <h5 class="card-subtitle">DNI <?php echo $value['dni']; ?></h5>
                         <h6 class="card-subtitle">Conductor</h6>
                         <div class="row text-center justify-content-md-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
                         <button class="btn btn-warning"  id="act" onclick="deshabilitar_btnEnviar()">Actualizar</button>
-                        <a download="<?php echo $idconductor ?>.jpg" href="vistas/img/conductores/<?php echo $idconductor ?>.jpg"><button class="btn btn-primary" data-toggle="modal" data-target="#">Descargar Imagen</button></a>
+                        <?php
+                            if($value['foto']){
+                                $foto = $value['foto'];
+                                echo '
+                                    <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
+                                    Descargar Imagen</button></a>';
+                            }
+                        ?>
+
                         </div>
                         <script>
-
                             function deshabilitar_btnEnviar(){
-                            document.getElementById("act").disabled = true;
+                               swal({
+                                      title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
+                                      text: "¡No podrás revertir esto!",
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#3085d6',
+                                      cancelButtonColor: '#d33',
+                                      confirmButtonText: '¡Si, actualizar!',
+                                      cancelButtonText: '¡No actualizar!',
+                                    }).then((result) => {
+                                      if (result.value) {
+                                        swal(
+                                          'Actualizado!',
+                                          'El conductor fue actualizado.',
+                                          'success'
+                                        )
+                                      }
+                                    })
+                            /*document.getElementById("act").disabled = true;
                             document.getElementById("act").innerHTML="Actualizando...";
                             setTimeout(function() {
                                 document.getElementById("act").disabled = false;
                             document.getElementById("act").innerHTML="Actualizado";
-                            
-                            }, 3000);
 
-                            }   
-                            </script>
-                          
+                            }, 3000);
+*/
+                            }
+                        </script>
+
                     </center>
                 </div>
-                <!-- <div>
-                    <hr> </div> -->
-                <!-- <div class="card-body"> <small class="text-muted">Email address </small>
-                    <h6>hannagover@gmail.com</h6> <small class="text-muted p-t-30 db">Phone</small>
-                    <h6>+91 654 784 547</h6> <small class="text-muted p-t-30 db">Address</small>
-                    <h6>71 Pilgrim Avenue Chevy Chase, MD 20815</h6>
-                    <div class="map-box">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d470029.1604841957!2d72.29955005258641!3d23.019996818380896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C+Gujarat!5e0!3m2!1sen!2sin!4v1493204785508" width="100%" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
-                    </div> <small class="text-muted p-t-30 db">Social Profile</small>
-                    <br/>
-                    <button class="btn btn-circle btn-secondary"><i class="fa fa-facebook"></i></button>
-                    <button class="btn btn-circle btn-secondary"><i class="fa fa-twitter"></i></button>
-                    <button class="btn btn-circle btn-secondary"><i class="fa fa-youtube"></i></button>
-                </div> -->
+
             </div>
         </div>
         <!-- Column -->
@@ -194,7 +217,7 @@ $(document).ready(function(){
                 <ul class="nav nav-tabs profile-tab" role="tablist">
                     <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#datosperso" role="tab"><i class="ti-user"></i> DNI-Datos Personales</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#antecedentes" role="tab"><i class="icon-docs"></i> Antecedentes</a> </li>
-                    <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li> 
+                    <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>-->
                     <?php
 
@@ -207,7 +230,7 @@ $(document).ready(function(){
                                ';
                         }
                     ?>
-                               
+
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -233,7 +256,7 @@ $(document).ready(function(){
                                 <div class="col-md-2 col-xs-6"> <strong>Edad</strong>
                                     <br>
                                     <p class="text-muted">
-                                        <?php  $rest = substr("$fechanac", 6); 
+                                        <?php  $rest = substr("$fechanac", 6);
                                                $fecha = date('Y');
                                                $edad = $fecha-$rest;
 
@@ -247,13 +270,13 @@ $(document).ready(function(){
                                 <div class="col-md-2 col-xs-6"> <strong>Empresa</strong>
                                     <br>
                                     <p class="text-muted">
-                                        <?php 
+                                        <?php
                                             $cbf = $value['cabify'];
                                             $easy = $value['easytaxi'];
 
                                             if ($cbf == 1) {
                                                 echo 'Cabify &nbsp&nbsp   <img width="30" src="vistas/img/plantilla/favicon.ico">';
-                                            } 
+                                            }
 
                                             if($easy == 1){
                                                 echo '<br>EasyTaxi <img width="30" src="vistas/img/plantilla/easy.png">';
@@ -262,7 +285,7 @@ $(document).ready(function(){
                                         ?>
                                     </p>
                                 </div>
-                               
+
                             </div>
 
                             <hr>
@@ -280,10 +303,10 @@ $(document).ready(function(){
                                     <p class="text-muted licencia"></p>
                                 </div>
                             </div>
-                           
-                            
+
+
                         </div>
-                        
+
                     </div>
                     <!--second tab-->
                     <div class="tab-pane" id="antecedentes" role="tabpanel">
@@ -382,7 +405,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                 </div>
-            
+
                     <div class="tab-pane" id="datosveh" role="tabpanel">
                         <div class="card-body">
                             <div class="row">
@@ -481,7 +504,7 @@ $(document).ready(function(){
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Compañia Aseguradora</strong>
                                     <br>
                                     <p class="text-muted">
-                                    <?php 
+                                    <?php
                                     if ($value['nombrecompania']== "Mapfre PerÃº") {
                                         echo '<img width="90" src="vistas/img/plantilla/mapfre.png">';
                                     } else{
@@ -492,21 +515,21 @@ $(document).ready(function(){
                                         echo '<img width="90" src="vistas/img/plantilla/lapositiva.png">';
                                     }else{
 
-                                    } 
+                                    }
                                     if ($value['nombrecompania']== "Interseguro") {
                                         echo '<img width="90" src="vistas/img/plantilla/interbank.png">';
                                     } else{
 
-                                    } 
+                                    }
                                     if ($value['nombrecompania']== "Pacifico Seguros") {
                                         echo '<img width="90" src="vistas/img/plantilla/pacifico.png">';
                                     }else{
 
-                                    } 
+                                    }
 
                                     ?></p>
                                 </div>
-                                
+
                             </div>
                             <hr>
                             <div class="row">
@@ -567,7 +590,7 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
-                               
+
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Restricciones</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
@@ -578,7 +601,7 @@ $(document).ready(function(){
                             <b><font color="#fb9678">Multas</font></b>
                             <hr>
                              <div class="row" >
-                            
+
 
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de Firme</strong>
                                     <br>
@@ -641,14 +664,14 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 <!-- Column -->
     </div>
     <!-- Row -->
     <!-- ============================================================== -->
     <!-- End PAge Content -->
     <!-- ============================================================== -->
-   
+
 </div>
 
 </div>
