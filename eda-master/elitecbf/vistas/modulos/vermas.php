@@ -203,6 +203,9 @@ $(document).ready(function(){
                         <script>
                             function deshabilitar_btnEnviar(){
 
+                                        placa = '<?php echo $placa ?>'
+                                        type= '<?php echo 1 ?>'
+                                        dni = '<?php echo $idconductor ?>'
                                swal({
                                       title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
                                       text: "¡No podrás revertir esto!",
@@ -219,9 +222,7 @@ $(document).ready(function(){
                                           'El conductor fue actualizado.',
                                           'success'
                                         )
-                                        type= '<?php echo 1 ?>'
-                                        dni = '<?php echo $idconductor ?>'
-/*
+
                                         $.ajax({
                                           type: "POST",
                                           url: 'https://captcharh.ddns.net/api/record',
@@ -235,10 +236,10 @@ $(document).ready(function(){
                                          // $("#resultado").html(msg);
                                           //console.log(msg)
 
-                                        });*/
-                                        placa = '<?php echo $placa ?>'
+                                        });
 
-                                        /*$.ajax({
+
+                                        $.ajax({
                                             type: "POST",
                                             url: 'https://captcharh.ddns.net/api/record',
                                             data: {
@@ -249,52 +250,24 @@ $(document).ready(function(){
 
                                             }).done(function(msg){
                                                /* $("#resultado").html(msg);
-                                                console.log(msg)
-                                            });*/
+                                                console.log(msg)*/
+                                            });
 
-                                    parametros="&dni=" + dni;
+                                    parametros="&dni=" + dni+
+                                                "&placa=" + placa;
 
                                       $.ajax({
                                         data:  parametros,
                                         url:   'vistas/modulos/reniec/act.php',
                                         type:  'post',
-                                        beforeSend: function () {
-                                                //$("#resultado").html("Procesando, espere por favor...");
-                                        },
                                         success:  function (response) {
-                                               // alert(response);
-                                               // $("#resultado").html(response);
-                                                //console.log(response)
-                                                /*var rsp=response;
-                                               // consultadni.style.display = 'none'; // No ocupa espacio
-                                               if (rsp.length > "1000"){
-                                                  $("#consultadni").hide("slow");
-                                                  $("#x").hide("slow");
-                                               }*/
-
 
                                         }
                                 });
-                                      cadena="placa=" + placa
-                                      $.ajax({
-                                        data:  cadena,
-                                        url:   'vistas/modulos/reniec/act.php',
-                                        type:  'post',
-                                        beforeSend: function () {
-                                                $("#resultado").html("Procesando, espere por favor...");
-                                        },
-                                        success:  function (response) {
-                                                /*$("#resultado").html(response);
-                                                var rsp=response;
 
-                                               if (rsp.length > "1000"){
-                                                  $("#consultaplaca").hide("slow");
-                                                  $("#x").hide("slow");
-                                               }*/
-                                        }
-                                });
                                   }
                                     })
+
 
                             }
                         </script>

@@ -3,6 +3,7 @@
   namespace DatosPeru;
 error_reporting(0);
 $dni=$_POST['dni'];
+$placa=$_POST['placa'];
 
   class Peru  {
     function __construct()
@@ -75,11 +76,11 @@ $dni=$_POST['dni'];
 
   $test = new \Pit\Pit();
   $out=$test->check( "$placa" ); // Sin Requisitoria
+  $out["message"];
+  $crv =  $out["message"];
 
-  $x = json_encode($out);
-  //var_dump($x);
 
-$token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTAzNA.AmJhTMIv9Bzd9h4KjWijho4Wf0apnT4IoqasWM0dLLE';//token prestado
+$token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTA2MQ.mNioS0vL0ckba0lPV955HvekjFHzvIcqEVqy1_kBerM';
 $query = "
 query {
   soat(placa:\"$placa\") {
@@ -108,6 +109,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $jsonString = curl_exec ($ch);
 curl_close ($ch);
 $out = json_decode($jsonString, true);
+var_dump($out);
 
 $estado = $out['Estado'];
 $FechaInicio = $out['FechaInicio'];
@@ -121,21 +123,26 @@ $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
 
 
+
   include "conex.php";
 
-
- $sentencia="UPDATE conductores SET dni ='".$dni."',
+ $sentencia="UPDATE conductores SET
                  nombre='".$nombre."',
                  apellido ='".$apellidos."',
                  fecha_nacimiento = '".$fechanac."',
+                 placa = '".$placa."',
                  soat = '".$estado."',
-                 orden_captura = '".$fechanac."',
-                 fecha_nacimiento = '".$fechanac."',
-                 fecha_nacimiento = '".$fechanac."',
-                 fecha_nacimiento = '".$fechanac."',
-                 fecha_nacimiento = '".$fechanac."',
-                 fecha_nacimiento = '".$fechanac."',
-
+                 orden_captura = '".$crv."',
+                 fecha_inicio_soat = '".$FechaInicio."',
+                 fecha_fin_soat = '".$FechaFin."',
+                 nombrecompania = '".$NombreCompania."',
+                 numeropoliza = '".$NumeroPoliza."',
+                 NombreUsoVehiculo = '".$NombreUsoVehiculo."',
+                 NombreClaseVehiculo = '".$NombreClaseVehiculo."',
+                 FechaControlPolicial = '".$FechaControlPolicial."',
+                 TipoCertificado = '".$TipoCertificado."',
+                 act = act+1,
+                 fecha_act = NOW( )
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 
