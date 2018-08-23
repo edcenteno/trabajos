@@ -21,7 +21,7 @@
 		$TipoCertificado = $_POST['TipoCertificado'];
 		$easytaxi=$_POST['easytaxi'];
 		$cabify=$_POST['cabify'];
-		$tipoext=$_POST['tipoext'];
+
 		if(buscaRepetido($dni,$conexion)==1){
 			echo 2;
 		}else{
@@ -48,13 +48,13 @@
 								(dni,nombre, apellido,soat,placa, orden_captura, fecha_inicio_soat,
 								 fecha_fin_soat, fecha_nacimiento, nombrecompania, numeropoliza,
 								 NombreUsoVehiculo, easytaxi, cabify, nombreclasevehiculo,
-								 fechacontrolpolicial, TipoCertificado, fecha, secuencia_arhu_ant, extr)
+								 fechacontrolpolicial, TipoCertificado, fecha, secuencia_arhu_ant)
 						values
 								('$dni','$nombre', '$apellidos', '$estado', '$placa', '$crv',
 								 '$FechaInicio', '$FechaFin', '$fecha_nacimiento', '$NombreCompania',
 								 '$NumeroPoliza', '$NombreUsoVehiculo', '$easytaxi', '$cabify',
 								 '$NombreClaseVehiculo', '$FechaControlPolicial', '$TipoCertificado',
-								 NOW( ), '$secuencia', '$tipoext')";
+								 NOW( ), '$secuencia')";
 								//echo $sql;
 
 			$result=mysqli_query($conexion,$sql);

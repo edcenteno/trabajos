@@ -183,10 +183,6 @@ $(document).ready(function(){
                                     <a class="image-popup-vertical-fit" href="vistas/img/dni/'.$foto.'">
                                     <img src="vistas/img/dni/'.$foto.'" class="img-responsive radius" width="200" height="200" />
                                     </a> ';
-                            }else{
-                                 echo '
-                                    <img src="vistas/img/dni/conductor.png" class="img-circle" width="100" height="100" />
-                                    ';
                             }
                         ?>
                     <?php
@@ -205,6 +201,7 @@ $(document).ready(function(){
 
                         <script>
                             function deshabilitar_btnEnviar(){
+
                                swal({
                                       title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
                                       text: "¡No podrás revertir esto!",
@@ -221,16 +218,26 @@ $(document).ready(function(){
                                           'El conductor fue actualizado.',
                                           'success'
                                         )
+                                        type= '<?php echo 1 ?>'
+                                        dni = '<?php echo $idconductor ?>'
+
+                                        $.ajax({
+                                          type: "POST",
+                                          url: 'https://captcharh.ddns.net/api/record',
+                                          data: {
+                                              type: type, //tipo de documento
+                                              documento: dni, //numero de documento
+                                              datas: 'record' //tipo de solicitud
+                                          }
+
+                                        }).done(function(msg){
+                                         // $("#resultado").html(msg);
+                                          //console.log(msg)
+
+                                        });
                                       }
                                     })
-                            /*document.getElementById("act").disabled = true;
-                            document.getElementById("act").innerHTML="Actualizando...";
-                            setTimeout(function() {
-                                document.getElementById("act").disabled = false;
-                            document.getElementById("act").innerHTML="Actualizado";
 
-                            }, 3000);
-*/
                             }
                         </script>
 

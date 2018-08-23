@@ -91,7 +91,7 @@ $.fn.captureDevice = function(idFile, arg){
                 window.objectCapture.insertAjax();
                 element.modal("hide");
                 window.objectCapture.stop();
-                //location.reload(true);
+                setTimeout('document.location.reload()',1000);
             });
         },
         btnCancel: function(){

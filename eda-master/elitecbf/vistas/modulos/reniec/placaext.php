@@ -187,7 +187,7 @@ if ($estado == "VIGENTE") {
 
 					$.ajax({
 						type:"POST",
-						url:"vistas/modulos/reniec/registro.php",
+						url:"vistas/modulos/reniec/registroext.php",
 						data:cadena,
 						success:function(r){
 

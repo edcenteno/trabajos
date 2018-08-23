@@ -41,11 +41,11 @@ if (isset($_POST['si'])){
             type: "POST",
             url: 'https://captcharh.ddns.net/api/record',
             data: {
-                type: '1', //tipo de documento 
+                type: '1', //tipo de documento
                 documento: placa, //numero de documento
                 datas: 'placa' //tipo de solicitud
             }
-            
+
             }).done(function(msg){
                /* $("#resultado").html(msg);
                 console.log(msg)*/
@@ -60,16 +60,16 @@ if (isset($_POST['si'])){
 
         "&apellidos=" + $('#apellidos').val();
         $.ajax({
-                data:  cadena, 
+                data:  cadena,
                 url:   'vistas/modulos/reniec/placa.php',
-                type:  'post', 
+                type:  'post',
                 beforeSend: function () {
                         $("#resultado").html("Procesando, espere por favor...");
                 },
-                success:  function (response) { 
+                success:  function (response) {
                         $("#resultado").html(response);
                         var rsp=response;
-                       
+
                        if (rsp.length > "1000"){
                           $("#consultaplaca").hide("slow");
                           $("#x").hide("slow");
@@ -87,14 +87,14 @@ Introduce placa
         <div class="col-sm-9">
             <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text"><i class="ti-car"></i></span></div>
-                <input style="text-transform: uppercase;" maxlength="6" minlength="6" type="text" name="caja_texto" id="placa" value="" class="form-control" pattern="[A-Z0-9]{6}"/> 
+                <input style="text-transform: uppercase;" maxlength="6" minlength="6" type="text" name="caja_texto" id="placa" value="" class="form-control" pattern="[A-Z0-9]{6}"/>
             </div>
         </div>
 
       <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProcesoplaca();return false;" id="consultaplaca" name="consultaplaca">Consultar</button>
 
     </div>
-    
+
 </form>
 
 
@@ -111,7 +111,7 @@ Introduce placa
 <input type="text" hidden readonly="" class="form-control" name="cabify" id="cabify" value="<?php echo $cabify ?>">
 
 <input type="text" hidden readonly="" class="form-control" name="dni" id="dni" value="<?php echo $dni ?>" >
-            
+
 <span id="resultado">
 <?php
 }
