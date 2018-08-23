@@ -1,4 +1,4 @@
-<?php 
+<?php
    namespace DatosPeru;
 
   include "php/conexion.php";
@@ -27,13 +27,12 @@ if (is_numeric($dni) && strlen($dni) == 8) {
   {
     function __construct()
     {
-      $this->reniec = new \Reniec\Reniec(); 
+      $this->reniec = new \Reniec\Reniec();
       $this->essalud = new \EsSalud\EsSalud();
       $this->mintra = new \MinTra\mintra();
     }
-    function search( $dni )
-    {
-      $response = $this->reniec->search( $dni );
+    function search( $dni ) {
+      /*$response = $this->reniec->search( $dni );
       if($response->success == true)
       {
         $rpt = (object)array(
@@ -42,8 +41,8 @@ if (is_numeric($dni) && strlen($dni) == 8) {
           "result"    => $response->result
         );
         return $rpt;
-      }
-      
+      }*/
+
       $response = $this->essalud->check( $dni );
       if($response->success == true)
       {
@@ -54,7 +53,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         );
         return $rpt;
       }
-            
+
       $response = $this->mintra->check( $dni );
       if( $response->success == true )
       {
@@ -65,7 +64,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         );
         return $rpt;
       }
-      
+
       $rpt = (object)array(
         "success"     => false,
         "msg"       => "No se encontraron datos"
@@ -73,7 +72,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
       return $rpt;
     }
   }
-  
+
   // MODO DE USO
   /*  */
   require_once( __DIR__ . "/src/autoload.php" );
@@ -82,16 +81,25 @@ if (is_numeric($dni) && strlen($dni) == 8) {
   //echo"<pre>";
   //print_r($test->search("$dni"));
   $out=$test->search("$dni");
-  $a = json_encode($out);
-  //echo "$a";
-  //echo json_decode($out, true);
-  //echo $out->result[1];
-  /*
-  print_r($out);
-    echo $out[0]; */
+  var_dump($out);
+ /*$a = json_encode($out);*/
+
+ /*$value = get_object_vars($out);*/
+/*echo '<script>
+    window.responseAjax = '.$a.';
+
+   </script>';
+
+*/
+
+
+/*  for ($i=0; $i < $value ; $i++) {
+      echo $value['result'];
+  }*/
+
   ?>
 
-<input type="text" name="nombre" id="nombre" value="<?php  ?>"/> 
+<input type="text" name="nombre" id="nombre" value="<?php  ?>"/>
 <input type="text" name="apellidos" id="apellidos" value="<?php ?>"/>
 <input type="text" name="dni" id="dni" value="<?php echo $dni?>"/>
 <!-- <span class="btn btn-primary" id="registrarNuevo">Registrar</span> -->
@@ -130,12 +138,12 @@ if (is_numeric($dni) && strlen($dni) == 8) {
     });
   });
 </script>
- 
+
 <script>
 function realizaProcesoplaca(){
         cadena="placa=" + $('#placa').val() +
         "&dni=" + $('#dni').val() +
-        "&nombre=" + $('#nombre').val() + 
+        "&nombre=" + $('#nombre').val() +
         "&apellidos=" + $('#apellidos').val();
         $.ajax({
                 data:  cadena, //datos que se envian a traves de ajax
@@ -153,14 +161,14 @@ function realizaProcesoplaca(){
 </head>
 <body>
  Introduce placa
-<input type="text" name="caja_texto" id="placa" value="0"/> 
+<input type="text" name="caja_texto" id="placa" value="0"/>
 
 Realiza info
 <input type="button" href="javascript:;" onclick="realizaProcesoplaca();return false;" value="enviar2" pattern="[A-Z0-9]{5,40}" title="Letras y números. Tamaño mínimo: 5. Tamaño máximo: 40"/>
 <br/><br/><br/>
 
 Resultado: <span id="resultado">
-       <br> 
+       <br>
        <?php
 if ($out) {
   ?>
@@ -172,7 +180,7 @@ if ($out) {
 }
 
 ?>
-   <br/>   
+   <br/>
    <?php
    }else{
 
@@ -240,25 +248,25 @@ if ($out) {
               <div class="form-group">
                <input type="text" name="placa" class="form-control" id="placa" placeholder="Antecedentes Penales" value="<?php echo $row['ant_penales'] ?>" readonly>
              </div>
-             
 
-             
+
+
              <label for="ant_judicial">Antecedentes Judiciales: </label>
              <div class="form-group">
               <input type="text" name="placa" class="form-control" id="placa" placeholder="Antecedentes Judiciales" value="<?php echo $row['ant_judicial'] ?>" readonly>
             </div>
-            
+
 
 
             <label for="ant_policial">Antecedentes Policiales: </label>
             <div class="form-group">
               <input type="text" name="placa" class="form-control" id="placa" placeholder="Antecedentes Policiales" value="<?php echo $row['ant_policial'] ?>" readonly>
             </div>
-            
+
             <div class="form-group">
               <label for="record_cond">Record del conductor: </label>
               <input type="text" name="record_cond" class="form-control" id="record_cond" placeholder="Record del conductor"  value="<?php echo $row['record_cond'] ?>" required="" readonly>
-            </div> 
+            </div>
           </div>
 
           <div class="col-6 col-sm-4">
@@ -266,7 +274,7 @@ if ($out) {
             <label for="resultado">Resultado: </label>
             <div class="form-group">
              <input type="text" name="record_cond" class="form-control" id="record_cond" placeholder="Record del conductor"  value="<?php echo $row['resultado'] ?>" required="" readonly>
-           </div> 
+           </div>
 
 
            <label for="soat">SOAT : </label>
@@ -274,7 +282,7 @@ if ($out) {
 
             <input type="text" name="record_cond" class="form-control" id="record_cond" placeholder="Soat"  value="<?php echo $row['soat'] ?>" required="" readonly>
           </div>
-          
+
 
           <label for="soat">Lista negra : </label>
           <div class="form-group">
@@ -297,7 +305,7 @@ if ($out) {
     <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       hola
     </div>
-    
+
     </div>
     </div>
     </div>

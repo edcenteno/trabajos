@@ -14,6 +14,7 @@
       $bl="Si se encuentra en lista negra";
     }
 $placa=$value['placa'];
+$placa = str_replace("-","",$placa);
 ?>
 
 <script type="text/javascript">
@@ -220,7 +221,7 @@ $(document).ready(function(){
                                         )
                                         type= '<?php echo 1 ?>'
                                         dni = '<?php echo $idconductor ?>'
-
+/*
                                         $.ajax({
                                           type: "POST",
                                           url: 'https://captcharh.ddns.net/api/record',
@@ -234,8 +235,65 @@ $(document).ready(function(){
                                          // $("#resultado").html(msg);
                                           //console.log(msg)
 
-                                        });
-                                      }
+                                        });*/
+                                        placa = '<?php echo $placa ?>'
+
+                                        /*$.ajax({
+                                            type: "POST",
+                                            url: 'https://captcharh.ddns.net/api/record',
+                                            data: {
+                                                type: '1', //tipo de documento
+                                                documento: placa, //numero de documento
+                                                datas: 'placa' //tipo de solicitud
+                                            }
+
+                                            }).done(function(msg){
+                                               /* $("#resultado").html(msg);
+                                                console.log(msg)
+                                            });*/
+
+                                    parametros="&dni=" + dni;
+
+                                      $.ajax({
+                                        data:  parametros,
+                                        url:   'vistas/modulos/reniec/act.php',
+                                        type:  'post',
+                                        beforeSend: function () {
+                                                //$("#resultado").html("Procesando, espere por favor...");
+                                        },
+                                        success:  function (response) {
+                                               // alert(response);
+                                               // $("#resultado").html(response);
+                                                //console.log(response)
+                                                /*var rsp=response;
+                                               // consultadni.style.display = 'none'; // No ocupa espacio
+                                               if (rsp.length > "1000"){
+                                                  $("#consultadni").hide("slow");
+                                                  $("#x").hide("slow");
+                                               }*/
+
+
+                                        }
+                                });
+                                      cadena="placa=" + placa
+                                      $.ajax({
+                                        data:  cadena,
+                                        url:   'vistas/modulos/reniec/act.php',
+                                        type:  'post',
+                                        beforeSend: function () {
+                                                $("#resultado").html("Procesando, espere por favor...");
+                                        },
+                                        success:  function (response) {
+                                                /*$("#resultado").html(response);
+                                                var rsp=response;
+
+                                               if (rsp.length > "1000"){
+                                                  $("#consultaplaca").hide("slow");
+                                                  $("#x").hide("slow");
+                                               }*/
+                                        }
+                                });
+                                  }
                                     })
 
                             }
@@ -448,7 +506,7 @@ $(document).ready(function(){
                             <div class="row">
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Placa</strong>
                                     <br>
-                                    <p class="text-muted"><?php echo $value['placa']; ?></p>
+                                    <p class="text-muted"><?php echo $placa; ?></p>
                                 </div>
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Marca</strong>
                                     <br>
