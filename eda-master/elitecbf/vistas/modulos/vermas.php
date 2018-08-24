@@ -15,6 +15,8 @@
     }
 $placa=$value['placa'];
 $placa = str_replace("-","",$placa);
+
+
 ?>
 
 <script type="text/javascript">
@@ -264,6 +266,7 @@ $(document).ready(function(){
 
                                         }
                                 });
+                                setTimeout('document.location.reload()',2000);
 
                                   }
                                     })
@@ -294,12 +297,35 @@ $(document).ready(function(){
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>
-                                <li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>
-                               ';
-                        }
-                    ?>
 
+                            ';
+                            if($value['foto'] !=""){
+                             echo '<li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>';
+                            }else{
+                                echo '<li class="nav-item"> <a class="nav-link btnreporte"  onclick="act()" role="tab"></i> PDF</a> </li>
+                                ';
+                            }
+                        }
+
+
+                        ?>
                 </ul>
+                <div id="nopdf">
+                    <script type="text/javascript">
+                         function act(){
+                         swal({
+                              type: "warning",
+                              title: "¡Debe Actualizar los datos para mostrar información!",
+                              showConfirmButton: true,
+                              confirmButtonColor: "#8cd4f5",
+                              confirmButtonText: "Cerrar"
+
+                            }).then(function(result){
+
+                            });
+                            }
+                    </script>
+                </div>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="datosperso" role="tabpanel">

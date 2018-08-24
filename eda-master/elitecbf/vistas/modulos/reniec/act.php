@@ -141,7 +141,7 @@ $TipoCertificado = $out['TipoCertificado'];
                  NombreClaseVehiculo = '".$NombreClaseVehiculo."',
                  FechaControlPolicial = '".$FechaControlPolicial."',
                  TipoCertificado = '".$TipoCertificado."',
-                 act = act+1,
+                 act = act + 1,
                  fecha_act = NOW( )
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));

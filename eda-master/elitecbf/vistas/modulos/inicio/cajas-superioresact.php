@@ -10,13 +10,13 @@ $valor2 = null;
 //$ventas = ControladorVentas::ctrSumaTotalVentas();
 
 
-$clientes = ControladorConductor::ctrMostrarConductorhoyEasy($item, $valor);
+$clientes = ControladorConductor::ctrMostrarConductorhoyact($item, $valor);
 $totalClientes = count($clientes);
 
-$clientes2 = ControladorConductor::ctrMostrarConductorMesEasy($item2, $valor2);
-$easy = count($clientes2);
+$clientes2 = ControladorConductor::ctrMostrarConductorMesact($item2, $valor2);
+$act = count($clientes2);
 $a = number_format($totalClientes);
-$e = number_format($easy);
+$e = number_format($act);
 $fecha_actual = date("M-Y");
 ?>
 
@@ -28,7 +28,7 @@ $fecha_actual = date("M-Y");
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h2><i class="icon-user-follow"></i></h2>
-                        <h3 class="text-muted">Reporte de conductores Easy</h3>
+                        <h3 class="text-muted">Reporte de Actualizados del mes</h3>
                     </div>
                     <div class="ml-auto">
                         <h2 class="counter text-warning"><?php echo $a ?></h2>
@@ -58,10 +58,10 @@ $fecha_actual = date("M-Y");
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h3><i class="icon-book-open"></i></h3>
-                        <h3 class="text-muted">Reporte de conductores Easy mes anterior</h3>
+                        <h3 class="text-muted">Reporte de actualizado mes anterior</h3>
                     </div>
                     <div class="ml-auto">
-                        <h2 class="counter text-info"><?php echo number_format($easy); ?></h2>
+                        <h2 class="counter text-info"><?php echo number_format($act); ?></h2>
                         <?php
                          $etx = ($e *100)/20000;
                         ?>

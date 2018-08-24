@@ -13,7 +13,7 @@ require 'vendor/autoload.php';
     $unconductor = ControladorConductor::ctrMostrarunConductor($item, $valor, $idconductor);
     //var_dump($unconductor);
     foreach ($unconductor as $key => $value){
-
+	$foto = $value['foto'];
 
    if ($value['blacklist'] == 0) {
       $bl="No se encuentra en lista negra";
@@ -60,7 +60,7 @@ require 'vendor/autoload.php';
 	var_dump($value);
 */
 
-	$foto = $value['foto'];
+
 require_once('tcpdf_include.php');
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -290,7 +290,7 @@ $bloque5 = <<<EOF
 		</tr>
 
 	</table>
-
+<br><br>
 	<table style="font-size:10px; padding:5px 10px;">
 
 		<tr>
@@ -307,14 +307,14 @@ $bloque5 = <<<EOF
 
 
 	</table>
-
+<br><br>
 
 EOF;
 
 $pdf->writeHTML($bloque5, false, false, false, false, '');
 
 $bloque6 = <<<EOF
-
+<br>
 	<table style="font-size:10px; padding:5px 10px;">
 
 		<tr>
@@ -368,7 +368,7 @@ $bloque7 = <<<EOF
 		</tr>
 
 		<tr>
-		<br><br><br><br><br><br>
+		<br><br><br><br><br>
 
 			<td style="width:540px; text-align:center">
 				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y
@@ -909,7 +909,7 @@ $bloquepiesoat = <<<EOF
 		<tr>
 
 			<td style="width:540px; text-align:center">
-				<font size="8" color="#aaaaaa">
+				<font size="7" color="#aaaaaa">
 					Los establecimientos de salud públicos y privados están obligados
 					a prestar atención médico quirúrgica de emergencia en caso de la
 					ocurrencia de un accidente de tránsito conforme en la Ley No
@@ -920,7 +920,7 @@ $bloquepiesoat = <<<EOF
 		<tr>
 
 			<td style="width:540px; text-align:center;" bgcolor="#6e42c1" border-radius: 150px;>
-				<font size="8" color="#fff">
+				<font size="7" color="#fff">
 					La información sobre las obligaciones derechos del
 					contratante/asegurado, coberturas, exclusiones, las podrás encontrar
 					ingresando a www.apeseg.org.pe/soat o solicitando tu cartilla
@@ -931,7 +931,7 @@ $bloquepiesoat = <<<EOF
 		</tr>
 		<tr>
 			<td style="width:540px; text-align:center">
-				<font size="8" color="#aaaaaa">
+				<font size="7" color="#aaaaaa">
 					Este documento no es de uso oficial, la información proporcionada en
 					el mismo es de uso interno y
 					exclusivo del tenedor.<br>

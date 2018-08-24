@@ -2,7 +2,7 @@
 
 class ControladorConductor{
 
-	
+
 	/*=============================================
 	REGISTRO DE USUARIO
 	=============================================*/
@@ -28,7 +28,7 @@ class ControladorConductor{
 							   "fecha" => $fechaActual);
 
 				$respuesta = ModeloConductor::mdlIngresarConductor($tabla, $datos);
-			
+
 				if($respuesta == "ok"){
 
 					echo '<script>
@@ -43,18 +43,18 @@ class ControladorConductor{
 					}).then(function(result){
 
 						if(result.value){
-						
+
 							window.location = "conductores";
 
 						}
 
 					});
-				
+
 
 					</script>';
 
 
-				}	
+				}
 
 
 			}else{
@@ -71,13 +71,13 @@ class ControladorConductor{
 					}).then(function(result){
 
 						if(result.value){
-						
+
 							window.location = "usuarios";
 
 						}
 
 					});
-				
+
 
 				</script>';
 
@@ -112,7 +112,7 @@ class ControladorConductor{
 		  $fechaini=$_GET["fechaInicial"];
           $fechafin=$_GET["fechaFinal"];
 
-         
+
          // echo $fechaini;
           //echo $fechafin;
 
@@ -123,7 +123,7 @@ class ControladorConductor{
 
 			if(isset($fechaini) && isset($fechafin)){
 				$conductores = ModeloConductor::mdlRangoFechasConductor($tablas, $fechaini, $fechafin);
-				
+
 
 
 			}else{
@@ -145,36 +145,36 @@ class ControladorConductor{
 			header('Expires: 0');
 			header('Cache-control: private');
 			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
-			header("Cache-Control: cache, must-revalidate"); 
+			header("Cache-Control: cache, must-revalidate");
 			header('Content-Description: File Transfer');
 			header('Last-Modified: '.date('D, d M Y H:i:s'));
-			header("Pragma: public"); 
+			header("Pragma: public");
 			header('Content-Disposition:; filename="'.$Name.'"');
 			header("Content-Transfer-Encoding: binary");
 
-			echo utf8_decode("<table border='0'> 
+			echo utf8_decode("<table border='0'>
 
-					<tr> 
-					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE REGISTRO</td> 
+					<tr>
+					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE REGISTRO</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>DNI</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>NOMBRE</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>PLACA</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES PENALES</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES JUDICIAL</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES POLICIAL</td>		
-					<td style='font-weight:bold; border:1px solid #eee;'>RECORD CONDUCTOR</td>		
-					<td style='font-weight:bold; border:1px solid #eee;'>RESULTADO</td	
-					<td style='font-weight:bold; border:1px solid #eee;'>SOAT</td>		
-							
-					<td style='font-weight:bold; border:1px solid #eee;'>OBSERVACION</td>		
+					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES POLICIAL</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>RECORD CONDUCTOR</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>RESULTADO</td
+					<td style='font-weight:bold; border:1px solid #eee;'>SOAT</td>
+
+					<td style='font-weight:bold; border:1px solid #eee;'>OBSERVACION</td>
 					</tr>");
 
 			foreach ($conductores as $row => $value){
 
-				
+
 
 			 echo utf8_decode("<tr>
-			 			<td style='border:1px solid #eee;'>".$value["fecha"]."</td> 
+			 			<td style='border:1px solid #eee;'>".$value["fecha"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["dni"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["nombre"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["apellido"]."</td>
@@ -184,7 +184,7 @@ class ControladorConductor{
 			 			<td style='border:1px solid #eee;'>".$value["record_cond"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["resultado"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["soat"]."</td>
-			 			
+
 			 			<td style='border:1px solid #eee;'>".$value["observacion"]."</td>
 			 			</tr>");
 
@@ -192,7 +192,7 @@ class ControladorConductor{
 
 			echo "</table>";
 
-		
+
 
 	}
 
@@ -202,7 +202,7 @@ class ControladorConductor{
 
 /*=============================================
 	RANGO FECHAS
-	=============================================*/	
+	=============================================*/
 
 	static public function ctrRangoFechasConductor($fechaInicial, $fechaFinal){
 
@@ -211,7 +211,7 @@ class ControladorConductor{
 		$respuesta = ModeloConductor::mdlRangoFechasConductor($tabla, $fechaInicial, $fechaFinal);
 
 		return $respuesta;
-		
+
 	}
 
 	/*=============================================
@@ -285,6 +285,30 @@ class ControladorConductor{
 	return $respuesta;
 	}
 
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarConductorMesact($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresMesact($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+
+	static public function ctrMostrarConductorhoyact($item, $valor){
+
+	$tabla = "conductores";
+
+	$respuesta = ModeloConductor::mdlMostrarConductorhoyact($tabla, $item, $valor);
+
+	return $respuesta;
+	}
+
 
 
 
@@ -315,6 +339,6 @@ class ControladorConductor{
 
 
 }
-	
+
 
 

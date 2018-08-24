@@ -29,25 +29,25 @@ $fecha_actual = date("M-Y");
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h2><i class="icon-user-follow"></i></h2>
-                        <h3 class="text-muted">Reporte de conductores cabify</h3>
+                        <h3 class="text-muted">Reporte de conductores Cabify</h3>
                     </div>
                     <div class="ml-auto">
                         <h2 class="counter text-purple"><?php echo $a ?></h2>
                     </div><br>
-                    <?php 
+                    <?php
                      $b = ($a *100)/1500;
                      ?>
                 </div>
             </div>
             <div class="col-12">
                 <div class="progress">
-                    
+
                 <div class="progress-bar bg-purple progress-bar-striped" role="progressbar" style="width: <?php echo intval($b) ?>%;height:35px;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <?php echo intval($b) ?>%</div>
             </div>
         </div>
         <a href="conductores" class="small-box-footer">
           Más info <i class="fa fa-arrow-circle-right"></i>
-        </a>  
+        </a>
     </div>
 </div>
 </div>
@@ -59,11 +59,11 @@ $fecha_actual = date("M-Y");
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h3><i class="icon-book-open"></i></h3>
-                        <h3 class="text-muted">Reporte de conductores cabify</h3>
+                        <h3 class="text-muted">Reporte de conductores Cabify mes anterior</h3>
                     </div>
                     <div class="ml-auto">
                         <h2 class="counter text-info"><?php echo number_format($cabify); ?></h2>
-                        <?php 
+                        <?php
                          $cbf = ($c *100)/20000;
                         ?>
                     </div>

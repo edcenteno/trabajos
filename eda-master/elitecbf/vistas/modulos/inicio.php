@@ -19,7 +19,7 @@ require 'graficas/querys.php';
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
-               
+
             </div>
         </div>
     </div>
@@ -32,14 +32,14 @@ require 'graficas/querys.php';
                     <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#reporte" role="tab"><i class="ti-car"></i> Reporte de Conductores</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#cabify" role="tab"><i class="fa fa-taxi"></i> Cabify</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#easy" role="tab"><i class="fa fa-taxi"></i> Easy Taxi</a> </li>
-                    
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#act" role="tab"><i class="ti-reload"></i> Reporte</a> </li>
                 </ul>
              <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane active" id="reporte" role="tabpanel">
                     <div class="card-body">
                         <div class="row">
-                            
+
                         <div class="col-lg-6 col-md-6">
 
                         <?php
@@ -56,7 +56,7 @@ require 'graficas/querys.php';
                         </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
-                               
+
                         <?php
                             include "inicio/cajas-superiores.php";
                         }
@@ -110,45 +110,35 @@ require 'graficas/querys.php';
                                     <div class="card-body">
                                         <div class="d-flex m-b-40 align-items-center no-block">
                                             <h1 class="card-title ">Bienvenid@ ' .$_SESSION["nombre"].'</h1>
-                                            
+
                                         </div>
-                                        
+
                                     </div>
                             </div>
-                        </div>
-
-
-
-
-
-                         ';
-
+                        </div> ';
                         }
 
                         ?>
-                          
-                                        
+
+
                         </div>
 
                     </div>
-                                    
+
                 </div>
-
-
-            
              <!--second tab-->
-                    <div class="tab-pane" id="cabify" role="tabpanel">
+                     <div class="tab-pane" id="act" role="tabpanel">
                         <div class="card-body">
                             <div class="row">
-                                
+
                         <div class="col-lg-12 col-md-6">
-                               
+
                         <?php
-                            include "inicio/cajas-superiorescabify.php";
-                        
+                            include "inicio/cajas-superioresact.php";
+
                         ?>
                         </div>
-                        
+
                         <?php
 
                         if($_SESSION["perfil"] =="Operador" || $_SESSION["perfil"] =="RRHH"){
@@ -158,18 +148,47 @@ require 'graficas/querys.php';
                                     <div class="card-body">
                                         <div class="d-flex m-b-40 align-items-center no-block">
                                             <h1 class="card-title ">Bienvenid@ ' .$_SESSION["nombre"].'</h1>
-                                            
+
                                         </div>
-                                        
+
                                     </div>
                             </div>
+                        </div> ';
+
+                        }
+
+                        ?>
+                            </div>
+                         </div>
+                     </div>
+<!--second tab-->
+                    <div class="tab-pane" id="cabify" role="tabpanel">
+                        <div class="card-body">
+                            <div class="row">
+
+                        <div class="col-lg-12 col-md-6">
+
+                        <?php
+                            include "inicio/cajas-superiorescabify.php";
+
+                        ?>
                         </div>
 
+                        <?php
 
+                        if($_SESSION["perfil"] =="Operador" || $_SESSION["perfil"] =="RRHH"){
 
+                         echo '<div class="col-lg-12">
+                             <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex m-b-40 align-items-center no-block">
+                                            <h1 class="card-title ">Bienvenid@ ' .$_SESSION["nombre"].'</h1>
 
+                                        </div>
 
-                         ';
+                                    </div>
+                            </div>
+                        </div> ';
 
                         }
 
@@ -181,16 +200,16 @@ require 'graficas/querys.php';
                     <div class="tab-pane" id="easy" role="tabpanel">
                         <div class="card-body">
                             <div class="row">
-                        
+
                         <div class="col-lg-12 col-md-6">
-                               
+
                         <?php
                             include "inicio/cajas-superioreseasy.php";
-                        
+
                         ?>
                         </div>
                           <!-- Column -->
-                       
+
                         <?php
 
                         if($_SESSION["perfil"] =="Operador" || $_SESSION["perfil"] =="RRHH"){
@@ -200,23 +219,17 @@ require 'graficas/querys.php';
                                     <div class="card-body">
                                         <div class="d-flex m-b-40 align-items-center no-block">
                                             <h1 class="card-title ">Bienvenid@ ' .$_SESSION["nombre"].'</h1>
-                                            
+
                                         </div>
-                                        
+
                                     </div>
                             </div>
-                        </div>
-
-
-
-
-
-                         ';
+                        </div>';
 
                         }
 
                         ?>
-                            
+
                 </div>
                 </div>
             </div>
@@ -233,9 +246,9 @@ require 'graficas/querys.php';
 <!-- ============================================================== -->
 
 <script type="text/javascript">
-  // ============================================================== 
+  // ==============================================================
     // Variales diarias
-    // ============================================================== 
+    // ==============================================================
     var dia1 = <?php echo json_encode($dia1)?>;
     var dia1 = parseInt(dia1[0].dia1);
 
@@ -329,9 +342,9 @@ require 'graficas/querys.php';
     var dia31 = <?php echo json_encode($dia31)?>;
     var dia31 = parseInt(dia31[0].dia31);
 
-    // ============================================================== 
+    // ==============================================================
     // Variables Apto - no aptos
-    // ============================================================== 
+    // ==============================================================
 
     var apto = <?php echo json_encode($apto)?>  ;
     var apto = parseInt(apto[0].apto);
@@ -339,10 +352,10 @@ require 'graficas/querys.php';
     var noapto = <?php echo json_encode($noapto)?>;
     var noapto = parseInt(noapto[0].noapto);
 
-    // ============================================================== 
+    // ==============================================================
     // Variables meses
-    // ============================================================== 
-    
+    // ==============================================================
+
     var mayo = <?php echo json_encode($mayo)?>;
     var mayo = parseInt(mayo[0].mayo);
 
@@ -379,7 +392,7 @@ require 'graficas/querys.php';
     var abril = <?php echo json_encode($abril)?>;
     var abril = parseInt(abril[0].abril);
 
-    
+
 </script>
 
 <script type="text/javascript">
@@ -388,127 +401,127 @@ require 'graficas/querys.php';
         , data: [{
                 period: '2018-08-01'
                 , Conductores: dia1
-               
+
         }, {
                 period: '2018-08-02'
                 , Conductores: dia2
-                
+
         }, {
                 period: '2018-08-03'
                 , Conductores: dia3
-                
+
         }, {
                 period: '2018-08-04'
                 , Conductores: dia4
-               
+
         }, {
                 period: '2018-08-05'
                 , Conductores: dia5
-                
+
         }, {
                 period: '2018-08-06'
                 , Conductores: dia6
-                
+
         }, {
                 period: '2018-08-07'
                 , Conductores: dia7
-                
+
         },{
                 period: '2018-08-08'
                 , Conductores: dia8
-                
+
         },{
                 period: '2018-08-09'
                 , Conductores: dia9
-                
+
         },{
                 period: '2018-08-10'
                 , Conductores: dia10
-                
+
         },{
                 period: '2018-08-11'
                 , Conductores: dia11
-                
+
         },{
                 period: '2018-08-12'
                 , Conductores: dia12
-                
+
         },{
                 period: '2018-08-13'
                 , Conductores: dia13
-                
+
         },{
                 period: '2018-08-14'
                 , Conductores: dia14
-                
+
         },{
                 period: '2018-08-15'
                 , Conductores: dia15
-                
+
         },{
                 period: '2018-08-16'
                 , Conductores: dia16
-                
+
         },{
                 period: '2018-08-17'
                 , Conductores: dia17
-                
+
         }, {
                 period: '2018-08-18'
                 , Conductores: dia18
-                
+
         }, {
                 period: '2018-08-19'
                 , Conductores: dia19
-                
+
         },{
                 period: '2018-08-20'
                 , Conductores: dia20
-                
+
         },{
                 period: '2018-08-21'
                 , Conductores: dia21
-                
+
         },{
                 period: '2018-08-22'
                 , Conductores: dia22
-                
+
         },{
                 period: '2018-08-23'
                 , Conductores: dia23
-                
+
         },{
                 period: '2018-08-24'
                 , Conductores: dia24
-                
+
         },{
                 period: '2018-08-25'
                 , Conductores: dia25
-                
+
         },{
                 period: '2018-08-26'
                 , Conductores: dia26
-                
+
         },{
                 period: '2018-08-27'
                 , Conductores: dia27
-                
+
         },{
                 period: '2018-08-28'
                 , Conductores: dia28
-                
+
         },{
                 period: '2018-08-29'
                 , Conductores: dia29
-                
+
         },{
                 period: '2018-08-30'
                 , Conductores: dia30
-                
+
         },{
                 period: '2018-08-31'
                 , Conductores: dia31
-               
+
         }]
         , xkey: 'period'
         , ykeys: ['Conductores']
@@ -523,7 +536,7 @@ require 'graficas/querys.php';
         , lineColors: ['#9675ce']
         , resize: true
     });
-    
+
 </script>
 
 
