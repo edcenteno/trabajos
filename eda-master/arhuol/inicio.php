@@ -9,27 +9,27 @@ if(isset($_SESSION['user'])){
 		<script>
 			$(document).ready(function(){
 				$('#mitabla').DataTable({
-					
+
 					"responsive": {
 						"details": {
 							"type": 'column',
 							"target": 'tr'
-						}	
+						}
 					},
 					"columnDefs": [ {
 						"className": 'control',
 						"orderable": false,
 						"targets":   0,
-						
+
 					},
-					{ 'responsivePriority': 1, 'targets': 15 },
+					{ 'responsivePriority': 1, 'targets': 7 },
 					{ 'responsivePriority': 1, 'targets': 3 },
 					{ 'responsivePriority': 1, 'targets': 4 },
-					{ 'responsivePriority': 2, 'targets': 14 },
+					{ 'responsivePriority': 2, 'targets': 16 },
 					{ 'responsivePriority': 2, 'targets': -6 },
 
 					],
-					"order": [[1, "desc"]],
+					"order": [[2, "desc"]],
 					"language": {
 
 						"sProcessing":     "Procesando...",
@@ -60,13 +60,13 @@ if(isset($_SESSION['user'])){
 					"bProcessing": true,
 					"bServerSide": true,
 					"sAjaxSource": "server_process.php"
-				});	
+				});
 			});
-			
+
 		</script>
-		
+
 	</head>
-	
+
 	<body>
 		<div class="container">
 			<div class="row">
@@ -89,6 +89,7 @@ if(isset($_SESSION['user'])){
 								<thead>
 									<tr>
 										<th></th>
+                                        <th>FORM</th>
 										<th>ID</th>
 										<th>FECHA DE REGISTRO</th>
 										<th>DNI</th>
@@ -108,9 +109,9 @@ if(isset($_SESSION['user'])){
 
 									</tr>
 								</thead>
-								
+
 								<tbody>
-									
+
 								</tbody>
 							</table>
 						</div>
@@ -122,7 +123,7 @@ MODAL AGREGAR USUARIO
 ======================================-->
 
 <div id="modalAgregarConductor" class="modal fade" role="dialog">
-	
+
 	<div class="modal-dialog">
 
 		<div class="modal-content">
@@ -152,10 +153,10 @@ MODAL AGREGAR USUARIO
         		<!-- ENTRADA PARA EL DNI -->
 
         		<div class="form-group">
-        			
+
         			<div class="input-group">
-        				
-        				<span class="input-group-addon"><i class="fa fa-id-card"></i></span> 
+
+        				<span class="input-group-addon"><i class="fa fa-id-card"></i></span>
 
         				<input type="text" class="form-control input-lg" name="nuevoDni" placeholder="Ingresar DNI" id="nuevoDni" required>
 
@@ -165,10 +166,10 @@ MODAL AGREGAR USUARIO
         		<!-- ENTRADA PARA EL NOMBRE -->
 
         		<div class="form-group">
-        			
+
         			<div class="input-group">
-        				
-        				<span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+        				<span class="input-group-addon"><i class="fa fa-user"></i></span>
 
         				<input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre" id="nuevoNombre" required>
 
@@ -179,10 +180,10 @@ MODAL AGREGAR USUARIO
         		<!-- ENTRADA PARA EL APELLIDO -->
 
         		<div class="form-group">
-        			
+
         			<div class="input-group">
-        				
-        				<span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+        				<span class="input-group-addon"><i class="fa fa-user"></i></span>
 
         				<input type="text" class="form-control input-lg" name="nuevoApellido" placeholder="Ingresar apellido" id="nuevoApellido" required>
 
@@ -192,21 +193,21 @@ MODAL AGREGAR USUARIO
         		<!-- ENTRADA PARA EL PLACA -->
 
         		<div class="form-group">
-        			
+
         			<div class="input-group">
-        				
-        				<span class="input-group-addon"><i class="fa fa-id-card"></i></span> 
+
+        				<span class="input-group-addon"><i class="fa fa-id-card"></i></span>
 
         				<input type="text" class="form-control input-lg" name="nuevoPlaca" placeholder="Ingresar placa" id="nuevoPlaca" required>
 
         			</div>
 
-        			
+
         		</div>
         	</div>
         </div>
 
-        
+
         <!--=====================================
         PIE DEL MODAL
         ======================================-->
@@ -231,16 +232,16 @@ MODAL AGREGAR USUARIO
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			
+
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="myModalLabel">Eliminar Registro</h4>
 			</div>
-			
+
 			<div class="modal-body">
 				¿Desea eliminar este registro?
 			</div>
-			
+
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				<a class="btn btn-danger btn-ok">Delete</a>
@@ -252,13 +253,13 @@ MODAL AGREGAR USUARIO
 <script>
 	$('#confirm-delete').on('show.bs.modal', function(e) {
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-		
+
 		$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
 	});
-</script>	
+</script>
 
 </body>
-</html>	
+</html>
 <?php
 } else {
 	header("location:index.php");

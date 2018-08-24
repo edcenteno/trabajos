@@ -14,6 +14,9 @@ require 'vendor/autoload.php';
     //var_dump($unconductor);
     foreach ($unconductor as $key => $value){
 	$foto = $value['foto'];
+	if ($foto == "") {
+		$foto = "conductor.jpg";
+	}
 
    if ($value['blacklist'] == 0) {
       $bl="No se encuentra en lista negra";
@@ -35,6 +38,9 @@ require 'vendor/autoload.php';
 
 	if ($value['nombrecompania']== "Pacifico Seguros") {
 	$seguro = '<img width="120" src="images/soat/pacifico.png">';
+	}
+	if ($value['nombrecompania']== "Mapfre Perú") {
+	$seguro = '<img width="120" src="images/soat/mapfre.png">';
 	}
 
 
@@ -389,6 +395,46 @@ EOF;
 $pdf->writeHTML($bloque7, false, false, false, false, '');
 
 // ---------------------------------------------------------
+//
+$bloque7 = <<<EOF
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+
+
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+			<td style="width:540px; text-align:center">
+				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y
+				exclusivo del tenedor.<br>
+				Es confidencial incomunicable a terceros.<br>
+				Su divulgación, distribución,
+				retransmisión y/o alteración, total o parcial está expresamente
+				prohibida.</font>
+			</td>
+
+		</tr>
+
+
+	</table>
+
+EOF;
+
+
 
 $bloquePolicial = <<<EOF
 
@@ -500,7 +546,6 @@ $bloquePolicial = <<<EOF
 EOF;
 if ($value['ant_policial'] == 'POSITIVO') {
 $pdf->writeHTML($bloque1, false, false, false, false, '');
-
 $pdf->writeHTML($bloquePolicial, false, false, false, false, '');
 $pdf->writeHTML($bloque7, false, false, false, false, '');
 $pdf->writeHTML($bloque1, false, false, false, false, '');
@@ -613,7 +658,7 @@ $bloquePenal = <<<EOF
 
 
 	</table>
-	<br><br><br><br><br><br><br>
+	<br><br><br><br>
 
 EOF;
 if ($value['ant_penales'] == 'POSITIVO') {

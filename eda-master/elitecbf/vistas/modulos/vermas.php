@@ -90,7 +90,8 @@ $placa = str_replace("-","",$placa);
 
     }).done(function(msg){
         //$("#resultado").html(msg);
-       // console.log(msg)//msg.vin.co
+        //console.log(msg)//msg.vin.co
+       if (msg != "No existe la placa, intente mas tarde.") {
         $('.vehiculo')[0].innerText = msg['Marca'];
         $('.vehiculo')[1].innerText = msg['Modelo'];
         $('.vehiculo')[2].innerText = msg['Vin']['modelYear'];
@@ -105,7 +106,7 @@ $placa = str_replace("-","",$placa);
         $('.vehiculo')[11].innerText = msg['Vin']['countries'];
         $('.vehiculo')[12].innerText = msg['Vin']['manufacture'];
         $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber'];
-
+}
     });
 
 $(document).ready(function(){
@@ -165,7 +166,18 @@ $(document).ready(function(){
                         <h6 class="card-subtitle">Conductor</h6>
                         <div class="row text-center justify-content-md-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
-                        <button class="btn btn-warning"  id="act" onclick="deshabilitar_btnEnviar()">Actualizar</button>
+                        <?php
+                            $fecha_actual = date("Y-m-d");
+                            $mes = date("Y-m-d",strtotime($fecha_actual."- 1 month"));
+                                if ($value['fecha'] < $mes) {
+                                    echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
+                                } else {
+                                    echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
+                                    echo '<button class="btn btn-warning" disabled="true">Actualizar</button>';
+                                }
+
+                        ?>
+
                         <?php
                             if($value['foto']){
                                 $foto = $value['foto'];
@@ -220,8 +232,8 @@ $(document).ready(function(){
                                     }).then((result) => {
                                       if (result.value) {
                                         swal(
-                                          'Actualizado!',
-                                          'El conductor fue actualizado.',
+                                          'Solicitado!',
+                                          'La actualización puede tardar par de minutos.',
                                           'success'
                                         )
 
@@ -297,35 +309,13 @@ $(document).ready(function(){
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>
-
-                            ';
-                            if($value['foto'] !=""){
-                             echo '<li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>';
-                            }else{
-                                echo '<li class="nav-item"> <a class="nav-link btnreporte"  onclick="act()" role="tab"></i> PDF</a> </li>
-                                ';
-                            }
+                               <li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>';
                         }
 
 
                         ?>
                 </ul>
-                <div id="nopdf">
-                    <script type="text/javascript">
-                         function act(){
-                         swal({
-                              type: "warning",
-                              title: "¡Debe Actualizar los datos para mostrar información!",
-                              showConfirmButton: true,
-                              confirmButtonColor: "#8cd4f5",
-                              confirmButtonText: "Cerrar"
 
-                            }).then(function(result){
-
-                            });
-                            }
-                    </script>
-                </div>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="datosperso" role="tabpanel">

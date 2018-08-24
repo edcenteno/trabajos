@@ -146,5 +146,5 @@ $TipoCertificado = $out['TipoCertificado'];
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 
-echo"$sentencia";
+//echo"$sentencia";
 ?>

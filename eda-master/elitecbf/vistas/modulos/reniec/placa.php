@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include 'php/conexion.php';
 $placa=$_POST['placa'];
 $conexion=conexion();

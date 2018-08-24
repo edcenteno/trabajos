@@ -28,7 +28,6 @@ if ($cabify == "0" && $easytaxi == "0") {
         } else {
 if (isset($_POST['si'])){
 
-$placa = str_replace("-","",$placa);
 ?>
 
 <script type="text/javascript">

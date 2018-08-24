@@ -20,7 +20,7 @@ $blacklist=$row['blacklist'];
   <link rel="shortcut icon" href="img/favicon.ico" type="image/ico" />
 
   <script type="text/javascript">
-   
+
      $(document).ready(function(){
           $('.targetpolicial').hide();
           $('.targetjudicial').hide();
@@ -52,7 +52,7 @@ $blacklist=$row['blacklist'];
               $('.targetpenales').hide();
             }
           });
-          
+
     });
 
    /* $(document).ready(function(){
@@ -98,18 +98,18 @@ $blacklist=$row['blacklist'];
           ARHU INTERNACIONAL
         </div>
         <div class="card-body">
-          
+
 
          <form class="form-horizontal" method="POST" action="modif_perso2.php" autocomplete="off" style="border-collapse: separate; border-spacing: 10px 5px;">
            <input type="hidden" name="cont"  value="<?php echo $_GET['id']?>">
            <input type="hidden" name="pdf"   value="<?php echo $pdf ?>">
-           
+
            <div class="row">
             <div class="col-6 col-sm-4">
 
              <div class="form-group">
               <label for="dni">DNI:</label>
-              <input type="text" name="dni" class="form-control" id="dni" 
+              <input type="text" name="dni" class="form-control" id="dni"
               value="<?php echo $dni ?>">
             </div>
 
@@ -127,7 +127,7 @@ $blacklist=$row['blacklist'];
               <label for="placa">Placa: </label>
               <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php echo $row['placa'] ?>">
             </div>
-          </div> 
+          </div>
           <div class="col-6 col-sm-4">
             <div class="form-group">
               <label for="ant_penales">Antecedentes Penales: </label>
@@ -144,7 +144,7 @@ $blacklist=$row['blacklist'];
 
                 <label for="autoridad_penal">AUTORIDAD: </label>
                 <input type="text" name="autoridad_penal" class="form-control" id="autoridad_penal" placeholder="autoridad_penal" value="<?php echo $row['autoridad_penal'] ?>">
-                
+
                 <label for="documento_penal">DOCUMENTO: </label>
                 <input type="text" name="documento_penal" class="form-control" id="documento_penal" placeholder="documento_penal" value="<?php echo $row['documento_penal'] ?>">
 
@@ -186,7 +186,7 @@ $blacklist=$row['blacklist'];
 
                 <label for="autoridad_judicial">AUTORIDAD: </label>
                 <input type="text" name="autoridad_judicial" class="form-control" id="autoridad_judicial" placeholder="autoridad_judicial" value="<?php echo $row['autoridad_judicial'] ?>">
-                
+
                 <label for="documento_judicial">DOCUMENTO: </label>
                 <input type="text" name="documento_judicial" class="form-control" id="documento_judicial" placeholder="documento_judicial" value="<?php echo $row['documento_judicial'] ?>">
 
@@ -228,7 +228,7 @@ $blacklist=$row['blacklist'];
 
                 <label for="autoridad_Policial">AUTORIDAD: </label>
                 <input type="text" name="autoridad_Policial" class="form-control" id="autoridad_Policial" placeholder="autoridad_Policial" value="<?php echo $row['autoridad_Policial'] ?>">
-                
+
                 <label for="documento_Policial">DOCUMENTO: </label>
                 <input type="text" name="documento_Policial" class="form-control" id="documento_Policial" placeholder="documento_Policial" value="<?php echo $row['documento_Policial'] ?>">
 
@@ -255,36 +255,44 @@ $blacklist=$row['blacklist'];
 
               </div>
             </div>
-            
+
 
             <div class="form-group">
               <label for="record_cond">Record del conductor: </label>
               <input type="text" name="record_cond" class="form-control" id="record_cond" placeholder="Record del conductor"  value="<?php echo $row['record_cond'] ?>" required="">
-            </div> 
+            </div>
           </div>
-
           <div class="col-6 col-sm-4">
-              <div class="form-group">
-                <label for="soat">SOAT : </label>
-                <div class="form-group">
-                  <select class="form-control" id="sel1" name ="soat">
-                    <option><?php echo $row['soat'] ?></option>
-                    <option>VIGENTE</option>
-                    <option>VENCIDO</option>
-                    <option>NO POSEE</option>
-                  </select>
-                </div>
-                
-              </div>
+          <?php
+          if ($row['form'] == "Nuevo") {
+
+          } else {
+            echo '<div class="form-group">
+                    <label for="soat">SOAT : </label>
+                    <div class="form-group">
+                      <select class="form-control" id="sel1" name ="soat">
+                        <option>'.$row['soat'].'</option>
+                        <option>VIGENTE</option>
+                        <option>VENCIDO</option>
+                        <option>NO POSEE</option>
+                      </select>
+                    </div>
+
+                  </div>
+                ';
+          }
+
+          ?>
+
 
              <div class="form-group">
              <input class="form-group-input" type="checkbox" name="blacklist" id="blacklist" value="1">
                 <label class="form-group-label" for="exampleRadios1">
                   Se encuenta en lista Negra
                 </label>
-             
+
             </div>
-           
+
               <div class="form-group">
                 <label for="observacion">Observación:</label>
                 <textarea class="form-control" rows="6" id="observacion" name="observacion"><?php echo $row['observacion'] ?></textarea>
@@ -292,7 +300,7 @@ $blacklist=$row['blacklist'];
 
             </div>
           </div>
-            
+
             <div class="form-group">
              <div class="col-sm-offset-2 col-sm-10">
               <a href="inicio.php" class="btn btn-warning">Regresar</a>

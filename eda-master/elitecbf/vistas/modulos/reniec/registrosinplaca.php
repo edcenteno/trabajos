@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	require_once "php/conexion.php";
 	$conexion=conexion();
@@ -10,10 +10,10 @@
 		$cabify=$_POST['cabify'];
 		$fecha_nacimiento=$_POST['fechaNacimiento'];
 		$placa="NINGUNO";
-		
+
 
 		function buscaRepetido($dni,$conexion){
-					$sql="SELECT * from conductores 
+					$sql="SELECT * from conductores
 						where dni='$dni'";
 					$result=mysqli_query($conexion,$sql);
 
@@ -38,7 +38,7 @@
 			   preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $apellidos) || preg_match('/^[a-zA-Z]+$/', $apellidos) ||
 			   strlen($dni) >= 8  || strlen($fecha_nacimiento) == 10 ){
 
-			
+
 			if(buscaRepetido($dni,$conexion)==1){
 				echo 2;
 			}else{
@@ -61,23 +61,23 @@
 					$saa=str_pad($secuencia_arhu_ant, 5, "0", STR_PAD_LEFT);
 					$secuencia =  "RA-" .$año . $mes. $saa;
 				}
-				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant)
-					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), '$secuencia')";
+				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant, form)
+					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), '$secuencia', 'Nuevo')";
 				$result=mysqli_query($conexion,$sql);
 				//var_dump($sql);
 				echo "1";
 			}
 
 
-			
+
 			} else {
 				echo '3';
 			}
 		}
-		
-		
-		
 
-		
+
+
+
+
 
  ?>
