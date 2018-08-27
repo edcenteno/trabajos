@@ -35,6 +35,9 @@ require 'vendor/autoload.php';
 	if ($value['nombrecompania']== "Interseguro") {
 	$seguro = '<img width="120" src="images/soat/interbank.png">';
 	}
+	if ($value['nombrecompania']== "INTERSEGURO") {
+	$seguro = '<img width="120" src="images/soat/interbank.png">';
+	}
 
 	if ($value['nombrecompania']== "Pacifico Seguros") {
 	$seguro = '<img width="120" src="images/soat/pacifico.png">';

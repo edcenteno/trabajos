@@ -95,7 +95,7 @@ if (strlen($placa) == 6) {
 	/*$x = json_encode($out);
   echo $x->message;*/
 
-$token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTAzNA.AmJhTMIv9Bzd9h4KjWijho4Wf0apnT4IoqasWM0dLLE';//token prestado
+$token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTA2MQ.mNioS0vL0ckba0lPV955HvekjFHzvIcqEVqy1_kBerM';//token prestado
 $query = "
 query {
 	soat(placa:\"$placa\") {

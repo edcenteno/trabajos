@@ -35,7 +35,7 @@ $placa = str_replace("-","",$placa);
     }).done(function(msg){
         //$("#resultado").html(msg);
         //console.log(msg)
-
+        if (msg != "No existe el registro, intente mas tarde.") {
         $('.licencia')[0].innerText = msg['var_direccion'];
         $('.licencia')[1].innerText = msg['var_departamento'];
         $('.licencia')[2].innerText = msg['var_distrito'];
@@ -47,10 +47,9 @@ $placa = str_replace("-","",$placa);
         $('.licencia')[8].innerText = msg['var_restricciones1'];
         $('.licencia')[9].innerText = msg['var_restricciones2'];
 
-         if (msg == "No existe el registro, intente mas tarde.") {
-               $("#acthoy").show();
+        $("#acthoy").hide();
          }else{
-                $("#acthoy").hide();
+
          }
 
     });
@@ -179,7 +178,7 @@ $(document).ready(function(){
                                 if ($value['fecha'] < $mes) {
                                     echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
                                 } else {
-                                    echo '<button class="btn btn-warning" id= "acthoy" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
+
                                     echo '<button class="btn btn-warning" disabled="true">Actualizar</button>';
                                 }
 
@@ -195,7 +194,7 @@ $(document).ready(function(){
                         ?>
 
                         </div>
-
+    <button class="btn btn-warning" id= "acthoy" onclick="deshabilitar_btnEnviar()">Actualizar</button>
                     <hr>
                     <div class="card-body"> <small class="text-muted">DNI Digital</small></br>
                     <?php
@@ -613,6 +612,11 @@ $(document).ready(function(){
 
                                     }
                                     if ($value['nombrecompania']== "Interseguro") {
+                                        echo '<img width="90" src="vistas/img/plantilla/interbank.png">';
+                                    } else{
+
+                                    }
+                                    if ($value['nombrecompania']== "INTERSEGURO") {
                                         echo '<img width="90" src="vistas/img/plantilla/interbank.png">';
                                     } else{
 
