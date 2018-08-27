@@ -13,6 +13,10 @@
     } else {
       $bl="Si se encuentra en lista negra";
     }
+
+    @$cabify = $value['cabify'];
+    @$easy = $value['easy'];
+
 $placa=$value['placa'];
 $placa = str_replace("-","",$placa);
 
@@ -220,6 +224,9 @@ $(document).ready(function(){
                                         placa = '<?php echo $placa ?>'
                                         type= '<?php echo 1 ?>'
                                         dni = '<?php echo $idconductor ?>'
+                                        cabify= '<?php echo $cabify ?>'
+                                        easy = '<?php echo $easy ?>'
+
                                swal({
                                       title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
                                       text: "¡No podrás revertir esto!",
@@ -268,7 +275,9 @@ $(document).ready(function(){
                                             });
 
                                     parametros="&dni=" + dni+
-                                                "&placa=" + placa;
+                                                "&placa=" + placa+
+                                                "&cabify=" + cabify+
+                                                "&easy=" + easy;
 
                                       $.ajax({
                                         data:  parametros,

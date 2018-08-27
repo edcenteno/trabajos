@@ -102,7 +102,7 @@ class ModeloConductor{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -112,7 +112,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1'");
 
 			$stmt -> execute();
 
@@ -130,7 +130,7 @@ class ModeloConductor{
 
 		if($item2 != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like '2018-07%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1' and fecha like '2018-07%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -140,7 +140,66 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like '2018-07%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1' and fecha like '2018-07%'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
+	CABIFY
+	=============================================*/
+	static public function mdlMostrarConductorhoyEasyact($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_easy = '1'");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_easy = '1'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+		static public function mdlMostrarConductoresMesEasyact($tabla, $item2, $valor2){
+
+		if($item2 != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_easy = '1' and fecha like '2018-07%'");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_easy = '1' and fecha like '2018-07%'");
 
 			$stmt -> execute();
 
@@ -259,6 +318,65 @@ class ModeloConductor{
 		}else{
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act >0 and fecha_act like '2018-07%'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
+	ACT CBF
+	=============================================*/
+	static public function mdlMostrarConductorhoyactcbf($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf >0");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf >0");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+		static public function mdlMostrarConductoresMesactcbf($tabla, $item2, $valor2){
+
+		if($item2 != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf >0 and fecha_act like '2018-07%'");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf >0 and fecha_act like '2018-07%'");
 
 			$stmt -> execute();
 

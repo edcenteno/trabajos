@@ -4,6 +4,8 @@
 error_reporting(0);
 $dni=$_POST['dni'];
 $placa=$_POST['placa'];
+$cabify = $_POST['cabify'];
+$easy = $_POST['easy'];
 
   class Peru  {
     function __construct()
@@ -126,7 +128,8 @@ $TipoCertificado = $out['TipoCertificado'];
 
   include "conex.php";
 
- $sentencia="UPDATE conductores SET
+if ($cabify == 1 && $easy == 1) {
+  $sentencia="UPDATE conductores SET
                  nombre='".$nombre."',
                  apellido ='".$apellidos."',
                  fecha_nacimiento = '".$fechanac."',
@@ -141,10 +144,54 @@ $TipoCertificado = $out['TipoCertificado'];
                  NombreClaseVehiculo = '".$NombreClaseVehiculo."',
                  FechaControlPolicial = '".$FechaControlPolicial."',
                  TipoCertificado = '".$TipoCertificado."',
-                 act = act + 1,
+                 act_cbf = act_cbf + 1,
+                 act_easy = act_easy + 1,
                  fecha_act = NOW( )
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
+}
 
-//echo"$sentencia";
+if ($cabify == 1 && $easy == 0) {
+  $sentencia="UPDATE conductores SET
+                 nombre='".$nombre."',
+                 apellido ='".$apellidos."',
+                 fecha_nacimiento = '".$fechanac."',
+                 placa = '".$placa."',
+                 soat = '".$estado."',
+                 orden_captura = '".$crv."',
+                 fecha_inicio_soat = '".$FechaInicio."',
+                 fecha_fin_soat = '".$FechaFin."',
+                 nombrecompania = '".$NombreCompania."',
+                 numeropoliza = '".$NumeroPoliza."',
+                 NombreUsoVehiculo = '".$NombreUsoVehiculo."',
+                 NombreClaseVehiculo = '".$NombreClaseVehiculo."',
+                 FechaControlPolicial = '".$FechaControlPolicial."',
+                 TipoCertificado = '".$TipoCertificado."',
+                 act_cbf = act_cbf + 1,
+                 fecha_act = NOW( )
+                 WHERE dni='".$dni."' ";
+$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
+}
+
+if ($cabify == 0 && $easy == 1) {
+  $sentencia="UPDATE conductores SET
+                 nombre='".$nombre."',
+                 apellido ='".$apellidos."',
+                 fecha_nacimiento = '".$fechanac."',
+                 placa = '".$placa."',
+                 soat = '".$estado."',
+                 orden_captura = '".$crv."',
+                 fecha_inicio_soat = '".$FechaInicio."',
+                 fecha_fin_soat = '".$FechaFin."',
+                 nombrecompania = '".$NombreCompania."',
+                 numeropoliza = '".$NumeroPoliza."',
+                 NombreUsoVehiculo = '".$NombreUsoVehiculo."',
+                 NombreClaseVehiculo = '".$NombreClaseVehiculo."',
+                 FechaControlPolicial = '".$FechaControlPolicial."',
+                 TipoCertificado = '".$TipoCertificado."',
+                 act_easy = act_easy + 1,
+                 fecha_act = NOW( )
+                 WHERE dni='".$dni."' ";
+$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
+}
 ?>

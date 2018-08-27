@@ -32,20 +32,21 @@ $fecha_actual = date("M-Y");
                     <div class="ml-auto">
                         <h2 class="counter text-info"><?php echo $a ?></h2>
                     </div><br>
-                    <?php 
-                     $b = ($a *100)/1500;
+                    <?php
+                     $ab = str_replace(',','',$a);
+                     $b = (intval($ab) *100)/1500;
                      ?>
                 </div>
             </div>
             <div class="col-12">
                 <div class="progress">
-                    
+
                 <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: <?php echo intval($b) ?>%;height:35px;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <?php echo intval($b) ?>%</div>
             </div>
         </div>
         <a href="conductores" class="small-box-footer">
           Más info <i class="fa fa-arrow-circle-right"></i>
-        </a>  
+        </a>
     </div>
 </div>
 </div>

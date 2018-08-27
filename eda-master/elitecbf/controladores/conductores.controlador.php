@@ -266,6 +266,54 @@ class ControladorConductor{
 	=============================================*/
 
 
+	static public function ctrMostrarConductorMesCabifyact($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresMesCabify($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+
+	static public function ctrMostrarConductorhoyCabifyact($item, $valor){
+
+	$tabla = "conductores";
+
+	$respuesta = ModeloConductor::mdlMostrarConductorhoyCabify($tabla, $item, $valor);
+
+	return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarConductorMesEasyact($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresMesEasyact($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+
+	static public function ctrMostrarConductorhoyeasyact($item, $valor){
+
+	$tabla = "conductores";
+
+	$respuesta = ModeloConductor::mdlMostrarConductorhoyEasyact($tabla, $item, $valor);
+
+	return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
 	static public function ctrMostrarConductorMesEasy($item2, $valor2){
 
 		$tabla = "conductores";
@@ -305,6 +353,30 @@ class ControladorConductor{
 	$tabla = "conductores";
 
 	$respuesta = ModeloConductor::mdlMostrarConductorhoyact($tabla, $item, $valor);
+
+	return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarConductorMesactcbf($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresMesactcbf($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+
+	static public function ctrMostrarConductorhoyactcbf($item, $valor){
+
+	$tabla = "conductores";
+
+	$respuesta = ModeloConductor::mdlMostrarConductorhoyactcbf($tabla, $item, $valor);
 
 	return $respuesta;
 	}

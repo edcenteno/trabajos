@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-  
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -30,7 +30,7 @@ session_start();
     <link href="vistas/dist/css/pages/dashboard1.css" rel="stylesheet">
     <!-- datatable responsive -->
     <link href="vistas/dt/css/responsive.bootstrap.min.css" rel="stylesheet">
-   
+
     <!-- page css -->
     <link href="vistas/dist/css/pages/login-register-lock.css" rel="stylesheet">
      <!-- chartist CSS -->
@@ -42,7 +42,7 @@ session_start();
      <link rel="stylesheet" href="vistas/assets/node_modules/bootstrap-daterangepicker/daterangepicker.css">
      <!-- Calendar CSS -->
     <link href="vistas/assets/node_modules/calendar/dist/fullcalendar.css" rel="stylesheet" />
-    
+
     <link href="vistas/dist/css/pages/form-icheck.css" rel="stylesheet">
     <!-- Popup CSS -->
     <link href="vistas/assets/node_modules/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
@@ -75,6 +75,8 @@ session_start();
     <!--morris JavaScript -->
     <script src="vistas/assets/node_modules/raphael/raphael-min.js"></script>
     <script src="vistas/assets/node_modules/morrisjs/morris.min.js"></script>
+    <script src="vistas/assets/node_modules/morrisjs/morris.js"></script>
+
     <script src="vistas/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
     <!-- Popup message jquery -->
     <script src="vistas/assets/node_modules/toast-master/js/jquery.toast.js"></script>
@@ -95,7 +97,7 @@ session_start();
     <link href="vistas/dist/css/pages/float-chart.css" rel="stylesheet">
     <!-- page css -->
     <link href="vistas/dist/css/pages/widget-page.css" rel="stylesheet">
-    
+
     <script src="vistas/js/plantilla.js"></script>
     <!--stickey kit -->
     <script src="vistas/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
@@ -137,7 +139,7 @@ session_start();
     <script src="vistas/assets/node_modules/calendar/dist/cal-init.js"></script>
     <!-- icheck -->
     <script src="vistas/assets/node_modules/icheck/icheck.min.js"></script>
-    <script src="vistas/assets/node_modules/icheck/icheck.init.js"></script>   
+    <script src="vistas/assets/node_modules/icheck/icheck.init.js"></script>
 
      <!-- Magnific popup JavaScript -->
     <script src="vistas/assets/node_modules/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
@@ -158,7 +160,7 @@ CUERPO DOCUMENTO
 
   if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
 
-   
+
     /*=============================================
     CABEZOTE
     =============================================*/
@@ -171,7 +173,7 @@ CUERPO DOCUMENTO
 
     include "modulos/menu.php";
     echo '<div class="page-wrapper">';
-   
+
 
     /*=============================================
     CONTENIDO
@@ -189,7 +191,7 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "consultas-basicas" ||
          $_GET["ruta"] == "reporte-diario" ||
          $_GET["ruta"] == "recibearchivo" ||
-         $_GET["ruta"] == "salir"){ 
+         $_GET["ruta"] == "salir"){
 
        include "modulos/".$_GET["ruta"].".php";
 
