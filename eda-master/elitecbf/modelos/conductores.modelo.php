@@ -102,7 +102,7 @@ class ModeloConductor{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -112,7 +112,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
 
 			$stmt -> execute();
 

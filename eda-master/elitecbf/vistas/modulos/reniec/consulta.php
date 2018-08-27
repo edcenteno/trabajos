@@ -1,4 +1,4 @@
-<?php 
+<?php
 
   namespace DatosPeru;
 error_reporting(0);
@@ -27,24 +27,14 @@ if (is_numeric($dni) && strlen($dni) == 8) {
  // $dni=$_POST['dni'];
   class Peru  {
     function __construct()
-    { 
-      $this->reniec = new \Reniec\Reniec(); 
+    {
+      $this->reniec = new \Reniec\Reniec();
       $this->essalud = new \EsSalud\EsSalud();
       $this->mintra = new \MinTra\mintra();
     }
     function search( $dni )
     {
-     /* $response = $this->reniec->search( $dni );
-      if($response->success == true)
-      {
-        $rpt = (object)array(
-          "success"     => true,
-          "source"    => "reniec",
-          "result"    => $response->result
-        );
-        return $rpt;
-      }*/
-      
+
       $response = $this->essalud->check( $dni );
       if($response->success == true)
       {
@@ -55,7 +45,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         );
         return $rpt;
       }
-            
+
       $response = $this->mintra->check( $dni );
       if( $response->success == true )
       {
@@ -66,7 +56,18 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         );
         return $rpt;
       }
-      
+
+      $response = $this->reniec->search( $dni );
+      if($response->success == true)
+      {
+        $rpt = (object)array(
+          "success"     => true,
+          "source"    => "reniec",
+          "result"    => $response->result
+        );
+        return $rpt;
+      }
+
       $rpt = (object)array(
         "success"     => false,
         "msg"       => "No se encontraron datos"
@@ -74,12 +75,12 @@ if (is_numeric($dni) && strlen($dni) == 8) {
       return $rpt;
     }
   }
-  
-  
+
+
   require_once( __DIR__ . "/src/autoload.php" );
- 
+
   $test = new \DatosPeru\Peru();
-  
+
   $out=$test->search("$dni");
   $a = json_encode($out);
  /* var_dump($a);*/
@@ -95,12 +96,12 @@ if (is_numeric($dni) && strlen($dni) == 8) {
                     confirmButtonText: "Cerrar"
                     }).then(function(result) {
                       $("#consul")[0].reset();
-                    
+
                   })
 
                 </script>';
   } else {
-   
+
  echo '
  <div class="col-lg-12 col-xlg-10 col-md-7">
  <form class="form-horizontal p-t-20">
@@ -152,7 +153,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         <input type="checkbox" name="easytaxi" id="easytaxi" class="form-check-input" value="1">Easy Taxi
       </label>
     </div>
-    
+
 </form>
 <span id="resultado">
 ';
@@ -163,21 +164,21 @@ echo '
         <label for="exampleInputuname3" class="col-sm-4 control-label">¿Posee Vehiculo?</label>
         <div class="col-sm-8">
             <div class="input-group">
-                
+
                 <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlaca"">SI</span>
-                
+
                 <input type="text" hidden class="form-control" name="si" id="si" value="Si">
-                
+
                 <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevo">NO</span>
 
 
             </div>
         </div>
 
-      
+
 
     </div>
-    
+
 </form>
 <!-- <input type="button" href="javascript:;" onclick="realizaProcesoplaca();return false;" value="enviar2" pattern="[A-Z0-9]{5,40}" title="Letras y números. Tamaño mínimo: 5. Tamaño máximo: 40"/> -->
 
@@ -194,7 +195,7 @@ echo '
     $('#apellidos').val(x.result.ApellidoPaterno +' '+ x.result.ApellidoMaterno);
     $('#dni').val(x.result.DNI);
     $('#fechaNacimiento').val(x.result.FechaNacimiento);
-    
+
   });
 
 </script>
@@ -202,7 +203,7 @@ echo '
 
 <script>
   $(document).ready(function(){
-  $("#consultarPlaca").click(function () {  
+  $("#consultarPlaca").click(function () {
     easytaxi = ($('input:checkbox[name=easytaxi]:checked').val());
     cabify = ($('input:checkbox[name=cabify]:checked').val());
   });
@@ -211,7 +212,7 @@ $(document).ready(function(){
 
       $('#consultarPlaca').click(function(){
 
-   
+
     cadena="nombre=" + $('#nombre').val() +
           "&apellidos=" + $('#apellidos').val() +
           "&dni=" + $('#dni').val() +
@@ -222,9 +223,9 @@ $(document).ready(function(){
 
 
     $.ajax({
-            data:  cadena, 
+            data:  cadena,
             url:   'vistas/modulos/reniec/consultaplaca.php',
-            type:  'post', 
+            type:  'post',
             beforeSend: function () {
                     $("#resultado").html("Procesando, espere por favor...");
             },
@@ -232,10 +233,10 @@ $(document).ready(function(){
                    // alert(response);
                     $("#resultado").html(response);
                     //console.log(response)
-                   
+
                    // consultadni.style.display = 'none'; // No ocupa espacio
                    //   $("#form").hide("slow");
-                     
+
             }
     });
 });
@@ -243,14 +244,14 @@ $(document).ready(function(){
 </script>
 <script type="text/javascript">
    $(document).ready(function(){
-  
-  $("#registrarNuevo").click(function () {  
+
+  $("#registrarNuevo").click(function () {
   easytaxi = ($('input:checkbox[name=easytaxi]:checked').val());
   cabify = ($('input:checkbox[name=cabify]:checked').val());
     //$("#formulario").submit();
   });
 });
-  
+
   $(document).ready(function(){
 
     $('#registrarNuevo').click(function(){
@@ -291,7 +292,7 @@ $(document).ready(function(){
                 }).then(function(result){
 
                   if(result.value){
-                  
+
                     window.location = "conductores";
 
                   }
@@ -306,7 +307,7 @@ $(document).ready(function(){
 </script>
 
 <?php
-  
+
 }
 }else{
   echo '<script>
@@ -319,7 +320,7 @@ $(document).ready(function(){
                     confirmButtonText: "Cerrar"
                     }).then(function(result) {
                       $("#consul")[0].reset();
-                    
+
                   })
 
                 </script>';
@@ -344,11 +345,11 @@ echo 'Temporalmente el sistema no esta prestando servicios';
                     confirmButtonColor: "#dd6b55",
                     confirmButtonText: "Cerrar"
                     }).then(function(result) {
-                      
+
                   })
 
                 </script>';
-  
+
 }
 ?>
 

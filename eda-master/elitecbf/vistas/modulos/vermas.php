@@ -35,7 +35,7 @@ $placa = str_replace("-","",$placa);
     }).done(function(msg){
         //$("#resultado").html(msg);
         //console.log(msg)
-        //
+
         $('.licencia')[0].innerText = msg['var_direccion'];
         $('.licencia')[1].innerText = msg['var_departamento'];
         $('.licencia')[2].innerText = msg['var_distrito'];
@@ -47,7 +47,11 @@ $placa = str_replace("-","",$placa);
         $('.licencia')[8].innerText = msg['var_restricciones1'];
         $('.licencia')[9].innerText = msg['var_restricciones2'];
 
-
+         if (msg == "No existe el registro, intente mas tarde.") {
+               $("#acthoy").show();
+         }else{
+                $("#acthoy").hide();
+         }
 
     });
 
@@ -81,10 +85,6 @@ $placa = str_replace("-","",$placa);
             $('.record')[1].innerText = msg['suma']+"%";
 
         }
-
-
-
-
     });
 
 
@@ -110,8 +110,11 @@ $placa = str_replace("-","",$placa);
         $('.vehiculo')[11].innerText = msg['Vin']['countries'];
         $('.vehiculo')[12].innerText = msg['Vin']['manufacture'];
         $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber'];
+        $('.vehiculo')[14].innerText = msg['Propietario'];
+
 }
     });
+
 
 $(document).ready(function(){
     url = 'recibearchivo.php';
@@ -176,7 +179,7 @@ $(document).ready(function(){
                                 if ($value['fecha'] < $mes) {
                                     echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
                                 } else {
-                                    echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
+                                    echo '<button class="btn btn-warning" id= "acthoy" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
                                     echo '<button class="btn btn-warning" disabled="true">Actualizar</button>';
                                 }
 
@@ -619,6 +622,11 @@ $(document).ready(function(){
                                     }else{
 
                                     }
+                                    if ($value['nombrecompania']== "Rimac Seguros") {
+                                        echo '<img width="90" src="vistas/img/plantilla/rimac.png">';
+                                    }else{
+
+                                    }
 
                                     ?></p>
                                 </div>
@@ -652,6 +660,10 @@ $(document).ready(function(){
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo de Certificado</strong>
                                     <br>
                                     <p class="text-muted"><?php echo $value['TipoCertificado']; ?></p>
+                                </div>
+                                <div class="col-md-2 col-xs-6"> <strong>Titular del SOAT</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
                                 </div>
                             </div>
                         </div>

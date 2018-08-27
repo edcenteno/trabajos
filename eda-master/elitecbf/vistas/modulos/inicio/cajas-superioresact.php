@@ -19,10 +19,6 @@
     var act_easy = <?php echo json_encode($act_easy)?>;
     var act_easy = parseInt(act_easy[0].act_easy);
 
-  $(function () {
-    "use strict";
- // Morris donut chart
-
     Morris.Donut({
         element: 'morris-donut-chart',
         data: [{
@@ -37,6 +33,4 @@
         colors:['#875cf4', '#ffa519']
     });
 
-
- });
 </script>

@@ -42,6 +42,9 @@ require 'vendor/autoload.php';
 	if ($value['nombrecompania']== "Mapfre Perú") {
 	$seguro = '<img width="120" src="images/soat/mapfre.png">';
 	}
+	if ($value['nombrecompania']== "Rimac Seguros") {
+    $seguro = '<img width="120" src="images/soat/rimac.png">';
+	}
 
 
 
@@ -1025,6 +1028,56 @@ $bloqueencabezadorecord = <<<EOF
 		</tr>
 
 
+		</table>
+		<table style="font-size:10px; padding:5px -10px; ">
+
+		<tr>
+			<td style="solid #666; background-color:white; width:130px; text-align:center">PRENOMBRES</td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$value[nombre] $value[apellido]</b></td>
+
+		</tr>
+
+		<tr>
+			<td style="solid #666; background-color:white; width:130px; text-align:center">DNI</td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$value[dni]</b></td>
+
+		</tr>
+
+		<tr>
+			<td style="solid #666; background-color:white; width:130px; text-align:center">Nº de Licencia Correlativo</td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[var_num_licencia]</b></td>
+
+		</tr>
+
+		<tr>
+			<td style="solid #666; background-color:white; width:130px; text-align:center">Estado</td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[var_estado_licencia]</b></td>
+
+		</tr>
+
+		<tr>
+			<td style="solid #666; background-color:white; width:130px; text-align:center">Fecha de Expedición</td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[dat_fecha_expedicion]</b></td>
+
+		</tr>
+
+		<tr>
+			<td style="solid #666; background-color:white; width:130px; text-align:center">Fecha de Revalidación</td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[dat_fecha_revalidacion]</b></td>
+
+		</tr>
+
+		<tr>
+			<td style="solid #666; background-color:white; width:130px; text-align:center">Restricciones</td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[var_restricciones1]</b></td>
+
+		</tr>
+
+
+
+	</table>
+	<br><br><br>
+	<table style="font-size:10px; padding:5px 10px; background-color:#ededed;">
 
 		<thead>
 	    <tr>
@@ -1036,16 +1089,17 @@ $bloqueencabezadorecord = <<<EOF
 		</tr>
 		</thead>
 		</table>
-	<br><br>
+	<br>
 
 EOF;
 
 
 // ---------------------------------------------------------
 
-if (is_array($arrmultas)) {
+
 $pdf->writeHTML($bloque1, false, false, false, false, '');
 $pdf->writeHTML($bloqueencabezadorecord, false, false, false, false, '');
+if (is_array($arrmultas)) {
 foreach ($arrmultas as $key => $keymultas) {
 
 
