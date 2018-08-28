@@ -69,13 +69,6 @@ if (isset($_POST['si'])){
                         $("#resultado").html(response);
                         var rsp=response;
 
-                       if (rsp.length == "322"){
-                        $("#consultaplaca").show();
-                          $("#x").show();
-                       }else{
-                        $("#consultaplaca").hide("slow");
-                          $("#x").hide("slow");
-                       }
                 }
         });
 }

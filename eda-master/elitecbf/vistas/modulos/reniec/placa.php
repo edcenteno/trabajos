@@ -259,6 +259,6 @@ if ($estado == "VIGENTE") {
                     confirmButtonText: "Cerrar"
                     })
                 </script>';
-  //echo strlen($a);
+  echo strlen($a);
 }
 ?>
