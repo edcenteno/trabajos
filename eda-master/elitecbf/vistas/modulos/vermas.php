@@ -194,7 +194,7 @@ $(document).ready(function(){
                         ?>
 
                         </div>
-                     <button class="btn btn-warning" id= "acthoy" onclick="deshabilitar_btnEnviar()">Actualizar</button>
+                    <!--  <button class="btn btn-warning" id= "acthoy" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
                      <?php
                      if ($value['placa'] == "NINGUNO") {
                          echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
