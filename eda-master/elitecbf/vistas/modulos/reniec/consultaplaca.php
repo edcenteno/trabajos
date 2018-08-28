@@ -36,7 +36,7 @@ if (isset($_POST['si'])){
 
         placa = $('#placa').val();
 
-        $.ajax({
+       /*  $.ajax({
             type: "POST",
             url: 'https://captcharh.ddns.net/api/record',
             data: {
@@ -46,9 +46,9 @@ if (isset($_POST['si'])){
             }
 
             }).done(function(msg){
-               /* $("#resultado").html(msg);
-                console.log(msg)*/
-            });
+               $("#resultado").html(msg);
+                console.log(msg)
+            });*/
 
         cadena="placa=" + $('#placa').val() +
         "&dni=" + $('#dni').val() +
@@ -69,8 +69,11 @@ if (isset($_POST['si'])){
                         $("#resultado").html(response);
                         var rsp=response;
 
-                       if (rsp.length > "1000"){
-                          $("#consultaplaca").hide("slow");
+                       if (rsp.length == "322"){
+                        $("#consultaplaca").show();
+                          $("#x").show();
+                       }else{
+                        $("#consultaplaca").hide("slow");
                           $("#x").hide("slow");
                        }
                 }

@@ -74,7 +74,7 @@ $placa = str_replace("-","",$placa);
         $('.multas')[8].innerText = msg[0]['str_fec_firme'];
         $('.multas')[9].innerText = msg[0]['str_num_infraccion'];
         $('.multas')[10].innerText = msg[0]['str_num_entidad'];
-        $('.multas')[11].innerText = msg[0]['str_puntos'];
+//        $('.multas')[11].innerText = msg[0]['str_puntos'];
         }
 
         record = $('.record')[0].innerText = msg['suma']+"%";
@@ -194,7 +194,12 @@ $(document).ready(function(){
                         ?>
 
                         </div>
-    <button class="btn btn-warning" id= "acthoy" onclick="deshabilitar_btnEnviar()">Actualizar</button>
+                     <button class="btn btn-warning" id= "acthoy" onclick="deshabilitar_btnEnviar()">Actualizar</button>
+                     <?php
+                     if ($value['placa'] == "NINGUNO") {
+                         echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
+                     }
+                    ?>
                     <hr>
                     <div class="card-body"> <small class="text-muted">DNI Digital</small></br>
                     <?php
@@ -218,7 +223,14 @@ $(document).ready(function(){
                         </div>
 
                     <br/>
+                    <?php
+                        if ($placa == "NINGUNO") {
+                            echo '';
+                        } else {
+                            # code...
+                        }
 
+                    ?>
 
                         <script>
                             function deshabilitar_btnEnviar(){
@@ -460,7 +472,7 @@ $(document).ready(function(){
                                                 <h3 class="text-muted">Record del conductor</h3>
                                             </div>
                                             <div class="ml-auto">
-                                                <h2 class="counter record"></h2>
+                                                <h2 class="counter"><?php echo $value['record_cond'];?>%</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -785,7 +797,85 @@ $(document).ready(function(){
 
 </div>
 
+
+<div class="modal fade" id="agregarplaca" tabindex="-1" role="dialog" aria-labelledby="agregarplacaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="agregarplacaLabel">Agregar Placa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal p-t-20">
+            <div class="form-group row" id="x">
+                <label for="exampleInputuname3" class="col-sm-3 control-label">Placa</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text"><i class="ti-car"></i></span></div>
+                        <input style="text-transform: uppercase;" maxlength="6" minlength="6" type="text" name="caja_texto" id="placa" value="" class="form-control" pattern="[A-Z0-9]{6}"/>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </form>
+
+      </div>
+      <div id="placaactliz"></div>
+      <div class="modal-footer">
+       <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProcesoplaca();return false;" id="consultaplaca" name="consultaplaca">Consultar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 <?php
 }
 ?>
 
+<script type="text/javascript">
+
+    function realizaProcesoplaca(){
+
+        placa = $('#placa').val();
+        dni = '<?php echo $idconductor ?>'
+
+       /*  $.ajax({
+            type: "POST",
+            url: 'https://captcharh.ddns.net/api/record',
+            data: {
+                type: '1', //tipo de documento
+                documento: placa, //numero de documento
+                datas: 'placa' //tipo de solicitud
+            }
+
+            }).done(function(msg){
+               $("#resultado").html(msg);
+                console.log(msg)
+            });*/
+
+        cadena="&dni=" + dni +
+               "&placa=" + $('#placa').val()
+
+        $.ajax({
+                data:  cadena,
+                url:   'vistas/modulos/reniec/placaact.php',
+                type:  'post',
+                beforeSend: function () {
+                        $("#placaactliz").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+                        $("#placaactliz").html(response);
+                        var rsp=response;
+                       if (rsp.length > "1000"){
+                          $("#consultaplaca").hide("slow");
+                          $("#x").hide("slow");
+                       }
+                }
+        });
+}
+</script>

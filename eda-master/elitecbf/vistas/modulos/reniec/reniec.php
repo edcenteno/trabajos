@@ -5,7 +5,7 @@
 <script>
 function realizaProceso(){
 
-        type= $('#tipo').val();
+       /* type= $('#tipo').val();
         dni = $('#dni').val();
 
         $.ajax({
@@ -21,7 +21,7 @@ function realizaProceso(){
          // $("#resultado").html(msg);
           //console.log(msg)
 
-        });
+        });*/
 
         parametros="&dni=" + $('#dni').val();
 

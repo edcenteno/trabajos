@@ -9,22 +9,23 @@ if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $placa) &&
 
 
 //jhon$token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTA2MQ.mNioS0vL0ckba0lPV955HvekjFHzvIcqEVqy1_kBerM';
+//token prestado = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTAzNA.AmJhTMIv9Bzd9h4KjWijho4Wf0apnT4IoqasWM0dLLE';
 
-  	// Modo de Uso
-	require_once("crv/src/autoload.php");
+    // Modo de Uso
+    require_once("crv/src/autoload.php");
 
-	$test = new \Pit\Pit();
-	$out=$test->check( "$placa" ); // Sin Requisitoria
+    $test = new \Pit\Pit();
+    $out=$test->check( "$placa" ); // Sin Requisitoria
 
-	$x = json_encode($out);
+    $x = json_encode($out);
   //var_dump($x);
 
 $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTA2MQ.mNioS0vL0ckba0lPV955HvekjFHzvIcqEVqy1_kBerM';//token prestado
 $query = "
 query {
-	soat(placa:\"$placa\") {
-		NombreCompania
-		FechaInicio
+    soat(placa:\"$placa\") {
+        NombreCompania
+        FechaInicio
         FechaFin
         Estado
     }
@@ -33,9 +34,9 @@ query {
 
 $body = json_encode($query);
 $headers = [
-	'Content-Type: application/json',
+    'Content-Type: application/json',
     'Content-Length: '.strlen($body),
-	'Authorization: Bearer ' . $token,
+    'Authorization: Bearer ' . $token,
 ];
 
 $ch = curl_init();
@@ -56,21 +57,17 @@ echo"</pre>";*/
 /*echo "NombreCompania : ".$out['NombreCompania']." <br>";
 echo "FechaInicio : ". $out['FechaInicio'];
 echo "FechaFin : ".$out['FechaFin']." <br>";*/
-$nombre =$_POST['nombre'];
-$apellidos= $_POST['apellidos'];
 $dni = $_POST['dni'];
 $estado = $out['Estado'];
 $FechaInicio = $out['FechaInicio'];
 $FechaFin = $out['FechaFin'];
-$fechaNacimiento= $_POST['fechaNacimiento'];
 $NombreCompania= $out['NombreCompania'];
 $NumeroPoliza = $out['NumeroPoliza'];
 $NombreUsoVehiculo = $out['NombreUsoVehiculo'];
 $NombreClaseVehiculo = $out['NombreClaseVehiculo'];
 $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
-$easytaxi=$_POST['easytaxi'];
-$cabify=$_POST['cabify'];
+
 
 if ($estado == "VIGENTE") {
   $soat = "VIGENTE";
@@ -92,24 +89,7 @@ if ($estado == "VIGENTE") {
     <input type="text" hidden name="TipoCertificado" id="TipoCertificado" value="<?php echo $TipoCertificado?>"/>
 
 <form class="form-horizontal p-t-20">
-    <div class="form-group row">
-        <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
-        <div class="col-sm-9">
-            <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text"><i class="ti-user"></i></span></div>
-                <input type="text" readonly="" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre?>">
-            </div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="exampleInputEmail3" class="col-sm-3 control-label">Apellido</label>
-        <div class="col-sm-9">
-            <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text"><i class="ti-user"></i></span></div>
-                <input type="text" readonly="" class="form-control" name="apellidos" id="apellidos" value="<?php echo $apellidos?>">
-            </div>
-        </div>
-    </div>
+
     <div class="form-group row">
         <label for="web" class="col-sm-3 control-label">DNI</label>
         <div class="col-sm-9">
@@ -155,9 +135,10 @@ if ($estado == "VIGENTE") {
 <span class="btn btn-primary" id="registrarNuevo">Registrar</span>
 
 <script type="text/javascript">
-  placa = $('#placa').val();
 
-        $.ajax({
+     placa = '<?php echo $placa ?>'
+
+         $.ajax({
             type: "POST",
             url: 'https://captcharh.ddns.net/api/record',
             data: {
@@ -167,9 +148,10 @@ if ($estado == "VIGENTE") {
             }
 
             }).done(function(msg){
-               /* $("#resultado").html(msg);
-                console.log(msg)*/
+               $("#resultado").html(msg);
+                console.log(msg)
             });
+
   var crvjs =<?php echo $x ?>;
   $(document).ready(function(){
 
@@ -177,37 +159,33 @@ if ($estado == "VIGENTE") {
 
     $('#registrarNuevo').click(function(){
 
-      cadena="nombre=" + $('#nombre').val() +
-          "&apellidos=" + $('#apellidos').val() +
+      cadena=
           "&dni=" + $('#dni').val() +
           "&placa=" + $('#placa').val() +
           "&crv=" + $('#crv').val() +
           "&FechaInicio=" + $('#FechaInicio').val() +
           "&FechaFin=" + $('#FechaFin').val() +
-          "&fechaNacimiento=" + $('#fechaNacimiento').val()+
           "&NombreCompania=" + $('#NombreCompania').val()+
           "&NumeroPoliza=" + $('#NumeroPoliza').val()+
           "&NombreUsoVehiculo=" + $('#NombreUsoVehiculo').val()+
           "&NombreClaseVehiculo=" + $('#NombreClaseVehiculo').val()+
           "&FechaControlPolicial=" + $('#FechaControlPolicial').val()+
-          "&cabify=" + $('#cabify').val() +
-          "&easytaxi=" + $('#easytaxi').val() +
-          "&TipoCertificado=" + $('#TipoCertificado').val()+
+           "&TipoCertificado=" + $('#TipoCertificado').val()+
           "&estado=" + $('#estado').val();
 
-					$.ajax({
-						type:"POST",
-						url:"vistas/modulos/reniec/registro.php",
-						data:cadena,
-						success:function(r){
+                    $.ajax({
+                        type:"POST",
+                        url:"vistas/modulos/reniec/registroplaca.php",
+                        data:cadena,
+                        success:function(r){
 
-							if(r==2){
-								alertify.error("Este usuario ya existe, prueba con otro");
-							}
-							else if(r==1){
-							swal({
+                            if(r==2){
+                                alertify.error("Este usuario ya existe, prueba con otro");
+                            }
+                            else if(r==1){
+                            swal({
                   type: "success",
-                  title: "¡El Conductor ha sido guardado correctamente!",
+                  title: "¡Placa ha sido guardado correctamente!",
                   showConfirmButton: true,
                   confirmButtonColor: "#8cd4f5",
                   confirmButtonText: "Cerrar"
@@ -216,13 +194,13 @@ if ($estado == "VIGENTE") {
 
                   if(result.value){
 
-                    window.location = "conductores";
+                   setTimeout('document.location.reload()',2000);
 
                   }
 
                 });
-							}else{
-								swal({
+                            }else{
+                                swal({
                     type: "error",
                     title: "¡No pudimos registrar al conductor intente nuevamente!",
                     showConfirmButton: true,
@@ -238,18 +216,18 @@ if ($estado == "VIGENTE") {
                     }
 
                   });
-							}
-						}
-					});
-		});
-	});
+                            }
+                        }
+                    });
+        });
+    });
 </script>
 
 
 
 <?php
 } else {
-  echo $a ='<script>
+  echo '<script>
 
                 swal({
                     type: "error",
@@ -259,6 +237,5 @@ if ($estado == "VIGENTE") {
                     confirmButtonText: "Cerrar"
                     })
                 </script>';
-  //echo strlen($a);
 }
 ?>
