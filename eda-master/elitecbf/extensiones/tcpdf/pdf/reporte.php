@@ -132,7 +132,7 @@ $bloque1 = <<<EOF
 			</td>
 
 			<td style="background-color:white; width:110px; text-align:center; color:black"><br><br><b>
-			$qr
+
 			$value[secuencia_arhu_ant]
 			</b></td>
 
@@ -174,7 +174,7 @@ $bloque2 = <<<EOF
 
 
 	</table>
-	<br>
+<br><br>
 
 EOF;
 
@@ -377,7 +377,7 @@ $bloque6 = <<<EOF
 
 
 	</table>
-	<br><br><br>
+	<br><br><br><br><br>
 
 EOF;
 
@@ -403,7 +403,7 @@ $bloque7 = <<<EOF
 		</tr>
 
 		<tr>
-		<br><br><br><br><br>
+		<br><br><br><br><br><br>
 
 			<td style="width:540px; text-align:center">
 				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y
@@ -445,7 +445,7 @@ $bloque7 = <<<EOF
 		</tr>
 
 		<tr>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br>
 
 			<td style="width:540px; text-align:center">
 				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y
@@ -570,14 +570,14 @@ $bloquePolicial = <<<EOF
 
 
 	</table>
-	<br><br><br><br><br><br><br>
+
 
 EOF;
 if ($value['ant_policial'] == 'POSITIVO') {
 $pdf->writeHTML($bloque1, false, false, false, false, '');
 $pdf->writeHTML($bloquePolicial, false, false, false, false, '');
 $pdf->writeHTML($bloque7, false, false, false, false, '');
-$pdf->writeHTML($bloque1, false, false, false, false, '');
+
 }
 
 // ---------------------------------------------------------
@@ -691,10 +691,10 @@ $bloquePenal = <<<EOF
 
 EOF;
 if ($value['ant_penales'] == 'POSITIVO') {
-
+$pdf->writeHTML($bloque1, false, false, false, false, '');
 $pdf->writeHTML($bloquePenal, false, false, false, false, '');
 $pdf->writeHTML($bloque7, false, false, false, false, '');
-$pdf->writeHTML($bloque1, false, false, false, false, '');
+
 }
 
 // ---------------------------------------------------------
@@ -807,7 +807,7 @@ $bloquejudicial = <<<EOF
 	<br><br><br><br>
 EOF;
 if ($value['ant_judicial'] == 'POSITIVO') {
-
+$pdf->writeHTML($bloque1, false, false, false, false, '');
 $pdf->writeHTML($bloquejudicial, false, false, false, false, '');
 $pdf->writeHTML($bloque7, false, false, false, false, '');
 //$pdf->writeHTML($bloque1, false, false, false, false, '');
