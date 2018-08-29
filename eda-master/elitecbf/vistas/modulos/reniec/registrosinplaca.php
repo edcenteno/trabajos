@@ -66,6 +66,23 @@
 				$result=mysqli_query($conexion,$sql);
 				//var_dump($sql);
 				echo "1";
+				'<script>
+ 							dni = '.$dni .'
+						$.ajax({
+                          type: "POST",
+                          url: https://captcharh.ddns.net/api/record,
+                          data: {
+                              type: type, //tipo de documento
+                              documento: dni, //numero de documento
+                              datas: "record" //tipo de solicitud
+                          }
+
+                        }).done(function(msg){
+                         // $("#resultado").html(msg);
+                          //console.log(msg)
+
+                        });
+                        </script>';
 			}
 
 
@@ -74,10 +91,4 @@
 				echo '3';
 			}
 		}
-
-
-
-
-
-
  ?>

@@ -3,12 +3,34 @@
 
 require_once "../../../controladores/conductores.controlador.php";
 require_once "../../../modelos/conductores.modelo.php";
-
-require 'vendor/autoload.php';
-	//$idconductor=0;
+//$idconductor=0;
  	$idconductor = $_GET['idconductor'];
     $item = null;
     $valor = null;
+require 'vendor/autoload.php';
+require "phpqrcode/qrlib.php";
+$dir = 'temp/';
+
+	//Si no existe la carpeta la creamos
+	if (!file_exists($dir))
+        mkdir($dir);
+
+        //Declaramos la ruta y nombre del archivo a generar
+	$filename = $dir.'test.png';
+
+        //Parametros de Condiguración
+
+	$tamaño = 2; //Tamaño de Pixel
+	$level = 'L'; //Precisión Baja
+	$framSize = 3; //Tamaño en blanco
+	$contenido = "https://arhuantecedentes.com/elitecbf/extensiones/tcpdf/pdf/reporte.php?idconductor=$idconductor"; //Texto
+
+        //Enviamos los parametros a la Función para generar código QR
+	QRcode::png($contenido, $filename, $level, $tamaño, $framSize);
+
+        //Mostramos la imagen generada
+	$qr ='<img src="'.$dir.basename($filename).'" /><hr/>';
+
 
     $unconductor = ControladorConductor::ctrMostrarunConductor($item, $valor, $idconductor);
     //var_dump($unconductor);
@@ -110,6 +132,7 @@ $bloque1 = <<<EOF
 			</td>
 
 			<td style="background-color:white; width:110px; text-align:center; color:black"><br><br><b>
+			$qr
 			$value[secuencia_arhu_ant]
 			</b></td>
 
@@ -151,7 +174,7 @@ $bloque2 = <<<EOF
 
 
 	</table>
-	<br><br><br><br>
+	<br>
 
 EOF;
 
@@ -999,11 +1022,11 @@ $bloquepiesoat = <<<EOF
 
 EOF;
 
+
+
 $pdf->writeHTML($bloquelogosoat, false, false, false, false, '');
 $pdf->writeHTML($bloquesoat, false, false, false, false, '');
 $pdf->writeHTML($bloquepiesoat, false, false, false, false, '');
-
-
 /////////-----------------------------------------------
 $bloqueencabezadorecord = <<<EOF
 
@@ -1023,7 +1046,6 @@ $bloqueencabezadorecord = <<<EOF
 			<td style="border: 3px solid #5b9bd4; background-color:white; width:540px" align="center">
 
 				RECORD DEL CONDUCTOR
-
 			</td>
 
 
@@ -1151,6 +1173,8 @@ $pdf->writeHTML($bloque7, false, false, false, false, '');
 // ---------------------------------------------------------
 //SALIDA DEL ARCHIVO
 }
+
+//Declaramos una carpeta temporal para guardar la imagenes generadas
 
 
 $nombre="REPORTE_".$value['nombre']."_".$value['apellido'].".pdf";

@@ -263,26 +263,19 @@ $blacklist=$row['blacklist'];
             </div>
           </div>
           <div class="col-6 col-sm-4">
-          <?php
-          if ($row['form'] == "Nuevo") {
+          <div class="form-group">
+              <label for="soat">SOAT : </label>
+              <div class="form-group">
+                <select class="form-control" id="sel1" name ="soat">
+                  <option><?php echo $row['soat']?></option>
+                  <option>VIGENTE</option>
+                  <option>VENCIDO</option>
+                  <option>NO POSEE</option>
+                </select>
+              </div>
 
-          } else {
-            echo '<div class="form-group">
-                    <label for="soat">SOAT : </label>
-                    <div class="form-group">
-                      <select class="form-control" id="sel1" name ="soat">
-                        <option>'.$row['soat'].'</option>
-                        <option>VIGENTE</option>
-                        <option>VENCIDO</option>
-                        <option>NO POSEE</option>
-                      </select>
-                    </div>
+            </div>
 
-                  </div>
-                ';
-          }
-
-          ?>
 
 
              <div class="form-group">

@@ -15,7 +15,7 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Administrar</a></li>
                     <li class="breadcrumb-item active">Conductores</li>
                 </ol>
-                
+
             </div>
         </div>
     </div>
@@ -35,6 +35,7 @@
                                     <th>DNI</th>
                                     <th>NOMBRE</th>
                                     <th>APELLIDO</th>
+                                    <th>EMPRESA</th>
                                     <th>RESULTADO</th>
                                     <th>VER MAS</th>
                                 </tr>
@@ -45,11 +46,12 @@
                                    <th>DNI</th>
                                    <th>NOMBRE</th>
                                    <th>APELLIDO</th>
+                                   <th>EMPRESA</th>
                                    <th>RESULTADO</th>
                                    <th>VER MAS</th>
                                 </tr>
                             </tfoot>
-       
+
                         </table>
                     </div>
                 </div>
@@ -67,7 +69,7 @@ MODAL AGREGAR USUARIO
 ======================================-->
 
 <div id="modalAgregarConductor" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog ">
 
     <div class="modal-content">
@@ -97,7 +99,7 @@ MODAL AGREGAR USUARIO
           </div>
       </div>
 
-            
+
       </form>
 
     </div>
