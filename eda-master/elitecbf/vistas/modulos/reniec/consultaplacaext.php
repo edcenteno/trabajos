@@ -7,7 +7,8 @@ $dni = $_POST['dni'];
 $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
 $tipoext=$_POST['tipoext'];
-$tipoext=$_POST['tipoext'];
+$usuario_reg=$_POST['usuario_reg'];
+
 
 $conexion=conexion();
 function buscaRepetido($dni,$conexion){
@@ -62,9 +63,7 @@ if ($cabify == "0" && $easytaxi == "0") {
                         });
                 </script>';
         } else {
-if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('/^[a-zA-Z]+$/', $nombre) &&
-   preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $apellidos) && preg_match('/^[a-zA-Z]+$/', $apellidos) &&
-   strlen($dni) >= 8  && strlen($fecha_nacimiento) == 10 && isset($_POST['si'])){
+if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $apellidos) && strlen($dni) >= 8  && strlen($fecha_nacimiento) == 10 && isset($_POST['si'])){
 
 
 ?>
@@ -80,6 +79,7 @@ if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('
         "&cabify=" + cabify +
         "&easytaxi=" + easytaxi +
         "&tipoext=" + tipoext +
+        "&usuario_reg=" + usuario_reg +
         "&apellidos=" + $('#apellidos').val();
         $.ajax({
                 data:  cadena,
@@ -119,7 +119,7 @@ Introduce placa
 </form>
 
 
-<input type="button" href="javascript:;" onclick="realizaProcesoplaca();return false;" value="enviar2" pattern="[A-Z0-9]{5,40}" title="Letras y números. Tamaño mínimo: 5. Tamaño máximo: 40"/>
+
 
 <input type="text" hidden readonly="" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre ?>">
 
@@ -129,6 +129,7 @@ Introduce placa
 
 <input type="text" hidden readonly="" class="form-control" name="dni" id="dni" value="<?php echo $dni ?>" >
 <input type="text" hidden readonly="" class="form-control" name="tipoext" id="tipoext" value="<?php echo $tipoext ?>" >
+<input type="text" hidden readonly="" class="form-control" name="usuario_reg" id="usuario_reg" value="<?php echo $usuario_reg ?>" >
 
 <span id="resultado2">
 <?php

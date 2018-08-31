@@ -71,6 +71,7 @@ $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
 $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
+$usuario_reg=$_POST['usuario_reg'];
 
 if ($estado == "VIGENTE") {
   $soat = "VIGENTE";
@@ -90,6 +91,7 @@ if ($estado == "VIGENTE") {
     <input type="text" hidden name="easytaxi" id="easytaxi" value="<?php echo $easytaxi?>"/>
     <input type="text" hidden name="cabify" id="cabify" value="<?php echo $cabify?>"/>
     <input type="text" hidden name="TipoCertificado" id="TipoCertificado" value="<?php echo $TipoCertificado?>"/>
+    <input type="text" hidden name="usuario_reg" id="usuario_reg" value="<?php echo $usuario_reg?>"/>
 
 <form class="form-horizontal p-t-20">
     <div class="form-group row">
@@ -193,6 +195,7 @@ if ($estado == "VIGENTE") {
           "&cabify=" + $('#cabify').val() +
           "&easytaxi=" + $('#easytaxi').val() +
           "&TipoCertificado=" + $('#TipoCertificado').val()+
+          "&usuario_reg=" + $('#usuario_reg').val()+
           "&estado=" + $('#estado').val();
 
 					$.ajax({

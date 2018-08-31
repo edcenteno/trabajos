@@ -205,18 +205,26 @@ $(document).ready(function(){
                     <?php
                             if($value['dni_digital']){
                                 $foto = $value['dni_digital'];
+
                                 echo '
                                     <a class="image-popup-vertical-fit" href="vistas/img/dni/'.$foto.'">
                                     <img src="vistas/img/dni/'.$foto.'" class="img-responsive radius" width="200" height="200" />
                                     </a> ';
+                                echo '
+                                    <a download="'.$foto.'" href="vistas/img/dni/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
+                                    Descargar DNI Frontal</button></a>';
                             }
                         ?>
                     <?php
-                            if($value['dni_digital']){
-                                $foto = $value['dni_digital'];
+                            if($value['dni_digital_r']){
+                                $foto_r = $value['dni_digital_r'];
                                 echo '
-                                    <a download="'.$foto.'" href="vistas/img/dni/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
-                                    Descargar DNI</button></a>';
+                                    <a class="image-popup-vertical-fit" href="vistas/img/dni/'.$foto_r.'">
+                                    <img src="vistas/img/dni/'.$foto_r.'" class="img-responsive radius" width="200" height="200" />
+                                    </a> ';
+                                echo '
+                                    <a download="'.$foto_r.'" href="vistas/img/dni/'.$foto_r.'"><button class="btn btn-info" data-toggle="modal" data-target="#">
+                                    Descargar DNI Reverso</button></a>';
                             }
                         ?>
 

@@ -276,7 +276,10 @@ $blacklist=$row['blacklist'];
 
             </div>
 
-
+            <div class="form-group">
+              <label for="record_cond">Operador: </label>
+              <input type="text" name="record_cond" readonly class="form-control" id="record_cond" placeholder="Record del conductor"  value="<?php echo $row['usuario_reg'] ?>" required="">
+            </div>
 
              <div class="form-group">
              <input class="form-group-input" type="checkbox" name="blacklist" id="blacklist" value="1">

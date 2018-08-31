@@ -71,6 +71,8 @@ $TipoCertificado = $out['TipoCertificado'];
 $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
 $tipoext=$_POST['tipoext'];
+$usuario_reg=$_POST['usuario_reg'];
+
 
     if ($easytaxi == "undefined") {
         $easytaxi = "0" ;
@@ -95,6 +97,8 @@ if ($estado == "VIGENTE") {
      <input type="text" hidden readonly="" class="form-control" name="NombreClaseVehiculo" id="NombreClaseVehiculo" value="<?php echo $NombreClaseVehiculo ?>">
     <input type="text" hidden name="FechaControlPolicial" id="FechaControlPolicial" value="<?php echo $FechaControlPolicial ?>"/>
     <input type="text" hidden name="TipoCertificado" id="TipoCertificado" value="<?php echo $TipoCertificado?>"/>
+    <input type="text" hidden name="usuario_reg" id="usuario_reg" value="<?php echo $usuario_reg ?>"/>
+    <input type="text" hidden name="tipoext" id="tipoext" value="<?php echo $tipoext ?>"/>
 
 <form class="form-horizontal p-t-20">
     <div class="form-group row">
@@ -181,6 +185,8 @@ if ($estado == "VIGENTE") {
           "&NombreClaseVehiculo=" + $('#NombreClaseVehiculo').val()+
           "&FechaControlPolicial=" + $('#FechaControlPolicial').val()+
           "&TipoCertificado=" + $('#TipoCertificado').val()+
+          "&tipoext=" + $('#tipoext').val()+
+          "&usuario_reg=" + $('#usuario_reg').val()+
           "&cabify=" + cabify +
           "&easytaxi=" + easytaxi +
           "&estado=" + $('#estado').val();

@@ -1,5 +1,3 @@
-
-
 $.fn.captureDevice = function(idFile, arg){
 
     var $element = $(this);
@@ -19,8 +17,8 @@ $.fn.captureDevice = function(idFile, arg){
             let video = this.getContainer();
             let c = {
                 video: {
-                    width: {min: 640},
-                    height: {min: 480}
+                     width: {min: 1280},
+                     height: {min: 720}
                 }
             }
             if(arg != false) c.video.deviceId = arg;
@@ -73,11 +71,8 @@ $.fn.captureDevice = function(idFile, arg){
             let form = new FormData();
             let arg = this.url[this.type];
             let id = this.id[this.type];
-            let back = ($element.find("#check-back").attr('val') == 'off') ? false : true;
-
             form.append("id_file", id);
             form.append('file[]', this.file, "cam.jpg");
-            form.append('back', back);
 
             $.ajax({
                 url: arg,
@@ -96,7 +91,7 @@ $.fn.captureDevice = function(idFile, arg){
                 window.objectCapture.insertAjax();
                 element.modal("hide");
                 window.objectCapture.stop();
-                setTimeout(function(){location.reload(true)}, 1000);
+                setTimeout('document.location.reload()',1000);
             });
         },
         btnCancel: function(){
@@ -104,25 +99,6 @@ $.fn.captureDevice = function(idFile, arg){
                 $element.find("#btn-capture").text("Iniciar");
                 $element.find("#btn-capture").attr("shot", false);
                 window.objectCapture.stop();
-            });
-        },
-        checkBack: function(){
-            $element.find("#check-back").hide();
-            $element.find("#check-back").click(function(e){
-                let val = $(this).attr('val');
-
-                if(val == 'on') {
-                    $(this).attr('val', 'off');
-                    $(this).text("Frente");
-                    $(this).removeClass("btn-danger");
-                    $(this).addClass("btn-outline-danger");
-                }
-                else {
-                    $(this).attr('val', 'on');
-                    $(this).text("Reverso");
-                    $(this).removeClass("btn-outline-danger");
-                    $(this).addClass("btn-danger");
-                }
             });
         },
         devices: navigator.mediaDevices.enumerateDevices(),
@@ -146,10 +122,6 @@ $.fn.captureDevice = function(idFile, arg){
                         $("[id-camera]").click(function(e){
                             let id = $(this).attr("id-camera");
                             let type = $(this).attr("typeU");
-
-                            if(type == 1) $element.find("#check-back").show();
-                            else $element.find("#check-back").hide();
-
                             window.objectCapture.type = parseInt(type);
                             window.objectCapture.camera = id;
                             $("[id-camera]").removeClass('active');
@@ -171,7 +143,6 @@ $.fn.captureDevice = function(idFile, arg){
             this.btnCapture();
             this.btnCancel();
             this.btnSave();
-            this.checkBack();
             this.selectCamera();
 
             window.objectCapture = this;
@@ -186,7 +157,7 @@ $.fn.captureDevice = function(idFile, arg){
         .attr("aria-labelledby", id+"Label")
         .attr("aria-hidden", "true");
 
-    $(this).html('<!-- Modal --><div class="modal-dialog modal-lg" role="document">    <div class="modal-content">        <div class="modal-header pt-4 pb-2">                              <ul class="nav nav-tabs card-header-tabs" id="listCamera">                    <li class="nav-item">                      <a class="nav-link active" href="#">Active</a>                    </li>                  </ul><button type="button" class="close" data-dismiss="modal"                aria-label="Close"> <span aria-hidden="true">&times;</span>            </button> </div>        <div class="modal-body" style="background-color:  #f8fafc;">            <div class="row">                <div class="col-8 col-sm-9 col-lg-10">                    <div class="embed-responsive embed-responsive-16by9 bg-dark img-thumbnail">                         <video id="video-container" style="width: 100%; height: 100%" autoplay></video>                    </div>                </div>                <div class="col-4 col-sm-3 col-lg-2">                    <div class="btn-group-vertical btn-block m-auto" role="group">                         <button shot="false" id="btn-capture" type="button" class="btn btn-primary">Iniciar</button>                         <button type="button" id="btn-save" class="btn btn-success">Guardar</button>                        <button type="button" id="btn-cancel" class="btn btn-danger" data-dismiss="modal">Cancelar</button>                    </div><button type="button" class="btn btn-outline-danger btn-block mt-3" val="off" id="check-back">Frente</button>                    <img class="img-thumbnail" style="position: absolute; bottom: 0; left: 0; width:80%; display:none" id="img-preview" src="" alt="">                </div>            </div>        </div>        <div class="modal-footer" style="border-top: thin solid #e9ecef">            <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>        </div>    </div></div>');
+    $(this).html('<!-- Modal --><div class="modal-dialog modal-lg" role="document">    <div class="modal-content">        <div class="modal-header pt-4 pb-2">                              <ul class="nav nav-tabs card-header-tabs" id="listCamera">                    <li class="nav-item">                      <a class="nav-link active" href="#">Active</a>                    </li>                  </ul><button type="button" class="close" data-dismiss="modal"                aria-label="Close"> <span aria-hidden="true">&times;</span>            </button> </div>        <div class="modal-body" style="background-color:  #f8fafc;">            <div class="row">                <div class="col-8 col-sm-9 col-lg-10">                    <div class="embed-responsive embed-responsive-16by9 bg-dark img-thumbnail">                         <video id="video-container" style="width: 100%; height: 100%" autoplay></video>                    </div>                </div>                <div class="col-4 col-sm-3 col-lg-2">                    <div class="btn-group-vertical m-auto" role="group">                         <button shot="false" id="btn-capture" type="button" class="btn btn-primary">Iniciar</button>                         <button type="button" id="btn-save" class="btn btn-success">Guardar</button>                        <button type="button" id="btn-cancel" class="btn btn-danger" data-dismiss="modal">Cancelar</button>                    </div>                    <img class="img-thumbnail" style="position: absolute; bottom: 0; left: 0; width:80%; display:none" id="img-preview" src="" alt="">                </div>            </div>        </div>        <div class="modal-footer" style="border-top: thin solid #e9ecef">            <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>        </div>    </div></div>');
     setTimeout(object.start(), 400);
 
     $(this).modal("hide");

@@ -2,7 +2,7 @@
 
 	require_once "php/conexion.php";
 	$conexion=conexion();
-
+ 		$usuario_reg = $_POST['usuario_reg'];
 		$nombre=$_POST['nombre'];
 		$apellidos=$_POST['apellidos'];
 		$dni=$_POST['dni'];
@@ -10,6 +10,7 @@
 		$cabify=$_POST['cabify'];
 		$fecha_nacimiento=$_POST['fechaNacimiento'];
 		$placa="NINGUNO";
+
 
 
 		function buscaRepetido($dni,$conexion){
@@ -61,8 +62,8 @@
 					$saa=str_pad($secuencia_arhu_ant, 5, "0", STR_PAD_LEFT);
 					$secuencia =  "RA-" .$año . $mes. $saa;
 				}
-				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant, form)
-					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), '$secuencia', 'Nuevo')";
+				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant, form, usuario_reg)
+					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), '$secuencia', 'Nuevo', '$usuario_reg')";
 				$result=mysqli_query($conexion,$sql);
 				//var_dump($sql);
 				echo "1";

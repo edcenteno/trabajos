@@ -5,6 +5,8 @@ $apellidos= $_POST['apellidos'];
 $dni = $_POST['dni'];
 $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
+$usuario_reg=$_POST['usuario_reg'];
+
 if ($easytaxi == "undefined") {
             $easytaxi = "0" ;
         }
@@ -55,6 +57,7 @@ if (isset($_POST['si'])){
         "&nombre=" + $('#nombre').val() +
         "&cabify=" + $('#cabify').val() +
         "&easytaxi=" + $('#easytaxi').val() +
+        "&usuario_reg=" + $('#usuario_reg').val() +
         "&fechaNacimiento=" + $('#fechaNacimiento').val()+
 
         "&apellidos=" + $('#apellidos').val();
@@ -106,6 +109,8 @@ Introduce placa
 <input type="text" hidden readonly="" class="form-control" name="cabify" id="cabify" value="<?php echo $cabify ?>">
 
 <input type="text" hidden readonly="" class="form-control" name="dni" id="dni" value="<?php echo $dni ?>" >
+
+<input type="text" hidden readonly="" class="form-control" name="usuario_reg" id="usuario_reg" value="<?php echo $usuario_reg ?>" >
 
 <span id="resultado">
 <?php

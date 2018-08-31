@@ -6,6 +6,7 @@ error_reporting(0);
   $conexion=conexion();
 
 $dni=$_POST['dni'];
+$usuario_reg = $_POST['usuario_reg'];
 
 if (is_numeric($dni) && strlen($dni) == 8) {
 
@@ -35,12 +36,12 @@ if (is_numeric($dni) && strlen($dni) == 8) {
     function search( $dni )
     {
 
-      $response = $this->essalud->check( $dni );
+      $response = $this->reniec->search( $dni );
       if($response->success == true)
       {
         $rpt = (object)array(
           "success"     => true,
-          "source"    => "essalud",
+          "source"    => "reniec",
           "result"    => $response->result
         );
         return $rpt;
@@ -56,17 +57,19 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         );
         return $rpt;
       }
-
-      $response = $this->reniec->search( $dni );
+ $response = $this->essalud->check( $dni );
       if($response->success == true)
       {
         $rpt = (object)array(
           "success"     => true,
-          "source"    => "reniec",
+          "source"    => "essalud",
           "result"    => $response->result
         );
         return $rpt;
       }
+
+
+
 
       $rpt = (object)array(
         "success"     => false,
@@ -83,7 +86,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
 
   $out=$test->search("$dni");
   $a = json_encode($out);
- /* var_dump($a);*/
+  //var_dump($a);
 
   if (strlen($a) < 150) {
      echo '<script>
@@ -123,7 +126,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
             </div>
         </div>
     </div>
-    <div class="form-group row">
+   <!-- <div class="form-group row">
         <label for="exampleInputEmail3" class="col-sm-6 control-label">Fecha de Nacimiento</label>
         <div class="col-sm-10">
             <div class="input-group">
@@ -131,7 +134,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
                 <input type="text" readonly="" class="form-control" name="fechaNacimiento" id="fechaNacimiento">
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="form-group row">
         <label for="web" class="col-sm-6 control-label">DNI</label>
         <div class="col-sm-10">
@@ -141,6 +144,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
             </div>
         </div>
     </div>
+    <input type="text" hidden  class="form-control" name="usuario_reg" id="usuario_reg" value="'.$usuario_reg.'" />
 
     <div class="form-check-inline">
       <label class="custom-control custom-checkbox">
@@ -153,6 +157,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         <input type="checkbox" name="easytaxi" id="easytaxi" class="form-check-input" value="1">Easy Taxi
       </label>
     </div>
+
 
 </form>
 <span id="resultado">
@@ -190,11 +195,27 @@ echo '
 <script type="text/javascript">
   var x =<?php echo $a ?>;
 
-  $(document).ready(function(){
+/*  $(document).ready(function(){
     $('#nombre').val(x.result.Nombres);
     $('#apellidos').val(x.result.ApellidoPaterno +' '+ x.result.ApellidoMaterno);
     $('#dni').val(x.result.DNI);
     $('#fechaNacimiento').val(x.result.FechaNacimiento);
+
+  });*/
+
+  /*$(document).ready(function(){
+    $('#nombre').val(x.result.nombre);
+    $('#apellidos').val(x.result.paterno +' '+ x.result.materno);
+    $('#dni').val(x.result.DNI);
+    $('#fechaNacimiento').val(x.result.nacimiento);
+
+  });*/
+
+  $(document).ready(function(){
+    $('#nombre').val(x.result.Nombres);
+    $('#apellidos').val(x.result.apellidos);
+    $('#dni').val(x.result.DNI);
+
 
   });
 
@@ -236,6 +257,7 @@ $(document).ready(function(){
           "&cabify=" + cabify +
           "&easytaxi=" + easytaxi +
           "&si=" + $('#si').val() +
+          "&usuario_reg=" + $('#usuario_reg').val() +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
 
@@ -278,6 +300,7 @@ $(document).ready(function(){
           "&dni=" + $('#dni').val() +
           "&cabify=" + cabify +
           "&easytaxi=" + easytaxi +
+          "&usuario_reg=" + $('#usuario_reg').val() +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
           $.ajax({

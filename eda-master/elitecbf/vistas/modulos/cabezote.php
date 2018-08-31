@@ -27,10 +27,10 @@
                 <!-- Logo text --><span>
                  <!-- dark Logo text -->
                  <img src="vistas/img/plantilla/logocabify3.png" alt="homepage" class="dark-logo" />
-                 <!-- Light Logo text -->    
+                 <!-- Light Logo text -->
                  <img src="vistas/img/plantilla/logocabify3.png" class="light-logo" alt="homepage" height="40px" /></span> </a>
         </div>
-        
+
         <div class="navbar-collapse">
             <!-- ============================================================== -->
             <!-- toggle and nav items -->
@@ -39,7 +39,7 @@
                 <!-- This is  -->
                 <li class="nav-item"> <a class="nav-link nav-toggler d-block d-sm-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                 <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
-               
+
             </ul>
             <!-- ============================================================== -->
             <!-- User profile and search -->
@@ -59,10 +59,10 @@
                             </li>
                             <li>
 
-                                <?php 
+                                <?php
 
                                     $fecha_actual = date("d/m/Y");
-                                    
+
                                     $ano= date("d/m/Y",strtotime($fecha_actual."- 1 year"));
                                     echo $ano;
                                     echo $fecha_actual;
@@ -72,12 +72,12 @@
 
                                     $soatconductor = ControladorConductor::ctrMostrarSoatConductor($item, $valor, $ano, $fecha_actual);
 
-                                    var_dump($soatconductor); 
+                                    var_dump($soatconductor);
                                     foreach ($soatconductor as $key => $value){
-                                      
+
                                     }
 
-                                    
+
                                 ?>
                                 <div class="message-center">
                                     <!-- Message -->
@@ -115,7 +115,7 @@
                 <!-- ============================================================== -->
                 <!-- End Comment -->
                 <!-- ============================================================== -->
-                
+
                 <!-- ============================================================== -->
                 <!-- User Profile -->
                 <!-- ============================================================== -->

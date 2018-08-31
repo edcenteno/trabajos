@@ -4,13 +4,13 @@
 	{
 		function __construct()
 		{
-			$this->reniec = new \Reniec\Reniec();
+			//$this->reniec = new \Reniec\Reniec();
 			$this->essalud = new \EsSalud\EsSalud();
 			$this->mintra = new \MinTra\mintra();
 		}
 		function search( $dni )
 		{
-			$response = $this->reniec->search( $dni );
+			/*$response = $this->reniec->search( $dni );
 			if($response->success == true)
 			{
 				$rpt = (object)array(
@@ -19,7 +19,7 @@
 					"result" 		=> $response->result
 				);
 				return $rpt;
-			}
+			}*/
 
 			$response = $this->essalud->check( $dni );
 			if($response->success == true)

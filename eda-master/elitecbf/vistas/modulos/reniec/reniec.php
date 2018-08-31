@@ -1,6 +1,9 @@
 <html>
 <head>
-
+<?php
+$usuario_reg = $_SESSION["nombre"];
+$usuario_reg2 = $_SESSION["nombre"];
+?>
 
 <script>
 function realizaProceso(){
@@ -23,7 +26,8 @@ function realizaProceso(){
 
         });*/
 
-        parametros="&dni=" + $('#dni').val();
+        parametros="&dni=" + $('#dni').val()+
+                   "&usuario_reg=" + $('#usuario_reg').val();
 
         $.ajax({
                 data:  parametros,
@@ -72,6 +76,7 @@ function realizaProceso(){
                                               <div class="input-group-prepend" id="div"><span class="input-group-text"><i id="ico" class="ti-id-badge"></i></span></div>
                                               <input type="text" class="form-control" pattern="[0-9]{8}" minlength="8" maxlength="8" name="dni" id="dni" value="" placeholder="DNI" />
                                               <input type="text" hidden="" class="form-control" name="tipo" id="tipo" value="1" />
+                                              <input type="text" hidden class="form-control" name="usuario_reg" id="usuario_reg" value="<?php  echo $usuario_reg ?>" />
                                           </div>
 
                                       </div>
@@ -157,6 +162,7 @@ function realizaProceso(){
                                     </div>
                                   </div>
                                   </div>
+                                  <input type="text" hidden="" class="form-control" name="usuario_reg2" id="usuario_reg2" value="<?php  echo $usuario_reg ?>" />
 
                                 </form>
                                 <form class="form-horizontal p-t-20" id="form">
@@ -218,6 +224,7 @@ $(document).ready(function(){
           "&tipoext=" + $('#tipoext').val() +
           "&cabify=" + cabify2 +
           "&easytaxi=" + easytaxi2 +
+          "&usuario_reg=" + $('#usuario_reg2').val() +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
           $.ajax({
@@ -310,6 +317,7 @@ $(document).ready(function(){
           "&cabify=" + cabify +
           "&easytaxi=" + easytaxi +
           "&si=" + $('#si').val() +
+          "&usuario_reg=" + $('#usuario_reg2').val() +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
 
