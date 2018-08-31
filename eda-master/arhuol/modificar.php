@@ -278,7 +278,7 @@ $blacklist=$row['blacklist'];
 
             <div class="form-group">
               <label for="record_cond">Operador: </label>
-              <input type="text" name="record_cond" readonly class="form-control" id="record_cond" placeholder="Record del conductor"  value="<?php echo $row['usuario_reg'] ?>" required="">
+              <input type="text" name="record_cond" readonly class="form-control" id="record_cond" placeholder="Operador"  value="<?php echo $row['usuario_reg'] ?>" required="">
             </div>
 
              <div class="form-group">

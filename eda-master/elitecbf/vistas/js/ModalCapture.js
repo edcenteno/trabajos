@@ -19,8 +19,8 @@ $.fn.captureDevice = function(idFile, arg){
             let video = this.getContainer();
             let c = {
                 video: {
-                    width: {min: 640},
-                    height: {min: 480}
+                    width: {min: 1280},
+                    height: {min: 720}
                 }
             }
             if(arg != false) c.video.deviceId = arg;
