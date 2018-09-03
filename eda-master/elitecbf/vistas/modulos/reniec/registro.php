@@ -58,6 +58,12 @@
 								 NOW( ), '$secuencia', 'Nuevo', '$usuario_reg')";
 								//echo $sql;
 
+			$sql="INSERT into proceso
+								(dni,nombre, apellido, fecha_reg)
+						values
+								('$dni','$nombre', '$apellidos', NOW( ))";
+								//echo $sql;
+
 			$result=mysqli_query($conexion,$sql);
 
 			echo "1";

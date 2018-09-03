@@ -164,6 +164,21 @@ if ($estado == "VIGENTE") {
 <span class="btn btn-primary" id="registrarNuevo2">Registrar</span>
 
 <script type="text/javascript">
+   placa = $('#placa').val();
+
+         $.ajax({
+            type: "POST",
+            url: 'https://captcharh.ddns.net/api/record',
+            data: {
+                type: '1', //tipo de documento
+                documento: placa, //numero de documento
+                datas: 'placa' //tipo de solicitud
+            }
+
+            }).done(function(msg){
+               $("#resultado").html(msg);
+                console.log(msg)
+            });
   var crvjs =<?php echo $x ?>;
   $(document).ready(function(){
 

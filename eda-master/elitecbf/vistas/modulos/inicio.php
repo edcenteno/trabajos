@@ -32,7 +32,7 @@ require 'graficas/querys.php';
                     <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#reporte" role="tab"><i class="ti-car"></i> Reporte de Conductores</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#cabify" role="tab"><i class="fa fa-taxi"></i> Cabify</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#easy" role="tab"><i class="fa fa-taxi"></i> Easy Taxi</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#act" role="tab"><i class="ti-reload"></i> Reporte General </a> </li>
+                    <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#act" role="tab"><i class="ti-reload"></i> Reporte General </a> </li> -->
                 </ul>
              <!-- Tab panes -->
             <div class="tab-content">
@@ -397,127 +397,127 @@ require 'graficas/querys.php';
     Morris.Area({
         element: 'morris-area-chart'
         , data: [{
-                period: '2018-08-01'
+                period: '2018-09-01'
                 , Conductores: dia1
 
         }, {
-                period: '2018-08-02'
+                period: '2018-09-02'
                 , Conductores: dia2
 
         }, {
-                period: '2018-08-03'
+                period: '2018-09-03'
                 , Conductores: dia3
 
         }, {
-                period: '2018-08-04'
+                period: '2018-09-04'
                 , Conductores: dia4
 
         }, {
-                period: '2018-08-05'
+                period: '2018-09-05'
                 , Conductores: dia5
 
         }, {
-                period: '2018-08-06'
+                period: '2018-09-06'
                 , Conductores: dia6
 
         }, {
-                period: '2018-08-07'
+                period: '2018-09-07'
                 , Conductores: dia7
 
         },{
-                period: '2018-08-08'
+                period: '2018-09-08'
                 , Conductores: dia8
 
         },{
-                period: '2018-08-09'
+                period: '2018-09-09'
                 , Conductores: dia9
 
         },{
-                period: '2018-08-10'
+                period: '2018-09-10'
                 , Conductores: dia10
 
         },{
-                period: '2018-08-11'
+                period: '2018-09-11'
                 , Conductores: dia11
 
         },{
-                period: '2018-08-12'
+                period: '2018-09-12'
                 , Conductores: dia12
 
         },{
-                period: '2018-08-13'
+                period: '2018-09-13'
                 , Conductores: dia13
 
         },{
-                period: '2018-08-14'
+                period: '2018-09-14'
                 , Conductores: dia14
 
         },{
-                period: '2018-08-15'
+                period: '2018-09-15'
                 , Conductores: dia15
 
         },{
-                period: '2018-08-16'
+                period: '2018-09-16'
                 , Conductores: dia16
 
         },{
-                period: '2018-08-17'
+                period: '2018-09-17'
                 , Conductores: dia17
 
         }, {
-                period: '2018-08-18'
+                period: '2018-09-18'
                 , Conductores: dia18
 
         }, {
-                period: '2018-08-19'
+                period: '2018-09-19'
                 , Conductores: dia19
 
         },{
-                period: '2018-08-20'
+                period: '2018-09-20'
                 , Conductores: dia20
 
         },{
-                period: '2018-08-21'
+                period: '2018-09-21'
                 , Conductores: dia21
 
         },{
-                period: '2018-08-22'
+                period: '2018-09-22'
                 , Conductores: dia22
 
         },{
-                period: '2018-08-23'
+                period: '2018-09-23'
                 , Conductores: dia23
 
         },{
-                period: '2018-08-24'
+                period: '2018-09-24'
                 , Conductores: dia24
 
         },{
-                period: '2018-08-25'
+                period: '2018-09-25'
                 , Conductores: dia25
 
         },{
-                period: '2018-08-26'
+                period: '2018-09-26'
                 , Conductores: dia26
 
         },{
-                period: '2018-08-27'
+                period: '2018-09-27'
                 , Conductores: dia27
 
         },{
-                period: '2018-08-28'
+                period: '2018-09-28'
                 , Conductores: dia28
 
         },{
-                period: '2018-08-29'
+                period: '2018-09-29'
                 , Conductores: dia29
 
         },{
-                period: '2018-08-30'
+                period: '2018-09-30'
                 , Conductores: dia30
 
         },{
-                period: '2018-08-31'
+                period: '2018-09-31'
                 , Conductores: dia31
 
         }]
@@ -587,8 +587,8 @@ Morris.Bar({
     { y: 'Junio', a: junio },
     { y: 'Julio', a: julio },
     { y: 'Agosto', a: agosto},
-    /*{ y: 'Septiembre', a: septiembre},
-    { y: 'Octubre', a: octubre},
+   { y: 'Septiembre', a: septiembre},
+     /*{ y: 'Octubre', a: octubre},
     { y: 'Noviembre', a: noviembre},
     { y: 'Diciembre', a: diciembre},
     { y: 'Enero', a:  enero },

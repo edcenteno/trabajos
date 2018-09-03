@@ -52,7 +52,7 @@ $fecha_actual = date("M-Y");
                 <div class="progress-bar bg-purple progress-bar-striped" role="progressbar" style="width: <?php echo intval($b) ?>%;height:35px;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <?php echo intval($b) ?>%</div>
             </div>
         </div>
-        <a href="conductores" class="small-box-footer">
+        <a href="conductorescabify" class="small-box-footer">
           Más info <i class="fa fa-arrow-circle-right"></i>
         </a>
     </div>

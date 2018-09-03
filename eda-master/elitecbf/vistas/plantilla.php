@@ -190,7 +190,8 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "rrhh" ||
          $_GET["ruta"] == "consultas-basicas" ||
          $_GET["ruta"] == "reporte-diario" ||
-         $_GET["ruta"] == "recibearchivo" ||
+         $_GET["ruta"] == "conductorescabify" ||
+         $_GET["ruta"] == "conductoreseasy" ||
          $_GET["ruta"] == "salir"){
 
        include "modulos/".$_GET["ruta"].".php";

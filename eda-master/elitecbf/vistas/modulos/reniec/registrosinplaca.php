@@ -64,8 +64,15 @@
 				}
 				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant, form, usuario_reg)
 					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), '$secuencia', 'Nuevo', '$usuario_reg')";
+
+				$sql="INSERT into proceso
+								(dni,nombre, apellido, fecha_reg)
+						values
+								('$dni','$nombre', '$apellidos', NOW( ))";
+								//echo $sql;
 				$result=mysqli_query($conexion,$sql);
 				//var_dump($sql);
+
 				echo "1";
 				'<script>
  							dni = '.$dni .'

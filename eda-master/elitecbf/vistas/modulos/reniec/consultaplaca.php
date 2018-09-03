@@ -38,7 +38,7 @@ if (isset($_POST['si'])){
 
         placa = $('#placa').val();
 
-       /*  $.ajax({
+         $.ajax({
             type: "POST",
             url: 'https://captcharh.ddns.net/api/record',
             data: {
@@ -50,7 +50,7 @@ if (isset($_POST['si'])){
             }).done(function(msg){
                $("#resultado").html(msg);
                 console.log(msg)
-            });*/
+            });
 
         cadena="placa=" + $('#placa').val() +
         "&dni=" + $('#dni').val() +

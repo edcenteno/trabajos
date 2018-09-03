@@ -43,7 +43,7 @@ class ModeloConductor{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-08%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-09%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -53,7 +53,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-08%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-09%'");
 
 			$stmt -> execute();
 
@@ -71,7 +71,7 @@ class ModeloConductor{
 
 		if($item2 != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-07%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-08%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -81,7 +81,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-07%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-08%'");
 
 			$stmt -> execute();
 
@@ -130,7 +130,7 @@ class ModeloConductor{
 
 		if($item2 != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1' and fecha like '2018-07%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1' and fecha like '2018-08%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -140,7 +140,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1' and fecha like '2018-07%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1' and fecha like '2018-08%'");
 
 			$stmt -> execute();
 
@@ -220,7 +220,7 @@ class ModeloConductor{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '2018-09%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -230,7 +230,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '2018-09%'");
 
 			$stmt -> execute();
 
@@ -248,7 +248,7 @@ class ModeloConductor{
 
 		if($item2 != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '2018-07%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -258,7 +258,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '2018-07%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1'");
 
 			$stmt -> execute();
 
