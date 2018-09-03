@@ -6,7 +6,7 @@
 	$sTabla = "proceso";
 
 	/* Array que contiene los nombres de las columnas de la tabla*/
-	$aColumnas = array('plus', 'dni', 'nombre', 'apellido', 'fecha_reg');
+	$aColumnas = array('plus', 'dni', 'nombre', 'apellido', 'ant_penales', 'ant_judicial', 'ant_policial', 'fecha_reg');
 
 	/* columna indexada */
 	$sIndexColumn = "dni";

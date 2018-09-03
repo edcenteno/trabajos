@@ -87,6 +87,9 @@ if(isset($_SESSION['user'])){
 										<th>DNI</th>
 										<th>NOMBRE</th>
 										<th>APELLIDO</th>
+                                        <th>ANTECEDENTES PENALES</th>
+                                        <th>ANTECEDENTES JUDICIAL</th>
+                                        <th>ANTECEDENTES POLICIAL</th>
 										<th>FECHA DE REGISTRO</th>
                                         <th>MODIFICAR</th>
                                         <th>ELIMINAR</th>
