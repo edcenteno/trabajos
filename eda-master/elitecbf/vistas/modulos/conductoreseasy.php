@@ -35,6 +35,7 @@
                                     <th>DNI</th>
                                     <th>NOMBRE</th>
                                     <th>APELLIDO</th>
+                                    <th>PLACA</th>
                                     <th>EMPRESA</th>
                                     <th>RESULTADO</th>
                                     <th>VER MAS</th>
@@ -46,6 +47,7 @@
                                    <th>DNI</th>
                                    <th>NOMBRE</th>
                                    <th>APELLIDO</th>
+                                   <th>PLACA</th>
                                    <th>EMPRESA</th>
                                    <th>RESULTADO</th>
                                    <th>VER MAS</th>

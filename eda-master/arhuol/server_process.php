@@ -6,7 +6,7 @@
 	$sTabla = "conductores";
 
 	/* Array que contiene los nombres de las columnas de la tabla*/
-	$aColumnas = array('plus','form', 'cont', 'fecha', 'dni', 'nombre', 'apellido', 'placa', 'ant_penales', 'ant_judicial', 'ant_policial', 'record_cond',  'resultado','soat', 'observacion', 'pdf');
+	$aColumnas = array('plus','form', 'cont', 'fecha', 'dni', 'nombre', 'apellido', 'placa', 'ant_penales', 'ant_judicial', 'ant_policial', 'record_cond',  'resultado', 'soat', 'observacion', 'pdf');
 
 	/* columna indexada */
 	$sIndexColumn = "dni";
@@ -129,13 +129,17 @@
 			}else{
 			$row['pdf'] =  '<td><a href="docs/'.$aRow['pdf'].'" target="_blank"><img src="img/sist/pdf.png"></td>';
 			}
-		/*$row[] = "<td><a href='modificar.php?id=".$aRow['cont']."'><span class='glyphicon glyphicon-pencil'></span></a></td>";
-		$row[] = "<td><a href='#' data-href='eliminar.php?id=".$aRow['cont']."' data-toggle='modal' data-target='#confirm-delete'><span class='glyphicon glyphicon-trash'></span></a></td>";*/
 
-		$row[] = "<td><a href='modificar.php?id=".$aRow['cont']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button>";
+		if ($aRow['soat'] == "undefined"){
+			$row[] = "<a href='modificarplaca.php?id=".$aRow['cont']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i>SOAT</button>";
+		}else{
+			$row[] = $aRow['soat'];
+		}
+
+		$row[] = "<a href='modificar.php?id=".$aRow['cont']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button>";
 
 
-		$row[] = "<td><a href='#' data-href='eliminar.php?id=".$aRow['cont']."' data-toggle='modal' data-target='#confirm-delete'><button type='button' class='btn btn-outline-danger'><i class='fa fa-trash-o'></i></button></a></td>";
+		$row[] = "<a href='#' data-href='eliminar.php?id=".$aRow['cont']."' data-toggle='modal' data-target='#confirm-delete'><button type='button' class='btn btn-outline-danger'><i class='fa fa-trash-o'></i></button></a></td>";
 
 		$output['aaData'][] = $row;
 	}

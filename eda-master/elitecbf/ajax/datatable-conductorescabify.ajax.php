@@ -55,6 +55,7 @@ class TablaConductor{
                   "'.$dni.'",
                   "'.$conductores[$i]["nombre"].'",
                   "'.$conductores[$i]["apellido"].'",
+                  "'.$conductores[$i]["placa"].'",
                   "'.$cabify.'",
                   "'.$conductores[$i]["resultado"].'",
                   "'.$vermas.'"
@@ -85,6 +86,7 @@ class TablaConductor{
                   "'.$conductores[count($conductores)-1]["dni"].'",
                   "'.$conductores[count($conductores)-1]["nombre"].'",
                   "'.$conductores[count($conductores)-1]["apellido"].'",
+                  "'.$conductores[count($conductores)-1]["placa"].'",
                   "'.$empresa.'",
                   "'.$conductores[count($conductores)-1]["resultado"].'",
                   "'.$vermas.'"

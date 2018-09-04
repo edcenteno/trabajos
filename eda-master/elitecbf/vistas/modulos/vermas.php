@@ -19,6 +19,7 @@
 
 $placa=$value['placa'];
 $placa = str_replace("-","",$placa);
+$extr=$value['extr'];
 
 
 ?>
@@ -172,6 +173,8 @@ $(document).ready(function(){
                         <h6 class="card-subtitle">Conductor</h6>
                         <div class="row text-center justify-content-md-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
+
+                        <!-- <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
                         <?php
                             $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 1 month"));
@@ -231,20 +234,13 @@ $(document).ready(function(){
                         </div>
 
                     <br/>
-                    <?php
-                        if ($placa == "NINGUNO") {
-                            echo '';
-                        } else {
-                            # code...
-                        }
 
-                    ?>
 
                         <script>
                             function deshabilitar_btnEnviar(){
 
                                         placa = '<?php echo $placa ?>'
-                                        type= '<?php echo 1 ?>'
+                                        type= '<?php echo $extr ?>'
                                         dni = '<?php echo $idconductor ?>'
                                         cabify= '<?php echo $cabify ?>'
                                         easy = '<?php echo $easy ?>'
@@ -296,7 +292,7 @@ $(document).ready(function(){
                                                 console.log(msg)*/
                                             });
 
-                                    parametros="&dni=" + dni+
+                              /*      parametros="&dni=" + dni+
                                                 "&placa=" + placa+
                                                 "&cabify=" + cabify+
                                                 "&easy=" + easy;
@@ -308,8 +304,8 @@ $(document).ready(function(){
                                         success:  function (response) {
 
                                         }
-                                });
-                                setTimeout('document.location.reload()',2000);
+                                });*/
+                              //  setTimeout('document.location.reload()',2000);
 
                                   }
                                     })
@@ -428,6 +424,12 @@ $(document).ready(function(){
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Distrito</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Migrar</strong>
+                                    <br>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#migrar">
+                                      Migrar a empresa
+                                    </button>
                                 </div>
                             </div>
 
@@ -615,6 +617,30 @@ $(document).ready(function(){
 
                     <div class="tab-pane" id="soat" role="tabpanel">
                         <div class="card-body">
+                            <?php
+                                if ($placa == "NINGUNO") {
+                                 echo '<div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12" style="width: 105%; height: 40px;">
+                                                        <div class="d-flex no-block align-items-center">
+                                                            <div>
+                                                                <h2><i class="icon-trophy"></i></h2>
+                                                                <h3 class="text-muted"></h3>
+                                                            </div>
+                                                            <div class="ml-auto">
+                                                                <h2 class="counter">NO POSEE VEHICULO</h2>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>';
+                                } else {
+                                    # code...
+                                }
+
+                            ?>
                             <div class="row">
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
                                     <br>
@@ -850,6 +876,33 @@ $(document).ready(function(){
        <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProcesoplaca();return false;" id="consultaplaca" name="consultaplaca">Consultar</button>
       </div>
 
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="migrar" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Migrar Conductor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <?php
+            if ($value['']) {
+                # code...
+            } else {
+                # code...
+            }
+
+         ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Migrar</button>
+      </div>
     </div>
   </div>
 </div>

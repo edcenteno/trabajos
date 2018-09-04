@@ -99,10 +99,10 @@ class ModeloConductor{
 	CABIFY
 	=============================================*/
 	static public function mdlMostrarConductorhoyCabify($tabla, $item, $valor){
-
+		$mes = date('Y-m');
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like '$mes%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -112,7 +112,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like '$mes%'");
 
 			$stmt -> execute();
 
@@ -127,10 +127,11 @@ class ModeloConductor{
 	}
 
 		static public function mdlMostrarConductoresMesCabify($tabla, $item2, $valor2){
-
+			$mes = date('Y-m');
+			$mesact = date("Y-m",strtotime($mes."- 1 month"));
 		if($item2 != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1' and fecha like '2018-08%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like 'mesact%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -140,7 +141,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf = '1' and fecha like '2018-08%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like 'mesact%'");
 
 			$stmt -> execute();
 

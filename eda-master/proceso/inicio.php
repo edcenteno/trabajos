@@ -6,6 +6,21 @@ if(isset($_SESSION['user'])){
 	?>
 	<html lang="es">
 	<head>
+         <script type="text/javascript">
+
+     $(document).ready(function(){
+          $('.targetpolicial').hide();
+
+          $('#selpolicial').on("change",function(e){
+            if (e.target.value=='POSITIVO'){
+              $('.targetpolicial').show();
+            }else if (e.target.value=='NEGATIVO') {
+              $('.targetpolicial').find('input, textarea').val('');
+              $('.targetpolicial').hide();
+            }
+          });
+      </script>
+
 		<script>
 			$(document).ready(function(){
 				$('#mitabla').DataTable({

@@ -28,8 +28,8 @@
                  nombrecompania = '".$NombreCompania."',
                  numeropoliza = '".$NumeroPoliza."',
                  NombreUsoVehiculo = '".$NombreUsoVehiculo."',
-                 NombreClaseVehiculo = '".$NombreClaseVehiculo."',
-                 FechaControlPolicial = '".$FechaControlPolicial."',
+                 nombreclasevehiculo = '".$NombreClaseVehiculo."',
+                 fechacontrolpolicial = '".$FechaControlPolicial."',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
                                 //echo $sql;

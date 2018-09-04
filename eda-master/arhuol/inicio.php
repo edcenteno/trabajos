@@ -25,8 +25,8 @@ if(isset($_SESSION['user'])){
 					{ 'responsivePriority': 1, 'targets': 7 },
 					{ 'responsivePriority': 1, 'targets': 3 },
 					{ 'responsivePriority': 1, 'targets': 4 },
+					{ 'responsivePriority': 2, 'targets': 17 },
 					{ 'responsivePriority': 2, 'targets': 16 },
-					{ 'responsivePriority': 2, 'targets': -6 },
 
 					],
 					"order": [[2, "desc"]],
@@ -101,10 +101,11 @@ if(isset($_SESSION['user'])){
 										<th>ANTECEDENTES POLICIAL</th>
 										<th>RECORD CONDUCTOR</th>
 										<th>RESULTADO</th>
-										<th>SOAT</th>
-										<th>OBSERVACION</th>
+                                        <th>SOAT</th>
+                                        <th>OBSERVACION</th>
 										<th>FORMATO</th>
-										<th>MODIFICAR</th>
+                                        <th>MODIFICAR SOAT</th>
+                                        <th>MODIFICAR</th>
 										<th>ELIMINAR</th>
 
 									</tr>

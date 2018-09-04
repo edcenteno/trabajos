@@ -58,7 +58,8 @@
                                  '$NombreClaseVehiculo', '$FechaControlPolicial', '$TipoCertificado',
                                  NOW( ), '$secuencia', '$tipoext', 'Nuevo', '$usuario_reg')";
                                 //echo $sql;
-                                //
+            $result=mysqli_query($conexion,$sql);
+
             $sql="INSERT into proceso
                                 (dni,nombre, apellido, fecha_reg)
                         values

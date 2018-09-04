@@ -16,7 +16,7 @@ $easy = $_POST['easy'];
     }
     function search( $dni )
     {
-     /* $response = $this->reniec->search( $dni );
+      $response = $this->reniec->search( $dni );
       if($response->success == true)
       {
         $rpt = (object)array(
@@ -25,7 +25,7 @@ $easy = $_POST['easy'];
           "result"    => $response->result
         );
         return $rpt;
-      }*/
+      }
 
       $response = $this->essalud->check( $dni );
       if($response->success == true)

@@ -36,7 +36,7 @@ $fecha_actual = date("M-Y");
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h2><i class="icon-user-follow"></i></h2>
-                        <h3 class="text-muted">Reporte de conductores registrados Cabify</h3>
+                        <h3 class="text-muted">Reporte de conductores Cabify del mes </h3>
                     </div>
                     <div class="ml-auto">
                         <h2 class="counter text-purple"><?php echo $a ?></h2>
@@ -67,7 +67,7 @@ $fecha_actual = date("M-Y");
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h3><i class="icon-book-open"></i></h3>
-                        <h3 class="text-muted">Reporte de conductores registrados Cabify mes anterior</h3>
+                        <h3 class="text-muted">Reporte de conductores registrados Cabify</h3>
                     </div>
                     <div class="ml-auto">
                         <h2 class="counter text-info"><?php echo number_format($cabify); ?></h2>
@@ -79,7 +79,7 @@ $fecha_actual = date("M-Y");
             </div>
             <div class="col-12">
                 <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width:<?php echo intval($cbf) ?>%; height: 25px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <?php echo intval($cbf) ?></div>
+                    <div class="progress-bar bg-info" role="progressbar" style="width:<?php echo intval($cbf) ?>%; height: 25px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <?php echo intval($cbf) ?>%</div>
                 </div>
             </div>
         </div>
@@ -89,34 +89,34 @@ $fecha_actual = date("M-Y");
     </div>
 </div>
 <hr>
-<div class="card">
+<!-- <div class="card">
     <div class="card-body">
         <div class="row">
             <div class="col-md-12" style="width: 85%; height: 140px;">
                 <div class="d-flex no-block align-items-center">
                     <div>
                         <h3><i class="ti-reload"></i></h3>
-                        <h3 class="text-muted">Reporte de conductores Actualizados Cabify</h3>
+                        <h3 class="text-muted">Reporte de conductores del Mes anterior Cabify</h3>
                     </div>
                     <div class="ml-auto">
                         <h2 class="counter text-info"><?php echo number_format($actcbf); ?></h2>
                         <?php
                          $cbf = $actcbf;
-                         $cbf = ($c *100)/20000;
+                         $cbf = ($cbf *100)/$cbf;
                         ?>
                     </div>
                 </div>
             </div>
             <div class="col-12">
                 <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width:<?php echo intval($cbf) ?>%; height: 25px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <?php echo intval($cbf) ?></div>
+                    <div class="progress-bar bg-info" role="progressbar" style="width:<?php echo number_format($actcbf); ?>%; height: 25px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <?php echo intval($cbf) ?></div>
                 </div>
             </div>
         </div>
 
     </div>
-</div>
-<hr>
+</div> -->
+<!-- <hr>
 <div class="card">
     <div class="card-body">
         <div class="row">
@@ -143,4 +143,4 @@ $fecha_actual = date("M-Y");
         </div>
 
     </div>
-</div>
+</div> -->
