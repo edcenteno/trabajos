@@ -277,6 +277,63 @@ class ControladorConductor{
 
 	}
 
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarConductormigradosmescbf($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresmigradosmescbf($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarConductormigradosmesanteriorcbf($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresmigradosmesanteriorcbf($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarConductormigradosmeseasy($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresmigradosmeseasy($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+	/*=============================================
+	MOSTRAR Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarConductormigradosmesanterioreasy($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresmigradosmesanterioreasy($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
 	static public function ctrMostrarConductorhoyCabifyact($item, $valor){
 
 	$tabla = "conductores";

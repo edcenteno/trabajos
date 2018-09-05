@@ -264,15 +264,8 @@ $blacklist=$row['blacklist'];
           </div>
           <div class="col-6 col-sm-4">
           <div class="form-group">
-              <label for="soat">SOAT : </label>
-              <div class="form-group">
-                <select class="form-control" id="sel1" name ="soat">
-                  <option><?php echo $row['soat']?></option>
-                  <option>VIGENTE</option>
-                  <option>VENCIDO</option>
-                  <option>NO POSEE</option>
-                </select>
-              </div>
+            <input type="text" name="resultado" class="form-control" id="resultado" value="<?php echo $row['resultado'] ?>" hidden>
+
 
             </div>
 

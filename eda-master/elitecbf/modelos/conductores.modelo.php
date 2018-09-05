@@ -131,7 +131,7 @@ class ModeloConductor{
 			$mesact = date("Y-m",strtotime($mes."- 1 month"));
 		if($item2 != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like 'mesact%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -141,7 +141,112 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like 'mesact%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+	}
+
+		static public function mdlMostrarConductoresmigradosmescbf($tabla, $item2, $valor2){
+			$mes = date('Y-m');
+
+		if($item2 != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE migrarcabf = '1' and fechamigra like '$mes%'");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE migrarcabf = '1' and fechamigra like '$mes%'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+	}
+
+		static public function mdlMostrarConductoresmigradosmesanteriorcbf($tabla, $item2, $valor2){
+			$mes = date('Y-m');
+			$mesact = date("Y-m",strtotime($mes."- 1 month"));
+		if($item2 != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fechamigra like 'mesact%'");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fechamigra like 'mesact%'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*===========================================
+	EASY
+	============================================*/
+
+	static public function mdlMostrarConductoresmigradosmeseasy($tabla, $item2, $valor2){
+			$mes = date('Y-m');
+
+		if($item2 != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE migrareasy = '1' and fechamigra like '$mes%'");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE migrareasy = '1' and fechamigra like '$mes%'");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+	}
+
+		static public function mdlMostrarConductoresmigradosmesanterioreasy($tabla, $item2, $valor2){
+			$mes = date('Y-m');
+			$mesact = date("Y-m",strtotime($mes."- 1 month"));
+		if($item2 != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fechamigra like 'mesact%'");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fechamigra like 'mesact%'");
 
 			$stmt -> execute();
 

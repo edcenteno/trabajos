@@ -305,7 +305,7 @@ $(document).ready(function(){
 
                                         }
                                 });*/
-                              //  setTimeout('document.location.reload()',2000);
+                                setTimeout('document.location.reload()',2000);
 
                                   }
                                     })
@@ -340,7 +340,7 @@ $(document).ready(function(){
                                 echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
                                 ';
                                 }
-                                if ($value['soat'] == "") {
+                                if ($value['placa'] == "NINGUNO") {
 
                                  } else {
                                     echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>';
@@ -425,12 +425,22 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Migrar</strong>
-                                    <br>
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#migrar">
-                                      Migrar a empresa
-                                    </button>
-                                </div>
+
+                                    <?php
+                                    if ($value['cabify'] == 1 &&  $value['easytaxi'] == 1) {
+
+                                    } else {
+                                        echo '<div class="col-md-3 col-xs-6 b-r"> <strong>Migrar</strong>
+                                              <br>
+                                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#migrar">
+                                                    Migrar a empresa
+                                              </button>
+                                               </div>';
+                                    }
+
+
+                                    ?>
+
                             </div>
 
 
@@ -518,13 +528,19 @@ $(document).ready(function(){
                                             </div>
                                             <div class="ml-auto">
                                                 <?php
-                                                    if ($value['resultado'] == "APTO") {
+                                                    if ($value['ant_policial'] == "" || $value['ant_judicial'] == "" || $value['ant_penales'] == "" || $value['soat'] == "undefined" || $value['soat'] == "") {
+
+                                                    } else {
+                                                       if ($value['resultado'] == "APTO") {
                                                         echo '
                                                         <h2 class="counter text-success">'.$value['resultado'].'</h2>';
                                                     }else{
                                                         echo '
                                                         <h2 class="counter text-danger">'.$value['resultado'].'</h2>';
                                                     }
+                                                    }
+
+
                                                 ?>
                                             </div>
                                         </div>
@@ -660,34 +676,28 @@ $(document).ready(function(){
                                     <?php
                                     if ($value['nombrecompania']== "Mapfre PerÃº") {
                                         echo '<img width="90" src="vistas/img/plantilla/mapfre.png">';
-                                    } else{
-
                                     }
 
                                     if ($value['nombrecompania']== "La Positiva") {
                                         echo '<img width="90" src="vistas/img/plantilla/lapositiva.png">';
-                                    }else{
-
                                     }
                                     if ($value['nombrecompania']== "Interseguro") {
                                         echo '<img width="90" src="vistas/img/plantilla/interbank.png">';
-                                    } else{
-
                                     }
                                     if ($value['nombrecompania']== "INTERSEGURO") {
                                         echo '<img width="90" src="vistas/img/plantilla/interbank.png">';
-                                    } else{
-
                                     }
                                     if ($value['nombrecompania']== "Pacifico Seguros") {
                                         echo '<img width="90" src="vistas/img/plantilla/pacifico.png">';
-                                    }else{
-
                                     }
                                     if ($value['nombrecompania']== "Rimac Seguros") {
                                         echo '<img width="90" src="vistas/img/plantilla/rimac.png">';
-                                    }else{
-
+                                    }
+                                    if ($value['nombrecompania']== "Bnp Paribas Cardif") {
+                                        echo '<img width="90" src="vistas/img/plantilla/bnpparibascardif.png">';
+                                    }
+                                    if ($value['nombrecompania']== "Protecta") {
+                                        echo '<img width="90" src="vistas/img/plantilla/protecta.png">';
                                     }
 
                                     ?></p>
@@ -890,22 +900,65 @@ $(document).ready(function(){
         </button>
       </div>
       <div class="modal-body">
+
         <?php
-            if ($value['']) {
-                # code...
-            } else {
-                # code...
+            if ($value['easytaxi'] == 0) {
+                echo '<img width="30" src="vistas/img/plantilla/easy.png" id="easytaxi" value="1"> EasyTaxi';
+            }
+            if ($value['cabify'] == 0) {
+                echo '<img width="30" src="vistas/img/plantilla/favicon.ico" id="cabify" value="1"> Cabify';
             }
 
          ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Migrar</button>
+        <button type="button" class="btn btn-primary" onclick="realizamigrar()" id="migrarcond">Migrar</button>
+
+
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+
+
+    function realizamigrar(){
+    dni = '<?php echo $idconductor ?>'
+
+      cadena="cabify=" + $('#cabify').val() +
+             "&easytaxi=" + $('#easytaxi').val()+
+             "&dni=" + dni;
+
+          $.ajax({
+            type:"POST",
+            url:"vistas/modulos/reniec/migrar.php",
+            data:cadena,
+            success:function(r){
+
+              if(r==1){
+              swal({
+                  type: "success",
+                  title: "¡El Conductor ha sido migrado correctamente!",
+                  showConfirmButton: true,
+                  confirmButtonColor: "#8cd4f5",
+                  confirmButtonText: "Cerrar"
+
+                }).then(function(result){
+
+                  if(result.value){
+
+                    setTimeout('document.location.reload()',100);
+                  }
+             });
+ }
+              }
+ });
+
+}
+
+
+</script>
 <?php
 }
 ?>

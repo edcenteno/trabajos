@@ -9,9 +9,9 @@ $sql = "SELECT * FROM conductores WHERE cont = '$id'";
 $resultado = $mysqli->query($sql);
 $row = $resultado->fetch_array(MYSQLI_ASSOC);
 $dni=$row['dni'];
-$pdf=$row['pdf'];
+
 $blacklist=$row['blacklist'];
-/*var_dump($pdf);*/
+
 ?>
 <html lang="es">
 
@@ -59,7 +59,6 @@ $blacklist=$row['blacklist'];
 
          <form class="form-horizontal" method="POST" action="modif_placa2.php" autocomplete="off" style="border-collapse: separate; border-spacing: 10px 5px;">
            <input type="hidden" name="cont"  value="<?php echo $_GET['id']?>">
-           <input type="hidden" name="pdf"   value="<?php echo $pdf ?>">
 
            <div class="row">
             <div class="col-6 col-sm-4">
@@ -92,6 +91,7 @@ $blacklist=$row['blacklist'];
                 <select class="form-control" id="soat" name ="soat">
                   <option> <?php echo $row['soat'] ?></option>
                   <option value="VIGENTE">VIGENTE</option>
+                  <option value="VENCIDO">VENCIDO</option>
                   <option value="El vehiculo consultado no posee SOAT">El vehiculo consultado no posee SOAT</option>
                 </select>
               </div>
@@ -105,11 +105,14 @@ $blacklist=$row['blacklist'];
                 <label for="nombrecompania">Nombre Compañia: </label>
                 <div class="form-group">
                 <select class="form-control" id="nombrecompania" name ="nombrecompania">
+                  <option value=""></option>
                   <option value="La Positiva">La Positiva</option>
                   <option value="Interseguro">Interseguro</option>
                   <option value="Pacifico Seguros">Pacifico Seguros</option>
                   <option value="Rimac Seguros">Rimac Seguros</option>
                   <option value="Mapfre PerÃº">Mapfre Perú</option>
+                  <option value="Bnp Paribas Cardif">Bnp Paribas Cardif</option>
+                  <option value="Protecta">Protecta</option>
                 </select>
               </div>
 
@@ -130,10 +133,16 @@ $blacklist=$row['blacklist'];
 
               </div>
             </div>
-
-
-
           </div>
+          <input type="text" name="ant_judicial" class="form-control" id="ant_judicial" placeholder="Tipo Certificado" value="<?php echo $row['ant_judicial'] ?>" hidden>
+
+                <input type="text" name="ant_penales" class="form-control" id="ant_penales" placeholder="Tipo Certificado" value="<?php echo $row['ant_penales'] ?>" hidden>
+
+                <input type="text" name="ant_policial" class="form-control" id="ant_policial" placeholder="Tipo Certificado" value="<?php echo $row['ant_policial'] ?>" hidden>
+
+                <input type="text" name="record_cond" class="form-control" id="record_cond" placeholder="Tipo Certificado" value="<?php echo $row['record_cond'] ?>" hidden>
+
+                <input type="text" name="blacklist" class="form-control" id="blacklist" placeholder="Tipo Certificado" value="<?php echo $row['blacklist'] ?>" hidden>
           </div>
 
             <div class="form-group">

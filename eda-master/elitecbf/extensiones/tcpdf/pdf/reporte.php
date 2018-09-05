@@ -70,6 +70,12 @@ $dir = 'temp/';
 	if ($value['nombrecompania']== "Rimac Seguros") {
     $seguro = '<img width="120" src="images/soat/rimac.png">';
 	}
+	if ($value['nombrecompania']== "Bnp Paribas Cardif") {
+        echo '<img width="120" src="vistas/img/plantilla/bnpparibascardif.png">';
+    }
+    if ($value['nombrecompania']== "Protecta") {
+        echo '<img width="120" src="vistas/img/plantilla/protecta.png">';
+    }
 
 
 

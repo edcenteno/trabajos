@@ -22,11 +22,6 @@ if(isset($_SESSION['user'])){
                         "targets":   0,
 
                     },
-                    { 'responsivePriority': 1, 'targets': 7 },
-                    { 'responsivePriority': 1, 'targets': 3 },
-                    { 'responsivePriority': 1, 'targets': 4 },
-                    { 'responsivePriority': 2, 'targets': 17 },
-                    { 'responsivePriority': 2, 'targets': 16 },
 
                     ],
                     "order": [[2, "desc"]],
@@ -59,7 +54,7 @@ if(isset($_SESSION['user'])){
 
                     "bProcessing": true,
                     "bServerSide": true,
-                    "sAjaxSource": "server_process.php"
+                    "sAjaxSource": "server_process2.php"
                 });
             });
 
@@ -78,9 +73,9 @@ if(isset($_SESSION['user'])){
                         ARHU INTERNACIONAL
                     </div>
                     <div class="card-body">
-                        <span class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAgregarConductor">
+                        <!-- <span class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAgregarConductor">
                             Agregar nuevo <span class="fa fa-plus-circle"></span>
-                        </span>
+                        </span> -->
                         <a href="php/salir.php" class="btn btn-outline-warning" align="right">Cerrar Sesión <span class="fa fa-sign-out-alt"></span></a>
                         <hr>
 
@@ -89,24 +84,14 @@ if(isset($_SESSION['user'])){
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>FORM</th>
                                         <th>ID</th>
                                         <th>FECHA DE REGISTRO</th>
                                         <th>DNI</th>
                                         <th>NOMBRE</th>
                                         <th>APELLIDO</th>
                                         <th>PLACA</th>
-                                        <th>ANTECEDENTES PENALES</th>
-                                        <th>ANTECEDENTES JUDICIAL</th>
-                                        <th>ANTECEDENTES POLICIAL</th>
-                                        <th>RECORD CONDUCTOR</th>
-                                        <th>RESULTADO</th>
                                         <th>SOAT</th>
-                                        <th>OBSERVACION</th>
-                                        <th>FORMATO</th>
                                         <th>MODIFICAR SOAT</th>
-                                        <th>MODIFICAR</th>
-                                        <th>ELIMINAR</th>
 
                                     </tr>
                                 </thead>

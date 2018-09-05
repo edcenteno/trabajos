@@ -36,6 +36,15 @@ class TablaConductor{
 		          $dni = $conductores[$i]["dni"];
 
 		        }
+             if ($conductores[$i]['ant_policial'] == "" || $conductores[$i]['ant_judicial'] == "" || $conductores[$i]['ant_penales'] == "" || $conductores[$i]['soat'] == "undefined" || $conductores[$i]['soat'] == "") {
+
+              $soat = "";
+
+             }else{
+
+             $soat = $conductores[$i]['resultado'];
+
+            }
                 $cabify = $conductores[$i]["cabify"];
                 $easytaxi = $conductores[$i]["easytaxi"];
 
@@ -57,7 +66,7 @@ class TablaConductor{
             "'.$conductores[$i]["apellido"].'",
 			      "'.$conductores[$i]["placa"].'",
             "'.$cabify.'",
-			      "'.$conductores[$i]["resultado"].'",
+			      "'.$soat.'",
 			      "'.$vermas.'"
 			    ],';
 
@@ -77,6 +86,16 @@ class TablaConductor{
             }
             if ($conductores[count($conductores)-1]["easytaxi"] == 0 && $conductores[count($conductores)-1]["cabify"] == 0) {
                 $empresa= "";
+            }
+
+            if ($conductores[count($conductores)-1]['ant_policial'] == "" || $conductores[count($conductores)-1]['ant_judicial'] == "" || $conductores[count($conductores)-1]['ant_penales'] == "" || $conductores[count($conductores)-1]['soat'] == "undefined" || $conductores[count($conductores)-1]['soat'] == "") {
+
+              $soat = "";
+
+             }else{
+
+             $soat = $conductores[count($conductores)-1]['resultado'];
+
             }
 
 
