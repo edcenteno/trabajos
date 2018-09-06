@@ -8,12 +8,15 @@ $ant_penales = $_POST['ant_penales'];
 $ant_policial = $_POST['ant_policial'];
 $record_cond = $_POST['record_cond'];
 $resultado = $_POST['resultado'];
+$soat = $_POST['soat'];
 @$blacklist = $_POST['blacklist'];
 
 if ($ant_judicial == 'POSITIVO' ||
 	$ant_penales == 'POSITIVO' ||
 	$ant_policial =='POSITIVO' ||
-	$resultado == 'NO APTO' ||
+	$soat =='El vehiculo consultado no posee SOAT' ||
+	$soat =='NO POSEE' ||
+	$soat =='VENCIDO' ||
 	$record_cond >= '55' ||
 	$blacklist == '1') {
 

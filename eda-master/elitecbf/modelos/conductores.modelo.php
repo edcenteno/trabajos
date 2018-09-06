@@ -381,11 +381,12 @@ class ModeloConductor{
 	/*=============================================
 	ACT
 	=============================================*/
-	static public function mdlMostrarConductorhoyact($tabla, $item, $valor){
+	static public function mdlMostrarConductoresactcbf($tabla, $item, $valor){
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act >0");
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(act) FROM $tabla  WHERE act >0");
+			//$stmt = Conexion::conectar()->prepare("SELECT SUM(act) as conta FROM conductores WHERE act >0 and cabify = 1");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -395,7 +396,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act >0");
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(act) FROM $tabla WHERE act >0");
 
 			$stmt -> execute();
 
@@ -409,7 +410,37 @@ class ModeloConductor{
 
 	}
 
-		static public function mdlMostrarConductoresMesact($tabla, $item2, $valor2){
+		static public function mdlMostrarConductoracteasy($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(act) as conta FROM conductores WHERE act >0");
+			//$stmt = Conexion::conectar()->prepare("SELECT SUM(act) as conta FROM conductores WHERE act >0 and easy = 1");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(act) as conta FROM conductores WHERE act >0");
+			//$stmt = Conexion::conectar()->prepare("SELECT SUM(act) as conta FROM conductores WHERE act >0 and easy = 1");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+		static public function mdlMostrarConductoracteasymesanterior($tabla, $item2, $valor2){
 
 		if($item2 != null){
 

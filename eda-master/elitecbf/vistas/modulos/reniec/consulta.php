@@ -36,7 +36,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
     function search( $dni )
     {
 
-      $response = $this->reniec->search( $dni );
+      /*$response = $this->reniec->search( $dni );
       if($response->success == true)
       {
         $rpt = (object)array(
@@ -45,9 +45,9 @@ if (is_numeric($dni) && strlen($dni) == 8) {
           "result"    => $response->result
         );
         return $rpt;
-      }
+      }*/
 
-      $response = $this->mintra->check( $dni );
+     /* $response = $this->mintra->check( $dni );
       if( $response->success == true )
       {
         $rpt = (object)array(
@@ -56,7 +56,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
           "result"    => $response->result
         );
         return $rpt;
-      }
+      }*/
  $response = $this->essalud->check( $dni );
       if($response->success == true)
       {
@@ -126,7 +126,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
             </div>
         </div>
     </div>
-   <!-- <div class="form-group row">
+    <div class="form-group row">
         <label for="exampleInputEmail3" class="col-sm-6 control-label">Fecha de Nacimiento</label>
         <div class="col-sm-10">
             <div class="input-group">
@@ -134,7 +134,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
                 <input type="text" readonly="" class="form-control" name="fechaNacimiento" id="fechaNacimiento">
             </div>
         </div>
-    </div>-->
+    </div>
     <div class="form-group row">
         <label for="web" class="col-sm-6 control-label">DNI</label>
         <div class="col-sm-10">
@@ -195,13 +195,13 @@ echo '
 <script type="text/javascript">
   var x =<?php echo $a ?>;
 
-/*  $(document).ready(function(){
+  $(document).ready(function(){
     $('#nombre').val(x.result.Nombres);
     $('#apellidos').val(x.result.ApellidoPaterno +' '+ x.result.ApellidoMaterno);
     $('#dni').val(x.result.DNI);
     $('#fechaNacimiento').val(x.result.FechaNacimiento);
 
-  });*/
+  });
 
   /*$(document).ready(function(){
     $('#nombre').val(x.result.nombre);
@@ -211,15 +211,15 @@ echo '
 
   });*/
 
-  $(document).ready(function(){
+/*  $(document).ready(function(){
     $('#nombre').val(x.result.Nombres);
     $('#apellidos').val(x.result.apellidos);
     $('#dni').val(x.result.DNI);
 
 
-  });
+  });*/
 
- type= $('#tipo').val();
+       type= $('#tipo').val();
         dni = $('#dni').val();
 
         $.ajax({
@@ -281,6 +281,7 @@ $(document).ready(function(){
 });
 });
 </script>
+
 <script type="text/javascript">
    $(document).ready(function(){
 

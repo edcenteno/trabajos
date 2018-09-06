@@ -17,7 +17,7 @@ class ModeloUsuarios{
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
 			$stmt -> execute();
-			
+
 
 			return $stmt -> fetch();
 
@@ -30,7 +30,7 @@ class ModeloUsuarios{
 			return $stmt -> fetchAll();
 
 		}
-		
+
 
 		$stmt -> close();
 
@@ -58,16 +58,16 @@ class ModeloUsuarios{
 
 		if($stmt->execute()){
 
-			return "ok";	
+			return "ok";
 
 		}else{
 
 			return "error";
-		
+
 		}
 
 		$stmt->close();
-		
+
 		$stmt = null;
 
 	}
@@ -77,7 +77,7 @@ class ModeloUsuarios{
 	=============================================*/
 
 	static public function mdlEditarUsuario($tabla, $datos){
-	
+
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, password = :password, perfil = :perfil, empresa = :empresa, foto = :foto WHERE usuario = :usuario");
 
 		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
@@ -90,10 +90,10 @@ class ModeloUsuarios{
 		if($stmt -> execute()){
 
 			return "ok";
-		
+
 		}else{
 
-			return "error";	
+			return "error";
 
 		}
 
@@ -117,10 +117,10 @@ class ModeloUsuarios{
 		if($stmt -> execute()){
 
 			return "ok";
-		
+
 		}else{
 
-			return "error";	
+			return "error";
 
 		}
 
@@ -143,10 +143,10 @@ class ModeloUsuarios{
 		if($stmt -> execute()){
 
 			return "ok";
-		
+
 		}else{
 
-			return "error";	
+			return "error";
 
 		}
 

@@ -10,7 +10,7 @@
 		$cabify=$_POST['cabify'];
 		$fecha_nacimiento=$_POST['fechaNacimiento'];
 		$placa="NINGUNO";
-        $tipoext=1;
+        $tipoext=$_POST['tipoext'];
 
 		function buscaRepetido($dni,$conexion){
 					$sql="SELECT * from conductores
@@ -61,8 +61,8 @@
 					$saa=str_pad($secuencia_arhu_ant, 5, "0", STR_PAD_LEFT);
 					$secuencia =  "RA-" .$año . $mes. $saa;
 				}
-				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant, form, usuario_reg, extr)
-					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), '$secuencia', 'Nuevo', '$usuario_reg', '$tipoext')";
+				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant, form, usuario_reg, extr, soat)
+					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), '$secuencia', 'Nuevo', '$usuario_reg', '$tipoext', 'NO POSEE')";
 				$result=mysqli_query($conexion,$sql);
 
 				$sql="INSERT into proceso
@@ -74,25 +74,9 @@
 				//var_dump($sql);
 
 				echo "1";
-				'<script>
- 						dni = '.$dni.'
- 						type = '.$tipoext.'
 
-						$.ajax({
-                          type: "POST",
-                          url: https://captcharh.ddns.net/api/record,
-                          data: {
-                              type: type, //tipo de documento
-                              documento: dni, //numero de documento
-                              datas: "record" //tipo de solicitud
-                          }
 
-                        }).done(function(msg){
-                         // $("#resultado").html(msg);
-                          //console.log(msg)
 
-                        });
-                        </script>';
 			}
 
 

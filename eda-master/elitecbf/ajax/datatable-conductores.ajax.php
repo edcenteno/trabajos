@@ -107,7 +107,7 @@ class TablaConductor{
             "'.$conductores[count($conductores)-1]["apellido"].'",
 			      "'.$conductores[count($conductores)-1]["placa"].'",
                   "'.$empresa.'",
-			      "'.$conductores[count($conductores)-1]["resultado"].'",
+			      "'.$soat.'",
 			      "'.$vermas.'"
 			]
 			]

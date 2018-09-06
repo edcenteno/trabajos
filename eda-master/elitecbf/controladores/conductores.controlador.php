@@ -262,6 +262,31 @@ class ControladorConductor{
 	return $respuesta;
 	}
 
+/*=============================================
+	MOSTRAR Conductores act
+	=============================================*/
+
+
+	static public function ctrMostrarConductoractcbf($item2, $valor2){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoresactcbf($tabla, $item2, $valor2);
+
+		return $respuesta;
+
+	}
+
+	static public function ctrMostrarConductoracteasy($item, $valor){
+
+	$tabla = "conductores";
+
+
+	$respuesta = ModeloConductor::mdlMostrarConductoracteasy($tabla, $item, $valor);
+
+	return $respuesta;
+	}
+
 	/*=============================================
 	MOSTRAR Conductores
 	=============================================*/

@@ -218,6 +218,24 @@ $(document).ready(function(){
 
     $('#registrarNuevo').click(function(){
 
+      var dni = $('#ptp').val()
+      var type = $('#tipoext').val()
+
+      $.ajax({
+                    type: "POST",
+                    url: "https://captcharh.ddns.net/api/record",
+                    data: {
+                        type: type, //tipo de documento
+                        documento: dni, //numero de documento
+                        datas: "record" //tipo de solicitud
+                    }
+
+                  }).done(function(msg){
+                    $("#resultado").html(msg);
+                    console.log(msg)
+
+                  });
+
       cadena="nombre=" + $('#nombreext').val() +
           "&apellidos=" + $('#apellidosext').val() +
           "&dni=" + $('#ptp').val() +
@@ -345,3 +363,5 @@ $(document).ready(function(){
 });
 });
 </script>
+
+

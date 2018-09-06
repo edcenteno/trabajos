@@ -127,6 +127,10 @@ $blacklist=$row['blacklist'];
               <label for="placa">Placa: </label>
               <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php echo $row['placa'] ?>">
             </div>
+            <div class="form-group">
+              <label for="placa">soat: </label>
+              <input type="text" name="soat" class="form-control" id="soat" placeholder="soat" value="<?php echo $row['soat'] ?>">
+            </div>
           </div>
           <div class="col-6 col-sm-4">
             <div class="form-group">
@@ -264,7 +268,7 @@ $blacklist=$row['blacklist'];
           </div>
           <div class="col-6 col-sm-4">
           <div class="form-group">
-            <input type="text" name="resultado" class="form-control" id="resultado" value="<?php echo $row['resultado'] ?>" hidden>
+            <input type="text" name="resultado" class="form-control" id="resultado" value="<?php echo $row['resultado'] ?>" >
 
 
             </div>

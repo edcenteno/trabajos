@@ -22,7 +22,7 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
 				//var_dump($respuesta);
-				
+
 				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
 
 					if($respuesta["estado"] == 1){
@@ -37,7 +37,7 @@ class ControladorUsuarios{
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
 						=============================================*/
-				
+
 
 						date_default_timezone_set('America/Lima');
 
@@ -62,35 +62,35 @@ class ControladorUsuarios{
 
 							</script>';
 
-						}				
-						
+						}
+
 					}else{
 
 						echo '<br>
 								<div class="alert alert-warning">
-                                	<button type="button" class="close" data-dismiss="alert" aria-label="Close"> 
-                                		<span aria-hidden="true">&times;</span> 
+                                	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                		<span aria-hidden="true">&times;</span>
                                 	</button>
-                                    <h3 class="text-warning"><i class="fa fa-exclamation-triangle"></i> Atención</h3> 
+                                    <h3 class="text-warning"><i class="fa fa-exclamation-triangle"></i> Atención</h3>
                                     		El usuario aún no está activado.
                                 </div>';
 
-					}		
+					}
 
 				}else{
 
 					echo '<br>
 							<div class="alert alert-danger">
-                            	<button type="button" class="close" data-dismiss="alert" aria-label="Close"> 
-                            		<span aria-hidden="true">&times;</span> 
+                            	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            		<span aria-hidden="true">&times;</span>
                             	</button>
-                                <h3 class="text-danger"><i class="fa fa-times"></i> Error</h3> 
+                                <h3 class="text-danger"><i class="fa fa-times"></i> Error</h3>
                                 		Usuario o contraseña erronea, vuelva a intentarlo.
                             </div>';
 
 				}
 
-			}	
+			}
 
 		}
 
@@ -141,7 +141,7 @@ class ControladorUsuarios{
 
 						$ruta = "vistas/img/usuarios/".$_POST["nuevoUsuario"]."/".$aleatorio.".jpg";
 
-						$origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -161,7 +161,7 @@ class ControladorUsuarios{
 
 						$ruta = "vistas/img/usuarios/".$_POST["nuevoUsuario"]."/".$aleatorio.".png";
 
-						$origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);						
+						$origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -189,7 +189,7 @@ class ControladorUsuarios{
 					       	   "telefono" => $_POST["nuevoTelefono"]);
 
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
-				
+
 				if($respuesta == "ok"){
 
 					echo '<script>
@@ -205,18 +205,18 @@ class ControladorUsuarios{
 					}).then(function(result){
 
 						if(result.value){
-						
+
 							window.location = "usuarios";
 
 						}
 
 					});
-				
+
 
 					</script>';
 
 
-				}	
+				}
 
 
 			}else{
@@ -234,13 +234,13 @@ class ControladorUsuarios{
 					}).then(function(result){
 
 						if(result.value){
-						
+
 							window.location = "usuarios";
 
 						}
 
 					});
-				
+
 
 				</script>';
 
@@ -307,7 +307,7 @@ class ControladorUsuarios{
 
 						mkdir($directorio, 0755);
 
-					}	
+					}
 
 					/*=============================================
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
@@ -323,7 +323,7 @@ class ControladorUsuarios{
 
 						$ruta = "vistas/img/usuarios/".$_POST["editarUsuario"]."/".$aleatorio.".jpg";
 
-						$origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -343,7 +343,7 @@ class ControladorUsuarios{
 
 						$ruta = "vistas/img/usuarios/".$_POST["editarUsuario"]."/".$aleatorio.".png";
 
-						$origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);						
+						$origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -491,7 +491,7 @@ class ControladorUsuarios{
 
 				</script>';
 
-			}		
+			}
 
 		}
 
@@ -499,6 +499,6 @@ class ControladorUsuarios{
 
 
 }
-	
+
 
 

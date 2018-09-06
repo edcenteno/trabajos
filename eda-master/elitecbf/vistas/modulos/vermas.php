@@ -174,7 +174,7 @@ $(document).ready(function(){
                         <div class="row text-center justify-content-md-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
 
-                        <!-- <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
+                        <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>
                         <?php
                             $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 1 month"));
@@ -197,9 +197,9 @@ $(document).ready(function(){
                         ?>
 
                         </div>
-                    <!--  <button class="btn btn-warning" id= "acthoy" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
+
                      <?php
-                     if ($value['placa'] == "NINGUNO") {
+                     if ($value['placa'] == "NINGUNO" || $value['placa'] == "") {
                          echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
                      }
                     ?>
@@ -292,7 +292,7 @@ $(document).ready(function(){
                                                 console.log(msg)*/
                                             });
 
-                              /*      parametros="&dni=" + dni+
+                                    parametros="&dni=" + dni+
                                                 "&placa=" + placa+
                                                 "&cabify=" + cabify+
                                                 "&easy=" + easy;
@@ -304,7 +304,7 @@ $(document).ready(function(){
                                         success:  function (response) {
 
                                         }
-                                });*/
+                                });
                                 setTimeout('document.location.reload()',2000);
 
                                   }
