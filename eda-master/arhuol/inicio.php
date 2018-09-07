@@ -82,6 +82,7 @@ if(isset($_SESSION['user'])){
                             Agregar nuevo <span class="fa fa-plus-circle"></span>
                         </span>
                         <a href="php/salir.php" class="btn btn-outline-warning" align="right">Cerrar Sesión <span class="fa fa-sign-out-alt"></span></a>
+                        <a href="listadomod.php" class="btn btn-outline-danger" align="right">Listado Especial <span class="fa fa-sign-out-alt"></span></a>
                         <hr>
 
                         <div class="row table-responsive">

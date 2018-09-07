@@ -57,7 +57,7 @@ $blacklist=$row['blacklist'];
         <div class="card-body">
 
 
-         <form class="form-horizontal" method="POST" action="modif_placa2.php" autocomplete="off" style="border-collapse: separate; border-spacing: 10px 5px;">
+         <form class="form-horizontal" method="POST" action="modif_pam2.php" autocomplete="off" style="border-collapse: separate; border-spacing: 10px 5px;">
            <input type="hidden" name="cont"  value="<?php echo $_GET['id']?>">
 
            <div class="row">
@@ -86,7 +86,7 @@ $blacklist=$row['blacklist'];
           </div>
           <div class="col-6 col-sm-4">
             <div class="form-group">
-              <label for="ant_policial">SOAT: </label>
+              <label for="soat">SOAT: </label>
               <div class="form-group">
                 <select class="form-control" id="soat" name ="soat">
                   <option> <?php echo $row['soat'] ?></option>
@@ -134,20 +134,25 @@ $blacklist=$row['blacklist'];
               </div>
             </div>
           </div>
-          <input type="text" name="ant_judicial" class="form-control" id="ant_judicial" placeholder="Tipo Certificado" value="<?php echo $row['ant_judicial'] ?>" hidden>
+          <div class="col-6 col-sm-4">
+            <div class="form-group">
+          <label for="resultado">RESULTADO: </label>
+              <div class="form-group">
+                <select class="form-control" id="resultado" name ="resultado">
+                  <option> <?php echo $row['resultado'] ?></option>
+                  <option value="APTO">APTO</option>
+                  <option value="NO APTO">NO APTO</option>
 
-                <input type="text" name="ant_penales" class="form-control" id="ant_penales" placeholder="Tipo Certificado" value="<?php echo $row['ant_penales'] ?>" hidden>
+                </select>
+              </div>
+            </div>
+          </div>
 
-                <input type="text" name="ant_policial" class="form-control" id="ant_policial" placeholder="Tipo Certificado" value="<?php echo $row['ant_policial'] ?>" hidden>
-
-                <input type="text" name="record_cond" class="form-control" id="record_cond" placeholder="Tipo Certificado" value="<?php echo $row['record_cond'] ?>" hidden>
-
-                <input type="text" name="blacklist" class="form-control" id="blacklist" placeholder="Tipo Certificado" value="<?php echo $row['blacklist'] ?>" hidden>
           </div>
 
             <div class="form-group">
              <div class="col-sm-offset-2 col-sm-10">
-              <a href="inicio.php" class="btn btn-warning">Regresar</a>
+              <a href="listadomod.php" class="btn btn-warning">Regresar</a>
               <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
           </div>

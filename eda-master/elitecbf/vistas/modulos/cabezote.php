@@ -58,56 +58,59 @@
                                 <div class="drop-title">Notificaciones</div>
                             </li>
                             <li>
+                                <div class="message-center">
 
                                 <?php
 
-                                    $fecha_actual = date("d/m/Y");
 
-                                    $ano= date("d/m/Y",strtotime($fecha_actual."- 1 year"));
-                                    echo $ano;
-                                    echo $fecha_actual;
                                     $item = null;
                                     $valor = null;
 
 
-                                    $soatconductor = ControladorConductor::ctrMostrarSoatConductor($item, $valor, $ano, $fecha_actual);
+                                    $soatconductor = ControladorConductor::ctrMostrarSoatConductor($item, $valor);
 
-                                    var_dump($soatconductor);
+                                    //var_dump($soatconductor);
                                     foreach ($soatconductor as $key => $value){
+                                        $fecha_fin_soat = $value['fecha_fin_soat'];
+                                          $dia = date("d-M-Y");
+                                            $d =date("d-M-Y",strtotime($dia."- 1 Moth"));
 
-                                    }
+                                        $nombre = $value['nombre'];
+                                        $apellido = $value['apellido'];
+                                        $soat = $value['soat'];
+                                        $dni = $value['dni'];
 
+                                        $cbf = $value['cabify'];
+                                        $easy = $value['easytaxi'];
 
+                                        if ($cbf == 1) {
+                                            $empresa = '<img width="30" class="user-image" src="vistas/img/plantilla/favicon.ico">';
+                                        }
+
+                                        if($easy == 1){
+                                            $empresa= '<img width="30" class="user-image" src="vistas/img/plantilla/easy.png">';
+                                        }
+
+                                    if($easy == 0 && $cbf == 0){
+                                            $empresa= '';
+                                        }
+                                        if ($fecha_fin_soat <= $d) {
+                                                 echo ' <a href="">
+                                                            <div class="btn-circle">'.$empresa.'</div>
+                                                            <div class="mail-contnet">
+                                                                <h5>'. $nombre . $apellido.'</h5> <span class="mail-desc"><?php echo $soat ?></span> <span class="time">'.$soat.' ' .$fecha_fin_soat. '</span> </div></a>';
+                                             } else {
+                                                 # code...
+                                             }
+
+                                }
                                 ?>
-                                <div class="message-center">
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span> </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span> </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Settings</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span> </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                                    </a>
+
                                 </div>
                             </li>
+
                             <li>
-                                <a class="nav-link text-center link" href="javascript:void(0);"> <strong>Verificar todas las notificaciones</strong> <i class="fa fa-angle-right"></i> </a>
+                                <a class="nav-link text-center link" href="conductoressoat"> <strong>Verificar todas las notificaciones</strong> <i class="fa fa-angle-right"></i> </a>
                             </li>
                         </ul>
                     </div>

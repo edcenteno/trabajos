@@ -35,18 +35,18 @@ $extr=$value['extr'];
 
     }).done(function(msg){
         //$("#resultado").html(msg);
-        //console.log(msg)
+        console.log(msg)
         if (msg != "No existe el registro, intente mas tarde.") {
-        $('.licencia')[0].innerText = msg['var_direccion'];
-        $('.licencia')[1].innerText = msg['var_departamento'];
-        $('.licencia')[2].innerText = msg['var_distrito'];
-        $('.licencia')[3].innerText = msg['var_estado_licencia'];
-        $('.licencia')[4].innerText = msg['dat_fecha_expedicion'];
-        $('.licencia')[5].innerText = msg['dat_fecha_revalidacion'];
-        $('.licencia')[6].innerText = msg['num_cod_administrado'];
-        $('.licencia')[7].innerText = msg['var_num_licencia'];
-        $('.licencia')[8].innerText = msg['var_restricciones1'];
-        $('.licencia')[9].innerText = msg['var_restricciones2'];
+        $('.licencia')[0].innerText = msg[0]['var_direccion'];
+        $('.licencia')[1].innerText = msg[0]['var_departamento'];
+        $('.licencia')[2].innerText = msg[0]['var_distrito'];
+        $('.licencia')[3].innerText = msg[0]['var_estado_licencia'];
+        $('.licencia')[4].innerText = msg[0]['dat_fecha_expedicion'];
+        $('.licencia')[5].innerText = msg[0]['dat_fecha_revalidacion'];
+        $('.licencia')[6].innerText = msg[0]['num_cod_administrado'];
+        $('.licencia')[7].innerText = msg[0]['var_num_licencia'];
+        $('.licencia')[8].innerText = msg[0]['var_restricciones1'];
+        $('.licencia')[9].innerText = msg[0]['var_restricciones2'];
 
         $("#acthoy").hide();
          }else{
@@ -528,7 +528,7 @@ $(document).ready(function(){
                                             </div>
                                             <div class="ml-auto">
                                                 <?php
-                                                    if ($value['ant_policial'] == "" || $value['ant_judicial'] == "" || $value['ant_penales'] == "" || $value['soat'] == "undefined" || $value['soat'] == "") {
+                                                    if ($value['ant_policial'] == "" || $value['ant_judicial'] == "" || $value['ant_penales'] == "" || $value['soat'] == "undefined") {
 
                                                     } else {
                                                        if ($value['resultado'] == "APTO") {

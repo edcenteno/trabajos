@@ -89,6 +89,7 @@ $dir = 'temp/';
 	}else{
 	$arr = json_decode($res->getBody(), true);
 	}
+	var_dump($arr);
 
 	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
 	$res->getStatusCode();

@@ -36,7 +36,7 @@ class TablaConductor{
 		          $dni = $conductores[$i]["dni"];
 
 		        }
-             if ($conductores[$i]['ant_policial'] == "" || $conductores[$i]['ant_judicial'] == "" || $conductores[$i]['ant_penales'] == "" || $conductores[$i]['soat'] == "undefined" || $conductores[$i]['soat'] == "") {
+             if ($conductores[$i]['ant_policial'] == "" || $conductores[$i]['ant_judicial'] == "" || $conductores[$i]['ant_penales'] == "" || $conductores[$i]['soat'] == "undefined") {
 
               $soat = "";
 
@@ -88,7 +88,7 @@ class TablaConductor{
                 $empresa= "";
             }
 
-            if ($conductores[count($conductores)-1]['ant_policial'] == "" || $conductores[count($conductores)-1]['ant_judicial'] == "" || $conductores[count($conductores)-1]['ant_penales'] == "" || $conductores[count($conductores)-1]['soat'] == "undefined" || $conductores[count($conductores)-1]['soat'] == "") {
+            if ($conductores[count($conductores)-1]['ant_policial'] == "" || $conductores[count($conductores)-1]['ant_judicial'] == "" || $conductores[count($conductores)-1]['ant_penales'] == "" || $conductores[count($conductores)-1]['soat'] == "undefined") {
 
               $soat = "";
 

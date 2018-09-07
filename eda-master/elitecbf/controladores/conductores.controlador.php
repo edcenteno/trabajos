@@ -482,11 +482,21 @@ class ControladorConductor{
 
 	}
 
-	static public function ctrMostrarSoatConductor($item, $valor, $ano, $fecha_actual){
+	static public function ctrMostrarSoatConductor($item, $valor){
 
 		$tabla = "conductores";
 
-		$respuesta = ModeloConductor::mdlMostrarSoatConductor($tabla, $item, $valor, $ano, $fecha_actual);
+		$respuesta = ModeloConductor::mdlMostrarSoatConductor($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
+
+	static public function ctrMostrarConductorsoatvencido($item, $valor){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarSoatConductorvencido($tabla, $item, $valor);
 
 		return $respuesta;
 

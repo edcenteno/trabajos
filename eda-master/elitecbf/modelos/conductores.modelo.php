@@ -640,11 +640,11 @@ class ModeloConductor{
 
 	}
 
-		static public function mdlMostrarSoatConductor($tabla, $item, $valor, $ano, $fecha_actual){
+		static public function mdlMostrarSoatConductor($tabla, $item, $valor){
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_fin_soat BETWEEN '$ano' AND '$fecha_actual'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where soat = 'VENCIDO' ORDER BY fecha desc limit 10");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -654,8 +654,35 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_fin_soat BETWEEN '$ano' AND '$fecha_actual'
-");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where soat = 'VENCIDO' ORDER BY fecha desc limit 10");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+		static public function mdlMostrarSoatConductorvencido($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where soat = 'VENCIDO'");
 
 			$stmt -> execute();
 

@@ -22,6 +22,11 @@ if(isset($_SESSION['user'])){
                         "targets":   0,
 
                     },
+                    { 'responsivePriority': 1, 'targets': 11 },
+                    { 'responsivePriority': 1, 'targets': 3 },
+                    { 'responsivePriority': 1, 'targets': 4 },
+                    { 'responsivePriority': 2, 'targets': 14 },
+                    { 'responsivePriority': 2, 'targets': 11 },
 
                     ],
                     "order": [[2, "desc"]],
@@ -73,10 +78,7 @@ if(isset($_SESSION['user'])){
                         ARHU INTERNACIONAL
                     </div>
                     <div class="card-body">
-                        <!-- <span class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAgregarConductor">
-                            Agregar nuevo <span class="fa fa-plus-circle"></span>
-                        </span> -->
-                        <a href="php/salir.php" class="btn btn-outline-warning" align="right">Cerrar Sesión <span class="fa fa-sign-out-alt"></span></a>
+                        <a href="inicio.php" class="btn btn-outline-warning" align="right">Inicio <span class="fa fa-sign-out-alt"></span></a>
                         <hr>
 
                         <div class="row table-responsive">
@@ -90,8 +92,14 @@ if(isset($_SESSION['user'])){
                                         <th>NOMBRE</th>
                                         <th>APELLIDO</th>
                                         <th>PLACA</th>
+                                        <th>ANTECEDENTES PENALES</th>
+                                        <th>ANTECEDENTES JUDICIAL</th>
+                                        <th>ANTECEDENTES POLICIAL</th>
+                                        <th>RECORD CONDUCTOR</th>
+                                        <th>RESULTADO</th>
                                         <th>SOAT</th>
-                                        <th>MODIFICAR SOAT</th>
+                                        <th>OBSERVACION</th>
+                                        <th>MODIFICAR</th>
 
                                     </tr>
                                 </thead>

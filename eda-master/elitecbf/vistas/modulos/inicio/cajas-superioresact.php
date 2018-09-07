@@ -1,42 +1,31 @@
-<div class="col-lg-6">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Gráfica de Actualizados  <?php echo date('M-Y') ?></h4>
-            <div id="morris-donut-chart"></div>
-        </div>
+<?php
+require 'conexion.php';
+$sql="SELECT SUM(act) as sumaact FROM conductores";
+    $result=mysqli_query($conexion,$sql);
+    while($row = $result->fetch_array(MYSQLI_ASSOC)){
+      $rows[] = $row;
+    }
+    foreach ($rows as $key => $value) {
+        $suma = $value['sumaact'];
+    }
+?>
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12" style="width: 85%; height: 140px;">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2><i class="icon-refresh"></i></h2>
+                        <h3 class="text-muted">Reporte de conductores Actualizados del mes <?php echo date('M-Y');?></h3>
+                    </div>
+                    <div class="ml-auto">
+                        <h2 class="counter text-info"><?php echo $suma ?></h2>
+                    </div><br>
+
+                </div>
+            </div>
     </div>
 </div>
-
-<script type="text/javascript">
-
-    // ==============================================================
-    // Variables Apto - no aptos
-    // ==============================================================
-
-    var act_cbf = <?php echo json_encode($act_cbf)?>  ;
-    var act_cbf = parseInt(act_cbf[0].act_cbf);
-
-    var act_easy = <?php echo json_encode($act_easy)?>;
-    var act_easy = parseInt(act_easy[0].act_easy);
-
-  $(function () {
-    "use strict";
- // Morris donut chart
-
-    Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [{
-            label: "Cabify",
-            value: act_cbf,
-
-        }, {
-            label: "EasyTaxi",
-            value: act_easy
-        }],
-        resize: true,
-        colors:['#875cf4', '#ffa519']
-    });
-
-
- });
-</script>
+</div>

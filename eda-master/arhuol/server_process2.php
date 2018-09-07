@@ -6,7 +6,7 @@
     $sTabla = "conductores";
 
     /* Array que contiene los nombres de las columnas de la tabla*/
-    $aColumnas = array('plus', 'cont', 'fecha', 'dni', 'nombre', 'apellido', 'placa', 'soat', '');
+    $aColumnas = array('plus', 'cont', 'fecha', 'dni', 'nombre', 'apellido', 'placa', 'ant_penales', 'ant_judicial', 'ant_policial', 'record_cond',  'resultado', 'soat', 'observacion');
 
     /* columna indexada */
     $sIndexColumn = "dni";
@@ -124,9 +124,10 @@
             }
         }
 
-        if ($aRow['soat'] == "undefined" || $aRow['soat'] =="" || $aRow['soat'] =="0000-00-00" ){
-            $row[] = "<a href='modificarplaca.php?id=".$aRow['cont']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i>SOAT</button></a>";
-        }
+
+
+        $row[] = "<a href='modpam.php?id=".$aRow['cont']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button>";
+
 
 
         $output['aaData'][] = $row;
