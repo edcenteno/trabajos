@@ -455,14 +455,14 @@ class ControladorConductor{
 
 	}
 
-	static public function ctrMostrarConductorhoyactcbf($item, $valor){
+	/*static public function ctrMostrarConductorhoyactcbf($item, $valor){
 
 	$tabla = "conductores";
 
 	$respuesta = ModeloConductor::mdlMostrarConductorhoyactcbf($tabla, $item, $valor);
 
 	return $respuesta;
-	}
+	}*/
 
 
 

@@ -471,7 +471,7 @@ class ModeloConductor{
 	/*=============================================
 	ACT CBF
 	=============================================*/
-	static public function mdlMostrarConductorhoyactcbf($tabla, $item, $valor){
+	/*static public function mdlMostrarConductorhoyactcbf($tabla, $item, $valor){
 
 		if($item != null){
 
@@ -497,7 +497,7 @@ class ModeloConductor{
 
 		$stmt = null;
 
-	}
+	}*/
 
 		static public function mdlMostrarConductoresMesactcbf($tabla, $item2, $valor2){
 

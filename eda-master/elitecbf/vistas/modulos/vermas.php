@@ -35,8 +35,15 @@ $extr=$value['extr'];
 
     }).done(function(msg){
         //$("#resultado").html(msg);
-        console.log(msg)
-        if (msg != "No existe el registro, intente mas tarde.") {
+       // console.log(msg)
+
+        if (typeof msg[0] == "undefined") {
+        $('.licencia')[3].innerText = msg['slc'][0]['ESTADO_DE_LA_LICENCIA'];
+
+         }elseif (typeof msg['slc'] == "undefined") {
+        $("#prue").hide();
+        }else{
+            //$('#puntos')[0].innerText = msg['slc']['PUNTOS'];
         $('.licencia')[0].innerText = msg[0]['var_direccion'];
         $('.licencia')[1].innerText = msg[0]['var_departamento'];
         $('.licencia')[2].innerText = msg[0]['var_distrito'];
@@ -47,9 +54,7 @@ $extr=$value['extr'];
         $('.licencia')[7].innerText = msg[0]['var_num_licencia'];
         $('.licencia')[8].innerText = msg[0]['var_restricciones1'];
         $('.licencia')[9].innerText = msg[0]['var_restricciones2'];
-
         $("#acthoy").hide();
-         }else{
 
          }
 
@@ -78,13 +83,7 @@ $extr=$value['extr'];
 //        $('.multas')[11].innerText = msg[0]['str_puntos'];
         }
 
-        record = $('.record')[0].innerText = msg['suma']+"%";
-        if (record> "55") {
-            $('.record')[1].innerText = msg['suma']+"%";
-        }else{
-            $('.record')[1].innerText = msg['suma']+"%";
 
-        }
     });
 
 
@@ -174,7 +173,7 @@ $(document).ready(function(){
                         <div class="row text-center justify-content-md-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
 
-                        <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>
+                        <!-- <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
                         <?php
                             $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 1 month"));
@@ -199,7 +198,7 @@ $(document).ready(function(){
                         </div>
 
                      <?php
-                     if ($value['placa'] == "NINGUNO" || $value['placa'] == "") {
+                     if ($value['placa'] == "NINGUNO" || $value['placa'] == "" || $value['placa'] == "NINGUNA") {
                          echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
                      }
                     ?>
@@ -332,7 +331,7 @@ $(document).ready(function(){
                     <?php
 
                         if($_SESSION["perfil"] !="RRHH"){
-                            echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>';
+                            echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" id= "prue" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>';
                                 if ($value['placa'] == "NINGUNO") {
 
                                  } else {
@@ -504,7 +503,7 @@ $(document).ready(function(){
                                                 <h3 class="text-muted">Record del conductor</h3>
                                             </div>
                                             <div class="ml-auto">
-                                                <h2 class="counter"><?php echo $value['record_cond'];?>%</h2>
+                                                <h2 class="counter"><?php echo $value['record_cond'];?></h2>
                                             </div>
                                         </div>
                                     </div>
