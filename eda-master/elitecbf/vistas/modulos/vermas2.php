@@ -39,12 +39,10 @@ $extr=$value['extr'];
 
         if (typeof msg[0] == "undefined") {
         $('.licencia')[3].innerText = msg['slc'][0]['ESTADO_DE_LA_LICENCIA'];
-        $('.licencia')[5].innerText = msg['slc'][0]['VIGENTE_HASTA'];
-        $('.licencia')[6].innerText = msg['slc'][0]['NRO_DE_LICENCIA'];
-        $(".inf").hide();
+        $("#inf").hide();
 
-       /*  }elseif (typeof msg['slc'] == "undefined") {
-        $("#prue").hide();*/
+         }elseif (typeof msg['slc'] == "undefined") {
+        $("#prue").hide();
         }else{
             //$('#puntos')[0].innerText = msg['slc']['PUNTOS'];
         $('.licencia')[0].innerText = msg[0]['var_direccion'];
@@ -749,7 +747,7 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted licencia "></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Fecha de Expedicion</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de Expedicion</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
@@ -764,12 +762,12 @@ $(document).ready(function(){
                             </div>
                             <hr>
                              <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Codigo Administrado</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Codigo Administrado</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
 
-                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Restricciones</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Restricciones</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>

@@ -32,6 +32,7 @@ require 'graficas/querys.php';
                     <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#reporte" role="tab"><i class="ti-car"></i> Reporte de Conductores</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#cabify" role="tab"><i class="fa fa-taxi"></i> Cabify</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#easy" role="tab"><i class="fa fa-taxi"></i> Easy Taxi</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#easyEconomy" role="tab"><i class="fa fa-taxi"></i> Easy Economy</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#act" role="tab"><i class="ti-reload"></i> Reporte General </a> </li>
                 </ul>
              <!-- Tab panes -->
@@ -162,6 +163,44 @@ require 'graficas/querys.php';
                      </div>
 <!--second tab-->
                     <div class="tab-pane" id="easy" role="tabpanel">
+                        <div class="card-body">
+                            <div class="row">
+
+                        <div class="col-lg-12 col-md-6">
+
+                        <?php
+                            include "inicio/cajas-superioreseasy.php";
+
+                        ?>
+                        </div>
+                          <!-- Column -->
+
+                        <?php
+
+                        if($_SESSION["perfil"] =="Operador" || $_SESSION["perfil"] =="RRHH"){
+
+                         echo '<div class="col-lg-12">
+                             <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex m-b-40 align-items-center no-block">
+                                            <h1 class="card-title ">Bienvenid@ ' .$_SESSION["nombre"].'</h1>
+
+                                        </div>
+
+                                    </div>
+                            </div>
+                        </div>';
+
+                        }
+
+                        ?>
+
+                </div>
+                </div>
+            </div>
+
+            <!--second tab-->
+                    <div class="tab-pane" id="easyEconomy" role="tabpanel">
                         <div class="card-body">
                             <div class="row">
 
