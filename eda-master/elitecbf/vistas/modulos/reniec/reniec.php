@@ -166,6 +166,7 @@ function realizaProceso(){
                                         <input type="checkbox" name="easyeconomy" id="easyeconomy" class="form-check-input" value="1">Easy Economy
                                       </label>
                                     </div>
+
                                   </div>
                                   </div>
                                   <input type="text" hidden="" class="form-control" name="usuario_reg2" id="usuario_reg2" value="<?php  echo $usuario_reg ?>" />

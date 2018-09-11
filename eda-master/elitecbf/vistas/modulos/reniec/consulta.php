@@ -157,6 +157,11 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         <input type="checkbox" name="easytaxi" id="easytaxi" class="form-check-input" value="1">Easy Taxi
       </label>
     </div>
+    <div class="form-check-inline">
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" name="easyeconomy" id="easyeconomy" class="form-check-input" value="1">Easy Economy
+      </label>
+    </div>
 
 
 </form>
