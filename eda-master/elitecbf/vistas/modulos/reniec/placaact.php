@@ -58,7 +58,7 @@ echo"</pre>";*/
 echo "FechaInicio : ". $out['FechaInicio'];
 echo "FechaFin : ".$out['FechaFin']." <br>";*/
 $dni = $_POST['dni'];
-/*$estado = $out['Estado'];
+$estado = $out['Estado'];
 $FechaInicio = $out['FechaInicio'];
 $FechaFin = $out['FechaFin'];
 $NombreCompania= $out['NombreCompania'];
@@ -66,14 +66,14 @@ $NumeroPoliza = $out['NumeroPoliza'];
 $NombreUsoVehiculo = $out['NombreUsoVehiculo'];
 $NombreClaseVehiculo = $out['NombreClaseVehiculo'];
 $FechaControlPolicial = $out['FechaControlPolicial'];
-$TipoCertificado = $out['TipoCertificado'];*/
+$TipoCertificado = $out['TipoCertificado'];
 
 
-/*if ($estado == "VIGENTE") {
+if ($estado == "VIGENTE") {
   $soat = "VIGENTE";
 } else {
   $soat = 'El vehiculo consultado no posee SOAT';
-}*/
+}
 
 ?>
     <input type="text" hidden readonly="" class="form-control" name="fechaNacimiento" id="fechaNacimiento" value="<?php echo $fechaNacimiento ?>">
@@ -108,7 +108,7 @@ $TipoCertificado = $out['TipoCertificado'];*/
             </div>
         </div>
     </div>
-     <!-- <div class="form-group row">
+     <div class="form-group row">
         <label for="web" class="col-sm-3 control-label">SOAT</label>
         <div class="col-sm-9">
             <div class="input-group">
@@ -116,7 +116,7 @@ $TipoCertificado = $out['TipoCertificado'];*/
                 <input type="text" readonly="" class="form-control" name="estado" id="estado" value="<?php echo $soat ?>">
             </div>
         </div>
-    </div> -->
+    </div>
     <div class="form-group row">
         <label for="web" class="col-sm-3 control-label">Orden Captura</label>
         <div class="col-sm-9">

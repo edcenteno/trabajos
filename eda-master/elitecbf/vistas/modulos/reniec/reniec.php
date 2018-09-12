@@ -217,6 +217,7 @@ $(document).ready(function(){
   $("#registrarNuevo").click(function () {
   easytaxi2 = ($('input:checkbox[name=easytaxi]:checked').val());
   cabify2 = ($('input:checkbox[name=cabify]:checked').val());
+  easyeconomy2 = ($('input:checkbox[name=easyeconomy]:checked').val());
     //$("#formulario").submit();
   });
 });
@@ -249,6 +250,7 @@ $(document).ready(function(){
           "&tipoext=" + $('#tipoext').val() +
           "&cabify=" + cabify2 +
           "&easytaxi=" + easytaxi2 +
+          "&easyeconomy=" + easyeconomy2 +
           "&usuario_reg=" + $('#usuario_reg2').val() +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
@@ -327,6 +329,7 @@ $(document).ready(function(){
   $("#consultarPlaca").click(function () {
     easytaxi = ($('input:checkbox[name=easytaxi]:checked').val());
     cabify = ($('input:checkbox[name=cabify]:checked').val());
+    easyeconomy = ($('input:checkbox[name=easyeconomy]:checked').val());
   });
 });
 
@@ -357,6 +360,7 @@ $(document).ready(function(){
           "&tipoext=" + $('#tipoext').val() +
           "&cabify=" + cabify +
           "&easytaxi=" + easytaxi +
+          "&easyeconomy=" + easyeconomy +
           "&si=" + $('#si').val() +
           "&usuario_reg=" + $('#usuario_reg2').val() +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();

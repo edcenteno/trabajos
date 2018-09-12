@@ -46,6 +46,8 @@ session_start();
     <link href="vistas/dist/css/pages/form-icheck.css" rel="stylesheet">
     <!-- Popup CSS -->
     <link href="vistas/assets/node_modules/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
+    <!--  Popup CSS
+    <link href="vistas/dist/css/app.css" rel="stylesheet"> -->
 <!--     <style>
     .form-control {text-transform: uppercase;}
 </style> -->
@@ -146,6 +148,8 @@ session_start();
     <script src="vistas/assets/node_modules/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
     <!-- SweetAlert 2 -->
     <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+    <!-- <script src="vistas/js/app.js"></script> -->
     <!-- end - This is for export functionality only -->
 
     </head>

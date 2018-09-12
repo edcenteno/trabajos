@@ -128,8 +128,8 @@ $blacklist=$row['blacklist'];
               <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php echo $row['placa'] ?>">
             </div>
             <div class="form-group">
-              <label for="placa">soat: </label>
-              <input type="text" name="soat" class="form-control" id="soat" placeholder="soat" value="<?php echo $row['soat'] ?>">
+
+              <input type="text" name="soat" hidden class="form-control" id="soat" placeholder="soat" value="<?php echo $row['soat'] ?>">
             </div>
           </div>
           <div class="col-6 col-sm-4">
@@ -268,14 +268,17 @@ $blacklist=$row['blacklist'];
           </div>
           <div class="col-6 col-sm-4">
           <div class="form-group">
-            <input type="text" name="resultado" class="form-control" id="resultado" value="<?php echo $row['resultado'] ?>" >
-
+            <input type="text" name="resultado" hidden class="form-control" id="resultado" value="<?php echo $row['resultado'] ?>" >
 
             </div>
 
             <div class="form-group">
               <label for="usuario_reg">Operador: </label>
               <input type="text" name="usuario_reg" readonly class="form-control" id="usuario_reg" placeholder="Operador"  value="<?php echo $row['usuario_reg'] ?>" required="">
+            </div>
+            <div class="form-group">
+              <label for="color_vehiculo">Color del Vehiculo: </label>
+              <input type="text" name="color_vehiculo" class="form-control" id="color_vehiculo" placeholder="Color del Vehiculo"  value="<?php echo $row['color_vehiculo'] ?>" required="">
             </div>
 
              <div class="form-group">

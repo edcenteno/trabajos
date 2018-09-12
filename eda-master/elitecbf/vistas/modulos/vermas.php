@@ -15,7 +15,8 @@
     }
 
     @$cabify = $value['cabify'];
-    @$easy = $value['easy'];
+
+    @$easy = $value['easytaxi'];
 
 $placa=$value['placa'];
 $placa = str_replace("-","",$placa);
@@ -99,7 +100,7 @@ $extr=$value['extr'];
        if (msg != "No existe la placa, intente mas tarde.") {
         $('.vehiculo')[0].innerText = msg['Marca'];
         $('.vehiculo')[1].innerText = msg['Modelo'];
-        $('.vehiculo')[2].innerText = msg['Vin']['modelYear'];
+        $('.vehiculo')[2].innerText = msg['Vin']['modelYear'] - 1;
         $('.vehiculo')[3].innerText = msg['Nro_Serie'];
         $('.vehiculo')[4].innerText = msg['Placa_Anterior'];
         $('.vehiculo')[5].innerText = msg['Fecha_Entrega'];
@@ -111,7 +112,8 @@ $extr=$value['extr'];
         $('.vehiculo')[11].innerText = msg['Vin']['countries'];
         $('.vehiculo')[12].innerText = msg['Vin']['manufacture'];
         $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber'];
-        $('.vehiculo')[14].innerText = msg['Propietario'];
+        $('.vehiculo')[15].innerText = msg['Propietario'];
+        $('.vehiculo')[14].innerText = msg['Vin']['modelYear'];
 
 }
     });
@@ -172,10 +174,19 @@ $(document).ready(function(){
                         <h4 class="card-title m-t-10"><?php echo $value['nombre'] ." " . $value['apellido']; ?></h4>
                         <h5 class="card-subtitle">DNI <?php echo $value['dni']; ?></h5>
                         <h6 class="card-subtitle">Conductor</h6>
+                        <?php
+                            if ($value['fecha_act'] != "") {
+                                echo '<h5 class="card-subtitle">Fecha de actualización '.$value['fecha_act'].'</h5>';
+                            } else {
+
+                            }
+
+                        ?>
+
                         <div class="row text-center justify-content-md-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
 
-                        <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>
+                        <!-- <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
                         <?php
                             $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 1 month"));
@@ -601,13 +612,17 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div> -->
-                                <div class="col-md-4 col-xs-6 b-r"> <strong>Tipo Uso</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo Uso</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
-                                <div class="col-md-2 col-xs-6"> <strong>Tipo de Sol</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo de Sol</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Color de Vehiculo</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $value['color_vehiculo'] ?></p>
                                 </div>
                             </div>
                             <hr>
@@ -628,6 +643,15 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
+                            </div>
+                             <hr>
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Año del Modelo</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>

@@ -43,7 +43,10 @@ CARGAR LA TABLA DINÁMICA
 			}
 
 	}
-    } );
+
+    });
+
+
 } );
 
 	$(document).ready(function() {

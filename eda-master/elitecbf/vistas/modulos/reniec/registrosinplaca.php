@@ -8,6 +8,7 @@
 		$dni=$_POST['dni'];
 		$easytaxi=$_POST['easytaxi'];
 		$cabify=$_POST['cabify'];
+		$easytaxi=$_POST['easytaxi'];
 		$fecha_nacimiento=$_POST['fechaNacimiento'];
 		$placa="NINGUNO";
         $tipoext=$_POST['tipoext'];
@@ -26,12 +27,15 @@
 		if ($easytaxi == "undefined") {
 			$easytaxi = "0" ;
 		}
+		if ($easyeconomy == "undefined") {
+			$easyeconomy = "0" ;
+		}
 
 		if ($cabify == "undefined") {
 			$cabify = "0" ;
 		}
 
-		if ($cabify == "0" && $easytaxi == "0") {
+		if ($cabify == "0" && $easytaxi == "0" && $easyeconomy == "0") {
 			echo "4";
 		} else {
 			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) || preg_match('/^[a-zA-Z]+$/', $nombre) ||
