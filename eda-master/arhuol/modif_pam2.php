@@ -8,9 +8,9 @@ $soat = $_POST['soat'];
 
 $resultado = $_POST['resultado'];
 
-    ModificarPersona($_POST['dni'], $_POST['fecha_inicio_soat'], $_POST['fecha_fin_soat'], $_POST['nombrecompania'], $_POST['numeropoliza'],$_POST['NombreUsoVehiculo'], $_POST['nombreclasevehiculo'], $_POST['fechacontrolpolicial'], $_POST['TipoCertificado'], $_POST['soat'], $resultado, $_POST['color_vehiculo']);
+    ModificarPersona($_POST['dni'], $_POST['fecha_inicio_soat'], $_POST['fecha_fin_soat'], $_POST['nombrecompania'], $_POST['numeropoliza'],$_POST['NombreUsoVehiculo'], $_POST['nombreclasevehiculo'], $_POST['fechacontrolpolicial'], $_POST['TipoCertificado'], $_POST['soat'], $resultado, $_POST['color_vehiculo'], $_POST['tipodoc']);
 
-    function ModificarPersona($dni, $fecha_inicio_soat, $fecha_fin_soat, $nombrecompania, $numeropoliza, $NombreUsoVehiculo, $nombreclasevehiculo, $fechacontrolpolicial, $TipoCertificado, $soat, $resultado, $color_vehiculo){
+    function ModificarPersona($dni, $fecha_inicio_soat, $fecha_fin_soat, $nombrecompania, $numeropoliza, $NombreUsoVehiculo, $nombreclasevehiculo, $fechacontrolpolicial, $TipoCertificado, $soat, $resultado, $color_vehiculo, $tipodoc){
         include 'conexion.php';
          $sentencia="UPDATE conductores SET
                                        fecha_inicio_soat='".$fecha_inicio_soat."',
@@ -21,6 +21,7 @@ $resultado = $_POST['resultado'];
                                        nombreclasevehiculo='".$nombreclasevehiculo."',
                                        fechacontrolpolicial='".$fechacontrolpolicial."',
                                        soat='".$soat."',
+                                       extr='".$tipodoc."',
                                        TipoCertificado='".$TipoCertificado."',
                                        color_vehiculo='".$color_vehiculo."',
                                        resultado='".$resultado."'

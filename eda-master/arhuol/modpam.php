@@ -11,6 +11,28 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);
 $dni=$row['dni'];
 
 $blacklist=$row['blacklist'];
+$tipodoc = $row['extr'];
+
+switch ($tipodoc) {
+  case '1':
+    $tipodoc = "DNI";
+    break;
+  case '2':
+    $tipodoc = "CARNE DE EXTRANJERIA";
+    break;
+  case '3':
+    $tipodoc = "CARNE DE SOLICITANTE";
+    break;
+  case '4':
+    $tipodoc = "TARJETA DE IDENTIDAD";
+    break;
+  case '5':
+    $tipodoc = "PERMISO TEMPORAL DE PERMANENCIA";
+    break;
+  default:
+    $tipodoc = "SELECCIONE UN TIPO DE DOCUMENTO";
+    break;
+}
 
 ?>
 <html lang="es">
@@ -62,6 +84,19 @@ $blacklist=$row['blacklist'];
 
            <div class="row">
             <div class="col-6 col-sm-4">
+              <div class="form-group">
+              <label for="tipodoc">Tipo de Documento: </label>
+              <div class="form-group">
+                <select class="form-control" id="tipodoc" name ="tipodoc">
+                  <option value="<?php echo $row['extr'] ?>"> <?php echo $tipodoc ?></option>
+                  <option value="1">DNI</option>
+                  <option value="2">CARNE DE EXTRANJERIA</option>
+                  <option value="3">CARNE DE SOLICITANTE</option>
+                  <option value="4">TARJETA DE IDENTIDAD</option>
+                  <option value="5">PERMISO TEMPORAL DE PERMANENCIA</option>
+                </select>
+              </div>
+            </div>
 
              <div class="form-group">
               <label for="dni">DNI:</label>

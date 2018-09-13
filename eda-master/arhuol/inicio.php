@@ -83,6 +83,7 @@ if(isset($_SESSION['user'])){
                         </span>
                         <a href="php/salir.php" class="btn btn-outline-warning" align="right">Cerrar Sesión <span class="fa fa-sign-out-alt"></span></a>
                         <a href="listadomod.php" class="btn btn-outline-danger" align="right">Listado Especial <span class="fa fa-sign-out-alt"></span></a>
+                        <a href="listadoact.php" class="btn btn-outline-success" align="right">Listado Actualizar <span class="fa fa-sign-out-alt"></span></a>
                         <hr>
 
                         <div class="row table-responsive">

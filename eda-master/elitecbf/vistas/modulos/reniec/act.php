@@ -5,6 +5,8 @@ $dni=$_POST['dni'];
 $placa=$_POST['placa'];
 $cabify = $_POST['cabify'];
 $easy = $_POST['easy'];
+
+
  class Peru  {
     function __construct()
     {
@@ -69,6 +71,13 @@ $easy = $_POST['easy'];
   $nombre=$out->result->Nombres;
   $fechanac=$out->result->FechaNacimiento;
  include "conex.php";
+ $sentencia="UPDATE conductores SET
+                 resultado = ""
+                 WHERE dni='".$dni."' ";
+
+$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
+echo $sentencia;
+
 if ($placa == "NINGUNO" || $placa == "" || $placa == "NINGUNA") {
 
 if ($cabify == 1 && $easy == 1) {
@@ -181,6 +190,7 @@ if ($cabify == 1 && $easy == 1) {
                  act_easy = act_easy + 1,
                  fecha_act = NOW( ),
                  soat = '".$estado."',
+                 placa = '".$placa."',
                  orden_captura = '".$crv."',
                  fecha_inicio_soat = '".$FechaInicio."',
                  fecha_fin_soat = '".$FechaFin."',
@@ -201,6 +211,7 @@ if ($cabify == 0 && $easy == 0) {
                  act_easy = act_easy + 1,
                  fecha_act = NOW( ),
                  soat = '".$estado."',
+                 placa = '".$placa."',
                  orden_captura = '".$crv."',
                  fecha_inicio_soat = '".$FechaInicio."',
                  fecha_fin_soat = '".$FechaFin."',
@@ -221,6 +232,7 @@ if ($cabify == 1 && $easy == 0) {
                  act_cbf = act_cbf + 1,
                  fecha_act = NOW( ),
                  soat = '".$estado."',
+                 placa = '".$placa."',
                  orden_captura = '".$crv."',
                  fecha_inicio_soat = '".$FechaInicio."',
                  fecha_fin_soat = '".$FechaFin."',
@@ -241,6 +253,7 @@ if ($cabify == 0 && $easy == 1) {
                  act = act+1,
                  fecha_act = NOW( ),
                  soat = '".$estado."',
+                 placa = '".$placa."',
                  orden_captura = '".$crv."',
                  fecha_inicio_soat = '".$FechaInicio."',
                  fecha_fin_soat = '".$FechaFin."',

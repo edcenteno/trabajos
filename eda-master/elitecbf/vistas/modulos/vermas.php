@@ -20,6 +20,7 @@
 
 $placa=$value['placa'];
 $placa = str_replace("-","",$placa);
+$placa = str_replace(" ","",$placa);
 $extr=$value['extr'];
 
 
@@ -186,7 +187,7 @@ $(document).ready(function(){
                         <div class="row text-center justify-content-md-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
 
-                        <!-- <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
+                       <!--  <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
                         <?php
                             $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 1 month"));
@@ -759,12 +760,74 @@ $(document).ready(function(){
                                     <p class="text-muted"><?php echo $value['TipoCertificado']; ?></p>
                                 </div>
                                 <div class="col-md-2 col-xs-6"> <strong>Titular del SOAT</strong>
+                              <!--  <h5 class="card-subtitle">Fecha de actualización '.$value['fecha_act'].'</h5> -->
+
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
+                               <?php
+
+                               if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "0000-00-00") {
+                                   echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
+                                    <br>
+                                    <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>
+                                </div>';
+                               } else {
+                                   # code...
+                               }
+                               ?>
                             </div>
                         </div>
                     </div>
+                    <script>
+                            function actualizarsoats(){
+
+                                        placa = '<?php echo $placa ?>'
+                                        type= '<?php echo $extr ?>'
+                                        dni = '<?php echo $idconductor ?>'
+                                        cabify= '<?php echo $cabify ?>'
+                                        easy = '<?php echo $easy ?>'
+
+                               swal({
+                                      title: 'Actualizar SOAT, ¿esta seguro?',
+                                      text: "¡No podrás revertir esto!",
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#3085d6',
+                                      cancelButtonColor: '#d33',
+                                      confirmButtonText: '¡Si, actualizar!',
+                                      cancelButtonText: '¡No actualizar!',
+                                    }).then((result) => {
+                                      if (result.value) {
+                                        swal(
+                                          'Solicitado!',
+                                          'La actualización puede tardar par de minutos.',
+                                          'success'
+                                        )
+
+
+                                    parametros= "&dni=" + dni+
+                                                "&placa=" + placa+
+                                                "&cabify=" + cabify+
+                                                "&easy=" + easy;
+
+                                      $.ajax({
+                                        data:  parametros,
+                                        url:   'vistas/modulos/reniec/actsoat.php',
+                                        type:  'post',
+                                        success:  function (response) {
+
+                                        }
+                                });
+                                setTimeout('document.location.reload()',3000);
+
+                                  }
+                                    })
+
+
+                            }
+                        </script>
+
 
                     <div class="tab-pane" id="lice" role="tabpanel">
                         <div class="card-body">

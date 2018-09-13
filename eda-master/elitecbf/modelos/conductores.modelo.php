@@ -644,7 +644,7 @@ class ModeloConductor{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where soat = 'VENCIDO' ORDER BY fecha desc limit 10");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where soat = 'VENCIDO' ORDER BY fecha_fin_soat desc limit 10");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
