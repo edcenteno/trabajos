@@ -102,6 +102,19 @@ class ControladorConductor{
 		return $respuesta;
 	}
 
+	/*=============================================
+	MOSTRAR USUARIO
+	=============================================*/
+
+	static public function ctrMostrarConductoract($item, $valor){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductoract($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+
 
 	/*=============================================
 	DESCARGAR EXCEL

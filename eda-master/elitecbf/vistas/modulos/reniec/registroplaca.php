@@ -17,9 +17,26 @@
         $FechaControlPolicial = $_POST['FechaControlPolicial'];
         $TipoCertificado = $_POST['TipoCertificado'];
 
+if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguientes conceptos.") {
+     $sql="UPDATE conductores SET
+                 placa = '".$placa."',
+                 soat = '".$estado."',
+                 orden_captura = '".$crv."',
+                 fecha_inicio_soat = '".$FechaInicio."',
+                 fecha_fin_soat = '".$FechaFin."',
+                 nombrecompania = '".$NombreCompania."',
+                 numeropoliza = '".$NumeroPoliza."',
+                 resultado = 'NO APTO',
+                 NombreUsoVehiculo = '".$NombreUsoVehiculo."',
+                 nombreclasevehiculo = '".$NombreClaseVehiculo."',
+                 fechacontrolpolicial = '".$FechaControlPolicial."',
+                 TipoCertificado = '".$TipoCertificado."'
+                 WHERE dni='".$dni."' ";
+                                //echo $sql;
 
-
-            $sql="UPDATE conductores SET
+            $result=mysqli_query($conexion,$sql);
+} else {
+   $sql="UPDATE conductores SET
                  placa = '".$placa."',
                  soat = '".$estado."',
                  orden_captura = '".$crv."',
@@ -37,6 +54,10 @@
             $result=mysqli_query($conexion,$sql);
 
             echo "1";
+}
+
+
+
 
 
  ?>

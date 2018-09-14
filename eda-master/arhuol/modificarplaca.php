@@ -147,7 +147,7 @@ $blacklist=$row['blacklist'];
 
             <div class="form-group">
              <div class="col-sm-offset-2 col-sm-10">
-              <a href="inicio.php" class="btn btn-warning">Regresar</a>
+              <a href="listadomod.php" class="btn btn-warning">Regresar</a>
               <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
           </div>

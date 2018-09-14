@@ -101,7 +101,7 @@ if(isset($_SESSION['user'])){
                                         <th>RESULTADO</th>
                                         <th>SOAT</th>
                                         <th>OBSERVACION</th>
-                                        <th>MODIFICAR SOAT</th>
+                                        <th>FECHA DE REGISTRO</th>
                                         <th>ACTUALIZAR</th>
 
                                     </tr>

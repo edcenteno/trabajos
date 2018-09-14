@@ -49,7 +49,8 @@ $fecha_actual = date("M-Y");
                         <h2 class="counter text-purple"><?php echo $a ?></h2>
                     </div><br>
                     <?php
-                     $b = ($a *100)/1500;
+                    $ab = str_replace(',','',$a);
+                     $b = ($ab *100)/1500;
                      ?>
                 </div>
             </div>
@@ -79,7 +80,8 @@ $fecha_actual = date("M-Y");
                     <div class="ml-auto">
                         <h2 class="counter text-info"><?php echo number_format($cabify); ?></h2>
                         <?php
-                         $cbf = ($c *100)/20000;
+                         $ac = str_replace(',','',$cabify);
+                         $cbf = ($ac *100)/20000;
                         ?>
                     </div>
                 </div>

@@ -21,7 +21,7 @@ $sql="SELECT SUM(act) as sumaact FROM conductores";
                         <h3 class="text-muted">Reporte de conductores Actualizados del mes <?php echo date('M-Y');?></h3>
                     </div>
                     <div class="ml-auto">
-                        <h2 class="counter text-info"><?php echo $suma ?></h2>
+                        <h2 class="counter text-info"><?php echo $suma -15 ?></h2>
                     </div><br>
 
                 </div>

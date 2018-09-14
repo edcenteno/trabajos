@@ -46,8 +46,8 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         );
         return $rpt;
       }*/
-
-       /* $response = $this->mintra->check( $dni );
+/*
+        $response = $this->mintra->check( $dni );
         if( $response->success == true )
         {
           $rpt = (object)array(

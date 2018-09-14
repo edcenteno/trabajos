@@ -72,11 +72,14 @@ $easy = $_POST['easy'];
   $fechanac=$out->result->FechaNacimiento;
  include "conex.php";
  $sentencia="UPDATE conductores SET
-                 resultado = ""
+                 nombre = '".$nombre."',
+                 apellido = '".$apellidos."',
+                 fecha_nacimiento = '".$fechanac."',
+                 resultado = ''
                  WHERE dni='".$dni."' ";
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-echo $sentencia;
+//echo $sentencia;
 
 if ($placa == "NINGUNO" || $placa == "" || $placa == "NINGUNA") {
 
@@ -182,7 +185,7 @@ if ($estado == "VIGENTE") {
   $soat = 'El vehiculo consultado no posee SOAT';
 }
 
-
+if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguientes conceptos.") {
 if ($cabify == 1 && $easy == 1) {
   $sentencia="UPDATE conductores SET
                  act = act+1,

@@ -89,6 +89,7 @@ $dir = 'temp/';
 	}else{
 	$arr = json_decode($res->getBody(), true);
 	}
+	//var_dump($arr);
 
 	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
 	$res->getStatusCode();
@@ -229,7 +230,7 @@ $bloque3 = <<<EOF
 
 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
 			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">DEPARTAMENTO</td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[1][var_departamento]</b></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[var_departamento]</b></td>
 
 		</tr>
 
@@ -308,8 +309,8 @@ $bloque3extr = <<<EOF
 	</table>
 
 EOF;
-	echo "<pre>";
-	var_dump($arr);
+	//echo "<pre>";
+	//var_dump($arr);
 if(!is_object($res)) {
 $pdf->writeHTML($bloque3extr, false, false, false, false, '');
 }else{

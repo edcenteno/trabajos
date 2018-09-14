@@ -187,10 +187,10 @@ $(document).ready(function(){
                         <div class="row text-center justify-content-md-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
 
-                       <!--  <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
+                        <!-- <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button> -->
                         <?php
                             $fecha_actual = date("Y-m-d");
-                            $mes = date("Y-m-d",strtotime($fecha_actual."- 1 month"));
+                            $mes = date("Y-m-d",strtotime($fecha_actual."- 20 day"));
                                 if ($value['fecha'] < $mes) {
                                     echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
                                 } else {
@@ -353,7 +353,7 @@ $(document).ready(function(){
                                 echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
                                 ';
                                 }
-                                if ($value['placa'] == "NINGUNO") {
+                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNA") {
 
                                  } else {
                                     echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>';
@@ -704,6 +704,10 @@ $(document).ready(function(){
                                         echo '<img width="90" src="vistas/img/plantilla/mapfre.png">';
                                     }
 
+                                    if ($value['nombrecompania']== "Mapfre Perú") {
+                                        echo '<img width="90" src="vistas/img/plantilla/mapfre.png">';
+                                    }
+
                                     if ($value['nombrecompania']== "La Positiva") {
                                         echo '<img width="90" src="vistas/img/plantilla/lapositiva.png">';
                                     }
@@ -767,7 +771,7 @@ $(document).ready(function(){
                                 </div>
                                <?php
 
-                               if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "0000-00-00") {
+                               if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "0000-00-00" ||$value['soat'] == "undefined") {
                                    echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
                                     <br>
                                     <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>

@@ -126,8 +126,8 @@
 
 
 
-        $row[] = "<a href='modpam.php?id=".$aRow['cont']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button>";
-
+       /* $row[] = "<a href='modpam.php?id=".$aRow['cont']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button>";*/
+        $row[] = "<a href='actualizar.php?id=".$aRow['cont']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button>";
 
 
         $output['aaData'][] = $row;

@@ -47,7 +47,8 @@ $fecha_actual = date("M-Y");
                         <h2 class="counter text-warning"><?php echo $a ?></h2>
                     </div><br>
                     <?php
-                     $b = ($a *100)/1500;
+                    $ab = str_replace(',','',$a);
+                     $b = ($ab *100)/1500;
                      ?>
                 </div>
             </div>
@@ -75,7 +76,8 @@ $fecha_actual = date("M-Y");
                     <div class="ml-auto">
                         <h2 class="counter text-info"><?php echo number_format($easy); ?></h2>
                         <?php
-                         $etx = ($e *100)/20000;
+                         $ae = str_replace(',','',$easy);
+                         $etx = ($ae *100)/20000;
                         ?>
                     </div>
                 </div>
