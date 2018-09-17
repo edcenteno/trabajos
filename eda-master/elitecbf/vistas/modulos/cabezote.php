@@ -67,7 +67,7 @@
                                     $valor = null;
 
 
-                                    $soatconductor = ControladorConductor::ctrMostrarSoatConductor($item, $valor);
+                                    $soatconductor = ControladorConductor::ctrMostrarConductorsoatvencido($item, $valor);
 
                                     //var_dump($soatconductor);
                                     foreach ($soatconductor as $key => $value){
@@ -95,7 +95,7 @@
                                             $empresa= '';
                                         }
                                         if ($fecha_fin_soat <= $d) {
-                                                 echo ' <a href="">
+                                                 echo ' <a href="index.php?ruta=vermassoat&idconductor='.$dni.'" target="_blank">
                                                             <div class="btn-circle">'.$empresa.'</div>
                                                             <div class="mail-contnet">
                                                                 <h5>'. $nombre . $apellido.'</h5> <span class="mail-desc"><?php echo $soat ?></span> <span class="time">'.$soat.' ' .$fecha_fin_soat. '</span> </div></a>';

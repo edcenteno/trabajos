@@ -714,8 +714,9 @@ class ModeloConductor{
 			return $stmt -> fetch();
 
 		}else{
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where soat = 'VENCIDO'");
+			$mes = date('m');
+			$mesletra = date('M');
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM conductores WHERE fecha_fin_soat like '%mesletra-2018' or fecha_fin_soat like '%$mes/2018' and resultado = 'APTO' AND ant_penales = 'NEGATIVO' AND ant_judicial = 'NEGATIVO' AND ant_policial = 'NEGATIVO' ORDER BY `fecha_fin_soat` DESC ");
 
 			$stmt -> execute();
 

@@ -191,6 +191,7 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "busqueda" ||
          $_GET["ruta"] == "listado" ||
          $_GET["ruta"] == "vermas" ||
+         $_GET["ruta"] == "vermassoat" ||
          $_GET["ruta"] == "rrhh" ||
          $_GET["ruta"] == "consultas-basicas" ||
          $_GET["ruta"] == "reporte-diario" ||

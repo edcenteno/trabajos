@@ -70,7 +70,7 @@ if ($estado == "VIGENTE") {
 
 
 if ($cabify == 1 && $easy == 1) {
-  $sentencia="UPDATE conductores SET
+  $sentencia="UPDATE conductores_act SET
                  contsoat = contsoat+1,
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
@@ -89,7 +89,7 @@ if ($cabify == 1 && $easy == 1) {
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }
 if ($cabify == 0 && $easy == 0) {
-  $sentencia="UPDATE conductores SET
+  $sentencia="UPDATE conductores_act SET
                  contsoat = contsoat+1,
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
@@ -109,7 +109,7 @@ $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mys
 }
 
 if ($cabify == 1 && $easy == 0) {
-  $sentencia="UPDATE conductores SET
+  $sentencia="UPDATE conductores_act SET
                  contsoat = contsoat+1,
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
@@ -129,7 +129,7 @@ $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mys
 }
 
 if ($cabify == 0 && $easy == 1) {
-  $sentencia="UPDATE conductores SET
+  $sentencia="UPDATE conductores_act SET
                  contsoat = contsoat + 1,
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',

@@ -31,7 +31,7 @@
                         <table class="display nowrap table table-hover table-striped table-bordered dt-responsive tablaConductoresSoat" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>FECHA DE REGISTRO</th>
+                                    <th>FECHA DE VENCIMIENTO</th>
                                     <th>DNI</th>
                                     <th>NOMBRE</th>
                                     <th>APELLIDO</th>
@@ -44,7 +44,7 @@
                             </thead>
                             <tfoot>
                                 <tr>
-                                   <th>FECHA DE REGISTRO</th>
+                                   <th>FECHA DE VENCIMIENTO</th>
                                    <th>DNI</th>
                                    <th>NOMBRE</th>
                                    <th>APELLIDO</th>

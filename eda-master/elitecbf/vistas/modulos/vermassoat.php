@@ -187,12 +187,12 @@ $(document).ready(function(){
                         ?>
 
                         <div class="row text-center justify-content-md-center">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
+                       <!--  <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button> -->
 
                         <!-- <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button> -->
 
                         <?php
-                            $fecha_actual = date("Y-m-d");
+                          /*  $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 20 day"));
                                 if ($value['fecha'] < $mes) {
                                     echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
@@ -200,7 +200,7 @@ $(document).ready(function(){
 
                                     echo '<button class="btn btn-default" disabled="true">Actualizar</button>';
                                 }
-
+*/
                         ?>
 
                         <?php
@@ -341,8 +341,8 @@ $(document).ready(function(){
             <div class="card">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs profile-tab" role="tablist">
-                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#datosperso" role="tab"><i class="ti-user"></i> DNI-Datos Personales</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#antecedentes" role="tab"><i class="icon-docs"></i> Antecedentes</a> </li>
+                   <!--  <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#datosperso" role="tab"><i class="ti-user"></i> DNI-Datos Personales</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#antecedentes" role="tab"><i class="icon-docs"></i> Antecedentes</a> </li> -->
                     <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>-->
                     <?php
@@ -351,7 +351,7 @@ $(document).ready(function(){
                             if ($value['record_cond'] == "NO BREVETE") {
 
                             }else{
-                                echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" id= "prue" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>';
+                                echo '<!--<li class="nav-item"> <a class="nav-link active" data-toggle="tab" id= "prue" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>-->';
                             }
 
                                 if ($value['placa'] == "NINGUNO") {
@@ -369,7 +369,7 @@ $(document).ready(function(){
 
                                 echo '
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>
-                               <li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>';
+                               <!--<li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>-->';
                         }
 
 
@@ -378,7 +378,7 @@ $(document).ready(function(){
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="datosperso" role="tabpanel">
+                    <div class="tab-pane " id="datosperso" role="tabpanel">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-2 col-xs-6 b-r"> <strong>Nombres</strong>
@@ -572,7 +572,7 @@ $(document).ready(function(){
                     </div>
                 </div>
 
-                    <div class="tab-pane" id="datosveh" role="tabpanel">
+                    <div class="tab-pane active" id="datosveh" role="tabpanel">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Placa</strong>
@@ -779,8 +779,8 @@ $(document).ready(function(){
                                 </div>
                                <?php
                                 $fecha_actual = date('d/m/Y');
-                                echo $fecha_actual;
-                               if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "" ||$value['soat'] == "undefined") {
+                                //echo $fecha_actual;
+                               if ($value['fecha_fin_soat'] > "$fecha_actual") {
                                    echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
                                     <br>
                                     <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>

@@ -24,7 +24,7 @@ class TablaConductor{
             "data": [';
 
             for($i = 0; $i < count($conductores)-1; $i++){
-                 $vermas= "<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermas&idconductor=".$conductores[$i]["dni"]."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
+                 $vermas= "<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermassoat&idconductor=".$conductores[$i]["dni"]."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
 
 
                 if($conductores[$i]["observacion"] != ""){
@@ -60,7 +60,7 @@ class TablaConductor{
 
 
                 echo '[
-                  "'.$conductores[$i]["fecha"].'",
+                  "'.$conductores[$i]["fecha_fin_soat"].'",
                   "'.$dni.'",
                   "'.$conductores[$i]["nombre"].'",
                   "'.$conductores[$i]["apellido"].'",
@@ -73,7 +73,7 @@ class TablaConductor{
 
             }
 
-            $vermas="<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermas&idconductor=".$conductores[count($conductores)-1]["dni"]."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
+            $vermas="<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermassoat&idconductor=".$conductores[count($conductores)-1]["dni"]."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
 
             if ($conductores[count($conductores)-1]["cabify"] == 1 && $conductores[count($conductores)-1]["easytaxi"] == 1) {
                     $empresa= "Cabify &nbsp&nbsp   <img width='30' src='vistas/img/plantilla/favicon.ico'><br> Easytaxi <img width='30' src='vistas/img/plantilla/easy.png'>";
@@ -102,7 +102,7 @@ class TablaConductor{
 
            echo'[
 
-                  "'.$conductores[count($conductores)-1]["fecha"].'",
+                  "'.$conductores[count($conductores)-1]["fecha_fin_soat"].'",
                   "'.$conductores[count($conductores)-1]["dni"].'",
                   "'.$conductores[count($conductores)-1]["nombre"].'",
                   "'.$conductores[count($conductores)-1]["apellido"].'",
