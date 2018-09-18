@@ -22,11 +22,11 @@ if(isset($_SESSION['user'])){
                         "targets":   0,
 
                     },
-                    { 'responsivePriority': 1, 'targets': 7 },
+                   /* { 'responsivePriority': 1, 'targets': 11 },
                     { 'responsivePriority': 1, 'targets': 3 },
                     { 'responsivePriority': 1, 'targets': 4 },
-                    { 'responsivePriority': 2, 'targets': 17 },
-                    { 'responsivePriority': 2, 'targets': 16 },
+                    { 'responsivePriority': 2, 'targets': 14 },
+                    { 'responsivePriority': 2, 'targets': 11 },*/
 
                     ],
                     "order": [[2, "desc"]],
@@ -59,7 +59,7 @@ if(isset($_SESSION['user'])){
 
                     "bProcessing": true,
                     "bServerSide": true,
-                    "sAjaxSource": "server_process.php"
+                    "sAjaxSource": "server_process5.php"
                 });
             });
 
@@ -78,39 +78,22 @@ if(isset($_SESSION['user'])){
                         ARHU INTERNACIONAL
                     </div>
                     <div class="card-body">
-                        <span class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAgregarConductor">
-                            Agregar nuevo <span class="fa fa-plus-circle"></span>
-                        </span>
-                        <a href="php/salir.php" class="btn btn-outline-warning" align="right">Cerrar Sesión <span class="fa fa-sign-out-alt"></span></a>
-                        <a href="listadomod.php" class="btn btn-outline-danger" align="right">Listado Especial <span class="fa fa-sign-out-alt"></span></a>
-                        <a href="listadoact.php" class="btn btn-outline-success" align="right">Listado Actualizar <span class="fa fa-sign-out-alt"></span></a>
-                        <a href="color.php" class="btn btn-outline-secondary" align="right">Listado Color <span class="fa fa-sign-out-alt"></span></a>
-                         <a href="listadeespera.php" class="btn btn-outline-info" align="right">Lista de Espera <span class="fa fa-sign-out-alt"></span></a>
+                        <a href="inicio.php" class="btn btn-outline-warning" align="right">Inicio <span class="fa fa-sign-out-alt"></span></a>
                         <hr>
 
                         <div class="row table-responsive">
                             <table class="table table-bordered table-striped responsive" id="mitabla">
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th>FORM</th>
+
                                         <th>ID</th>
                                         <th>FECHA DE REGISTRO</th>
                                         <th>DNI</th>
-                                        <th>NOMBRE</th>
-                                        <th>APELLIDO</th>
                                         <th>PLACA</th>
-                                        <th>ANTECEDENTES PENALES</th>
-                                        <th>ANTECEDENTES JUDICIAL</th>
-                                        <th>ANTECEDENTES POLICIAL</th>
+                                        <th>LICENCIA</th>
                                         <th>RECORD CONDUCTOR</th>
-                                        <th>RESULTADO</th>
-                                        <th>SOAT</th>
-                                        <th>OBSERVACION</th>
-                                        <th>FORMATO</th>
-                                        <th>MODIFICAR SOAT</th>
-                                        <th>MODIFICAR</th>
-                                        <th>ELIMINAR</th>
+                                        <th>PLACA</th>
+
 
                                     </tr>
                                 </thead>

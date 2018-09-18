@@ -60,12 +60,12 @@ class TablaConductor{
 
 
                 echo '[
-                  "'.$conductores[$i]["fecha_act"].'",
+                  "'.$conductores[$i]["fecha"].'",
                   "'.$dni.'",
                   "'.$conductores[$i]["nombre"].'",
-            "'.$conductores[$i]["apellido"].'",
+                  "'.$conductores[$i]["apellido"].'",
                   "'.$conductores[$i]["placa"].'",
-            "'.$cabify.'",
+                  "'.$cabify.'",
                   "'.$soat.'",
                   "'.$vermas.'"
                 ],';
@@ -101,10 +101,10 @@ class TablaConductor{
 
            echo'[
 
-                  "'.$conductores[count($conductores)-1]["fecha_act"].'",
+                  "'.$conductores[count($conductores)-1]["fecha"].'",
                   "'.$conductores[count($conductores)-1]["dni"].'",
                   "'.$conductores[count($conductores)-1]["nombre"].'",
-            "'.$conductores[count($conductores)-1]["apellido"].'",
+                  "'.$conductores[count($conductores)-1]["apellido"].'",
                   "'.$conductores[count($conductores)-1]["placa"].'",
                   "'.$empresa.'",
                   "'.$soat.'",

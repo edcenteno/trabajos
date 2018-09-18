@@ -1,10 +1,14 @@
 <?php
  namespace DatosPeru;
-error_reporting(0);
+//error_reporting(0);
 $dni=$_POST['dni'];
 $placa=$_POST['placa'];
 $cabify = $_POST['cabify'];
 $easy = $_POST['easy'];
+
+$sentencia="INSERT INTO conductores_act  dni = '".$dni."', fecha = NOW()";
+echo $sentencia;
+$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 
 
 require_once("crv/src/autoload.php");
@@ -87,6 +91,7 @@ if ($cabify == 1 && $easy == 1) {
                  WHERE dni='".$dni."' ";
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
+echo $sentencia;
 }
 if ($cabify == 0 && $easy == 0) {
   $sentencia="UPDATE conductores_act SET
@@ -105,7 +110,7 @@ if ($cabify == 0 && $easy == 0) {
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
+echo $sentencia;
 }
 
 if ($cabify == 1 && $easy == 0) {
@@ -125,7 +130,7 @@ if ($cabify == 1 && $easy == 0) {
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
+echo $sentencia;
 }
 
 if ($cabify == 0 && $easy == 1) {
@@ -146,6 +151,7 @@ if ($cabify == 0 && $easy == 1) {
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }
+echo $sentencia;
 
 }
 ?>

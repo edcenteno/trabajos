@@ -179,6 +179,24 @@ if ($estado == "VIGENTE") {
 
     $('#registrarNuevo').click(function(){
 
+         type= 1;
+         dni = $('#dni').val();
+
+        $.ajax({
+          type: "POST",
+          url: 'https://captcharh.ddns.net/api/record',
+          data: {
+              type: type, //tipo de documento
+              documento: dni, //numero de documento
+              datas: 'record' //tipo de solicitud
+          }
+
+        }).done(function(msg){
+         // $("#resultado").html(msg);
+          //console.log(msg)
+
+        });
+
       cadena="nombre=" + $('#nombre').val() +
           "&apellidos=" + $('#apellidos').val() +
           "&dni=" + $('#dni').val() +
@@ -246,6 +264,11 @@ if ($estado == "VIGENTE") {
 					});
 		});
 	});
+</script>
+<script type="text/javascript">
+
+
+
 </script>
 
 

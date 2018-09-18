@@ -108,7 +108,7 @@ class ControladorConductor{
 
 	static public function ctrMostrarConductoract($item, $valor){
 
-		$tabla = "conductores";
+		$tabla = "conductores_act";
 
 		$respuesta = ModeloConductor::mdlMostrarConductoract($tabla, $item, $valor);
 

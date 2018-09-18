@@ -223,7 +223,7 @@ echo '
     $('#dni').val(x.result.DNI);
 });*/
 
-       type= $('#tipo').val();
+      /* type= $('#tipo').val();
         dni = $('#dni').val();
 
         $.ajax({
@@ -239,7 +239,7 @@ echo '
          // $("#resultado").html(msg);
           //console.log(msg)
 
-        });
+        });*/
 </script>
 
 

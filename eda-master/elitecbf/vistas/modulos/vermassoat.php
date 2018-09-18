@@ -780,15 +780,19 @@ $(document).ready(function(){
                                <?php
                                 $fecha_actual = date('d/m/Y');
                                 //echo $fecha_actual;
-                               if ($value['fecha_fin_soat'] > "$fecha_actual") {
+                               /*if ($value['fecha_fin_soat'] > "$fecha_actual") {
                                    echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
                                     <br>
                                     <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>
                                 </div>';
                                } else {
                                    # code...
-                               }
+                               }*/
                                ?>
+                               <div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
+                                    <br>
+                                    <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -832,7 +836,7 @@ $(document).ready(function(){
 
                                         }
                                 });
-                                setTimeout('document.location.reload()',3000);
+                              //  setTimeout('document.location.reload()',3000);
 
                                   }
                                     })
