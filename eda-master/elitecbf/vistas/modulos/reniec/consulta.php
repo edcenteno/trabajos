@@ -36,7 +36,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
     function search( $dni )
     {
 
-      /*$response = $this->reniec->search( $dni );
+ /*     $response = $this->reniec->search( $dni );
       if($response->success == true)
       {
         $rpt = (object)array(
@@ -46,8 +46,8 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         );
         return $rpt;
       }*/
-/*
-        $response = $this->mintra->check( $dni );
+
+/*        $response = $this->mintra->check( $dni );
         if( $response->success == true )
         {
           $rpt = (object)array(
@@ -157,11 +157,11 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         <input type="checkbox" name="easytaxi" id="easytaxi" class="form-check-input" value="1">Easy Taxi
       </label>
     </div>
-    <div class="form-check-inline">
+   <!-- <div class="form-check-inline">
       <label class="custom-control custom-checkbox">
         <input type="checkbox" name="easyeconomy" id="easyeconomy" class="form-check-input" value="1">Easy Economy
       </label>
-    </div>
+    </div>-->
 
 
 </form>
@@ -216,8 +216,8 @@ echo '
 
   });*/
 
-/*
-  $(document).ready(function(){
+
+/*  $(document).ready(function(){
     $('#nombre').val(x.result.Nombres);
     $('#apellidos').val(x.result.apellidos);
     $('#dni').val(x.result.DNI);
@@ -299,6 +299,24 @@ $(document).ready(function(){
   $(document).ready(function(){
 
     $('#registrarNuevo').click(function(){
+
+      type= 1
+      dni = $('#dni').val();
+
+        $.ajax({
+          type: "POST",
+          url: 'https://captcharh.ddns.net/api/record',
+          data: {
+              type: type, //tipo de documento
+              documento: dni, //numero de documento
+              datas: 'record' //tipo de solicitud
+          }
+
+        }).done(function(msg){
+         // $("#resultado").html(msg);
+          //console.log(msg)
+
+        });
 
       cadena="nombre=" + $('#nombre').val() +
           "&apellidos=" + $('#apellidos').val() +

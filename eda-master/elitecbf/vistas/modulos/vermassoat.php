@@ -368,7 +368,7 @@ $(document).ready(function(){
                                  }
 
                                 echo '
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>
+                                <!--<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>-->
                                <!--<li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>-->';
                         }
 
@@ -692,18 +692,36 @@ $(document).ready(function(){
 
                             ?>
                             <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['soat']; ?></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de inicio</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['fecha_inicio_soat']; ?></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de fin</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['fecha_fin_soat']; ?></p>
-                                </div>
+
+                            <?php
+                            if ($value['soat']== "VIGENTE"){
+                                echo '<div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
+                                        <br>
+                                        <p class="text-muted">'.$value['soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de inicio</strong>
+                                            <br>
+                                            <p class="text-muted">'.$value['fecha_inicio_soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de fin</strong>
+                                            <br>
+                                            <p class="text-muted">'.$value['fecha_fin_soat'].'</p>
+                                        </div>';
+                            }else{
+                                echo '<div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
+                                        <br>
+                                        <p class="text-danger">'.$value['soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de inicio</strong>
+                                            <br>
+                                            <p class="text-danger">'.$value['fecha_inicio_soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de fin</strong>
+                                            <br>
+                                            <p class="text-danger">'.$value['fecha_fin_soat'].'</p>
+                                        </div>';
+                            }
+                            ?>
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Compañia Aseguradora</strong>
                                     <br>
                                     <p class="text-muted">
@@ -836,7 +854,7 @@ $(document).ready(function(){
 
                                         }
                                 });
-                              //  setTimeout('document.location.reload()',3000);
+                                setTimeout('document.location.reload()',3000);
 
                                   }
                                     })

@@ -49,6 +49,8 @@ $extr=$value['extr'];
         $("#prue").hide();*/
         }else{
             //$('#puntos')[0].innerText = msg['slc']['PUNTOS'];
+        $('.datosperso')[0].innerText = msg[0]['var_nombre'];
+        $('.datosperso')[1].innerText = msg[0]['var_apellido_paterno']+ ' ' +msg[0]['var_apellido_materno'];
         $('.licencia')[0].innerText = msg[0]['var_direccion'];
         $('.licencia')[1].innerText = msg[0]['var_departamento'];
         $('.licencia')[2].innerText = msg[0]['var_distrito'];
@@ -59,6 +61,7 @@ $extr=$value['extr'];
         $('.licencia')[7].innerText = msg[0]['var_num_licencia'];
         $('.licencia')[8].innerText = msg[0]['var_restricciones1'];
         $('.licencia')[9].innerText = msg[0]['var_restricciones2'];
+
         $("#acthoy").hide();
 
          }
@@ -189,7 +192,7 @@ $(document).ready(function(){
                         <div class="row text-center justify-content-md-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
 
-                        <!-- <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button> -->
+                       <!--  <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button> -->
 
                         <?php
                             $fecha_actual = date("Y-m-d");
@@ -383,11 +386,11 @@ $(document).ready(function(){
                             <div class="row">
                                 <div class="col-md-2 col-xs-6 b-r"> <strong>Nombres</strong>
                                     <br>
-                                    <p class="text-muted"><?php echo $value['nombre']; ?></p>
+                                    <p class="text-muted datosperso"><?php echo $value['nombre']; ?></p>
                                 </div>
                                 <div class="col-md-2 col-xs-6 b-r"> <strong>Apellidos</strong>
                                     <br>
-                                    <p class="text-muted"><?php echo $value['apellido']; ?></p>
+                                    <p class="text-muted datosperso"><?php echo $value['apellido']; ?></p>
                                 </div>
                                 <div class="col-md-2 col-xs-6 b-r"> <strong>DNI</strong>
                                     <br>
@@ -692,18 +695,35 @@ $(document).ready(function(){
 
                             ?>
                             <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['soat']; ?></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de inicio</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['fecha_inicio_soat']; ?></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de fin</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['fecha_fin_soat']; ?></p>
-                                </div>
+                                <?php
+                            if ($value['soat']== "VIGENTE"){
+                                echo '<div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
+                                        <br>
+                                        <p class="text-muted">'.$value['soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de inicio</strong>
+                                            <br>
+                                            <p class="text-muted">'.$value['fecha_inicio_soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de fin</strong>
+                                            <br>
+                                            <p class="text-muted">'.$value['fecha_fin_soat'].'</p>
+                                        </div>';
+                            }else{
+                                echo '<div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
+                                        <br>
+                                        <p class="text-danger">'.$value['soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de inicio</strong>
+                                            <br>
+                                            <p class="text-danger">'.$value['fecha_inicio_soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de fin</strong>
+                                            <br>
+                                            <p class="text-danger">'.$value['fecha_fin_soat'].'</p>
+                                        </div>';
+                            }
+                            ?>
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Compañia Aseguradora</strong>
                                     <br>
                                     <p class="text-muted">
@@ -779,7 +799,7 @@ $(document).ready(function(){
                                 </div>
                                <?php
                                 $fecha_actual = date('d/m/Y');
-                                echo $fecha_actual;
+                             //   echo $fecha_actual;
                                if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "" ||$value['soat'] == "undefined") {
                                    echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
                                     <br>

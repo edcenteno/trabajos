@@ -11,7 +11,12 @@
 		$easytaxi=$_POST['easytaxi'];
 		$fecha_nacimiento=$_POST['fechaNacimiento'];
 		$placa="NINGUNO";
-        $tipoext=$_POST['tipoext'];
+
+       if (!isset($_POST['tipoext'])){
+       		$tipoext =1;
+       }else{
+       	$tipoext = $_POST['tipoext'];
+       }
 
 		function buscaRepetido($dni,$conexion){
 					$sql="SELECT * from conductores
@@ -27,9 +32,9 @@
 		if ($easytaxi == "undefined") {
 			$easytaxi = "0" ;
 		}
-		if ($easyeconomy == "undefined") {
+		/*if ($easyeconomy == "undefined") {
 			$easyeconomy = "0" ;
-		}
+		}*/
 
 		if ($cabify == "undefined") {
 			$cabify = "0" ;

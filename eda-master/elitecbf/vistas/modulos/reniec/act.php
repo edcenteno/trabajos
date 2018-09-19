@@ -181,11 +181,7 @@ $TipoCertificado = $out['TipoCertificado'];
 
 if ($estado == "VIGENTE") {
   $soat = "VIGENTE";
-} else {
-  $soat = 'El vehiculo consultado no posee SOAT';
-}
-
-if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguientes conceptos.") {
+  if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguientes conceptos.") {
 if ($cabify == 1 && $easy == 1) {
   $sentencia="UPDATE conductores SET
                  act = act+1,
@@ -269,6 +265,11 @@ if ($cabify == 0 && $easy == 1) {
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }
+} else {
+  $soat = 'El vehiculo consultado no posee SOAT';
+}
+
+
 
 }
 ?>
