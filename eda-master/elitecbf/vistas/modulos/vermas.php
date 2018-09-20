@@ -133,6 +133,14 @@ $(document).ready(function(){
 
 })
 
+$(document).ready(function(){
+    direccion = 'recibearchivocbf.php';
+   //url2 = 'recibearchivo2cbf.php';
+    $('#modalcapturecabify').captureDevice([dni],[direccion])
+
+
+})
+
 </script>
 <div class="container-fluid">
 
@@ -165,10 +173,20 @@ $(document).ready(function(){
                         <?php
                             if($value['foto']){
                                 $foto = $value['foto'];
-                                echo '
-                                    <a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'">
+
+                            if($_SESSION["empresa"] =="easytaxi" || $_SESSION["empresa"] =="arhu"){
+                                echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'">
                                     <img src="extensiones/tcpdf/pdf/images/conductores/'.$foto.'" class="img-circle" width="100" height="100" />
                                     </a> ';
+                            }
+
+                            if($_SESSION["empresa"] =="cabify" || $_SESSION["empresa"] =="arhu"){
+                                echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'">
+                                    <img src="extensiones/tcpdf/pdf/images/conductores/'.$foto.'" class="img-circle" width="100" height="100" />
+                                    </a> ';
+                            }
+
+
                             }else{
                                  echo '
                                     <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100" />
@@ -176,6 +194,7 @@ $(document).ready(function(){
                             }
                         ?>
                         <div id="modalcapture"></div>
+                        <div id="modalcapturecabify"></div>
 
                         <h4 class="card-title m-t-10"><?php echo $value['nombre'] ." " . $value['apellido']; ?></h4>
                         <h5 class="card-subtitle">DNI <?php echo $value['dni']; ?></h5>
@@ -190,9 +209,19 @@ $(document).ready(function(){
                         ?>
 
                         <div class="row text-center justify-content-md-center">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
+                            <?php
+                            if($_SESSION["empresa"] =="easytaxi" || $_SESSION["empresa"] =="arhu"){
+                                echo '<button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>';
+                            }
 
-                       <!--  <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button> -->
+                            if($_SESSION["empresa"] =="cabify" || $_SESSION["empresa"] =="arhu"){
+                                echo '<button class="btn btn-primary" data-toggle="modal" data-target="#modalcapturecabify"></button>';
+                            } ?>
+
+
+
+
+                        <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>
 
                         <?php
                             $fecha_actual = date("Y-m-d");
@@ -218,7 +247,7 @@ $(document).ready(function(){
                         </div>
 
                      <?php
-                     if ($value['placa'] == "NINGUNO" || $value['placa'] == "" || $value['placa'] == "NINGUNA") {
+                     if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||  $value['placa'] == "NINGUNA") {
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
                      }
                     ?>

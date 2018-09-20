@@ -102,7 +102,7 @@ $blacklist=$row['blacklist'];
 
          <form class="form-horizontal" method="POST" action="modif_color2.php" autocomplete="off" style="border-collapse: separate; border-spacing: 10px 5px;">
            <input type="hidden" name="cont"  value="<?php echo $_GET['id']?>">
-           <input type="hidden" name="pdf"   value="<?php echo $pdf ?>">
+
 
            <div class="row">
             <div class="col-6 col-sm-4">
@@ -125,7 +125,11 @@ $blacklist=$row['blacklist'];
 
             <div class="form-group">
               <label for="placa">Placa: </label>
-              <input type="text" name="placa" readonly class="form-control" id="placa" placeholder="Placa" value="<?php echo $row['placa'] ?>">
+              <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php echo $row['placa'] ?>">
+            </div>
+            <div class="form-group">
+
+              <input type="text" name="placaoriginal" hidden readonly class="form-control" id="placaoriginal" value="<?php echo $row['placa'] ?>">
             </div>
 
           </div>
@@ -145,6 +149,7 @@ $blacklist=$row['blacklist'];
             <div class="form-group">
              <div class="col-sm-offset-2 col-sm-10">
               <a href="color.php" class="btn btn-warning">Regresar</a>
+
               <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
           </div>

@@ -5,7 +5,7 @@
         <p class="loader__label">Cabify</p>
     </div>
 </div>
-    
+
 <section id="wrapper">
     <div class="login-register" style="background-image:url(vistas/assets/images/background/login-register.png);">
         <div class="login-box card">
@@ -21,7 +21,7 @@
                         <div class="col-xs-12">
                             <input class="form-control" type="password" required="" placeholder="Contraseña" name="ingPassword"> </div>
                     </div>
-                   
+
                     <div class="form-group text-center">
                         <div class="col-xs-12 p-b-20">
                             <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Ingresar</button>

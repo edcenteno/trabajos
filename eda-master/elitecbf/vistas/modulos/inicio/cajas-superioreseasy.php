@@ -48,7 +48,7 @@ $fecha_actual = date("M-Y");
                     </div><br>
                     <?php
                     $ab = str_replace(',','',$a);
-                     $b = ($ab *100)/1500;
+                     $b = ($ab *100)/2500;
                      ?>
                 </div>
             </div>
