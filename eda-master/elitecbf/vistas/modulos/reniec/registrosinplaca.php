@@ -6,7 +6,7 @@
 		$nombre=$_POST['nombre'];
 		$apellidos=$_POST['apellidos'];
 		$dni=$_POST['dni'];
-		$easytaxi=$_POST['easytaxi'];
+		//$easytaxi=$_POST['easytaxi'];
 		$cabify=$_POST['cabify'];
 		$easytaxi=$_POST['easytaxi'];
 		$fecha_nacimiento=$_POST['fechaNacimiento'];
@@ -40,7 +40,7 @@
 			$cabify = "0" ;
 		}
 
-		if ($cabify == "0" && $easytaxi == "0" && $easyeconomy == "0") {
+		if ($cabify == "0" && $easytaxi == "0") {
 			echo "4";
 		} else {
 			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) || preg_match('/^[a-zA-Z]+$/', $nombre) ||

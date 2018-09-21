@@ -28,11 +28,10 @@ if (isset($file) && isset($_FILES["file"])){
 echo json_encode($return);
 
 
-//require_once "php/conexion.php";
+
 $conexion=mysqli_connect("localhost","root","","arhuantecedentes");
 $sql="UPDATE conductores SET foto = '$name', fecha_foto = NOW() WHERE dni = '$file'";
     $result=mysqli_query($conexion,$sql);
 
-    //echo $sql;
 
 ?>

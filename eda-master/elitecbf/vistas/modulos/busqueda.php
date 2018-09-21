@@ -15,12 +15,12 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Administrar</a></li>
                     <li class="breadcrumb-item active">Busqueda</li>
                 </ol>
-                
+
             </div>
         </div>
     </div>
 
-    
+
  <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
@@ -28,10 +28,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-      
+
 
          <button type="button" class="btn btn-default" id="daterange-btn">
-           
+
             <span>
               <i class="fa fa-calendar"></i> Rango de fecha
             </span>
@@ -53,31 +53,31 @@
 
           echo "<a href='vistas/modulos/descargar-reporte.php?reporte=reporte&fechaInicial=$fechaini&fechaFinal=$fechafin'>";
 
-       
+
 
         }else{
 
            echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte">';
 
-        }         
+        }
 
         ?>
-           
+
            <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
 
           </a>
 
         </div>
 
-      
+
     <div class="box-body">
-     
+
     <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-      
+
      <thead>
-      
+
       <tr>
-        
+
         <th>FECHA DE REGISTRO</th>
         <th>DNI</th>
         <th>NOMBRE</th>
@@ -89,10 +89,10 @@
         <th>RECORD CONDUCTOR</th>
         <th>RESULTADO</th>
         <th>SOAT</th>
-        <th>FORMATO</th>
+
         <th>OBSERVACION</th>
 
-      </tr> 
+      </tr>
 
      </thead>
 
@@ -113,9 +113,9 @@
        }
 
        $respuesta = ControladorConductor::ctrRangoFechasConductor($fechaInicial, $fechaFinal);
-       
+
        foreach ($respuesta as $key => $value) {
-       
+
        echo ' <tr>
                <td>'.$value["fecha"].'</td>';
 
@@ -128,7 +128,7 @@
                  echo '<td>'.$value["dni"].'</td>';
 
                }
-              
+
 
        echo '  <td>'.$value["nombre"].'</td>
                <td>'.$value["apellido"].'</td>
@@ -150,16 +150,16 @@
 
                echo '<td>'.$value["soat"].'</td>';
 
-               if($value["pdf"] != 0){
-                 
+               /*if($value["pdf"] != 0){
+
                  echo '<td><a href="https://cabifyperu.pe/usuario_arhu/docs/'.$value['pdf'].'" target="_blank"><img src="vistas/img/sist/pdf.png">';
 
                }else{
 
                  echo '<td><img src="vistas/img/sist/pdfoff.png" onClick="alerta()"></td>';
 
-               }  
-               
+               }*/
+
                if($value["observacion"] != ""){
 
                   echo '<td><label class="label label-warning">'.$value["observacion"].'</label></td>';
@@ -168,35 +168,35 @@
 
                  echo '<td>'.$value["observacion"].'</td>';
 
-               }       
+               }
 
                /* echo  '</td>
                <td>
 
                  <div class="btn-group">
-                     
+
                    <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["cont"].'" data-toggle="modal" data-target="#modalEditarConductor"><i class="fa fa-pencil"></i></button>
-                   
-                 </div>  
+
+                 </div>
 
                </td>*/
 
             echo '</tr>';
      }
-   
+
 
      ?>
-            
+
      </tbody>
 
     </table>
-   </div> 
+   </div>
   </div>
 </div>
 </div>
 
 
-    </div>  
+    </div>
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->

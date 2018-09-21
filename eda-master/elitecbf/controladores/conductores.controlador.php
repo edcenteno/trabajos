@@ -178,14 +178,47 @@ class ControladorConductor{
 					<td style='font-weight:bold; border:1px solid #eee;'>RECORD CONDUCTOR</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>RESULTADO</td
 					<td style='font-weight:bold; border:1px solid #eee;'>SOAT</td>
-
+					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE INICIO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE FIN</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>OBSERVACION</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>EMPRESA</td>
+
+
 					</tr>");
 
 			foreach ($conductores as $row => $value){
+				?>
+				<script type="text/javascript">
 
+				    var dni = '<?php echo $value["dni"] ?>'
+				    $.ajax({
+				    type: "GET",
+				    url: 'https://captcharh.ddns.net/api/record/principal/'+ dni
 
+				    }).done(function(msg){
 
+				        $('.licencia')[0].html = msg[0]['var_estado_licencia'];
+				        $('#excel').attr({
+				        	href: msg[0]['var_estado_licencia']
+				        });
+				    });
+				</script>
+				<?php
+
+				//$licencia = "<script>$('.licencia')[0].innerText = msg[0]['var_estado_licencia'] </script>";
+
+				$cabify = $value["cabify"];
+                $easytaxi = $value["easytaxi"];
+
+                if ($cabify == '1' && $easytaxi == 1) {
+                    $cabify= "Cabify <br> Easytaxi";
+                }else if ($easytaxi == 1 && $cabify == 0) {
+                    $cabify= "easytaxi";
+                }else if ($easytaxi == 0 && $cabify == 1) {
+                    $cabify = "cabify";
+                }else if ($easytaxi == 0 && $cabify == 0) {
+                    $cabify = "";
+                }
 			 echo utf8_decode("<tr>
 			 			<td style='border:1px solid #eee;'>".$value["fecha"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["dni"]."</td>
@@ -197,8 +230,12 @@ class ControladorConductor{
 			 			<td style='border:1px solid #eee;'>".$value["record_cond"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["resultado"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["soat"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["fecha_inicio_soat"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["fecha_fin_soat"]."</td>
+						<td style='border:1px solid #eee;'>".$value["observacion"]."</td>
+						<td style='border:1px solid #eee;'>".$cabify."</td>
 
-			 			<td style='border:1px solid #eee;'>".$value["observacion"]."</td>
+
 			 			</tr>");
 
 			 	}

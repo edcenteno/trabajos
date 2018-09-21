@@ -124,22 +124,31 @@ $extr=$value['extr'];
 }
     });
 
+empresa = '<?php echo $_SESSION["empresa"] ?>'
 
-$(document).ready(function(){
+if(empresa =="easytaxi"){
+   $(document).ready(function(){
     url = 'recibearchivo.php';
     url2 = 'recibearchivo2.php';
     $('#modalcapture').captureDevice([dni, dni], [url, url2])
 
-
 })
+}
 
-$(document).ready(function(){
+if(empresa =="cabify"){
+   $(document).ready(function(){
     direccion = 'recibearchivocbf.php';
-   //url2 = 'recibearchivo2cbf.php';
-    $('#modalcapturecabify').captureDevice([dni],[direccion])
-
+    direccion2 = 'recibearchivo2cbf.php';
+    $('#modalcapturecabify').captureDevicecbf([dni, dni], [direccion, direccion2])
 
 })
+
+}
+
+
+
+
+
 
 </script>
 <div class="container-fluid">
@@ -182,7 +191,7 @@ $(document).ready(function(){
 
                             if($_SESSION["empresa"] =="cabify" || $_SESSION["empresa"] =="arhu"){
                                 echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'">
-                                    <img src="extensiones/tcpdf/pdf/images/conductores/'.$foto.'" class="img-circle" width="100" height="100" />
+                                    <img src="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'" class="img-circle" width="100" height="100" />
                                     </a> ';
                             }
 
@@ -194,6 +203,8 @@ $(document).ready(function(){
                             }
                         ?>
                         <div id="modalcapture"></div>
+
+
                         <div id="modalcapturecabify"></div>
 
                         <h4 class="card-title m-t-10"><?php echo $value['nombre'] ." " . $value['apellido']; ?></h4>
@@ -210,22 +221,24 @@ $(document).ready(function(){
 
                         <div class="row text-center justify-content-md-center">
                             <?php
-                            if($_SESSION["empresa"] =="easytaxi" || $_SESSION["empresa"] =="arhu"){
+                            if($_SESSION["empresa"] =="easytaxi"){
                                 echo '<button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>';
                             }
 
-                            if($_SESSION["empresa"] =="cabify" || $_SESSION["empresa"] =="arhu"){
+                            if($_SESSION["empresa"] =="cabify"){
                                 echo '<button class="btn btn-primary" data-toggle="modal" data-target="#modalcapturecabify"></button>';
                             } ?>
 
 
 
 
-                        <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>
+                        <!-- <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button> -->
 
                         <?php
                             $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 20 day"));
+                            /*$date = date('Y-m-d h:i:s A');
+                            echo $date;*/
                                 if ($value['fecha'] < $mes) {
                                     echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
                                 } else {
