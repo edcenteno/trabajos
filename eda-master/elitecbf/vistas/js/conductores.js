@@ -11,7 +11,7 @@ CARGAR LA TABLA DINÁMICA
 	});
 */
 	$(document).ready(function() {
-    $('.tablaConductores').DataTable( {
+    var table = $('.tablaConductores').DataTable( {
     "ajax": "ajax/datatable-conductores.ajax.php",
     "deferRender": true,
 	"retrieve": true,
@@ -45,6 +45,9 @@ CARGAR LA TABLA DINÁMICA
 	}
 
     });
+    setInterval( function () {
+    table.ajax.reload(null, false ); // user paging is not reset on reload
+	}, 10000 );
 
 
 } );

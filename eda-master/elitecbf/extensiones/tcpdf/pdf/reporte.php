@@ -77,12 +77,11 @@ $dir = 'temp/';
         echo '<img width="120" src="vistas/img/plantilla/protecta.png">';
     }
 
-
+    $record = $value['record_cond'];
 
 	$client = new GuzzleHttp\Client();
 	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/principal/'.$idconductor);
 	$res->getStatusCode();
-
 	$res->getHeader('content-type');
 
 	if(!is_object($res)) {
@@ -90,16 +89,44 @@ $dir = 'temp/';
 	$arr = json_decode($res->getBody(), true);
 	}
 
+
+	//var_dump($arr);
+	$direccion = $arr[0]['var_direccion'];
+	$provincia = $arr[0]['var_provincia'];
+	$distrito = $arr[0]['var_distrito'];
+	$estado_licencia = $arr[0]['var_estado_licencia'];
+	$dat_fecha_expedicion = $arr[0]['dat_fecha_expedicion'];
+	$dat_fecha_revalidacion = $arr[0]['dat_fecha_revalidacion'];
+	$var_restricciones1 = $arr[0]['var_restricciones1'];
+	$var_num_licencia = $arr[0]['var_num_licencia'];
+
+
 	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
 	$res->getStatusCode();
 
 	$res->getHeader('content-type');
 
 	$arrmultas = json_decode($res->getBody(), true);
-	/*echo "<pre>";
-	var_dump($value);
-*/
 
+
+	$placa = $value['placa'];
+
+	$client = new GuzzleHttp\Client();
+	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/placa/'.$placa);
+	$res->getStatusCode();
+	$res->getHeader('content-type');
+
+	if(!is_object($res)) {
+	}else{
+	$veh = json_decode($res->getBody(), true);
+	}
+	/*echo "<pre>";
+	var_dump($veh['Vin']);*/
+
+	$continent=$veh['Vin']['continent'];
+	$countries=$veh['Vin']['countries'];
+	$modelYear=$veh['Vin']['modelYear'];
+	$manufacture=$veh['Vin']['manufacture'];
 
 require_once('tcpdf_include.php');
 
@@ -110,7 +137,12 @@ $pdf->startPageGroup();
 $pdf->AddPage();
 // Image example with resizing
 //$pdf->Image('images/confidencial.png', -10, -10, 250, 175, 'PNG');
-$pdf->Image('images/conductores/'.$foto.'', 35, 80, 45, 45, 'JPG');
+if ($value['cabify'] == '1') {
+	$pdf->Image('images/conductorescbf/'.$foto.'', 35, 80, 45, 45, 'JPG');
+} if ($value['easytaxi'] == '1') {
+	$pdf->Image('images/conductores/'.$foto.'', 35, 80, 45, 45, 'JPG');
+}
+
 $pdf->SetAuthor('Edgar Centeno');
 //$img_file = K_PATH_IMAGES.'images/confidencial.png';
 
@@ -229,7 +261,7 @@ $bloque3 = <<<EOF
 
 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
 			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">DEPARTAMENTO</td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[1][var_departamento]</b></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$direccion</b></td>
 
 		</tr>
 
@@ -237,7 +269,7 @@ $bloque3 = <<<EOF
 
 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
 			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">PROVINCIA</td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[var_provincia]</b></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$provincia</b></td>
 
 		</tr>
 
@@ -245,7 +277,7 @@ $bloque3 = <<<EOF
 
 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
 			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">DISTRITO</td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[var_distrito]</b></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$distrito</b></td>
 
 		</tr>
 
@@ -253,7 +285,7 @@ $bloque3 = <<<EOF
 
 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center"></td>
 			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center">DIRECCION</td>
-			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$arr[var_direccion]</b></td>
+			<td style="border: 1px solid #666; background-color:white; width:130px; text-align:center"><b>$direccion</b></td>
 
 		</tr>
 
@@ -308,8 +340,8 @@ $bloque3extr = <<<EOF
 	</table>
 
 EOF;
-	echo "<pre>";
-	var_dump($arr);
+	//echo "<pre>";
+	//var_dump($arr);
 if(!is_object($res)) {
 $pdf->writeHTML($bloque3extr, false, false, false, false, '');
 }else{
@@ -383,7 +415,7 @@ $bloque6 = <<<EOF
 
 
 	</table>
-	<br><br><br><br><br>
+	<br><br><br><br><br><br><br>
 
 EOF;
 
@@ -409,12 +441,12 @@ $bloque7 = <<<EOF
 		</tr>
 
 		<tr>
-		<br><br><br><br><br><br>
+		<br><br>
 
 			<td style="width:540px; text-align:center">
 				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y
 				exclusivo del tenedor.<br>
-				Es confidencial incomunicable a terceros.<br>
+				Es confidencial incomunicable a terceros.
 				Su divulgación, distribución,
 				retransmisión y/o alteración, total o parcial está expresamente
 				prohibida.</font>
@@ -456,7 +488,7 @@ $bloque7 = <<<EOF
 			<td style="width:540px; text-align:center">
 				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y
 				exclusivo del tenedor.<br>
-				Es confidencial incomunicable a terceros.<br>
+				Es confidencial incomunicable a terceros.
 				Su divulgación, distribución,
 				retransmisión y/o alteración, total o parcial está expresamente
 				prohibida.</font>
@@ -576,13 +608,161 @@ $bloquePolicial = <<<EOF
 
 
 	</table>
-
+<br><br><br><br><br>
 
 EOF;
 if ($value['ant_policial'] == 'POSITIVO') {
 $pdf->writeHTML($bloque1, false, false, false, false, '');
 $pdf->writeHTML($bloquePolicial, false, false, false, false, '');
 $pdf->writeHTML($bloque7, false, false, false, false, '');
+
+}
+
+$bloque7veh = <<<EOF
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+
+
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+			<td style="width:540px; text-align:center">
+				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y
+				exclusivo del tenedor.<br>
+				Es confidencial incomunicable a terceros.
+				Su divulgación, distribución,
+				retransmisión y/o alteración, total o parcial está expresamente
+				prohibida.</font>
+			</td>
+
+		</tr>
+
+
+	</table>
+
+EOF;
+
+$bloquevehiculo = <<<EOF
+
+	<table>
+
+		<tr>
+
+			<td style="width:540px"><img src="images/back.jpg"></td>
+
+		</tr>
+
+	</table>
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+
+			<td style="border: 3px solid #5b9bd4; background-color:white; width:540px" align="center">
+
+				INFORMACION DEL VEHICULO
+
+			</td>
+
+
+
+		</tr>
+
+
+	</table>
+	<br><br><br>
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+
+			<td style="width:260px; text-align:right">PLACA:</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$veh[Placa_Nueva]</b></font></td>
+
+		</tr>
+
+		<tr>
+
+			<td style="width:260px; text-align:right">MARCA:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$veh[Marca]</b></font></td>
+
+		</tr>
+
+		<tr>
+
+			<td style="width:260px; text-align:right">MODELO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$veh[Modelo]</b></font></td>
+
+		</tr>
+
+		<tr>
+
+			<td style="width:260px; text-align:right">PROPIETARIO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$veh[Propietario]</b></font></td>
+
+		</tr>
+
+		<tr>
+
+			<td style="width:260px; text-align:right">FECHA DE ENTREGA:</td>
+			<td style="width:260px; text-align:left"><font color="red" size="10"><b>$veh[Fecha_Entrega]</b></font></td>
+
+		</tr>
+
+		<tr>
+
+			<td style="width:260px; text-align:right">CONTINENTE:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$continent</b></font></td>
+
+		</tr>
+
+		<tr>
+
+			<td style="width:260px; text-align:right">PAIS:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$countries</b></font></td>
+
+		</tr>
+
+		<tr>
+
+			<td style="width:260px; text-align:right">AÑO DEL MODELO:</td>
+			<td style="width:260px; text-align:left"><font size="8"><b>$modelYear</b></font></td>
+
+		</tr>
+
+		<tr>
+
+			<td style="width:260px; text-align:right">FABRICA:</td>
+
+			<td style="width:260px; text-align:justify"><font size="8"><b>$manufacture</b></font></td>
+
+		</tr>
+
+
+
+	</table>
+<br><br><br>
+
+EOF;
+
+if ($value['placa'] != 'NINGUNO') {
+$pdf->writeHTML($bloque1, false, false, false, false, '');
+$pdf->writeHTML($bloquevehiculo, false, false, false, false, '');
+$pdf->writeHTML($bloque7veh, false, false, false, false, '');
 
 }
 
@@ -1011,11 +1191,11 @@ $bloquepiesoat = <<<EOF
 		</tr>
 		<tr>
 			<td style="width:540px; text-align:center">
-				<font size="7" color="#aaaaaa">
+				<font size="8" color="#aaaaaa">
 					Este documento no es de uso oficial, la información proporcionada en
 					el mismo es de uso interno y
 					exclusivo del tenedor.<br>
-					Es confidencial incomunicable a terceros.<br>
+					Es confidencial incomunicable a terceros.
 					Su divulgación, distribución,
 					retransmisión y/o alteración, total o parcial está expresamente
 					prohibida.
@@ -1076,31 +1256,36 @@ $bloqueencabezadorecord = <<<EOF
 
 		<tr>
 			<td style="solid #666; background-color:white; width:130px; text-align:center">Nº de Licencia Correlativo</td>
-			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[var_num_licencia]</b></td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$var_num_licencia</b></td>
 
 		</tr>
 
 		<tr>
 			<td style="solid #666; background-color:white; width:130px; text-align:center">Estado</td>
-			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[var_estado_licencia]</b></td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$estado_licencia</b></td>
 
 		</tr>
 
 		<tr>
 			<td style="solid #666; background-color:white; width:130px; text-align:center">Fecha de Expedición</td>
-			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[dat_fecha_expedicion]</b></td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$dat_fecha_expedicion</b></td>
 
 		</tr>
 
 		<tr>
 			<td style="solid #666; background-color:white; width:130px; text-align:center">Fecha de Revalidación</td>
-			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[dat_fecha_revalidacion]</b></td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$dat_fecha_revalidacion</b></td>
 
 		</tr>
 
 		<tr>
 			<td style="solid #666; background-color:white; width:130px; text-align:center">Restricciones</td>
-			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$arr[var_restricciones1]</b></td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$var_restricciones1</b></td>
+
+		</tr>
+		<tr>
+			<td style="solid #666; background-color:white; width:130px; text-align:center">Record del Conductor</td>
+			<td style="solid #666; background-color:white; width:150px; text-align:center"><b>$record</b></td>
 
 		</tr>
 
@@ -1130,9 +1315,82 @@ EOF;
 
 $pdf->writeHTML($bloque1, false, false, false, false, '');
 $pdf->writeHTML($bloqueencabezadorecord, false, false, false, false, '');
+
+$bloque7multas = <<<EOF
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+
+
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+		<br><br><br><br><br><br><br>
+			<td style="width:540px; text-align:center">
+				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y
+				exclusivo del tenedor.<br>
+				Es confidencial incomunicable a terceros.
+				Su divulgación, distribución,
+				retransmisión y/o alteración, total o parcial está expresamente
+				prohibida.</font>
+			</td>
+
+		</tr>
+
+
+	</table>
+
+EOF;
+$bloque7s = <<<EOF
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+
+
+			<td style="width:260px; text-align:right"></td>
+			<td style="width:260px; text-align:left"><b></b></td>
+
+		</tr>
+
+		<tr>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<td style="width:540px; text-align:center">
+				<font size="8" color="#aaaaaa">Este documento no es de uso oficial, la información proporcionada en el mismo es de uso interno y
+				exclusivo del tenedor.<br>
+				Es confidencial incomunicable a terceros.
+				Su divulgación, distribución,
+				retransmisión y/o alteración, total o parcial está expresamente
+				prohibida.</font>
+			</td>
+
+		</tr>
+
+
+	</table>
+
+EOF;
+
 if (is_array($arrmultas)) {
 foreach ($arrmultas as $key => $keymultas) {
-
 
 $bloquerecord = <<<EOF
 
@@ -1166,14 +1424,12 @@ EOF;
 
 $pdf->writeHTML($bloquerecord, false, false, false, false, '');
 }
+$pdf->writeHTML($bloque7multas, false, false, false, false, '');
 
-$pdf->writeHTML($bloque7, false, false, false, false, '');
+
 } else {
-
+$pdf->writeHTML($bloque7s, false, false, false, false, '');
 }
-
-
-
 
 
 // ---------------------------------------------------------

@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <button type="button" class="btn btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarConductor"><i class="fa fa-plus-circle"></i> Nuevo Conductor </button>
                       <div class="table-responsive m-t-20">
-                        <table class="display nowrap table table-hover table-striped table-bordered dt-responsive tablaConductores" cellspacing="0" width="100%">
+                        <table class="display nowrap table table-hover table-striped table-bordered dt-responsive tablaConductores" id = "condu" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>FECHA DE REGISTRO</th>
@@ -63,6 +63,8 @@
 
 </div>
 </div>
+
+
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->

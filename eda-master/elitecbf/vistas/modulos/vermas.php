@@ -262,6 +262,8 @@ if(empresa =="cabify"){
                      <?php
                      if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||  $value['placa'] == "NINGUNA") {
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
+                     }else{
+                        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#cambiarplaca" data-whatever="@getbootstrap">Cambiar Placa</button>';
                      }
                     ?>
                     <hr>

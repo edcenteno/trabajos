@@ -171,6 +171,7 @@ class ControladorConductor{
 					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE REGISTRO</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>DNI</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>NOMBRE</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>APELLIDO</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>PLACA</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES PENALES</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES JUDICIAL</td>
@@ -225,6 +226,7 @@ class ControladorConductor{
 			 			<td style='border:1px solid #eee;'>".$value["nombre"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["apellido"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["placa"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["ant_penales"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["ant_judicial"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["ant_policial"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["record_cond"]."</td>
