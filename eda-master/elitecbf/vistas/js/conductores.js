@@ -47,7 +47,7 @@ CARGAR LA TABLA DINÁMICA
     });
     setInterval( function () {
     table.ajax.reload(null, false ); // user paging is not reset on reload
-	}, 10000 );
+	}, 30000 );
 
 
 } );

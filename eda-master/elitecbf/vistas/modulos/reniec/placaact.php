@@ -49,10 +49,10 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $jsonString = curl_exec ($ch);
 curl_close ($ch);
 $out = json_decode($jsonString, true);
-/*echo "<pre>";
+echo "<pre>";
 var_dump($out);
 
-echo"</pre>";*/
+echo"</pre>";
 
 /*echo "NombreCompania : ".$out['NombreCompania']." <br>";
 echo "FechaInicio : ". $out['FechaInicio'];

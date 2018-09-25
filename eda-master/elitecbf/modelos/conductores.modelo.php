@@ -73,10 +73,10 @@ class ModeloConductor{
 	}
 
 	static public function mdlMostrarConductorhoy($tabla, $item, $valor){
-
+		$mes=date('m');
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-09%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-$mes%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -86,7 +86,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-09%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-$mes%'");
 
 			$stmt -> execute();
 

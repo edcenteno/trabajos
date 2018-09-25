@@ -105,7 +105,7 @@ function realizaProceso(){
                                           <div class="input-group">
                                             <select id="tipoext" class="form-control">
                                               <option value="0">SELECCIONE</option>
-                                            <!--   <option value="1">DNI</option> -->
+                                              <option value="1">DNI</option>
                                               <option value="2">CARNE DE EXTRANJERIA</option>
                                               <option value="3">CARNE DE SOLICITANTE</option>
                                               <option value="4">TARJETA DE IDENTIDAD</option>

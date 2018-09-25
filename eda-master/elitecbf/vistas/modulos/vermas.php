@@ -263,7 +263,7 @@ if(empresa =="cabify"){
                      if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||  $value['placa'] == "NINGUNA") {
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
                      }else{
-                        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#cambiarplaca" data-whatever="@getbootstrap">Cambiar Placa</button>';
+                         echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Cambiar Placa</button>';
                      }
                     ?>
                     <hr>
@@ -1054,6 +1054,9 @@ if(empresa =="cabify"){
     </div>
   </div>
 </div>
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="migrar" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1169,4 +1172,5 @@ if(empresa =="cabify"){
                 }
         });
 }
+
 </script>

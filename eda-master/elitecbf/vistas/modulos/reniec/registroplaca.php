@@ -30,11 +30,14 @@ if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguiente
                  NombreUsoVehiculo = '".$NombreUsoVehiculo."',
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
+                 contador_act_placa = contador_act_placa+1,
+                 fecha_act_placa = NOW(),
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
                                 //echo $sql;
 
             $result=mysqli_query($conexion,$sql);
+            echo "1";
 } else {
    $sql="UPDATE conductores SET
                  placa = '".$placa."',
@@ -47,6 +50,8 @@ if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguiente
                  NombreUsoVehiculo = '".$NombreUsoVehiculo."',
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
+                 contador_act_placa = contador_act_placa+1,
+                 fecha_act_placa = NOW(),
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
                                 //echo $sql;
