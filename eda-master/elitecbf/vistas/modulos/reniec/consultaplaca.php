@@ -37,6 +37,7 @@ if (isset($_POST['si'])){
 	function realizaProcesoplaca(){
 
         placa = $('#placa').val();
+        placa = cadena.toUpperCase();
 
          $.ajax({
             type: "POST",

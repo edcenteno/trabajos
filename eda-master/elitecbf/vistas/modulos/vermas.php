@@ -10,7 +10,11 @@
 
     if ($value['blacklist'] == 0) {
       $bl="No se encuentra en lista negra";
-    } else {
+    }
+    if ($value['blacklist'] == "") {
+      $bl="";
+    }
+    if ($value['blacklist'] == 1) {
       $bl="Si se encuentra en lista negra";
     }
 
@@ -303,6 +307,7 @@ if(empresa =="cabify"){
                             function deshabilitar_btnEnviar(){
 
                                         placa = '<?php echo $placa ?>'
+                                        placa = placa.toUpperCase();
                                         type= '<?php echo $extr ?>'
                                         dni = '<?php echo $idconductor ?>'
                                         cabify= '<?php echo $cabify ?>'
@@ -1136,9 +1141,11 @@ if(empresa =="cabify"){
     function realizaProcesoplaca(){
 
         placa = $('#placa').val();
+        placa = placa.toUpperCase();
+
         dni = '<?php echo $idconductor ?>'
 
-       /*  $.ajax({
+         $.ajax({
             type: "POST",
             url: 'https://captcharh.ddns.net/api/record',
             data: {
@@ -1150,7 +1157,7 @@ if(empresa =="cabify"){
             }).done(function(msg){
                $("#resultado").html(msg);
                 console.log(msg)
-            });*/
+            });
 
         cadena="&dni=" + dni +
                "&placa=" + $('#placa').val()

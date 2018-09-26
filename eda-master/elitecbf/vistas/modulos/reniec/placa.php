@@ -158,6 +158,7 @@ if ($estado == "VIGENTE") {
 
 <script type="text/javascript">
   placa = $('#placa').val();
+  placa = placa.toUpperCase();
 
         $.ajax({
             type: "POST",
