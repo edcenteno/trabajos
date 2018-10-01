@@ -47867,6 +47867,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47874,6 +47882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             categoria_id: 0,
             nombre: '',
             descripcion: '',
+            precio: '',
             arrayCategoria: [],
             modal: 0,
             tituloModal: '',
@@ -47950,7 +47959,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post('/categoria/registrar', {
                 'nombre': this.nombre,
-                'descripcion': this.descripcion
+                'descripcion': this.descripcion,
+                'precio': this.precio
             }).then(function (response) {
                 me.cerrarModal();
                 me.listarCategoria(1, '', 'nombre');
@@ -47968,6 +47978,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.put('/categoria/actualizar', {
                 'nombre': this.nombre,
                 'descripcion': this.descripcion,
+                'precio': this.precio,
                 'id': this.categoria_id
             }).then(function (response) {
                 me.cerrarModal();
@@ -48081,6 +48092,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.categoria_id = data['id'];
                                     this.nombre = data['nombre'];
                                     this.descripcion = data['descripcion'];
+                                    this.precio = data['precio'];
                                     break;
                                 }
                         }
@@ -48166,6 +48178,10 @@ var render = function() {
                     _vm._v(" "),
                     _c("option", { attrs: { value: "descripcion" } }, [
                       _vm._v("Descripción")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "descripcion" } }, [
+                      _vm._v("Precio")
                     ])
                   ]
                 ),
@@ -48495,7 +48511,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "email-input" }
+                          attrs: { for: "text-input" }
                         },
                         [_vm._v("Descripción")]
                       ),
@@ -48512,7 +48528,7 @@ var render = function() {
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "email",
+                            type: "text",
                             placeholder: "Ingrese descripción"
                           },
                           domProps: { value: _vm.descripcion },
@@ -48522,6 +48538,44 @@ var render = function() {
                                 return
                               }
                               _vm.descripcion = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Precio")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.precio,
+                              expression: "precio"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Ingrese precio en Soles"
+                          },
+                          domProps: { value: _vm.precio },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.precio = $event.target.value
                             }
                           }
                         })
@@ -48638,6 +48692,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", [_vm._v("Descripción")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Precio")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")])
       ])
@@ -48952,9 +49008,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var me = this;
             var url = '/subject?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
             axios.get(url).then(function (response) {
-                //console.log(data);
+                console.log(data);
                 var respuesta = response.data;
-                me.arraySubject = respuesta.subjects.data;
+                me.arraySubject = respuesta.subject.data;
                 me.pagination = respuesta.pagination;
             }).catch(function (error) {
                 console.log(error);

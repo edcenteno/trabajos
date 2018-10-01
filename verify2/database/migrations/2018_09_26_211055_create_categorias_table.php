@@ -17,6 +17,7 @@ class CreateCategoriasTable extends Migration
             $table->increments('id');
             $table->string('nombre', 50);
             $table->string('descripcion', 250)->nullable();
+            $table->string('precio');
             $table->string('condicion')->default(1);
             $table->timestamps();
 

@@ -200,9 +200,9 @@
                 let me=this;
                 var url= '/subject?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
-                    //console.log(data);
+                    console.log(data);
                     var respuesta= response.data;
-                    me.arraySubject = respuesta.subjects.data;
+                    me.arraySubject = respuesta.subject.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {

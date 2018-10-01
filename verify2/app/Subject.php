@@ -11,7 +11,7 @@ class Subject extends Eloquent
         protected $connection = 'mongodb';
         protected $collection = 'subjects';
 
-        protected $fillable = ['doc_type','doc_value','name','first_last_name','last_last_name','birthday'];
+        protected $fillable = ['doc_value','name','first_last_name','last_last_name','birthday'];
 
 
 }

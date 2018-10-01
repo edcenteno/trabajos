@@ -8,7 +8,7 @@
             <categoria></categoria>
         </template>
 
-        <template v-if="menu==2">
+        {{-- <template v-if="menu==2">
             <h1>Contenido del menú 2</h1>
         </template>
 
@@ -43,7 +43,7 @@
         <template v-if="menu==10">
             <h1>Contenido del menú 10</h1>
         </template>
-
+ --}}
         <template v-if="menu==11">
             <h1>Contenido del menú 11</h1>
         </template>

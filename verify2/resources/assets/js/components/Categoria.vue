@@ -22,6 +22,7 @@
                                     <select class="form-control col-md-3" v-model="criterio">
                                       <option value="nombre">Nombre</option>
                                       <option value="descripcion">Descripción</option>
+                                      <option value="descripcion">Precio</option>
                                     </select>
                                     <input type="text" v-model="buscar" @keyup.enter="listarCategoria(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
                                     <button type="submit" @click="listarCategoria(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -34,6 +35,7 @@
                                     <th>Opciones</th>
                                     <th>Nombre</th>
                                     <th>Descripción</th>
+                                    <th>Precio</th>
                                     <th>Estado</th>
                                 </tr>
                             </thead>
@@ -105,9 +107,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Descripción</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Descripción</label>
                                     <div class="col-md-9">
-                                        <input type="email" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
+                                        <input type="text" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Precio</label>
+                                    <div class="col-md-9">
+                                        <input type="text" v-model="precio" class="form-control" placeholder="Ingrese precio en Soles">
                                     </div>
                                 </div>
                                 <div v-show="errorCategoria" class="form-group row div-error">
@@ -141,6 +149,7 @@
                 categoria_id: 0,
                 nombre : '',
                 descripcion : '',
+                precio : '',
                 arrayCategoria : [],
                 modal : 0,
                 tituloModal : '',
@@ -218,7 +227,8 @@
 
                 axios.post('/categoria/registrar',{
                     'nombre': this.nombre,
-                    'descripcion': this.descripcion
+                    'descripcion': this.descripcion,
+                    'precio': this.precio
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarCategoria(1,'','nombre');
@@ -236,6 +246,7 @@
                 axios.put('/categoria/actualizar',{
                     'nombre': this.nombre,
                     'descripcion': this.descripcion,
+                    'precio': this.precio,
                     'id': this.categoria_id
                 }).then(function (response) {
                     me.cerrarModal();
@@ -361,6 +372,7 @@
                                 this.categoria_id=data['id'];
                                 this.nombre = data['nombre'];
                                 this.descripcion= data['descripcion'];
+                                this.precio= data['precio'];
                                 break;
                             }
                         }
