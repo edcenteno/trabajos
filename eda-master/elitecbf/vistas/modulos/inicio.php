@@ -32,7 +32,7 @@ require 'graficas/querys.php';
                     <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#reporte" role="tab"><i class="ti-car"></i> Reporte de Conductores</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#cabify" role="tab"><i class="fa fa-taxi"></i> Cabify</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#easy" role="tab"><i class="fa fa-taxi"></i> Easy Taxi</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#easyEconomy" role="tab"><i class="fa fa-taxi"></i> Easy Economy</a> </li>
+                    <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#easyEconomy" role="tab"><i class="fa fa-taxi"></i> Easy Economy</a> </li> -->
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#act" role="tab"><i class="ti-reload"></i> Reporte General </a> </li>
                 </ul>
              <!-- Tab panes -->
@@ -626,9 +626,9 @@ Morris.Bar({
     { y: 'Junio', a: junio },
     { y: 'Julio', a: julio },
     { y: 'Agosto', a: agosto},
-   { y: 'Septiembre', a: septiembre},
-     /*{ y: 'Octubre', a: octubre},
-    { y: 'Noviembre', a: noviembre},
+    { y: 'Septiembre', a: septiembre},
+    { y: 'Octubre', a: octubre},
+    /*{ y: 'Noviembre', a: noviembre},
     { y: 'Diciembre', a: diciembre},
     { y: 'Enero', a:  enero },
     { y: 'Febrero', a: febrero },

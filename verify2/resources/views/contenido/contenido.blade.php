@@ -52,4 +52,8 @@
             <h1>Contenido del menú 12</h1>
         </template>
 
+        <template v-if="menu==13">
+            <subject></subject>
+        </template>
+
     @endsection

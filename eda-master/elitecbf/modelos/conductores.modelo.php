@@ -73,10 +73,10 @@ class ModeloConductor{
 	}
 
 	static public function mdlMostrarConductorhoy($tabla, $item, $valor){
-		$mes=date('m');
+		$mes=date('Y-m');
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-$mes%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '$mes%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -86,7 +86,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-$mes%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '$mes%'");
 
 			$stmt -> execute();
 
@@ -101,10 +101,11 @@ class ModeloConductor{
 	}
 
 		static public function mdlMostrarConductoresMes($tabla, $item2, $valor2){
-
+			$fecha_actual = date("Y-m-d");
+			$mes_anterior = date("Y-m",strtotime($fecha_actual."- 1 month"));
 		if($item2 != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-08%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '$mes_anterior%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -114,7 +115,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '2018-08%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '$mes_anterior%'");
 
 			$stmt -> execute();
 
@@ -356,10 +357,10 @@ class ModeloConductor{
 	EASY
 	=============================================*/
 	static public function mdlMostrarConductorhoyEasy($tabla, $item, $valor){
-
+		$mes = date('Y-m');
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '2018-09%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '$mes%'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -369,7 +370,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '2018-09%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE easytaxi = '1' and fecha like '$mes%'");
 
 			$stmt -> execute();
 

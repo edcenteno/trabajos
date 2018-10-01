@@ -17,6 +17,7 @@ $clientes2 = ControladorConductor::ctrMostrarConductorMes($item2, $valor2);
 $totalClientes2 = count($clientes2);
 $a = number_format($totalClientes);
 $fecha_actual = date("M-Y");
+
 ?>
 
 

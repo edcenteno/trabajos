@@ -73,6 +73,7 @@ class CategoriaController extends Controller{
 
     $essalud = new \EsSalud\EsSalud();
     $resul = $essalud->search('0661502');
+    $resul = $mintra->search( $dni );
     //dd($resul);
     if ($resul['success'] == TRUE || strlen('066502') >= 7 ) {
         # trae data

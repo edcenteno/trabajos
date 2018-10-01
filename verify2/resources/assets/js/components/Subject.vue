@@ -10,8 +10,8 @@
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Categorías
-                        <button type="button" @click="abrirModal('categoria','registrar')" class="btn btn-secondary">
+                        <i class="fa fa-align-justify"></i> Personas
+                        <button type="button" @click="abrirModal('subject','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -23,8 +23,8 @@
                                       <option value="nombre">Nombre</option>
                                       <option value="descripcion">Descripción</option>
                                     </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarCategoria(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarCategoria(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarSubject(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarSubject(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -32,32 +32,34 @@
                             <thead>
                                 <tr>
                                     <th>Opciones</th>
-                                    <th>Nombre</th>
-                                    <th>Descripción</th>
-                                    <th>Estado</th>
+                                    <th>Número de Documento</th>
+                                    <th>Nombres</th>
+                                    <th>Apellido Paterno</th>
+                                    <th>Apellido Materno</th>
+                                    <th>Fecha de Nacimiento</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="categoria in arrayCategoria" :key="categoria.id">
+                                <tr v-for="subject in arraySubject" :key="subject.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('categoria','actualizar',categoria)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('subject','actualizar',subject)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
-                                        <template v-if="categoria.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCategoria(categoria.id)">
+                                        <template v-if="subject.condicion">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarSubject(subject.id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarCategoria(categoria.id)">
+                                            <button type="button" class="btn btn-info btn-sm" @click="activarSubject(subject.id)">
                                                 <i class="icon-check"></i>
                                             </button>
                                         </template>
                                     </td>
-                                    <td v-text="categoria.nombre"></td>
-                                    <td v-text="categoria.descripcion"></td>
+                                    <td v-text="subject.nombre"></td>
+                                    <td v-text="subject.descripcion"></td>
                                     <td>
-                                        <div v-if="categoria.condicion">
+                                        <div v-if="subject.condicion">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
                                         <div v-else>
@@ -98,21 +100,21 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Número de Documento</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de categoría">
+                                        <input type="text" v-model="doc_value" class="form-control" placeholder="Número de Documento">
 
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Descripción</label>
+                                <!-- <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Descripción</label>
                                     <div class="col-md-9">
-                                        <input type="email" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
+                                        <input type="text" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
                                     </div>
-                                </div>
-                                <div v-show="errorCategoria" class="form-group row div-error">
+                                </div> -->
+                                <div v-show="errorSubject" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjCategoria" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjSubject" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -122,8 +124,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarCategoria()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarCategoria()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarSubject()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarSubject()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -138,15 +140,19 @@
     export default {
         data (){
             return {
-                categoria_id: 0,
-                nombre : '',
-                descripcion : '',
-                arrayCategoria : [],
+                subject_id: 0,
+                doc_type : '',
+                doc_value : '',
+                name : '',
+                first_last_name : '',
+                last_last_name : '',
+                birthday : '',
+                arraySubject : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorCategoria : 0,
-                errorMostrarMsjCategoria : [],
+                errorSubject : 0,
+                errorMostrarMsjSubject : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -156,7 +162,7 @@
                     'to' : 0,
                 },
                 offset : 3,
-                criterio : 'nombre',
+                criterio : 'name',
                 buscar : ''
             }
         },
@@ -190,12 +196,13 @@
             }
         },
         methods : {
-            listarCategoria (page,buscar,criterio){
+            listarSubject (page,buscar,criterio){
                 let me=this;
-                var url= '/categoria?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/subject?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
+                    //console.log(data);
                     var respuesta= response.data;
-                    me.arrayCategoria = respuesta.categorias.data;
+                    me.arraySubject = respuesta.subjects.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -207,35 +214,44 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarCategoria(page,buscar,criterio);
+                me.listarSubject(page,buscar,criterio);
             },
-            registrarCategoria(){
-                if (this.validarCategoria()){
+            registrarSubject(){
+                if (this.validarSubject()){
                     return;
                 }
 
                 let me = this;
 
-                axios.post('/categoria/registrar',{
-                    'nombre': this.nombre,
-                    'descripcion': this.descripcion
+                axios.post('/subject/registrar',{
+                    /*'doc_type': this.doc_type,*/
+                    'doc_value': this.doc_value/*,
+                    'name,': this.name,
+                    'first_last_name,': this.first_last_name,
+                    'last_last_name,': this.last_last_name,
+                    'birthday,': this.birthday*/
+
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarCategoria(1,'','nombre');
+                    me.listarSubject(1,'','name');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarCategoria(){
-               if (this.validarCategoria()){
+            actualizarSubject(){
+               if (this.validarSubject()){
                     return;
                 }
 
                 let me = this;
 
-                axios.put('/categoria/actualizar',{
-                    'nombre': this.nombre,
-                    'descripcion': this.descripcion,
+                axios.put('/subject/actualizar',{
+                    'doc_type': this.doc_type,
+                    'doc_value': this.doc_value,
+                    'name,': this.name,
+                    'first_last_name,': this.first_last_name,
+                    'last_last_name,': this.last_last_name,
+                    'birthday,': this.birthday,
                     'id': this.categoria_id
                 }).then(function (response) {
                     me.cerrarModal();
@@ -244,9 +260,9 @@
                     console.log(error);
                 });
             },
-            desactivarCategoria(id){
+            desactivarSubject(id){
                swal({
-                title: 'Esta seguro de desactivar esta categoría?',
+                title: 'Esta seguro de eliminar esta persona?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -264,7 +280,7 @@
                     axios.put('/categoria/desactivar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarCategoria(1,'','nombre');
+                        me.listarSubject(1,'','name');
                         swal(
                         'Desactivado!',
                         'El registro ha sido desactivado con éxito.',
@@ -283,7 +299,7 @@
                 }
                 })
             },
-            activarCategoria(id){
+            activarSubject(id){
                swal({
                 title: 'Esta seguro de activar esta categoría?',
                 type: 'warning',
@@ -300,10 +316,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/categoria/activar',{
+                    axios.put('/subject/activar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarCategoria(1,'','nombre');
+                        me.listarCategoria(1,'','name');
                         swal(
                         'Activado!',
                         'El registro ha sido activado con éxito.',
@@ -322,15 +338,15 @@
                 }
                 })
             },
-            validarCategoria(){
-                this.errorCategoria=0;
-                this.errorMostrarMsjCategoria =[];
+            validarSubject(){
+                this.errorSubject=0;
+                this.errorMostrarMsjSubject =[];
 
-                if (!this.nombre) this.errorMostrarMsjCategoria.push("El nombre de la categoría no puede estar vacío.");
+                if (!this.doc_value) this.errorMostrarMsjSubject.push("El Número de Documento no puede estar vacío.");
 
-                if (this.errorMostrarMsjCategoria.length) this.errorCategoria = 1;
+                if (this.errorMostrarMsjSubject.length) this.errorSubject = 1;
 
-                return this.errorCategoria;
+                return this.errorSubject;
             },
             cerrarModal(){
                 this.modal=0;
@@ -340,15 +356,15 @@
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "categoria":
+                    case "subject":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Categoría';
-                                this.nombre= '';
-                                this.descripcion = '';
+                                this.tituloModal = 'Registrar Persona';
+                                this.doc_value= '';
+                                /*this.descripcion = '';*/
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -356,11 +372,11 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar categoría';
+                                this.tituloModal='Actualizar Persona';
                                 this.tipoAccion=2;
-                                this.categoria_id=data['id'];
-                                this.nombre = data['nombre'];
-                                this.descripcion= data['descripcion'];
+                                this.subject_id=data['id'];
+                                this.doc_value = data['doc_value'];
+                                /*this.descripcion= data['descripcion'];*/
                                 break;
                             }
                         }
@@ -369,7 +385,7 @@
             }
         },
         mounted() {
-            this.listarCategoria(1,this.buscar,this.criterio);
+            this.listarSubject(1,this.buscar,this.criterio);
         }
     }
 </script>
