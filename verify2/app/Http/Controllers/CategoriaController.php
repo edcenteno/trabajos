@@ -45,7 +45,6 @@ class CategoriaController extends Controller{
         $categoria -> save();
     }
 
-
     public function update(Request $request){
        if(!$request->ajax()) return redirect('/');
         $categoria = Categoria::findOrFail($request->id);
@@ -69,24 +68,5 @@ class CategoriaController extends Controller{
         $categoria ->condicion = '1';
         $categoria -> save();
     }
-
-    public function inicio(){
-       /*if(!$request->ajax()) return redirect('/');*/
-
-    $essalud = new \EsSalud\EsSalud();
-    $resul = $essalud->search('0661502');
-    $resul = $mintra->search( $dni );
-    //dd($resul);
-    if ($resul['success'] == TRUE || strlen('066502') >= 7 ) {
-        # trae data
-    } else {
-        # mensaje de error en json
-        return response()->json(['No hay datos'], 404);
-    }
-
-//dd($essalud->search('06261502')->Nombres);
-    }
-
-
 
 }
