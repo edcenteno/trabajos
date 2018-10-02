@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4db0c1037e688d8b56cbc81823e8bad6",
+    "content-hash": "680e5f8d82d9ef6400da13d0d3502dc0",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -572,6 +572,58 @@
                 "mongodb"
             ],
             "time": "2018-08-16T10:58:55+00:00"
+        },
+        {
+            "name": "jossmp/sunatphp",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JossMP/SunatPHP.git",
+                "reference": "9eb807dc3b0a3f83ecdbd86c94f0a11451db10d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JossMP/SunatPHP/zipball/9eb807dc3b0a3f83ecdbd86c94f0a11451db10d2",
+                "reference": "9eb807dc3b0a3f83ecdbd86c94f0a11451db10d2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "lib-curl": "*"
+            },
+            "require-dev": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sunat\\": "src/",
+                    "cURL\\": "src/",
+                    "response\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josue Mazco Puma",
+                    "email": "jossmp@gmail.com",
+                    "homepage": "https://geekdev.ml/",
+                    "role": "Developers"
+                }
+            ],
+            "description": "Clase para realizar consultas a sunat Peru mediante el numero de ruc o dni",
+            "homepage": "https://github.com/JossMP/SunatPHP",
+            "keywords": [
+                "consulta",
+                "curl",
+                "peru",
+                "php",
+                "sunat"
+            ],
+            "time": "2018-09-24T18:43:45+00:00"
         },
         {
             "name": "laravel/framework",

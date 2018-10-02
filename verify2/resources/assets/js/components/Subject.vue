@@ -20,8 +20,8 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
-                                      <option value="nombre">Nombre</option>
-                                      <option value="descripcion">Descripción</option>
+                                      <option value="name">Nombre</option>
+                                      <option value="doc_value">Numero de Documento</option>
                                     </select>
                                     <input type="text" v-model="buscar" @keyup.enter="listarSubject(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
                                     <button type="submit" @click="listarSubject(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -56,9 +56,12 @@
                                             </button>
                                         </template>
                                     </td>
-                                    <td v-text="subject.nombre"></td>
-                                    <td v-text="subject.descripcion"></td>
-                                    <td>
+                                    <td v-text="subject.doc_value"></td>
+                                    <td v-text="subject.name"></td>
+                                    <td v-text="subject.first_last_name"></td>
+                                    <td v-text="subject.last_last_name"></td>
+                                    <td v-text="subject.birthday"></td>
+                                    <!-- <td>
                                         <div v-if="subject.condicion">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
@@ -66,7 +69,7 @@
                                             <span class="badge badge-danger">Desactivado</span>
                                         </div>
 
-                                    </td>
+                                    </td> -->
                                 </tr>
                             </tbody>
                         </table>
@@ -141,7 +144,6 @@
         data (){
             return {
                 subject_id: 0,
-                doc_type : '',
                 doc_value : '',
                 name : '',
                 first_last_name : '',
@@ -200,9 +202,8 @@
                 let me=this;
                 var url= '/subject?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
-                    console.log(data);
                     var respuesta= response.data;
-                    me.arraySubject = respuesta.subject.data;
+                    me.arraySubject = respuesta.subjects.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -238,7 +239,7 @@
                     console.log(error);
                 });
             },
-            actualizarSubject(){
+            /*actualizarSubject(){
                if (this.validarSubject()){
                     return;
                 }
@@ -259,8 +260,8 @@
                 }).catch(function (error) {
                     console.log(error);
                 });
-            },
-            desactivarSubject(id){
+            },*/
+            /*desactivarSubject(id){
                swal({
                 title: 'Esta seguro de eliminar esta persona?',
                 type: 'warning',
@@ -337,7 +338,7 @@
 
                 }
                 })
-            },
+            },*/
             validarSubject(){
                 this.errorSubject=0;
                 this.errorMostrarMsjSubject =[];

@@ -187,13 +187,13 @@ if(empresa =="cabify"){
                             if($value['foto']){
                                 $foto = $value['foto'];
 
-                            if($_SESSION["empresa"] =="easytaxi" || $_SESSION["empresa"] =="arhu"){
+                            if($_SESSION["empresa"] =="easytaxi" || $_SESSION["empresa"] =="arhu" || $_SESSION["empresa"] =="cabify"){
                                 echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'">
                                     <img src="extensiones/tcpdf/pdf/images/conductores/'.$foto.'" class="img-circle" width="100" height="100" />
                                     </a> ';
                             }
 
-                            if($_SESSION["empresa"] =="cabify" || $_SESSION["empresa"] =="arhu"){
+                            if($_SESSION["empresa"] =="cabify" || $_SESSION["empresa"] =="arhu" || $_SESSION["empresa"] =="easytaxi"){
                                 echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'">
                                     <img src="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'" class="img-circle" width="100" height="100" />
                                     </a> ';
@@ -264,7 +264,7 @@ if(empresa =="cabify"){
                         </div>
 
                      <?php
-                     if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||  $value['placa'] == "NINGUNA") {
+                     if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||   $value['placa'] == "NINGUNA") {
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
                      }else{
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Cambiar Placa</button>';
@@ -406,14 +406,14 @@ if(empresa =="cabify"){
                                 echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" id= "prue" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>';
                             }
 
-                                if ($value['placa'] == "NINGUNO") {
+                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNO " || $value['placa'] == "NINGUNA") {
 
                                  } else {
 
                                 echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
                                 ';
                                 }
-                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNA") {
+                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNA" || $value['placa'] == "NINGUNO ") {
 
                                  } else {
                                     echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>';

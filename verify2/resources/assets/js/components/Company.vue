@@ -10,8 +10,8 @@
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Categorías
-                        <button type="button" @click="abrirModal('categoria','registrar')" class="btn btn-secondary">
+                        <i class="fa fa-align-justify"></i> Empresas
+                        <button type="button" @click="abrirModal('company','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -20,12 +20,11 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
-                                      <option value="nombre">Nombre</option>
-                                      <option value="descripcion">Descripción</option>
-                                      <option value="descripcion">Precio</option>
-                                    </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarCategoria(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarCategoria(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                      <option value="ruc">Ruc</option>
+                                      <option value="razon_social">Razon Social</option>
+                                      </select>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarCompany(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarCompany(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -33,34 +32,37 @@
                             <thead>
                                 <tr>
                                     <th>Opciones</th>
-                                    <th>Nombre</th>
-                                    <th>Descripción</th>
-                                    <th>Precio</th>
-                                    <th>Estado</th>
+                                    <th>RUC</th>
+                                    <th>Razon Social</th>
+                                    <th>Represante Legal</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="categoria in arrayCategoria" :key="categoria.id">
+                                <tr v-for="company in arrayCompany" :key="company.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('categoria','actualizar',categoria)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('company','actualizar',company)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
-                                        <template v-if="categoria.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCategoria(categoria.id)">
+                                        <template v-if="company.condicion">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCompany(company.id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarCategoria(categoria.id)">
+                                            <button type="button" class="btn btn-info btn-sm" @click="activarCompany(company.id)">
                                                 <i class="icon-check"></i>
                                             </button>
                                         </template>
                                     </td>
-                                    <td v-text="categoria.nombre"></td>
-                                    <td v-text="categoria.descripcion"></td>
-                                    <td v-text="categoria.precio"></td>
+                                    <td v-text="company.ruc"></td>
+                                    <td v-text="company.razon_social"></td>
+                                    <td v-text="company.representantes_legales"></td>
+                                    <td v-text="company.telefono"></td>
+                                    <td v-text="company.email"></td>
                                     <td>
-                                        <div v-if="categoria.condicion">
+                                        <div v-if="company.condicion">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
                                         <div v-else>
@@ -101,27 +103,27 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">RUC</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de categoría">
+                                        <input type="text" v-model="ruc" class="form-control" placeholder="RUC de la empresa">
 
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Descripción</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Email</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
+                                        <input type="text" v-model="email" class="form-control" placeholder="Ingrese Email">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Precio</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Teléfono</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="precio" class="form-control" placeholder="Ingrese precio en Soles">
+                                        <input type="text" v-model="telefono" class="form-control" placeholder="Ingrese Teléfono">
                                     </div>
                                 </div>
-                                <div v-show="errorCategoria" class="form-group row div-error">
+                                <div v-show="errorCompany" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjCategoria" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjCompany" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -131,8 +133,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarCategoria()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarCategoria()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarCompany()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarCompany()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -147,16 +149,30 @@
     export default {
         data (){
             return {
-                categoria_id: 0,
-                nombre : '',
-                descripcion : '',
-                precio : '',
-                arrayCategoria : [],
+                company_id: 0,
+                ruc:'',
+                razon_social:'',
+                condicion:'',
+                nombre_comercial:'',
+                tipo:'',
+                fecha_inscripcion:'',
+                estado:'',
+                direccion:'',
+                sistema_emision:'',
+                actividad_exterior:'',
+                oficio:'',
+                actividad_economica:'',
+                sistema_contabilidad:'',
+                emision_electronica:'',
+                ple:'',
+                representantes_legales:'',
+                cantidad_trabajadores:'',
+                arrayCompany : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorCategoria : 0,
-                errorMostrarMsjCategoria : [],
+                errorCompany : 0,
+                errorMostrarMsjCompany : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -200,12 +216,12 @@
             }
         },
         methods : {
-            listarCategoria (page,buscar,criterio){
+            listarCompany (page,buscar,criterio){
                 let me=this;
-                var url= '/categoria?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/company?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayCategoria = respuesta.categorias.data;
+                    me.arrayCompany = respuesta.companys.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -217,46 +233,46 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarCategoria(page,buscar,criterio);
+                me.listarCompany(page,buscar,criterio);
             },
-            registrarCategoria(){
-                if (this.validarCategoria()){
+            registrarCompany(){
+                if (this.validarCompany()){
                     return;
                 }
 
                 let me = this;
 
-                axios.post('/categoria/registrar',{
-                    'nombre': this.nombre,
-                    'descripcion': this.descripcion,
-                    'precio': this.precio
+                axios.post('/company/registrar',{
+                    'ruc': this.ruc,
+                    'email': this.email,
+                    'telefono': this.telefono
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarCategoria(1,'','nombre');
+                    me.listarCompany(1,'','razon_social');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarCategoria(){
-               if (this.validarCategoria()){
+            /*actualizarCategoria(){
+               if (this.validarCompany()){
                     return;
                 }
 
                 let me = this;
 
-                axios.put('/categoria/actualizar',{
+                axios.put('/company/actualizar',{
                     'nombre': this.nombre,
                     'descripcion': this.descripcion,
                     'precio': this.precio,
                     'id': this.categoria_id
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarCategoria(1,'','nombre');
+                    me.listarCompany(1,'','nombre');
                 }).catch(function (error) {
                     console.log(error);
                 });
-            },
-            desactivarCategoria(id){
+            },*/
+            desactivarCompany(id){
                swal({
                 title: 'Esta seguro de desactivar esta categoría?',
                 type: 'warning',
@@ -273,10 +289,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/categoria/desactivar',{
+                    axios.put('/company/desactivar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarCategoria(1,'','nombre');
+                        me.listarCompany(1,'','razon_social');
                         swal(
                         'Desactivado!',
                         'El registro ha sido desactivado con éxito.',
@@ -295,7 +311,7 @@
                 }
                 })
             },
-            activarCategoria(id){
+            activarCompany(id){
                swal({
                 title: 'Esta seguro de activar esta categoría?',
                 type: 'warning',
@@ -312,10 +328,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/categoria/activar',{
+                    axios.put('/company/activar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarCategoria(1,'','nombre');
+                        me.listarCompany(1,'','razon_social');
                         swal(
                         'Activado!',
                         'El registro ha sido activado con éxito.',
@@ -334,55 +350,58 @@
                 }
                 })
             },
-            validarCategoria(){
-                this.errorCategoria=0;
-                this.errorMostrarMsjCategoria =[];
+            validarCompany(){
+                this.errorCompany=0;
+                this.errorMostrarMsjCompany =[];
 
-                if (!this.nombre) this.errorMostrarMsjCategoria.push("El nombre de la categoría no puede estar vacío.");
+                if (!this.ruc) this.errorMostrarMsjCompany.push("El RUC no puede estar vacío.");
+                if (!this.email) this.errorMostrarMsjCompany.push("El Email no puede estar vacío.");
+                if (!this.telefono) this.errorMostrarMsjCompany.push("El telefono de la categoría no puede estar vacío.");
 
-                if (this.errorMostrarMsjCategoria.length) this.errorCategoria = 1;
+                if (this.errorMostrarMsjCompany.length) this.errorCompany = 1;
 
-                return this.errorCategoria;
+                return this.errorCompany;
             },
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-                this.nombre='';
-                this.descripcion='';
+                /*this.nombre='';
+                this.descripcion='';*/
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "categoria":
+                    case "company":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Categoría';
-                                this.nombre= '';
-                                this.descripcion = '';
+                                this.tituloModal = 'Registrar Empresa';
+                                this.ruc= '';
+                                this.email = '';
+                                this.telefono = '';
                                 this.tipoAccion = 1;
                                 break;
                             }
-                            case 'actualizar':
+                            /*case 'actualizar':
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar categoría';
+                                this.tituloModal='Actualizar Empresa';
                                 this.tipoAccion=2;
                                 this.categoria_id=data['id'];
                                 this.nombre = data['nombre'];
                                 this.descripcion= data['descripcion'];
                                 this.precio= data['precio'];
                                 break;
-                            }
+                            }*/
                         }
                     }
                 }
             }
         },
         mounted() {
-            this.listarCategoria(1,this.buscar,this.criterio);
+            this.listarCompany(1,this.buscar,this.criterio);
         }
     }
 </script>

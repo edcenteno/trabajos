@@ -14,96 +14,96 @@ class SubjectController extends Controller{
         $criterio = $request->criterio;
 
         if ($buscar==''){
-            $subject = Subject::orderBy('name', 'asc')->paginate(10);
+            $subjects = Subject::orderBy('name', 'asc')->paginate(10);
         }
         else{
-            $subject = Subject::where($criterio, 'like', '%'. $buscar . '%')->orderBy('name', 'asc')->paginate(10);
+            $subjects = Subject::where($criterio, 'like', '%'. $buscar . '%')->orderBy('name', 'asc')->paginate(10);
         }
         return [
             'pagination' => [
-                'total'        => $subject->total(),
-                'current_page' => $subject->currentPage(),
-                'per_page'     => $subject->perPage(),
-                'last_page'    => $subject->lastPage(),
-                'from'         => $subject->firstItem(),
-                'to'           => $subject->lastItem(),
+                'total'        => $subjects->total(),
+                'current_page' => $subjects->currentPage(),
+                'per_page'     => $subjects->perPage(),
+                'last_page'    => $subjects->lastPage(),
+                'from'         => $subjects->firstItem(),
+                'to'           => $subjects->lastItem(),
             ],
-            'subject' => $subject
+            'subjects' => $subjects
         ];
-        //return $subject;
+        //return $subjects;
     }
 
     public function store(Request $request){
        /*if(!$request->ajax()) return redirect('/');*/
-        $subject = new Subject();
-        $subject ->doc_type = 1;
-        $subject ->doc_value = $request ->doc_value;
-        /*$subject ->descripcion = $request ->descripcion;*/
-        $subject ->condicion = '1';
-        $subject -> save();
+        $subjects = new Subject();
+        $subjects ->doc_type = 1;
+        $subjects ->doc_value = $request ->doc_value;
+        /*$subjects ->descripcion = $request ->descripcion;*/
+        $subjects ->condicion = '1';
+        $subjects -> save();
     }
 
 
     public function update(Request $request){
        /*if(!$request->ajax()) return redirect('/');*/
-        $subject = Subject::findOrFail($request->id);
-        $subject ->doc_value = $request ->doc_value;
-        /*$subject ->descripcion = $request ->descripcion;*/
-        $subject ->condicion = '1';
-        $subject -> save();
+        $subjects = Subject::findOrFail($request->id);
+        $subjects ->doc_value = $request ->doc_value;
+        /*$subjects ->descripcion = $request ->descripcion;*/
+        $subjects ->condicion = '1';
+        $subjects -> save();
     }
 
     public function desactivar(Request $request){
        /*if(!$request->ajax()) return redirect('/');*/
-        $subject = Subject::findOrFail($request->id);
-        $subject ->condicion = '0';
-        $subject -> save();
+        $subjects = Subject::findOrFail($request->id);
+        $subjects ->condicion = '0';
+        $subjects -> save();
     }
 
     public function activar(Request $request){
        /*if(!$request->ajax()) return redirect('/');*/
-        $subject = Subject::findOrFail($request->id);
-        $subject ->condicion = '1';
-        $subject -> save();
+        $subjects = Subject::findOrFail($request->id);
+        $subjects ->condicion = '1';
+        $subjects -> save();
     }
 
     public function inicio(Request $request){
-       /*if(!$request->ajax()) return redirect('/');*/
+       if(!$request->ajax()) return redirect('/');
 
         $essalud = new \EsSalud\EsSalud();
         $mintra = new \MinTra\mintra();
-        //$resul = $essalud->search($request->doc_value);
+        $resul = $essalud->search($request->doc_value);
         $result = $mintra->search($request->doc_value);
-        //dd($result);
-        //var_dump($result);
+
         if ($resul->success == TRUE ) {
 
-           //var_dump($resul);
-            $subject = new Subject();
-            $subject ->doc_type = 1;
-            $subject ->doc_value = $resul ->DNI;
-            $subject ->name = $resul ->Nombres;
-            $subject ->first_last_name = $resul ->ApellidoPaterno;
-            $subject ->last_last_name = $resul ->ApellidoMaterno;
-            $subject ->birthday = $resul ->FechaNacimiento;
-            $subject ->condicion = '1';
-            $subject -> save();
+            $subjects = new Subject();
+            $subjects ->doc_type = 1;
+            $subjects ->doc_value = $resul ->DNI;
+            $subjects ->name = $resul ->Nombres;
+            $subjects ->first_last_name = $resul ->ApellidoPaterno;
+            $subjects ->last_last_name = $resul ->ApellidoMaterno;
+            $subjects ->birthday = $resul ->FechaNacimiento;
+            $subjects ->condicion = '1';
+            $subjects -> save();
 
         }else if ($result->success == TRUE ) {
-            $subject = new Subject();
-            $subject ->doc_type = 1;
-            $subject ->doc_value = $result ->dni;
-            $subject ->name = $result ->nombre;
-            $subject ->first_last_name = $result ->paterno;
-            $subject ->last_last_name = $result ->materno;
-            $subject ->birthday = $result ->nacimiento;
-            $subject ->condicion = '1';
-            $subject -> save();
+
+            $subjects = new Subject();
+            $subjects ->doc_type = 1;
+            $subjects ->doc_value = $result ->dni;
+            $subjects ->name = $result ->nombre;
+            $subjects ->first_last_name = $result ->paterno;
+            $subjects ->last_last_name = $result ->materno;
+            $subjects ->birthday = $result ->nacimiento;
+            $subjects ->condicion = '1';
+            $subjects -> save();
+
         }else{
             return response()->json(['No hay datos'], 404);
         }
 
-//dd($essalud->search('06261502')->Nombres);
+
     }
 
 }

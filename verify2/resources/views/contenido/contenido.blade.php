@@ -8,15 +8,16 @@
             <categoria></categoria>
         </template>
 
-        {{-- <template v-if="menu==2">
-            <h1>Contenido del menú 2</h1>
-        </template>
+        <!--  <template v-if="menu==2">
+           <h1>Contenido del menú 2</h1>
+                </template> -->
 
         <template v-if="menu==3">
-            <h1>Contenido del menú 3</h1>
+            <company></company>
+
         </template>
 
-        <template v-if="menu==4">
+       {{-- <template v-if="menu==4">
             <h1>Contenido del menú 4</h1>
         </template>
 
@@ -43,14 +44,14 @@
         <template v-if="menu==10">
             <h1>Contenido del menú 10</h1>
         </template>
- --}}
+
         <template v-if="menu==11">
             <h1>Contenido del menú 11</h1>
         </template>
 
         <template v-if="menu==12">
-            <h1>Contenido del menú 12</h1>
-        </template>
+            <company></company>
+        </template>--}}
 
         <template v-if="menu==13">
             <subject></subject>

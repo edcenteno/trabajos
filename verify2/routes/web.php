@@ -28,3 +28,5 @@ Route::put('/subject/actualizar', 'SubjectController@update');
 Route::put('/subject/desactivar', 'SubjectController@desactivar');
 Route::put('/subject/activar', 'SubjectController@activar');
 
+Route::get('company', 'CompanyController@index');
+Route::post('/company/registrar', 'CompanyController@store');
