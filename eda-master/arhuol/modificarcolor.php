@@ -19,72 +19,6 @@ $blacklist=$row['blacklist'];
   <title>ARHU Internacional</title>
   <link rel="shortcut icon" href="img/favicon.ico" type="image/ico" />
 
-  <script type="text/javascript">
-
-    /* $(document).ready(function(){
-          $('.targetpolicial').hide();
-          $('.targetjudicial').hide();
-          $('.targetpenales').hide();
-
-          $('#selpolicial').on("change",function(e){
-            if (e.target.value=='POSITIVO'){
-              $('.targetpolicial').show();
-            }else if (e.target.value=='NEGATIVO') {
-              $('.targetpolicial').find('input, textarea').val('');
-              $('.targetpolicial').hide();
-            }
-          });
-
-          $('#seljudicial').on("change",function(e){
-            if (e.target.value=='POSITIVO'){
-              $('.targetjudicial').show();
-            }else if (e.target.value=='NEGATIVO') {
-              $('.targetjudicial').find('input, textarea').val('');
-              $('.targetjudicial').hide();
-            }
-          });
-
-           $('#selpenales').on("change",function(e){
-            if (e.target.value=='POSITIVO'){
-              $('.targetpenales').show();
-            }else if (e.target.value=='NEGATIVO') {
-              $('.targetpenales').find('input, textarea').val('');
-              $('.targetpenales').hide();
-            }
-          });
-
-    });*/
-
-   /* $(document).ready(function(){
-    $("#mostrarpolicial").click(function(){
-      $('.targetpolicial').show("swing");
-     });
-    $("#ocultarpolicial").click(function(){
-      $('.targetpolicial').hide("linear");
-    });
-  });
-    $(document).ready(function(){
-    $("#mostrarjudicial").click(function(){
-      $('.targetjudicial').show("swing");
-     });
-    $("#ocultarjudicial").click(function(){
-      $('.targetjudicial').hide("linear");
-    });
-  });
-    $(document).ready(function(){
-    $("#mostrarpenales").click(function(){
-      $('.targetpenales').show("swing");
-     });
-    $("#ocultarpenales").click(function(){
-      $('.targetpenales').hide("linear");
-    });
-  });*/
-
-
-
-
-  </script>
-
 </head>
 
 <body>
@@ -142,6 +76,10 @@ $blacklist=$row['blacklist'];
             <div class="form-group">
               <label for="color_vehiculo">Color del Vehiculo: </label>
               <input type="text" name="color_vehiculo" class="form-control" id="color_vehiculo" placeholder="Color del Vehiculo"  value="<?php echo $row['color_vehiculo'] ?>" required="">
+            </div>
+            <div class="form-group">
+              <label for="fecha_fab_veh">Año de Fabricación del Vehiculo: </label>
+              <input type="text" name="fecha_fab_veh" class="form-control" id="fecha_fab_veh" placeholder="Año de Fabricación del Vehiculo"  value="<?php echo $row['fecha_fab_veh'] ?>" required="">
             </div>
             </div>
           </div>

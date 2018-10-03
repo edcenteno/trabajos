@@ -37,6 +37,7 @@
                                     <th>Represante Legal</th>
                                     <th>Teléfono</th>
                                     <th>Correo</th>
+                                    <th>Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,7 +113,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Email</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="email" class="form-control" placeholder="Ingrese Email">
+                                        <input type="email" v-model="email" class="form-control" placeholder="Ingrese Email">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -165,8 +166,14 @@
                 sistema_contabilidad:'',
                 emision_electronica:'',
                 ple:'',
-                representantes_legales:'',
                 cantidad_trabajadores:'',
+                telefono:'',
+                email:'',
+                representantes_legales:{
+                    r1:{
+                        nombre:'',
+                    }
+                },
                 arrayCompany : [],
                 modal : 0,
                 tituloModal : '',
@@ -355,13 +362,33 @@
                 this.errorMostrarMsjCompany =[];
 
                 if (!this.ruc) this.errorMostrarMsjCompany.push("El RUC no puede estar vacío.");
+                if (!this.validRuc(this.ruc)) this.errorMostrarMsjCompany.push('El Email debe estar correcto.');
+
                 if (!this.email) this.errorMostrarMsjCompany.push("El Email no puede estar vacío.");
+                if (!this.validEmail(this.email)) this.errorMostrarMsjCompany.push('El Email debe estar correcto.');
+
                 if (!this.telefono) this.errorMostrarMsjCompany.push("El telefono de la categoría no puede estar vacío.");
+                if (!this.validPhone(this.telefono)) this.errorMostrarMsjCompany.push('El telefono debe estar correcto.');
 
                 if (this.errorMostrarMsjCompany.length) this.errorCompany = 1;
 
                 return this.errorCompany;
             },
+            validEmail: function (email) {
+              var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              return re.test(email);
+            },
+
+            validPhone: function (telefono) {
+              var re = /^\d{9}$/;
+              return re.test(telefono);
+            },
+
+            validRuc: function (ruc) {
+              var re = /^\d{11}[0-9]$/;
+              return re.test(ruc);
+            },
+
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';

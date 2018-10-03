@@ -7,13 +7,14 @@ $placa = $_POST['placa'];
 $placaoriginal=$_POST['placaoriginal'];
 
 
-    ModificarPersona($_POST['dni'], $_POST['color_vehiculo'], $_POST['placa']);
+    ModificarPersona($_POST['dni'], $_POST['color_vehiculo'], $_POST['placa'], $_POST['fecha_fab_veh']);
 
-    function ModificarPersona($dni, $color_vehiculo, $placa){
+    function ModificarPersona($dni, $color_vehiculo, $placa, $fecha_fab_veh){
         include 'conexion.php';
          $sentencia="UPDATE conductores SET
                                        color_vehiculo='".$color_vehiculo."',
                                        placa='".$placa."',
+                                       fecha_fab_veh='".$fecha_fab_veh."',
                                        fecha_placa = NOW()
                                        WHERE dni='".$dni."' ";
         $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));

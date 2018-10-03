@@ -8,7 +8,7 @@ use App\Subject;
 class SubjectController extends Controller{
 
   public function index(Request $request){
-       /*if (!$request->ajax()) return redirect('/');*/
+       if (!$request->ajax()) return redirect('/');
 
         $buscar = $request->buscar;
         $criterio = $request->criterio;
@@ -34,7 +34,7 @@ class SubjectController extends Controller{
     }
 
     public function store(Request $request){
-       /*if(!$request->ajax()) return redirect('/');*/
+       if(!$request->ajax()) return redirect('/');
         $subjects = new Subject();
         $subjects ->doc_type = 1;
         $subjects ->doc_value = $request ->doc_value;
@@ -45,7 +45,7 @@ class SubjectController extends Controller{
 
 
     public function update(Request $request){
-       /*if(!$request->ajax()) return redirect('/');*/
+       if(!$request->ajax()) return redirect('/');
         $subjects = Subject::findOrFail($request->id);
         $subjects ->doc_value = $request ->doc_value;
         /*$subjects ->descripcion = $request ->descripcion;*/
@@ -54,14 +54,14 @@ class SubjectController extends Controller{
     }
 
     public function desactivar(Request $request){
-       /*if(!$request->ajax()) return redirect('/');*/
+       if(!$request->ajax()) return redirect('/');
         $subjects = Subject::findOrFail($request->id);
         $subjects ->condicion = '0';
         $subjects -> save();
     }
 
     public function activar(Request $request){
-       /*if(!$request->ajax()) return redirect('/');*/
+       if(!$request->ajax()) return redirect('/');
         $subjects = Subject::findOrFail($request->id);
         $subjects ->condicion = '1';
         $subjects -> save();

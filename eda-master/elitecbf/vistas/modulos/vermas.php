@@ -184,27 +184,39 @@ if(empresa =="cabify"){
                     <center class="m-t-30">
 
                         <?php
-                            if($value['foto']){
-                                $foto = $value['foto'];
+                        $foto = $value['foto'];
 
-                            if($_SESSION["empresa"] =="easytaxi" || $_SESSION["empresa"] =="arhu" || $_SESSION["empresa"] =="cabify"){
+                            $nombre_fichero ='/extensiones/tcpdf/pdf/images/conductores/'.$foto;
+                            $nombre_ficherocbf ='/extensiones/tcpdf/pdf/images/conductorescbf/'.$foto;
+                            $ex = is_file($nombre_ficherocbf);
+                            if ($ex == true) {
+                                echo "hola";
+                            }else{
+                                echo "chao";
+                            }
+                            /*if($value['foto']){*/
+
+                                if (file_exists($nombre_fichero)) {
                                 echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'">
                                     <img src="extensiones/tcpdf/pdf/images/conductores/'.$foto.'" class="img-circle" width="100" height="100" />
                                     </a> ';
-                            }
+                                }
+                                 if (file_exists($nombre_ficherocbf)) {
 
-                            if($_SESSION["empresa"] =="cabify" || $_SESSION["empresa"] =="arhu" || $_SESSION["empresa"] =="easytaxi"){
                                 echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'">
                                     <img src="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'" class="img-circle" width="100" height="100" />
                                     </a> ';
-                            }
-
-
-                            }else{
+                                }
+                           /* }else{
                                  echo '
                                     <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100" />
                                     ';
-                            }
+                            }*/
+
+
+
+
+
                         ?>
                         <div id="modalcapture"></div>
 
@@ -225,17 +237,20 @@ if(empresa =="cabify"){
 
                         <div class="row text-center justify-content-md-center">
                             <?php
+
                             if($_SESSION["empresa"] =="easytaxi"){
-                                echo '<button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>';
+                                echo '<button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"><i class="ti-camera"></i> </button>';
                             }
+                            /* echo '<button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"><i class="ti-camera"></i> </button>';*/
 
                             if($_SESSION["empresa"] =="cabify"){
-                                echo '<button class="btn btn-primary" data-toggle="modal" data-target="#modalcapturecabify"></button>';
-                            } ?>
+                                echo '<button class="btn btn-primary" data-toggle="modal" data-target="#modalcapturecabify"><i class="ti-camera"></i> </button>';
+                            }
 
+                            if($_SESSION["empresa"] =="arhu"){
 
-
-
+                            }
+                            ?>
                         <!-- <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button> -->
 
                         <?php
@@ -254,10 +269,17 @@ if(empresa =="cabify"){
 
                         <?php
                             if($value['foto']){
-                                $foto = $value['foto'];
-                                echo '
+
+                                if(isset($value['foto']) && file_exists($nombre_ficherocbf)){
+                                    echo '
+                                    <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
+                                    Descargar Foto</button></a>';
+                                }
+                                if(isset($value['foto']) && file_exists($nombre_fichero)){
+                                     echo '
                                     <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
                                     Descargar Foto</button></a>';
+                                }
                             }
                         ?>
 
