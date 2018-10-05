@@ -79,7 +79,7 @@ $blacklist=$row['blacklist'];
             </div>
             <div class="form-group">
               <label for="fecha_fab_veh">Año de Fabricación del Vehiculo: </label>
-              <input type="text" name="fecha_fab_veh" class="form-control" id="fecha_fab_veh" placeholder="Año de Fabricación del Vehiculo"  value="<?php echo $row['fecha_fab_veh'] ?>" required="">
+              <input type="text" name="fecha_fab_veh" class="form-control" id="fecha_fab_veh" placeholder="Año de Fabricación del Vehiculo"  value="<?php echo $row['fecha_fab_veh'] ?>">
             </div>
             </div>
           </div>

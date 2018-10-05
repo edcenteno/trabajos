@@ -63,7 +63,7 @@ if ($cabify == "0" && $easytaxi == "0") {
                         });
                 </script>';
         } else {
-if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $apellidos) && strlen($dni) >= 8  && strlen($fecha_nacimiento) == 10 && isset($_POST['si'])){
+if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $apellidos) && strlen($dni) >= 5  && is_numeric($dni) && strlen($fecha_nacimiento) == 10 && isset($_POST['si'])){
 
 
 ?>

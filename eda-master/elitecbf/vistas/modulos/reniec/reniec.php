@@ -61,7 +61,9 @@ function realizaProceso(){
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs profile-tab" role="tablist">
                     <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#peru" role="tab"><i class="flag-icon flag-icon-pe"></i> DNI</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#carnetext" role="tab"><i class="ti-world"></i> Carnet Extranjeria</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#extranjero" role="tab"><i class="ti-world"></i> Extranjeros</a> </li>
+
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -93,6 +95,9 @@ function realizaProceso(){
                           </div>
                         </div>
 
+
+
+
                     <!--second tab-->
                     <div class="tab-pane" id="extranjero" role="tabpanel">
                         <div class="card-body">
@@ -113,7 +118,7 @@ function realizaProceso(){
                                             </select>
 
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="ti-id-badge"></i></span></div>
-                                            <input type="text" class="form-control" pattern="[0-9]{9-11}" minlength="9" maxlength="11" name="ptp" id="ptp" value="" placeholder="PTP-Carné de Extranjeria" />
+                                            <input type="text" class="form-control" pattern="[0-9]{9-11}" minlength="9" maxlength="11" name="ptp" id="ptp" value="" placeholder="PTP" />
 
                                           </div>
                                         </div>
@@ -193,6 +198,84 @@ function realizaProceso(){
                             <span id="resultado2"></span>
                           </div>
                          </div>
+
+
+<!--second tab-->
+                    <div class="tab-pane" id="carnetext" role="tabpanel">
+                        <div class="card-body">
+                            <div class="row">
+                                <form class="form-horizontal p-t-20" id="">
+                                  <div class="form-group row" id="extr">
+                                    <div class="form-group row">
+                                        <label for="exampleInputEmail3" class="col-sm-4 control-label">PTP/Carné</label>
+                                        <div class="col-sm-10">
+                                          <div class="input-group">
+
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="ti-id-badge"></i></span></div>
+                                            <input type="text" class="form-control" pattern="[0-9]{9-11}" minlength="9" maxlength="11" name="ptp" id="ptp" value="" placeholder="Carné de Extranjeria" />
+
+                                          </div>
+                                        </div>
+                                      </div>
+
+
+                                    <div class="form-group row">
+                                      <label for="web" class="col-sm-5 control-label">Fecha de nacimiento</label>
+                                      <div class="col-sm-10">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend"><span class="input-group-text"><i class="ti-calendar"></i></span></div>
+                                          <input type="text" class="form-control" name="fechaNacimientoext" id="fechaNacimiento" data-mask="99/99/9999" placeholder="dd/mm/yyyy">
+
+                                        </div>
+                                        <span class="font-13 text-muted">dd/mm/yyyy</span>
+                                      </div>
+                                    </div>
+                                    <div class="form-check-inline">
+                                      <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="cabify" id="cabify" class="form-check-input" value="1">Cabify
+
+                                      </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                      <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="easytaxi" id="easytaxi" class="form-check-input" value="1">Easy Taxi
+                                      </label>
+                                    </div>
+                                    <!-- <div class="form-check-inline">
+                                      <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="easyeconomy" id="easyeconomy" class="form-check-input" value="1">Easy Economy
+                                      </label>
+                                    </div> -->
+
+                                  </div>
+                                  </div>
+                                  <input type="text" hidden="" class="form-control" name="usuario_reg2" id="usuario_reg2" value="<?php  echo $usuario_reg ?>" />
+
+                                </form>
+                                <form class="form-horizontal p-t-20" id="form">
+                                  <div class="form-group row">
+                                      <label for="exampleInputuname3" class="col-sm-4 control-label" id="posee">¿Posee Vehiculo?</label>
+                                      <div class="col-sm-10">
+                                          <div class="input-group">
+
+                                              <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlaca"">SI</span>
+
+                                              <input type="text" hidden class="form-control" name="si" id="si" value="Si">
+
+                                              <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevo">NO</span>
+
+
+                                          </div>
+                                      </div>
+                                    </div>
+
+                              </form>
+                            <span id="resultado2"></span>
+                          </div>
+                         </div>
+                         <!-- Tab panes -->
+
+
 
                     </div>
 

@@ -106,7 +106,7 @@ $extr=$value['extr'];
 
     }).done(function(msg){
         //$("#resultado").html(msg);
-        //console.log(msg)//msg.vin.co
+       //console.log(msg['Especificaciones'][0]['class'])//msg.vin.co
        if (msg != "No existe la placa, intente mas tarde.") {
         $('.vehiculo')[0].innerText = msg['Marca'];
         $('.vehiculo')[1].innerText = msg['Modelo'];
@@ -122,11 +122,16 @@ $extr=$value['extr'];
         $('.vehiculo')[11].innerText = msg['Vin']['countries'];
         $('.vehiculo')[12].innerText = msg['Vin']['manufacture'];
         $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber'];
-        $('.vehiculo')[15].innerText = msg['Propietario'];
-        $('.vehiculo')[14].innerText = msg['Vin']['modelYear'];
+        $('.vehiculo')[14].innerText = msg['Especificaciones'][0]['class'];
+        $('.vehiculo')[15].innerText = msg['Especificaciones'][0]['places'];
+        $('.vehiculo')[16].innerText = msg['Especificaciones'][0]['doors'];
+
+
 
 }
     });
+</script>
+<script type="text/javascript">
 
 empresa = '<?php echo $_SESSION["empresa"] ?>'
 
@@ -148,13 +153,19 @@ if(empresa =="cabify"){
 })
 
 }
-
-
-
-
-
-
 </script>
+<style type="text/css" media="screen">
+.btn-cbf {
+  color: #fff;
+  background-color: #9675ce;
+  border-color: #9675ce; }
+  .btn-cbf:hover {
+    color: #fff;
+    background-color: #735a9e;
+    border-color: #735a9e; }
+
+</style>
+
 <div class="container-fluid">
 
     <div class="row page-titles">
@@ -186,32 +197,30 @@ if(empresa =="cabify"){
                         <?php
                         $foto = $value['foto'];
 
-                            $nombre_fichero ='/extensiones/tcpdf/pdf/images/conductores/'.$foto;
-                            $nombre_ficherocbf ='/extensiones/tcpdf/pdf/images/conductorescbf/'.$foto;
-                            $ex = is_file($nombre_ficherocbf);
-                            if ($ex == true) {
-                                echo "hola";
-                            }else{
-                                echo "chao";
-                            }
-                            /*if($value['foto']){*/
+                            $nombre_fichero ='extensiones/tcpdf/pdf/images/conductores/'.$foto;
+                            $nombre_ficherocbf ='extensiones/tcpdf/pdf/images/conductorescbf/'.$foto;
 
-                                if (file_exists($nombre_fichero)) {
+                            if (file_exists($nombre_fichero)){
                                 echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'">
                                     <img src="extensiones/tcpdf/pdf/images/conductores/'.$foto.'" class="img-circle" width="100" height="100" />
                                     </a> ';
-                                }
-                                 if (file_exists($nombre_ficherocbf)) {
-
-                                echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'">
-                                    <img src="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'" class="img-circle" width="100" height="100" />
-                                    </a> ';
-                                }
-                           /* }else{
-                                 echo '
+                            }else{
+                                echo '
                                     <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100" />
                                     ';
-                            }*/
+                            }
+
+                            if (file_exists($nombre_ficherocbf)) {
+
+                            echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'">
+                                <img src="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'" class="img-circle" width="100" height="100" />
+                                </a> ';
+                            }else{
+                                echo '
+                                    <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100" />
+                                    ';
+                            }
+
 
 
 
@@ -238,14 +247,14 @@ if(empresa =="cabify"){
                         <div class="row text-center justify-content-md-center">
                             <?php
 
-                            if($_SESSION["empresa"] =="easytaxi"){
-                                echo '<button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"><i class="ti-camera"></i> </button>';
-                            }
+                           /* if($_SESSION["empresa"] =="easytaxi"){*/
+                                echo '<button class="btn btn-warning" data-toggle="modal" data-target="#modalcapture"><i class="ti-camera"></i> EasyTaxi </button>';
+                            /*}*/
                             /* echo '<button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"><i class="ti-camera"></i> </button>';*/
 
-                            if($_SESSION["empresa"] =="cabify"){
-                                echo '<button class="btn btn-primary" data-toggle="modal" data-target="#modalcapturecabify"><i class="ti-camera"></i> </button>';
-                            }
+                            /*if($_SESSION["empresa"] =="cabify"){*/
+                                echo '<button class="btn btn-cbf" data-toggle="modal" data-target="#modalcapturecabify"><i class="ti-camera"></i> Cabify </button>';
+                           /* }*/
 
                             if($_SESSION["empresa"] =="arhu"){
 
@@ -270,15 +279,15 @@ if(empresa =="cabify"){
                         <?php
                             if($value['foto']){
 
-                                if(isset($value['foto']) && file_exists($nombre_ficherocbf)){
+                                if(file_exists($nombre_ficherocbf)){
                                     echo '
-                                    <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
-                                    Descargar Foto</button></a>';
+                                    <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'"><button class="btn btn-cbf" data-toggle="modal" data-target="#">
+                                    Descargar Foto Cabify</button></a>';
                                 }
-                                if(isset($value['foto']) && file_exists($nombre_fichero)){
+                                if(file_exists($nombre_fichero)){
                                      echo '
-                                    <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
-                                    Descargar Foto</button></a>';
+                                    <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'"><button class="btn btn-warning" data-toggle="modal" data-target="#">
+                                    Descargar Foto EasyTaxi</button></a>';
                                 }
                             }
                         ?>
@@ -661,7 +670,7 @@ if(empresa =="cabify"){
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6"> <strong>Año de Fabricación</strong>
+                                <div class="col-md-3 col-xs-6"> <strong>Año de Modelo</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
@@ -729,11 +738,22 @@ if(empresa =="cabify"){
                             </div>
                              <hr>
                             <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Año del Modelo</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Clase</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
-
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Asientos</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Puertas</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Año de Fabricación</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $value['fecha_fab_veh'] ?></p>
+                                </div>
 
                             </div>
                         </div>
