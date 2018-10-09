@@ -394,7 +394,8 @@ if(empresa =="cabify"){
                                     parametros="&dni=" + dni+
                                                 "&placa=" + placa+
                                                 "&cabify=" + cabify+
-                                                "&easy=" + easy;
+                                                "&easy=" + easy+
+                                                "&type=" + type;
 
                                       $.ajax({
                                         data:  parametros,
@@ -404,7 +405,7 @@ if(empresa =="cabify"){
 
                                         }
                                 });
-                                setTimeout('document.location.reload()',2000);
+                               // setTimeout('document.location.reload()',2000);
 
                                   }
                                     })

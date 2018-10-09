@@ -5,9 +5,10 @@ $dni=$_POST['dni'];
 $placa=$_POST['placa'];
 $cabify = $_POST['cabify'];
 $easy = $_POST['easy'];
-
+$type = $_POST['type'];
 
  class Peru  {
+
     function __construct()
     {
       $this->reniec = new \Reniec\Reniec();
@@ -65,6 +66,7 @@ $easy = $_POST['easy'];
   $out=$test->search("$dni");
 
  // var_dump($out);
+  if ($type == 1) {
   $dni=$out->result->DNI;
   //$apellidos=$out->result->ApellidoPaterno;
   $apellidos=$out->result->ApellidoPaterno. " " .$out->result->ApellidoMaterno;
@@ -77,6 +79,8 @@ $easy = $_POST['easy'];
                  fecha_nacimiento = '".$fechanac."',
                  resultado = ''
                  WHERE dni='".$dni."' ";
+
+}
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 //echo $sentencia;
@@ -269,7 +273,7 @@ $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mys
   $soat = 'El vehiculo consultado no posee SOAT';
 }
 
-
+}
 
 }
 ?>

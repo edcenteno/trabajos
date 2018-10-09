@@ -8,24 +8,6 @@ $usuario_reg2 = $_SESSION["nombre"];
 <script>
 function realizaProceso(){
 
-       /* type= $('#tipo').val();
-        dni = $('#dni').val();
-
-        $.ajax({
-          type: "POST",
-          url: 'https://captcharh.ddns.net/api/record',
-          data: {
-              type: type, //tipo de documento
-              documento: dni, //numero de documento
-              datas: 'record' //tipo de solicitud
-          }
-
-        }).done(function(msg){
-         // $("#resultado").html(msg);
-          //console.log(msg)
-
-        });*/
-
         parametros="&dni=" + $('#dni').val()+
                    "&usuario_reg=" + $('#usuario_reg').val();
 
@@ -50,6 +32,104 @@ function realizaProceso(){
 
                 }
         });
+}
+
+</script>
+
+<script>
+  $(document).ready(function(){
+
+       $('#personal').hide();
+       $('#vehiculocarnet').hide();
+
+    });
+function realizaProcesocarnet(){
+
+
+
+    carnet = $('#carnet').val();
+    fechaNacimientocarnet = $('#fechaNacimientocarnet').val();
+    filter_number = /^[0-9]+$/;
+
+    if (fechaNacimientocarnet.length < '10') {
+      swal({
+        type: "error",
+        title: "¡Error de los campos no puede ir vacío o llevar caracteres especiales!",
+        showConfirmButton: true,
+        confirmButtonColor: "#dd6b55",
+        confirmButtonText: "Cerrar"
+        })
+
+      }
+      if (carnet.length > '9') {
+      swal({
+        type: "error",
+        title: "¡Error el carné de Extranjeria debe tener Maximo de 9 digitos!",
+        showConfirmButton: true,
+        confirmButtonColor: "#dd6b55",
+        confirmButtonText: "Cerrar"
+        })
+
+
+    }
+
+    if (carnet.length < '9') {
+      swal({
+        type: "error",
+        title: "¡Error el carné de Extranjeria debe tener Minimo de 9 digitos!",
+        showConfirmButton: true,
+        confirmButtonColor: "#dd6b55",
+        confirmButtonText: "Cerrar"
+        })
+    }
+
+    if (!filter_number.test(carnet)) {
+      swal({
+        type: "error",
+        title: "¡Error el carné de Extranjeria NO puede llevar letras o caracteres especiales!",
+        showConfirmButton: true,
+        confirmButtonColor: "#dd6b55",
+        confirmButtonText: "Cerrar"
+        })
+    }
+
+    else{
+
+    $.ajax({
+          type: "POST",
+          url: 'https://captcharh.ddns.net/api/record/principal/carnet',
+          data: {
+              carnet: carnet, //tipo de documento
+          },
+          beforeSend: function () {
+            $("#resultadocarnet").html("Procesando, espere por favor...");
+          },
+
+        }).done(function(msg){
+         // $("#resultado").html(msg);
+          //console.log(msg)
+        if (msg != 'Datos no Encontrados.') {
+           $('#personal').show();
+           $('#nombrecarnet').val(msg['Nombres']);
+           $('#apellidoscarnet').val(msg['ApellidoPaterno'] + ' ' +msg['ApellidoMaterno']);
+           $('#consultacarnet').hide();
+           $('#vehiculocarnet').show();
+           $("#carnet").attr("readonly","readonly");
+           $("#fechaNacimientocarnet").attr("readonly","readonly");
+           $("#resultadocarnet").hide();
+
+     }else{
+        swal({
+          type: "warning",
+          title: "¡Atención, el numero de carné de extranjeria no encontro datos, verifique los digitos o llenar de forma manual y notificar a nuestro Equipo de soporte!",
+          showConfirmButton: true,
+          confirmButtonColor: "#dd6b55",
+          confirmButtonText: "Cerrar"
+        })
+     }
+      });
+        }
+
 }
 
 </script>
@@ -95,9 +175,6 @@ function realizaProceso(){
                           </div>
                         </div>
 
-
-
-
                     <!--second tab-->
                     <div class="tab-pane" id="extranjero" role="tabpanel">
                         <div class="card-body">
@@ -118,7 +195,7 @@ function realizaProceso(){
                                             </select>
 
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="ti-id-badge"></i></span></div>
-                                            <input type="text" class="form-control" pattern="[0-9]{9-11}" minlength="9" maxlength="11" name="ptp" id="ptp" value="" placeholder="PTP" />
+                                            <input type="text" class="form-control" pattern="[0-9]{9}" minlength="5" maxlength="9" name="ptp" id="ptp" value="" placeholder="PTP" />
 
                                           </div>
                                         </div>
@@ -207,16 +284,37 @@ function realizaProceso(){
                                 <form class="form-horizontal p-t-20" id="">
                                   <div class="form-group row" id="extr">
                                     <div class="form-group row">
-                                        <label for="exampleInputEmail3" class="col-sm-4 control-label">PTP/Carné</label>
+                                        <label for="exampleInputEmail3" class="col-sm-4 control-label">Carné de Extranjeria</label>
                                         <div class="col-sm-10">
                                           <div class="input-group">
 
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="ti-id-badge"></i></span></div>
-                                            <input type="text" class="form-control" pattern="[0-9]{9-11}" minlength="9" maxlength="11" name="ptp" id="ptp" value="" placeholder="Carné de Extranjeria" />
+                                            <input type="text" class="form-control" pattern="[0-9]{9}" minlength="9" maxlength="9" name="carnet" id="carnet" value="" placeholder="Carné de Extranjeria" />
 
                                           </div>
                                         </div>
                                       </div>
+                                      <div id="personal">
+                                      <div class="form-group row">
+                                      <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
+                                      <div class="col-sm-10">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend"><span class="input-group-text"><i class="ti-user"></i></span></div>
+                                          <input type="text" style="text-transform: uppercase;" class="form-control carnet" name="nombrecarnet" id="nombrecarnet" readonly="">
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                      <label for="web" class="col-sm-3 control-label">Apellido</label>
+                                      <div class="col-sm-10">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend"><span class="input-group-text"><i class="ti-user"></i></span></div>
+                                          <input style="text-transform: uppercase;" type="text" class="form-control carnet" name="apellidoscarnet" id="apellidoscarnet" readonly="">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
 
 
                                     <div class="form-group row">
@@ -224,36 +322,19 @@ function realizaProceso(){
                                       <div class="col-sm-10">
                                         <div class="input-group">
                                           <div class="input-group-prepend"><span class="input-group-text"><i class="ti-calendar"></i></span></div>
-                                          <input type="text" class="form-control" name="fechaNacimientoext" id="fechaNacimiento" data-mask="99/99/9999" placeholder="dd/mm/yyyy">
+                                          <input type="text" class="form-control" name="fechaNacimientocarnet" id="fechaNacimientocarnet" data-mask="99/99/9999" placeholder="dd/mm/yyyy">
 
                                         </div>
                                         <span class="font-13 text-muted">dd/mm/yyyy</span>
                                       </div>
                                     </div>
-                                    <div class="form-check-inline">
-                                      <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="cabify" id="cabify" class="form-check-input" value="1">Cabify
-
-                                      </label>
-                                    </div>
-                                    <div class="form-check-inline">
-                                      <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="easytaxi" id="easytaxi" class="form-check-input" value="1">Easy Taxi
-                                      </label>
-                                    </div>
-                                    <!-- <div class="form-check-inline">
-                                      <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="easyeconomy" id="easyeconomy" class="form-check-input" value="1">Easy Economy
-                                      </label>
-                                    </div> -->
-
+                                    <div class="form-group row m-b-0">
+                                      <div class="offset-sm-3 col-sm-9">
+                                          <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProcesocarnet()" id="consultacarnet" name="consultacarnet">Consultar</button>
+                                      </div>
                                   </div>
-                                  </div>
-                                  <input type="text" hidden="" class="form-control" name="usuario_reg2" id="usuario_reg2" value="<?php  echo $usuario_reg ?>" />
 
-                                </form>
-                                <form class="form-horizontal p-t-20" id="form">
-                                  <div class="form-group row">
+                                  <div class="form-group row" id="vehiculocarnet">
                                       <label for="exampleInputuname3" class="col-sm-4 control-label" id="posee">¿Posee Vehiculo?</label>
                                       <div class="col-sm-10">
                                           <div class="input-group">
@@ -269,8 +350,14 @@ function realizaProceso(){
                                       </div>
                                     </div>
 
-                              </form>
-                            <span id="resultado2"></span>
+
+                                  </div>
+                                  </div>
+                                  <input type="text" hidden="" class="form-control" name="usuario_reg2" id="usuario_reg2" value="<?php  echo $usuario_reg ?>" />
+
+                                </form>
+
+                            <span id="resultadocarnet"></span>
                           </div>
                          </div>
                          <!-- Tab panes -->
