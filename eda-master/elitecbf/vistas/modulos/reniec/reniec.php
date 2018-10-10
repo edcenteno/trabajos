@@ -45,7 +45,7 @@ function realizaProceso(){
     });
 function realizaProcesocarnet(){
 
-
+ $('#consultacarnet').hide();
 
     carnet = $('#carnet').val();
     fechaNacimientocarnet = $('#fechaNacimientocarnet').val();
@@ -112,7 +112,7 @@ function realizaProcesocarnet(){
            $('#personal').show();
            $('#nombrecarnet').val(msg['Nombres']);
            $('#apellidoscarnet').val(msg['ApellidoPaterno'] + ' ' +msg['ApellidoMaterno']);
-           $('#consultacarnet').hide();
+
            $('#vehiculocarnet').show();
            $("#carnet").attr("readonly","readonly");
            $("#fechaNacimientocarnet").attr("readonly","readonly");
@@ -195,7 +195,7 @@ function realizaProcesocarnet(){
                                             </select>
 
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="ti-id-badge"></i></span></div>
-                                            <input type="text" class="form-control" pattern="[0-9]{9}" minlength="5" maxlength="9" name="ptp" id="ptp" value="" placeholder="PTP" />
+                                            <input type="text" class="form-control" pattern="[0-9]{9}" minlength="5" maxlength="9" name="ptp" id="ptp" value="" placeholder="PTP/Carné" />
 
                                           </div>
                                         </div>
@@ -260,7 +260,7 @@ function realizaProcesocarnet(){
                                       <div class="col-sm-10">
                                           <div class="input-group">
 
-                                              <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlaca"">SI</span>
+                                              <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlaca">SI</span>
 
                                               <input type="text" hidden class="form-control" name="si" id="si" value="Si">
 
@@ -277,12 +277,12 @@ function realizaProcesocarnet(){
                          </div>
 
 
-<!--second tab-->
+                      <!--second tab-->
                     <div class="tab-pane" id="carnetext" role="tabpanel">
                         <div class="card-body">
                             <div class="row">
                                 <form class="form-horizontal p-t-20" id="">
-                                  <div class="form-group row" id="extr">
+                                  <div class="form-group row" id="carnetextr">
                                     <div class="form-group row">
                                         <label for="exampleInputEmail3" class="col-sm-4 control-label">Carné de Extranjeria</label>
                                         <div class="col-sm-10">
@@ -335,15 +335,30 @@ function realizaProcesocarnet(){
                                   </div>
 
                                   <div class="form-group row" id="vehiculocarnet">
-                                      <label for="exampleInputuname3" class="col-sm-4 control-label" id="posee">¿Posee Vehiculo?</label>
+
+                                    <div class="form-check-inline">
+                                      <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="cabify" id="cabify" class="form-check-input" value="1">Cabify
+
+                                      </label>
+                                    </div>
+
+                                    <div class="form-check-inline">
+                                      <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="easytaxi" id="easytaxi" class="form-check-input" value="1">Easy Taxi
+                                      </label>
+                                    </div>
+
+
                                       <div class="col-sm-10">
+                                        <label for="exampleInputuname3" class="col-sm-8 control-label" id="posee" >¿Posee Vehiculo?</label>
                                           <div class="input-group">
 
-                                              <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlaca"">SI</span>
+                                              <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlacaCarnet">SI</span>
 
                                               <input type="text" hidden class="form-control" name="si" id="si" value="Si">
 
-                                              <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevo">NO</span>
+                                              <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevoCarnet">NO</span>
 
 
                                           </div>
@@ -358,6 +373,7 @@ function realizaProcesocarnet(){
                                 </form>
 
                             <span id="resultadocarnet"></span>
+                            <span id="resultadocarnetplaca"></span>
                           </div>
                          </div>
                          <!-- Tab panes -->
@@ -510,19 +526,19 @@ $(document).ready(function(){
       var type = $('#tipoext').val()
 
       $.ajax({
-                    type: "POST",
-                    url: "https://captcharh.ddns.net/api/record",
-                    data: {
-                        type: type, //tipo de documento
-                        documento: dni, //numero de documento
-                        datas: "record" //tipo de solicitud
-                    }
+        type: "POST",
+        url: "https://captcharh.ddns.net/api/record",
+        data: {
+            type: type, //tipo de documento
+            documento: dni, //numero de documento
+            datas: "record" //tipo de solicitud
+        }
 
-                  }).done(function(msg){
-                    $("#resultado").html(msg);
-                    console.log(msg)
+      }).done(function(msg){
+        $("#resultado").html(msg);
+        console.log(msg)
 
-                  });
+      });
 
     cadena="nombre=" + $('#nombreext').val() +
           "&apellidos=" + $('#apellidosext').val() +
@@ -561,4 +577,177 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
 
+  $(document).ready(function(){
+
+  $("#registrarNuevoCarnet").click(function () {
+  easytaxi2 = ($('input:checkbox[name=easytaxi]:checked').val());
+  cabify2 = ($('input:checkbox[name=cabify]:checked').val());
+  easyeconomy2 = ($('input:checkbox[name=easyeconomy]:checked').val());
+    //$("#formulario").submit();
+  });
+});
+
+
+  $(document).ready(function(){
+
+  $('#registrarNuevoCarnet').click(function(){
+
+    var dni = $('#carnet').val()
+    var type = 2;
+
+    $.ajax({
+        type: "POST",
+        url: "https://captcharh.ddns.net/api/record",
+        data: {
+            type: type, //tipo de documento
+            documento: dni, //numero de documento
+            datas: "record" //tipo de solicitud
+        }
+
+      }).done(function(msg){
+        $("#resultado").html(msg);
+        console.log(msg)
+
+      });
+
+    cadena="nombre=" + $('#nombrecarnet').val() +
+        "&apellidos=" + $('#apellidoscarnet').val() +
+        "&dni=" + $('#carnet').val() +
+        "&tipoext=" + type +
+        "&cabify=" + cabify2 +
+        "&easytaxi=" + easytaxi2 +
+        "&usuario_reg=" + $('#usuario_reg2').val() +
+        "&fechaNacimiento=" + $('#fechaNacimientocarnet').val();
+
+        $.ajax({
+          type:"POST",
+          url:"vistas/modulos/reniec/registrosinplaca.php",
+          data:cadena,
+          success:function(r){
+
+            if(r==1){
+            swal({
+                type: "success",
+                title: "¡El Conductor ha sido guardado correctamente!",
+                showConfirmButton: true,
+                confirmButtonColor: "#8cd4f5",
+                confirmButtonText: "Cerrar"
+
+              }).then(function(result){
+
+                if(result.value){
+
+                  window.location = "conductores";
+
+                }
+
+              });
+            }else if(r==2){
+              swal({
+                  type: "warning",
+                  title: "¡Conductor ya se encuentra registrado al conductor intente nuevamente!",
+                  showConfirmButton: true,
+                   confirmButtonColor: "#dd6b55",
+                  confirmButtonText: "Cerrar"
+
+                }).then(function(result){
+
+                  if(result.value){
+
+                    window.location = "conductores";
+
+                  }
+
+                });
+            }else if(r==3){
+             swal({
+                  type: "error",
+                  title: "¡Error de PTP/Carné de extranjeria, los campos no puede ir vacío o llevar caracteres especiales!",
+                  showConfirmButton: true,
+                  confirmButtonColor: "#dd6b55",
+                  confirmButtonText: "Cerrar"
+                  }).then(function(result) {
+                    $("#consul")[0].reset();
+
+                })
+            }if(r==4){
+            swal({
+                type: "warning",
+                title: "¡Debe seleccionar una opción!",
+                showConfirmButton: true,
+                confirmButtonColor: "#8cd4f5",
+                confirmButtonText: "Cerrar"
+
+              }).then(function(result){
+
+              });
+            }
+          }
+        });
+  });
+});
+
+</script>
+<script>
+
+
+$(document).ready(function(){
+
+    $('#consultarPlacaCarnet').click(function(){
+
+      var easytaxi = ($('input:checkbox[name=easytaxi]:checked').val());
+      var cabify = ($('input:checkbox[name=cabify]:checked').val());
+
+      var dni = $('#carnet').val()
+      var type = 2;
+
+      $.ajax({
+        type: "POST",
+        url: "https://captcharh.ddns.net/api/record",
+        data: {
+            type: type, //tipo de documento
+            documento: dni, //numero de documento
+            datas: "record" //tipo de solicitud
+        }
+
+      }).done(function(msg){
+        $("#resultado").html(msg);
+        //console.log(msg)
+
+      });
+
+    cadena="nombre=" + $('#nombrecarnet').val() +
+        "&apellidos=" + $('#apellidoscarnet').val() +
+        "&dni=" + $('#carnet').val() +
+        "&tipoext=" + type +
+        "&cabify=" + cabify +
+        "&easytaxi=" + easytaxi +
+        "&si=" + $('#si').val() +
+        "&usuario_reg=" + $('#usuario_reg2').val() +
+        "&fechaNacimiento=" + $('#fechaNacimientocarnet').val();
+
+
+    $.ajax({
+            data:  cadena,
+            url:   'vistas/modulos/reniec/consultaplacaext.php',
+            type:  'post',
+            beforeSend: function () {
+                    $("#resultadocarnet").html("Procesando, espere por favor...");
+            },
+            success:  function (response) {
+                   //console.log(response);
+                    $("#resultadocarnetplaca").html(response);
+                     var rsp=response;
+
+                     // consultadni.style.display = 'none'; // No ocupa espacio
+                     if (rsp.length > "1000"){
+                        $("#carnetextr").hide("slow");
+
+                     }
+            }
+    });
+});
+});
+</script>

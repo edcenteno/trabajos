@@ -8,9 +8,6 @@ if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $placa) &&
    preg_match('/^[a-zA-Z0-9]+$/', $placa) && strlen($placa) == 6){
 
 
-//jhon$token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTA2MQ.mNioS0vL0ckba0lPV955HvekjFHzvIcqEVqy1_kBerM';
-
-  	// Modo de Uso
 	require_once("crv/src/autoload.php");
 
 	$test = new \Pit\Pit();
@@ -48,14 +45,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $jsonString = curl_exec ($ch);
 curl_close ($ch);
 $out = json_decode($jsonString, true);
-/*echo "<pre>";
-var_dump($out);
 
-echo"</pre>";
-*/
-/*echo "NombreCompania : ".$out['NombreCompania']." <br>";
-echo "FechaInicio : ". $out['FechaInicio'];
-echo "FechaFin : ".$out['FechaFin']." <br>";*/
 $nombre =$_POST['nombre'];
 $apellidos= $_POST['apellidos'];
 $dni = $_POST['dni'];
@@ -75,13 +65,13 @@ $tipoext=$_POST['tipoext'];
 $usuario_reg=$_POST['usuario_reg'];
 
 
-    if ($easytaxi == "undefined") {
-        $easytaxi = "0" ;
-    }
+if ($easytaxi == "undefined") {
+    $easytaxi = "0" ;
+}
 
-    if ($cabify == "undefined") {
-        $cabify = "0" ;
-    }
+if ($cabify == "undefined") {
+    $cabify = "0" ;
+}
 if ($estado == "VIGENTE") {
   $soat = 'VIGENTE';
 } else {
@@ -89,17 +79,6 @@ if ($estado == "VIGENTE") {
 }
 
 ?>
-    <input type="text" hidden readonly="" class="form-control" name="fechaNacimiento" id="fechaNacimiento" value="<?php echo $fechaNacimiento ?>">
-    <input type="text" hidden name="FechaInicio" id="FechaInicio" value="<?php echo $FechaInicio ?>"/>
-    <input type="text" hidden name="FechaFin" id="FechaFin" value="<?php echo $FechaFin?>"/>
-    <input type="text" hidden readonly="" class="form-control" name="NombreCompania" id="NombreCompania" value="<?php echo $NombreCompania ?>">
-    <input type="text" hidden name="NumeroPoliza" id="NumeroPoliza" value="<?php echo $NumeroPoliza ?>"/>
-    <input type="text" hidden name="NombreUsoVehiculo" id="NombreUsoVehiculo" value="<?php echo $NombreUsoVehiculo ?>"/>
-     <input type="text" hidden readonly="" class="form-control" name="NombreClaseVehiculo" id="NombreClaseVehiculo" value="<?php echo $NombreClaseVehiculo ?>">
-    <input type="text" hidden name="FechaControlPolicial" id="FechaControlPolicial" value="<?php echo $FechaControlPolicial ?>"/>
-    <input type="text" hidden name="TipoCertificado" id="TipoCertificado" value="<?php echo $TipoCertificado?>"/>
-    <input type="text" hidden name="usuario_reg" id="usuario_reg" value="<?php echo $usuario_reg ?>"/>
-    <input type="text" hidden name="tipoext" id="tipoext" value="<?php echo $tipoext ?>"/>
 
 <form class="form-horizontal p-t-20">
     <div class="form-group row">
@@ -179,7 +158,7 @@ if ($estado == "VIGENTE") {
 
             }).done(function(msg){
                $("#resultado").html(msg);
-                console.log(msg)
+                //console.log(msg)
             });
   var crvjs =<?php echo $x ?>;
   $(document).ready(function(){
@@ -188,25 +167,25 @@ if ($estado == "VIGENTE") {
 
     $('#registrarNuevo2').click(function(){
 
-      cadena="nombre=" + $('#nombre').val() +
-          "&apellidos=" + $('#apellidos').val() +
-          "&dni=" + $('#ptp').val() +
-          "&placa=" + $('#placa').val() +
+      cadena="nombre=" + '<?php echo $nombre ?>' +
+          "&apellidos=" + '<?php echo $apellidos ?>' +
+          "&dni=" + '<?php echo $dni ?>' +
+          "&placa=" + '<?php echo $placa ?>' +
           "&crv=" + $('#crv').val() +
-          "&FechaInicio=" + $('#FechaInicio').val() +
-          "&FechaFin=" + $('#FechaFin').val() +
-          "&fechaNacimiento=" + $('#fechaNacimiento').val()+
-          "&NombreCompania=" + $('#NombreCompania').val()+
-          "&NumeroPoliza=" + $('#NumeroPoliza').val()+
-          "&NombreUsoVehiculo=" + $('#NombreUsoVehiculo').val()+
-          "&NombreClaseVehiculo=" + $('#NombreClaseVehiculo').val()+
-          "&FechaControlPolicial=" + $('#FechaControlPolicial').val()+
-          "&TipoCertificado=" + $('#TipoCertificado').val()+
-          "&tipoext=" + $('#tipoext').val()+
-          "&usuario_reg=" + $('#usuario_reg').val()+
-          "&cabify=" + cabify +
-          "&easytaxi=" + easytaxi +
-          "&estado=" + $('#estado').val();
+          "&FechaInicio=" + '<?php echo $FechaInicio ?>' +
+          "&FechaFin=" + '<?php echo $FechaFin ?>' +
+          "&fechaNacimiento=" + '<?php echo $fechaNacimiento ?>' +
+          "&NombreCompania=" + '<?php echo $NombreCompania ?>' +
+          "&NumeroPoliza=" + '<?php echo $NumeroPoliza ?>' +
+          "&NombreUsoVehiculo=" + '<?php echo $NombreUsoVehiculo ?>' +
+          "&NombreClaseVehiculo=" + '<?php echo $NombreClaseVehiculo ?>' +
+          "&FechaControlPolicial=" + '<?php echo $FechaControlPolicial ?>' +
+          "&TipoCertificado=" + '<?php echo $TipoCertificado ?>' +
+          "&tipoext=" + '<?php echo $tipoext ?>' +
+          "&usuario_reg=" + '<?php echo $usuario_reg ?>' +
+          "&cabify=" + '<?php echo $cabify ?>' +
+          "&easytaxi=" + '<?php echo $easytaxi ?>' +
+          "&estado=" + '<?php echo $soat ?>';
 
 					$.ajax({
 						type:"POST",
@@ -215,7 +194,14 @@ if ($estado == "VIGENTE") {
 						success:function(r){
 
 							if(r==2){
-								alertify.error("Este usuario ya existe, prueba con otro");
+								swal({
+                  type: "success",
+                  title: "¡El Conductor ya Existe, ingrese otro conductor!",
+                  showConfirmButton: true,
+                  confirmButtonColor: "#8cd4f5",
+                  confirmButtonText: "Cerrar"
+
+                })
 							}
 							else if(r==1){
 							swal({

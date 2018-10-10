@@ -73,37 +73,38 @@ if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('
 
 	function realizaProcesoplaca(){
         cadena="placa=" + $('#placa').val() +
-        "&dni=" + $('#ptp').val() +
-        "&nombre=" + $('#nombre').val() +
-        "&fechaNacimiento=" + $('#fechaNacimiento').val()+
-        "&cabify=" + cabify +
-        "&easytaxi=" + easytaxi +
-        "&tipoext=" + tipoext +
-        "&usuario_reg=" + usuario_reg +
-        "&apellidos=" + $('#apellidos').val();
+        "&dni=" + '<?php echo $dni ?>' +
+        "&nombre=" + '<?php echo $nombre ?>' +
+        "&fechaNacimiento=" + '<?php echo $fecha_nacimiento ?>' +
+        "&cabify=" + '<?php echo $cabify ?>' +
+        "&easytaxi=" + '<?php echo $easytaxi ?>' +
+        "&tipoext=" + '<?php echo $tipoext ?>' +
+        "&usuario_reg=" + '<?php echo $usuario_reg ?>' +
+        "&apellidos=" + '<?php echo $apellidos ?>';
         $.ajax({
                 data:  cadena,
                 url:   'vistas/modulos/reniec/placaext.php',
                 type:  'post',
                 beforeSend: function () {
-                        $("#resultado2").html("Procesando, espere por favor...");
+                        $("#resultadoplaca").html("Procesando, espere por favor...");
                 },
                 success:  function (response) {
-                        $("#resultado2").html(response);
+                        $("#resultadoplaca").html(response);
                         var rsp=response;
 
                        if (rsp.length > "1000"){
                           $("#consultaplaca").hide("slow");
-                          $("#x").hide("slow");
+                          $("#xplaca").hide("slow");
                        }
                 }
         });
 }
 </script>
-Introduce placa
+
 
 <form class="form-horizontal p-t-20">
-    <div class="form-group row" id="x">
+    <div class="form-group row" id="xplaca">
+      Introduce placa
         <label for="exampleInputuname3" class="col-sm-3 control-label">Placa</label>
         <div class="col-sm-9">
             <div class="input-group">
@@ -118,20 +119,7 @@ Introduce placa
 
 </form>
 
-
-
-
-<input type="text" hidden readonly="" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre ?>">
-
-<input type="text" hidden readonly="" class="form-control" name="apellidos" id="apellidos" value="<?php echo $apellidos ?>">
-
-<input type="text" hidden readonly="" class="form-control" name="fechaNacimiento" id="fechaNacimiento" value="<?php echo $fecha_nacimiento ?>">
-
-<input type="text" hidden readonly="" class="form-control" name="dni" id="dni" value="<?php echo $dni ?>" >
-<input type="text" hidden readonly="" class="form-control" name="tipoext" id="tipoext" value="<?php echo $tipoext ?>" >
-<input type="text" hidden readonly="" class="form-control" name="usuario_reg" id="usuario_reg" value="<?php echo $usuario_reg ?>" >
-
-<span id="resultado2">
+<span id="resultadoplaca">
 <?php
 }else{
 ?>
@@ -140,7 +128,7 @@ Introduce placa
 
     swal({
         type: "error",
-        title: "¡Error de PTP/Carné de extranjeria, los campos no puede ir vacío o llevar caracteres especiales!",
+        title: "¡Error de Carné de extranjeria, los campos no puede ir vacío o llevar caracteres especiales!",
         showConfirmButton: true,
         confirmButtonColor: "#dd6b55",
         confirmButtonText: "Cerrar"

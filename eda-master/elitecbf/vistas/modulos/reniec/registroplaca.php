@@ -3,6 +3,8 @@
     require_once "php/conexion.php";
     $conexion=conexion();
 
+        $fecha_reg = date("Y-m-d H:i:s");
+
         $dni = $_POST['dni'];
         $estado = $_POST['estado'];
         $placa = $_POST['placa'];
@@ -31,7 +33,7 @@ if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguiente
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
                  contador_act_placa = contador_act_placa+1,
-                 fecha_act_placa = NOW(),
+                 fecha_act_placa = '".$fecha_reg."',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
                                 //echo $sql;
@@ -51,7 +53,7 @@ if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguiente
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
                  contador_act_placa = contador_act_placa+1,
-                 fecha_act_placa = NOW(),
+                 fecha_act_placa = '".$fecha_reg."',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
                                 //echo $sql;

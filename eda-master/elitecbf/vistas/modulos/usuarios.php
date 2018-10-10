@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                     <li class="breadcrumb-item active">Usuarios</li>
                 </ol>
-               
+
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
                             $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
                            foreach ($usuarios as $key => $value){
-                             
+
                               echo ' <tr>
                                       <td>'.($key+1).'</td>
                                       <td>'.$value["nombre"].'</td>
@@ -93,18 +93,18 @@
                                         echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="1">Desactivado</button></td>';
 
 
-                                      }             
+                                      }
 
                                       echo '<td>'.$value["ultimo_login"].'</td>
                                       <td>
 
                                         <div class="btn-group">
-                                            
+
                                           <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
                                           <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
 
-                                        </div>  
+                                        </div>
 
                                       </td>
 
@@ -112,8 +112,8 @@
                             }
 
 
-                            ?> 
-                            
+                            ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -132,13 +132,13 @@ MODAL AGREGAR USUARIO
 ======================================-->
 
 <div id="modalAgregarUsuario" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
 
       <form role="form" method="post" enctype="multipart/form-data">
-       
+
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -170,9 +170,9 @@ MODAL AGREGAR USUARIO
                     <input type="text" class="form-control" name="nuevoDni" placeholder="Ingresar DNI" id="nuevoDni" aria-label="DNI" aria-describedby="basic-addon2" required pattern="[0-9]{8-12}" minlength="8" maxlength="12">
                     </div>
                 </div>
-               
+
                 <!-- ENTRADA PARA EL NOMBRE -->
-                
+
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <div class="input-group mb-3">
@@ -203,12 +203,12 @@ MODAL AGREGAR USUARIO
                     </div>
 
                 <select class="form-control input-lg" name="nuevoEmpresa">
-                 
-                  <option value="Cabify">Cabify</option>
 
-                  <option value="Easy Taxy">Easy Taxy</option>
+                  <option value="cabify">Cabify</option>
 
-                  <option value="EasyTaxyEconomy">Easy Taxy Economy</option>
+                  <option value="easytaxi">EasyTaxy</option>
+
+                 <!--  <option value="EasyTaxyEconomy">Easy Taxy Economy</option> -->
 
                 </select>
 
@@ -260,14 +260,14 @@ MODAL AGREGAR USUARIO
                 <!-- <input type="text" hidden="" class="form-control" required aria-label="perfil" aria-describedby="basic-addon2" name="nuevoPerfil" value="Operador" id="nuevoPerfil" readonly=""> -->
               <div class="form-group">
               <label for="Perfil">Perfil</label>
-              
+
               <div class="input-group">
                <div class="input-group-prepend">
                      <span class="input-group-text" id="basic-addon2"><i class="fa fa-lock"></i></span>
                     </div>
 
                 <select class="form-control input-lg" name="nuevoPerfil">
-                 
+
                   <option value="Administrador">Administrador</option>
 
                   <option value="Operador">Operador</option>
@@ -286,7 +286,7 @@ MODAL AGREGAR USUARIO
             <!-- ENTRADA PARA SUBIR FOTO -->
 
              <div class="form-group">
-              
+
               <div class="panel">SUBIR FOTO</div>
 
                 <input type="file" name="nuevaFoto" class="nuevaFoto" />
@@ -294,7 +294,7 @@ MODAL AGREGAR USUARIO
               <p class="help-block">*Peso máximo de la foto 2MB </p>
               </div>
 
-            
+
         </div>
         </div>
 
@@ -330,7 +330,7 @@ MODAL EDITAR USUARIO
 ======================================-->
 
 <div id="modalEditarUsuario" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -343,7 +343,7 @@ MODAL EDITAR USUARIO
 
         <div class="modal-header" style="background:#6f42c1; color:white">
 
-         
+
           <h4 class="modal-title">Editar usuario</h4>
 
         </div>
@@ -357,7 +357,7 @@ MODAL EDITAR USUARIO
           <div class="box-body">
 
              <!-- ENTRADA PARA EL NOMBRE -->
-                
+
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <div class="input-group mb-3">
@@ -383,7 +383,7 @@ MODAL EDITAR USUARIO
 
             <!-- ENTRADA PARA LA CONTRASEÑA -->
 
-             
+
             <div class="form-group">
                 <label for="Contraseña">Contraseña</label>
                 <div class="input-group mb-3">
@@ -398,18 +398,18 @@ MODAL EDITAR USUARIO
                 <b><font color ="red" size="1,5">*NO UTILIZAR CARACTERES ESPECIALES</font></b>
             </div>
 
-          
+
             <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
 
             <div class="form-group">
-              
+
               <div class="input-group">
                <div class="input-group-prepend">
                      <span class="input-group-text" id="basic-addon2"><i class="fa fa-lock"></i></span>
                     </div>
 
                 <select class="form-control input-lg" name="editarPerfil">
-                  
+
                   <option value="" id="editarPerfil"></option>
 
                   <option value="Administrador">Administrador</option>
@@ -417,7 +417,7 @@ MODAL EDITAR USUARIO
                   <option value="Operador">Operador</option>
 
                   <option value="RRHH">RRHH</option>
-                  
+
                   <option value="CallCenter">Call Center</option>
 
                 </select>
@@ -429,7 +429,7 @@ MODAL EDITAR USUARIO
             <!-- ENTRADA PARA SUBIR FOTO -->
 
              <div class="form-group">
-              
+
               <div class="panel">SUBIR FOTO</div>
 
               <input type="file" class="nuevaFoto" name="editarFoto">
@@ -463,7 +463,7 @@ MODAL EDITAR USUARIO
           $editarUsuario = new ControladorUsuarios();
           $editarUsuario -> ctrEditarUsuario();
 
-        ?> 
+        ?>
 
       </form>
 

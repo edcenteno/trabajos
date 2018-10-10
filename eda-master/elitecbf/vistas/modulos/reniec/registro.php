@@ -3,6 +3,9 @@
 	require_once "php/conexion.php";
 	$conexion=conexion();
 
+		$fecha_reg = date("Y-m-d H:i:s");
+
+
 		$nombre = $_POST['nombre'];
 		$apellidos = $_POST['apellidos'];
 		$dni = $_POST['dni'];
@@ -55,16 +58,16 @@
 								 '$FechaInicio', '$FechaFin', '$fecha_nacimiento', '$NombreCompania',
 								 '$NumeroPoliza', '$NombreUsoVehiculo', '$easytaxi', '$cabify',
 								 '$NombreClaseVehiculo', '$FechaControlPolicial', '$TipoCertificado',
-								 NOW( ), '$secuencia', 'Nuevo', '$usuario_reg')";
+								 '$fecha_reg', '$secuencia', 'Nuevo', '$usuario_reg')";
 								//echo $sql;
 			$result=mysqli_query($conexion,$sql);
-			$sql="INSERT into proceso
+			/*$sql="INSERT into proceso
 								(dni,nombre, apellido, fecha_reg)
 						values
 								('$dni','$nombre', '$apellidos', NOW( ))";
 								//echo $sql;
 
-			$result=mysqli_query($conexion,$sql);
+			$result=mysqli_query($conexion,$sql);*/
 
 			echo "1";
 		}

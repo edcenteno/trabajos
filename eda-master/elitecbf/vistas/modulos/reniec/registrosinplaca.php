@@ -2,6 +2,9 @@
 
 	require_once "php/conexion.php";
 	$conexion=conexion();
+
+		$fecha_reg = date("Y-m-d H:i:s");
+
  		$usuario_reg = $_POST['usuario_reg'];
 		$nombre=$_POST['nombre'];
 		$apellidos=$_POST['apellidos'];
@@ -71,15 +74,15 @@
 					$secuencia =  "RA-" .$año . $mes. $saa;
 				}
 				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant, form, usuario_reg, extr, soat)
-					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', NOW( ), '$secuencia', 'Nuevo', '$usuario_reg', '$tipoext', 'NO POSEE')";
+					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', '$fecha_reg', '$secuencia', 'Nuevo', '$usuario_reg', '$tipoext', 'NO POSEE')";
 				$result=mysqli_query($conexion,$sql);
 
-				$sql="INSERT into proceso
+				/*$sql="INSERT into proceso
 								(dni,nombre, apellido, fecha_reg)
 						values
 								('$dni','$nombre', '$apellidos', NOW( ))";
 								//echo $sql;
-				$result=mysqli_query($conexion,$sql);
+				$result=mysqli_query($conexion,$sql);*/
 				//var_dump($sql);
 
 				echo "1";
