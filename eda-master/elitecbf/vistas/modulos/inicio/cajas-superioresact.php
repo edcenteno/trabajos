@@ -1,6 +1,7 @@
 <?php
 require 'conexion.php';
-$sql="SELECT SUM(act) as sumaact FROM conductores";
+$fecha=date('Y-m');
+$sql="SELECT SUM(act) as sumaact FROM conductores where fecha_act LIKE '$fecha%'";
     $result=mysqli_query($conexion,$sql);
     while($row = $result->fetch_array(MYSQLI_ASSOC)){
       $rows[] = $row;
@@ -21,7 +22,7 @@ $sql="SELECT SUM(act) as sumaact FROM conductores";
                         <h3 class="text-muted">Reporte de conductores Actualizados del mes <?php echo date('M-Y');?></h3>
                     </div>
                     <div class="ml-auto">
-                        <h2 class="counter text-info"><?php echo $suma -15 ?></h2>
+                        <h2 class="counter text-info"><?php echo $suma ?></h2>
                     </div><br>
 
                 </div>

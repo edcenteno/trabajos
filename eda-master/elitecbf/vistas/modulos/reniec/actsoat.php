@@ -57,6 +57,7 @@ $NombreUsoVehiculo = $out['NombreUsoVehiculo'];
 $NombreClaseVehiculo = $out['NombreClaseVehiculo'];
 $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
+$observacion = "";
 
 if ($estado == "VIGENTE") {
     if ($cabify == 1 && $easy == 1) {

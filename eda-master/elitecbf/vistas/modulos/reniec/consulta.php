@@ -86,7 +86,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
 
   $out=$test->search("$dni");
   $a = json_encode($out);
- // var_dump($a);
+  //var_dump($out);
 
   if (strlen($a) < 150) {
      echo '<script>
@@ -318,6 +318,17 @@ $(document).ready(function(){
 
         });
 
+          param="&dni=" + dni;
+
+          $.ajax({
+            data:  param,
+            url:   'vistas/modulos/reniec/ruc.php',
+            type:  'post',
+            success:  function (response) {
+
+            }
+            });
+
       cadena="nombre=" + $('#nombre').val() +
           "&apellidos=" + $('#apellidos').val() +
           "&dni=" + $('#dni').val() +
@@ -366,6 +377,8 @@ $(document).ready(function(){
           });
     });
   });
+
+
 
 </script>
 

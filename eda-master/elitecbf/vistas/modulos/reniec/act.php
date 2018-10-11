@@ -1,14 +1,14 @@
 <?php
  namespace DatosPeru;
 error_reporting(0);
+
 $dni=$_POST['dni'];
 $placa=$_POST['placa'];
 $cabify = $_POST['cabify'];
 $easy = $_POST['easy'];
 $type = $_POST['type'];
 
- class Peru  {
-
+  class Peru  {
     function __construct()
     {
       $this->reniec = new \Reniec\Reniec();
@@ -17,7 +17,8 @@ $type = $_POST['type'];
     }
     function search( $dni )
     {
-     /* $response = $this->reniec->search( $dni );
+
+ /*     $response = $this->reniec->search( $dni );
       if($response->success == true)
       {
         $rpt = (object)array(
@@ -27,8 +28,18 @@ $type = $_POST['type'];
         );
         return $rpt;
       }*/
-
-      $response = $this->essalud->check( $dni );
+/*
+        $response = $this->mintra->check( $dni );
+        if( $response->success == true )
+        {
+          $rpt = (object)array(
+            "success"     => true,
+            "source"    => "mintra",
+            "result"    => $response->result
+          );
+          return $rpt;
+        }*/
+ $response = $this->essalud->check( $dni );
       if($response->success == true)
       {
         $rpt = (object)array(
@@ -39,16 +50,8 @@ $type = $_POST['type'];
         return $rpt;
       }
 
-      /*$response = $this->mintra->check( $dni );
-      if( $response->success == true )
-      {
-        $rpt = (object)array(
-          "success"     => true,
-          "source"    => "mintra",
-          "result"    => $response->result
-        );
-        return $rpt;
-      }*/
+
+
 
       $rpt = (object)array(
         "success"     => false,
@@ -83,7 +86,7 @@ $type = $_POST['type'];
 }
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
+////echo $sentencia;
 
 if ($placa == "NINGUNO" || $placa == "" || $placa == "NINGUNA") {
 
@@ -92,41 +95,43 @@ if ($cabify == 1 && $easy == 1) {
                  act = act+1,
                  act_cbf = act_cbf + 1,
                  act_easy = act_easy + 1,
-                 fecha_act = NOW( )
+                 fecha_act = NOW()
                  WHERE dni='".$dni."' ";
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }
+
 if ($cabify == 0 && $easy == 0) {
   $sentencia="UPDATE conductores SET
                  act = act+1,
                  act_cbf = act_cbf + 1,
                  act_easy = act_easy + 1,
-                 fecha_act = NOW( )
+                 fecha_act = NOW()
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
+//////echo $sentencia;
 }
 
 if ($cabify == 1 && $easy == 0) {
   $sentencia="UPDATE conductores SET
                  act = act+1,
                  act_cbf = act_cbf + 1,
-                 fecha_act = NOW( )
+                 fecha_act = NOW()
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
+//////echo $sentencia;
 }
 
 if ($cabify == 0 && $easy == 1) {
   $sentencia="UPDATE conductores SET
                  act_easy = act_easy + 1,
                  act = act+1,
-                 fecha_act = NOW( )
+                 fecha_act = NOW()
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }
-} else {
+}
+else {
    // Modo de Uso
     require_once("crv/src/autoload.php");
 
@@ -135,6 +140,7 @@ $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mys
 
 
     $crv = $out['message'];
+    //echo $crv;
 
 $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTA2MQ.mNioS0vL0ckba0lPV955HvekjFHzvIcqEVqy1_kBerM';//token prestado
 $query = "
@@ -165,10 +171,10 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $jsonString = curl_exec ($ch);
 curl_close ($ch);
 $out = json_decode($jsonString, true);
-/*echo "<pre>";
+/*//echo "<pre>";
 var_dump($out);
 
-echo"</pre>";*/
+//echo"</pre>";*/
 
 
 $dni = $_POST['dni'];
@@ -185,13 +191,13 @@ $TipoCertificado = $out['TipoCertificado'];
 
 if ($estado == "VIGENTE") {
   $soat = "VIGENTE";
-  if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguientes conceptos.") {
+//if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguientes conceptos.") {
 if ($cabify == 1 && $easy == 1) {
   $sentencia="UPDATE conductores SET
                  act = act+1,
                  act_cbf = act_cbf + 1,
                  act_easy = act_easy + 1,
-                 fecha_act = NOW( ),
+                 fecha_act = NOW(),
                  soat = '".$estado."',
                  placa = '".$placa."',
                  orden_captura = '".$crv."',
@@ -212,7 +218,7 @@ if ($cabify == 0 && $easy == 0) {
                  act = act+1,
                  act_cbf = act_cbf + 1,
                  act_easy = act_easy + 1,
-                 fecha_act = NOW( ),
+                 fecha_act = NOW(),
                  soat = '".$estado."',
                  placa = '".$placa."',
                  orden_captura = '".$crv."',
@@ -226,14 +232,14 @@ if ($cabify == 0 && $easy == 0) {
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
+////echo $sentencia;
 }
 
 if ($cabify == 1 && $easy == 0) {
   $sentencia="UPDATE conductores SET
                  act = act+1,
                  act_cbf = act_cbf + 1,
-                 fecha_act = NOW( ),
+                 fecha_act = NOW(),
                  soat = '".$estado."',
                  placa = '".$placa."',
                  orden_captura = '".$crv."',
@@ -247,14 +253,14 @@ if ($cabify == 1 && $easy == 0) {
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
+////echo $sentencia;
 }
 
 if ($cabify == 0 && $easy == 1) {
   $sentencia="UPDATE conductores SET
                  act_easy = act_easy + 1,
                  act = act+1,
-                 fecha_act = NOW( ),
+                 fecha_act = NOW(),
                  soat = '".$estado."',
                  placa = '".$placa."',
                  orden_captura = '".$crv."',
@@ -275,5 +281,5 @@ $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mys
 
 }
 
-}
+
 ?>

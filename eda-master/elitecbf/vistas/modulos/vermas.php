@@ -256,12 +256,9 @@ if(empresa =="cabify"){
                                 echo '<button class="btn btn-cbf" data-toggle="modal" data-target="#modalcapturecabify"><i class="ti-camera"></i> Cabify </button>';
                            /* }*/
 
-                            if($_SESSION["empresa"] =="arhu"){
 
-                            }
                             ?>
                         <!-- <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button> -->
-
                         <?php
                             $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 20 day"));
@@ -343,6 +340,9 @@ if(empresa =="cabify"){
                                         dni = '<?php echo $idconductor ?>'
                                         cabify= '<?php echo $cabify ?>'
                                         easy = '<?php echo $easy ?>'
+                                        if (type == 0){
+                                            type =1;
+                                        }
 
                                swal({
                                       title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
@@ -403,9 +403,20 @@ if(empresa =="cabify"){
                                         type:  'post',
                                         success:  function (response) {
 
+                                          }
+                                        });
+
+                                      param="&dni=" + dni;
+
+                                      $.ajax({
+                                        data:  param,
+                                        url:   'vistas/modulos/reniec/ruc.php',
+                                        type:  'post',
+                                        success:  function (response) {
+
                                         }
-                                });
-                               // setTimeout('document.location.reload()',2000);
+                                        });
+                               setTimeout('document.location.reload()',2000);
 
                                   }
                                     })
@@ -481,7 +492,7 @@ if(empresa =="cabify"){
                                     <br>
                                     <p class="text-muted"><?php echo $fechanac = $value['fecha_nacimiento']; ?></p>
                                 </div>
-                                <div class="col-md-2 col-xs-6"> <strong>Edad</strong>
+                                <div class="col-md-2 col-xs-6 b-r"> <strong>Edad</strong>
                                     <br>
                                     <p class="text-muted">
                                         <?php  $rest = substr("$fechanac", 6);
@@ -495,7 +506,8 @@ if(empresa =="cabify"){
                                              }
                                         ?></p>
                                 </div>
-                                <div class="col-md-2 col-xs-6"> <strong>Empresa</strong>
+
+                                <div class="col-md-2 col-xs-6 b-r"> <strong>Empresa</strong>
                                     <br>
                                     <p class="text-muted">
                                         <?php
@@ -522,13 +534,18 @@ if(empresa =="cabify"){
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Departamento</strong>
+                                <div class="col-md-2 col-xs-6 b-r inf"> <strong>Departamento</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Distrito</strong>
+                                <div class="col-md-2 col-xs-6 b-r inf"> <strong>Distrito</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
+                                </div>
+
+                                <div class="col-md-2 col-xs-6 b-r"> <strong>RUC</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $fechanac = $value['ruc']; ?></p>
                                 </div>
 
                                     <?php

@@ -198,6 +198,16 @@ if ($estado == "VIGENTE") {
 
         });
 
+          param="&dni=" + dni;
+          $.ajax({
+            data:  param,
+            url:   'vistas/modulos/reniec/ruc.php',
+            type:  'post',
+            success:  function (response) {
+
+            }
+            });
+
       cadena="nombre=" + $('#nombre').val() +
           "&apellidos=" + $('#apellidos').val() +
           "&dni=" + $('#dni').val() +
