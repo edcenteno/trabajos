@@ -542,13 +542,17 @@ if(empresa =="cabify"){
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
+                                <?php
+                                    if ($value['ruc'] != "") {
+                                        $ruc= $value['ruc'];
+                                        echo ' <div class="col-md-2 col-xs-6 b-r"> <strong>RUC</strong>
+                                                <br>
+                                                <p class="text-muted">'.$ruc.'</p>
+                                            </div>';
+                                    }
 
-                                <div class="col-md-2 col-xs-6 b-r"> <strong>RUC</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $fechanac = $value['ruc']; ?></p>
-                                </div>
 
-                                    <?php
+
                                     if ($value['cabify'] == 1 &&  $value['easytaxi'] == 1) {
 
                                     } else {
