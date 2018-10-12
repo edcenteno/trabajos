@@ -1,6 +1,7 @@
 <?php
  namespace DatosPeru;
 error_reporting(0);
+ include "conex.php";
 
 $dni=$_POST['dni'];
 $placa=$_POST['placa'];
@@ -75,7 +76,7 @@ $type = $_POST['type'];
   $apellidos=$out->result->ApellidoPaterno. " " .$out->result->ApellidoMaterno;
   $nombre=$out->result->Nombres;
   $fechanac=$out->result->FechaNacimiento;
- include "conex.php";
+
  $sentencia="UPDATE conductores SET
                  nombre = '".$nombre."',
                  apellido = '".$apellidos."',
@@ -83,10 +84,11 @@ $type = $_POST['type'];
                  resultado = ''
                  WHERE dni='".$dni."' ";
 
+$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
+//echo $sentencia;
 }
 
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-////echo $sentencia;
+
 
 if ($placa == "NINGUNO" || $placa == "" || $placa == "NINGUNA") {
 

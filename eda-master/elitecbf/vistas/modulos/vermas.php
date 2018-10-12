@@ -257,8 +257,14 @@ if(empresa =="cabify"){
                            /* }*/
 
 
+                           /* if($_SESSION["empresa"] =="arhu"){
+                                echo '<button class="btn btn-success" onclick="actualizararhu()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>';
+                            }*/
+
                             ?>
-                        <!-- <button class="btn btn-default" onclick="deshabilitar_btnEnviar()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button> -->
+
+
+
                         <?php
                             $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 20 day"));
@@ -416,7 +422,84 @@ if(empresa =="cabify"){
 
                                         }
                                         });
-                               setTimeout('document.location.reload()',2000);
+                               setTimeout('document.location.reload()',5000);
+
+                                  }
+                                    })
+
+
+                            }
+
+                            function actualizararhu(){
+
+                                        placa = '<?php echo $placa ?>'
+                                        placa = placa.toUpperCase();
+                                        type= '<?php echo $extr ?>'
+                                        dni = '<?php echo $idconductor ?>'
+                                        cabify= '<?php echo $cabify ?>'
+                                        easy = '<?php echo $easy ?>'
+                                        if (type == 0){
+                                            type =1;
+                                        }
+
+                               swal({
+                                      title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
+                                      text: "¡No podrás revertir esto!",
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#3085d6',
+                                      cancelButtonColor: '#d33',
+                                      confirmButtonText: '¡Si, actualizar!',
+                                      cancelButtonText: '¡No actualizar!',
+                                    }).then((result) => {
+                                      if (result.value) {
+                                        swal(
+                                          'Solicitado!',
+                                          'La actualización puede tardar par de minutos.',
+                                          'success'
+                                        )
+
+                                        $.ajax({
+                                          type: "POST",
+                                          url: 'https://captcharh.ddns.net/api/record',
+                                          data: {
+                                              type: type, //tipo de documento
+                                              documento: dni, //numero de documento
+                                              datas: 'record' //tipo de solicitud
+                                          }
+
+                                        }).done(function(msg){
+                                         // $("#resultado").html(msg);
+                                          //console.log(msg)
+
+                                        });
+
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: 'https://captcharh.ddns.net/api/record',
+                                            data: {
+                                                type: '1', //tipo de documento
+                                                documento: placa, //numero de documento
+                                                datas: 'placa' //tipo de solicitud
+                                            }
+
+                                            }).done(function(msg){
+                                               /* $("#resultado").html(msg);
+                                                console.log(msg)*/
+                                            });
+
+                                      param="&dni=" + dni;
+
+                                      $.ajax({
+                                        data:  param,
+                                        url:   'vistas/modulos/reniec/ruc.php',
+                                        type:  'post',
+                                        success:  function (response) {
+
+                                        }
+                                        });
+                               setTimeout('document.location.reload()',3000);
 
                                   }
                                     })
@@ -913,14 +996,14 @@ if(empresa =="cabify"){
                                <?php
                                 $fecha_actual = date('d/m/Y');
                              //   echo $fecha_actual;
-                               if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "" ||$value['soat'] == "undefined") {
-                                   echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
-                                    <br>
-                                    <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>
-                                </div>';
-                               } else {
-                                   # code...
-                               }
+                               if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "" ||$value['soat'] == "undefined" ) {
+                                    if ($value['ant_penales'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO") {
+                                       echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
+                                                <br>
+                                                <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>
+                                            </div>';
+                                    }
+                                }
                                ?>
                             </div>
                         </div>

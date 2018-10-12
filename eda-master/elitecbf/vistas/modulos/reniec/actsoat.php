@@ -74,6 +74,7 @@ if ($estado == "VIGENTE") {
                  NombreUsoVehiculo = '".$NombreUsoVehiculo."',
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
+                 observacion = '',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 
@@ -94,6 +95,7 @@ if ($cabify == 0 && $easy == 0) {
                  NombreUsoVehiculo = '".$NombreUsoVehiculo."',
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
+                 observacion = '',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
@@ -114,6 +116,7 @@ if ($cabify == 1 && $easy == 0) {
                  NombreUsoVehiculo = '".$NombreUsoVehiculo."',
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
+                 observacion = '',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
@@ -134,6 +137,7 @@ if ($cabify == 0 && $easy == 1) {
                  NombreUsoVehiculo = '".$NombreUsoVehiculo."',
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
+                 observacion = '',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
