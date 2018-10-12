@@ -75,6 +75,7 @@ if ($estado == "VIGENTE") {
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
                  observacion = '',
+                 resultado = 'APTO',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 
@@ -96,6 +97,7 @@ if ($cabify == 0 && $easy == 0) {
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
                  observacion = '',
+                 resultado = 'APTO',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
@@ -117,6 +119,7 @@ if ($cabify == 1 && $easy == 0) {
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
                  observacion = '',
+                 resultado = 'APTO',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
@@ -138,6 +141,7 @@ if ($cabify == 0 && $easy == 1) {
                  nombreclasevehiculo = '".$NombreClaseVehiculo."',
                  fechacontrolpolicial = '".$FechaControlPolicial."',
                  observacion = '',
+                 resultado = 'APTO',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
