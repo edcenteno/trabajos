@@ -3,12 +3,12 @@
 
     $company = new \Sunat\Sunat( true, true );
 
-    $dni = "44274792";
+    $dni = "08887651";
 
     $search2 = $company->search( $dni );
 
 
-    //var_dump($search2);
+    var_dump($search2);
 
     if( $search2->success == true )
     {

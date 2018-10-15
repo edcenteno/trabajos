@@ -1,6 +1,6 @@
 <?php
 	namespace DatosPeru;
-	$dni='47589254';
+	$dni='72892811';
 	class Peru
 	{
 		function __construct()

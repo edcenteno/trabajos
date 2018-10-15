@@ -257,9 +257,9 @@ if(empresa =="cabify"){
                            /* }*/
 
 
-                           /* if($_SESSION["empresa"] =="arhu"){
+                            if($_SESSION["empresa"] =="arhu"){
                                 echo '<button class="btn btn-success" onclick="actualizararhu()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>';
-                            }*/
+                            }
 
                             ?>
 
@@ -459,37 +459,38 @@ if(empresa =="cabify"){
                                           'success'
                                         )
 
-                                        $.ajax({
-                                          type: "POST",
-                                          url: 'https://captcharh.ddns.net/api/record',
-                                          data: {
-                                              type: type, //tipo de documento
-                                              documento: dni, //numero de documento
-                                              datas: 'record' //tipo de solicitud
-                                          }
+                                        // $.ajax({
+                                        //   type: "POST",
+                                        //   url: 'https://captcharh.ddns.net/api/record',
+                                        //   data: {
+                                        //       type: type, //tipo de documento
+                                        //       documento: dni, //numero de documento
+                                        //       datas: 'record' //tipo de solicitud
+                                        //   }
 
-                                        }).done(function(msg){
-                                         // $("#resultado").html(msg);
-                                          //console.log(msg)
+                                        // }).done(function(msg){
+                                        //  // $("#resultado").html(msg);
+                                        //   //console.log(msg)
 
-                                        });
+                                        // });
 
 
-                                        $.ajax({
-                                            type: "POST",
-                                            url: 'https://captcharh.ddns.net/api/record',
-                                            data: {
-                                                type: '1', //tipo de documento
-                                                documento: placa, //numero de documento
-                                                datas: 'placa' //tipo de solicitud
-                                            }
+                                        // $.ajax({
+                                        //     type: "POST",
+                                        //     url: 'https://captcharh.ddns.net/api/record',
+                                        //     data: {
+                                        //         type: '1', //tipo de documento
+                                        //         documento: placa, //numero de documento
+                                        //         datas: 'placa' //tipo de solicitud
+                                        //     }
 
-                                            }).done(function(msg){
-                                               /* $("#resultado").html(msg);
-                                                console.log(msg)*/
-                                            });
+                                        //     }).done(function(msg){
+                                        //        /* $("#resultado").html(msg);
+                                        //         console.log(msg)*/
+                                        //     });
 
-                                      param="&dni=" + dni;
+                                      param="&dni=" + dni+
+                                            "&type=" + type;
 
                                       $.ajax({
                                         data:  param,
@@ -499,7 +500,7 @@ if(empresa =="cabify"){
 
                                         }
                                         });
-                               setTimeout('document.location.reload()',3000);
+                               setTimeout('document.location.reload()',30000);
 
                                   }
                                     })
