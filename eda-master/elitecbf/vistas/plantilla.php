@@ -236,9 +236,9 @@ CUERPO DOCUMENTO
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/conductores.js"></script>
 <script src="vistas/js/prospectos.js"></script>
-<script src="vistas/js/datapicker.js"></script>
+<!-- <script src="vistas/js/datapicker.js"></script> -->
 <script src="vistas/js/ModalCapture.js"></script>
-<script src="vistas/js/ModalCaptureCbf.js"></script>
+<!-- <script src="vistas/js/ModalCaptureCbf.js"></script> -->
 
 </body>
 </html>

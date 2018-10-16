@@ -34,7 +34,7 @@
                                     <th>FECHA ACTUALIZADO</th>
                                     <th>DNI</th>
                                     <th>NOMBRE</th>
-                                    <th>APELLIDO</th>
+                                    <!-- <th>APELLIDO</th> -->
                                     <th>PLACA</th>
                                     <th>EMPRESA</th>
                                     <th>RESULTADO</th>
@@ -46,7 +46,7 @@
                                    <th>FECHA DE REGISTRO</th>
                                    <th>DNI</th>
                                    <th>NOMBRE</th>
-                                   <th>APELLIDO</th>
+                                   <!-- <th>APELLIDO</th> -->
                                    <th>PLACA</th>
                                    <th>EMPRESA</th>
                                    <th>RESULTADO</th>

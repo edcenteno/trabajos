@@ -106,6 +106,17 @@ class ControladorConductor{
 	MOSTRAR USUARIO
 	=============================================*/
 
+	static public function ctrMostrarConductorHistorial($item, $valor){
+
+		$respuesta = ModeloConductor::mdlMostrarConductorHistorial($item, $valor);
+
+		return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR USUARIO
+	=============================================*/
+
 	static public function ctrMostrarConductoract($item, $valor){
 
 		$tabla = "conductores_act";
@@ -529,6 +540,20 @@ class ControladorConductor{
 		$tabla = "conductores";
 
 		$respuesta = ModeloConductor::mdlMostrarunConductor($tabla, $item2, $valor2, $idconductor);
+
+		return $respuesta;
+
+	}
+
+	/*=============================================
+	MOSTRAR 1 Conductores
+	=============================================*/
+
+
+	static public function ctrMostrarunConductorHistorial($item2, $valor2, $idconductor){
+
+
+		$respuesta = ModeloConductor::mdlMostrarunConductorHistorial($item2, $valor2, $idconductor);
 
 		return $respuesta;
 

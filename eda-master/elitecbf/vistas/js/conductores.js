@@ -49,7 +49,6 @@ CARGAR LA TABLA DINÁMICA
     table.ajax.reload(null, false ); // user paging is not reset on reload
 */
 
-	$.fn.table.ext.errMode = 'throw';
 } );
 
 		$(document).ready(function() {
@@ -233,6 +232,7 @@ $(document).ready(function() {
 
 	}
     } );
+});
 
     $(document).ready(function() {
     $('.tablaConductoresHistorial').DataTable( {

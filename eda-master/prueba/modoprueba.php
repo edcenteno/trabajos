@@ -9,9 +9,8 @@ $result=mysqli_query($conexion,$sql);
     if(mysqli_num_rows($result) > 0){
         foreach ($result as $key => $value) {
             $id = $value['id'];
-            $placa = $value['placa'];
 
-         $sentencia="INSERT INTO vehiculos  (id, id_historial, placa) values (NULL, '$id', '$placa')";
+         $sentencia="INSERT INTO blacklist  (id, id_historial) values (NULL, '$id')";
 
         $reg=mysqli_query($conexion,$sentencia);
         //var_dump($reg);

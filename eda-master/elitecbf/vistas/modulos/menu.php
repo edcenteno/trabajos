@@ -77,9 +77,9 @@
                         <?php
                             if($_SESSION["perfil"] =="Administrador" || $_SESSION["perfil"] =="Operador"){
                                 echo '
-                                      <li><a href="conductoresadmin"><i class="ti fa fa-search"></i> Administrar</span></a></li>
-                                      <li><a href="busqueda"><i class="ti fa fa-car"></i> Busqueda</span></a></li>
-                                     <!-- <li><a href="conductoresactualizadosadmin"><i class="ti fa fa-car"></i> Actualizados</span></a></li>-->
+                                      <li><a href="conductoreshistorial"><i class="ti fa fa-search"></i> Administrar</span></a></li>
+                                    <!--   <li><a href="busqueda"><i class="ti fa fa-car"></i> Busqueda</span></a></li>
+                                     <li><a href="conductoresactualizadosadmin"><i class="ti fa fa-car"></i> Actualizados</span></a></li>-->
                                      ';
                             }
 /*

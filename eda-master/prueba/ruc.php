@@ -3,7 +3,7 @@
 
     $company = new \Sunat\Sunat( true, true );
 
-    $dni = "08887651";
+    $dni = "41178516";
 
     $search2 = $company->search( $dni );
 
@@ -13,6 +13,10 @@
     if( $search2->success == true )
     {
         echo "ruc: " . $search2->result->ruc;
+    }
+    if( $search2->message == "No se pudo conectar a sunat." )
+    {
+        echo "No se pudo conectar a sunat.";
     }
 
     /*if( $search2->success == true )

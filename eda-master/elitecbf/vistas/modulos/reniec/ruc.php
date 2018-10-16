@@ -13,9 +13,13 @@ if ($type != 1){
     $company = new \Sunat\Sunat( true, true );
 
     $search2 = $company->search( $dni );
-    if( $search2->success == true ){
+    if($search2->success == true ){
        $ruc = $search2->result->ruc;
-    }else{
+    }
+    if($search2->message == "No se pudo conectar a sunat."){
+        echo "No se pudo conectar a sunat.";
+    }
+    if($search2->success != true && $search2->message != "No se pudo conectar a sunat."){
         $ruc = "No posee RUC.";
     }
 
@@ -27,7 +31,7 @@ if ($type != 1){
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 //echo $sentencia;
+echo "rg";
+
 }
-
-
 ?>

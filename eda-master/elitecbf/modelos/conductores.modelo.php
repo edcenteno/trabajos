@@ -24,7 +24,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM conductores");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
 			$stmt -> execute();
 
@@ -39,6 +39,50 @@ class ModeloConductor{
 
 	}
 
+/*=============================================
+	MOSTRAR USUARIOS
+	=============================================*/
+
+	static public function mdlMostrarConductorHistorial($item, $valor){
+
+		$sql ="SELECT T1.fecha_revision, T1.dni, T1.nombre, T2.placa, T3.descripcion, T4.observacion, T4.resultado	FROM
+				historial T1 INNER JOIN vehiculos T2 INNER JOIN empresas T3	INNER JOIN antecedentes T4
+					ON
+						T1.id_vehiculo = T2.id
+					AND
+						T1.id_empresa = T3.id
+					AND
+						T1.id  = T4.id_historial
+					ORDER BY
+					T1.fecha_revision desc";
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("$sql");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+
+		$stmt -> close();
+
+		$stmt = null;
+
+
+	}
 	/*=============================================
 	MOSTRAR USUARIOS
 	=============================================*/
@@ -647,6 +691,35 @@ class ModeloConductor{
 	}
 
 	static public function mdlMostrarunConductor($tabla, $item, $valor, $idconductor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where dni = $idconductor");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where dni = $idconductor");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+
+	static public function mdlMostrarunConductorHistorial($item, $valor, $idconductor){
 
 		if($item != null){
 
