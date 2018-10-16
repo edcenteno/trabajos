@@ -29,7 +29,7 @@ if(isset($_SESSION['user'])){
                     { 'responsivePriority': 2, 'targets': 11 },*/
 
                     ],
-                    "order": [[1, "desc"]],
+                    "order": [[0, "asc"]],
                     "language": {
 
                         "sProcessing":     "Procesando...",

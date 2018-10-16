@@ -128,12 +128,12 @@ $rowvehiculo = $resultado->fetch_array(MYSQLI_ASSOC);
 
            <!--  <div class="form-group">
              <label for="apellido">Apellido: </label>
-             <input type="text" name="apellido" class="form-control" id="apellido" placeholder="Apellido" value="<?php echo $row['apellido'] ?>">
+             <input type="text" name="apellido" class="form-control" id="apellido" placeholder="Apellido" value="<?php //echo $row['apellido'] ?>">
            </div>
 
            <div class="form-group">
              <label for="placa">Placa: </label>
-             <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php echo $row['placa'] ?>">
+             <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php //echo $row['placa'] ?>">
            </div>
            <div class="form-group">
 
@@ -277,7 +277,7 @@ $rowvehiculo = $resultado->fetch_array(MYSQLI_ASSOC);
           </div>
           <div class="col-6 col-sm-4">
           <div class="form-group">
-            <input type="text" name="resultado" hidden class="form-control" id="resultado" value="<?php echo $row['resultado'] ?>" >
+            <input type="text" name="resultado" hidden class="form-control" id="resultado" value="<?php //echo $row['resultado'] ?>" >
 
             </div>
 

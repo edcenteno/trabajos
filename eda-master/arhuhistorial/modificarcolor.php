@@ -39,7 +39,7 @@ $placa=$rowvehiculo['placa'];
 
 
          <form class="form-horizontal" method="POST" action="modif_color2.php" autocomplete="off" style="border-collapse: separate; border-spacing: 10px 5px;">
-           <input type="hidden" name="cont"  value="<?php echo $_GET['id']?>">
+           <input type="hidden" name="id"  value="<?php echo $_GET['id']?>">
 
 
            <div class="row">
@@ -63,7 +63,7 @@ $placa=$rowvehiculo['placa'];
 
             <div class="form-group">
               <label for="placa">Placa: </label>
-              <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php echo $placa ?>">
+              <input type="text" name="placa" readonly class="form-control" id="placa" placeholder="Placa" value="<?php echo $placa ?>">
             </div>
             <div class="form-group">
 
