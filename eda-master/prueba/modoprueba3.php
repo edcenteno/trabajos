@@ -11,18 +11,27 @@
 include 'conex.php';
 $conexion = conexion();
 
-$sql = "SELECT * FROM vehiculos";
+
+$año = date("Y");
+$mes = date("M");
+ $secuencia_arhu_ant = "00000";
+
+
+
+$sql = "SELECT * FROM historial";
 $result=mysqli_query($conexion,$sql);
 
     if(mysqli_num_rows($result) > 0){
         foreach ($result as $key => $value) {
-            $id = $value['id'];
-            $id_historial = $value['id_historial'];
-            $placa = $value['placa'];
 
+
+        $secuencia_arhu_ant++;
+        $saa=str_pad($secuencia_arhu_ant, 5, "0", STR_PAD_LEFT);
+        $secuencia =  "RA-" .$año . $mes. $saa;
+            $id = $value['id'];
          $sentencia="UPDATE historial SET
-                             id_vehiculo = '".$id."'
-                             WHERE id ='".$id_historial."' ";
+                             secuencia_arhu_ant = '".$secuencia."'
+                             WHERE id ='".$id."' ";
 
 
         $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));

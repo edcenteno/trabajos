@@ -20,9 +20,6 @@ $dni = $_POST['dni'];
 <script type="text/javascript">
 
   placa = '<?php echo $placa ?>';
-  placaoriginal = '<?php echo $placaoriginal ?>';
-
-  if(placa != placaoriginal){
 
     $.ajax({
     type: "POST",
@@ -37,7 +34,7 @@ $dni = $_POST['dni'];
        /* $("#resultado").html(msg);*/
         //console.log(msg)
     });
-  }
+
 
 
 

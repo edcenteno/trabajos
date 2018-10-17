@@ -79,7 +79,7 @@ $placa=$rowvehiculo['placa'];
             </div> -->
             <div class="form-group">
               <label for="color_vehiculo">Color del Vehiculo: </label>
-              <input type="text" name="color_vehiculo" class="form-control" id="color_vehiculo" placeholder="Color del Vehiculo"  value="<?php echo $rowvehiculo['color_vehiculo'] ?>" required="">
+              <input type="text" name="color_vehiculo" class="form-control" id="color_vehiculo" placeholder="Color del Vehiculo"  value="<?php echo $rowvehiculo['color_vehiculo'] ?>">
             </div>
             <div class="form-group">
               <label for="fecha_fab_veh">Año de Fabricación del Vehiculo: </label>

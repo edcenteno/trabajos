@@ -18,15 +18,11 @@
       $bl="Si se encuentra en lista negra";
     }
 
-    @$cabify = $value['cabify'];
+    @$id = $value['id_historial'];
 
-    @$easy = $value['easytaxi'];
-
-$placa=$value['placa'];
-$placa = str_replace("-","",$placa);
-$placa = str_replace(" ","",$placa);
-$extr=$value['extr'];
-
+    $placa=$value['placa'];
+    $placa = str_replace("-","",$placa);
+    $placa = str_replace(" ","",$placa);
 
 ?>
 
@@ -53,8 +49,8 @@ $extr=$value['extr'];
         $("#prue").hide();*/
         }else{
             //$('#puntos')[0].innerText = msg['slc']['PUNTOS'];
-        $('.datosperso')[0].innerText = msg[0]['var_nombre'];
-        $('.datosperso')[1].innerText = msg[0]['var_apellido_paterno']+ ' ' +msg[0]['var_apellido_materno'];
+      //  $('.datosperso')[0].innerText = msg[0]['var_nombre'];
+       // $('.datosperso')[1].innerText = msg[0]['var_apellido_paterno']+ ' ' +msg[0]['var_apellido_materno'];
         $('.licencia')[0].innerText = msg[0]['var_direccion'];
         $('.licencia')[1].innerText = msg[0]['var_departamento'];
         $('.licencia')[2].innerText = msg[0]['var_distrito'];
@@ -131,9 +127,9 @@ $extr=$value['extr'];
 }
     });
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
-empresa = '<?php echo $_SESSION["empresa"] ?>'
+empresa = '<?php// echo $_SESSION["empresa"] ?>'
 
 if(empresa =="easytaxi"){
    $(document).ready(function(){
@@ -153,7 +149,7 @@ if(empresa =="cabify"){
 })
 
 }
-</script>
+</script> -->
 <style type="text/css" media="screen">
 .btn-cbf {
   color: #fff;
@@ -193,121 +189,83 @@ if(empresa =="cabify"){
             <div class="card">
                 <div class="card-body">
                     <center class="m-t-30">
-
-                        <?php
-                        $foto = $value['foto'];
-
-                            $nombre_fichero ='extensiones/tcpdf/pdf/images/conductores/'.$foto;
-                            $nombre_ficherocbf ='extensiones/tcpdf/pdf/images/conductorescbf/'.$foto;
-
-                            if (file_exists($nombre_fichero)){
-                                echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'">
-                                    <img src="extensiones/tcpdf/pdf/images/conductores/'.$foto.'" class="img-circle" width="100" height="100" />
-                                    </a> ';
-                            }else{
-                                echo '
-                                    <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100" />
-                                    ';
-                            }
-
-                            if (file_exists($nombre_ficherocbf)) {
-
-                            echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'">
-                                <img src="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'" class="img-circle" width="100" height="100" />
-                                </a> ';
-                            }else{
-                                echo '
-                                    <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100" />
-                                    ';
-                            }
+                      <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100">
 
 
 
-
-
-
-                        ?>
-                        <div id="modalcapture"></div>
-
-
-                        <div id="modalcapturecabify"></div>
-
-                        <h4 class="card-title m-t-10"><?php echo $value['nombre'] ." " . $value['apellido']; ?></h4>
+                        <h4 class="card-title m-t-10"><?php echo $value['nombre']?></h4>
                         <h5 class="card-subtitle">DNI <?php echo $value['dni']; ?></h5>
                         <h6 class="card-subtitle">Conductor</h6>
                         <?php
-                            if ($value['fecha_act'] != "") {
+                            /*if ($value['fecha_act'] != "") {
                                 echo '<h5 class="card-subtitle">Fecha de actualización '.$value['fecha_act'].'</h5>';
                             } else {
 
                             }
-
+*/
                         ?>
 
                         <div class="row text-center justify-content-md-center">
                             <?php
 
-                           /* if($_SESSION["empresa"] =="easytaxi"){*/
-                                echo '<button class="btn btn-warning" data-toggle="modal" data-target="#modalcapture"><i class="ti-camera"></i> EasyTaxi </button>';
-                            /*}*/
-                            /* echo '<button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"><i class="ti-camera"></i> </button>';*/
-
-                            /*if($_SESSION["empresa"] =="cabify"){*/
-                                echo '<button class="btn btn-cbf" data-toggle="modal" data-target="#modalcapturecabify"><i class="ti-camera"></i> Cabify </button>';
-                           /* }*/
-
-
-                            if($_SESSION["empresa"] =="arhu"){
-                                echo '<button class="btn btn-success" onclick="actualizararhu()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>';
+                           /* if($_SESSION["empresa"] == "arhu"){
+                                echo '';
                             }
-
+*/
                             ?>
-
+                        <button class="btn btn-success" onclick="actualizararhu()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>
 
 
                         <?php
-                            $fecha_actual = date("Y-m-d");
+                           /* $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 20 day"));
                             /*$date = date('Y-m-d h:i:s A');
                             echo $date;*/
-                                if ($value['fecha'] < $mes) {
+                                /*if ($value['fecha'] < $mes) {
                                     echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
                                 } else {
 
                                     echo '<button class="btn btn-default" disabled="true">Actualizar</button>';
-                                }
+                                }*/
 
                         ?>
 
                         <?php
-                            if($value['foto']){
+                            /*if($value['foto']){*/
 
-                                if(file_exists($nombre_ficherocbf)){
+                               /* if(file_exists($nombre_ficherocbf)){
                                     echo '
                                     <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'"><button class="btn btn-cbf" data-toggle="modal" data-target="#">
                                     Descargar Foto Cabify</button></a>';
-                                }
-                                if(file_exists($nombre_fichero)){
+                                }*/
+                                /*if(file_exists($nombre_fichero)){
                                      echo '
                                     <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'"><button class="btn btn-warning" data-toggle="modal" data-target="#">
                                     Descargar Foto EasyTaxi</button></a>';
                                 }
-                            }
+                            }*/
                         ?>
 
                         </div>
 
                      <?php
-                     if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||   $value['placa'] == "NINGUNA") {
+                    /* if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||   $value['placa'] == "NINGUNA") {
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
                      }else{
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Cambiar Placa</button>';
-                     }
-                    ?>
+                     }*/
+                           if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == NULL ||$value['soat'] == "undefined" ) {
+
+                                       echo '
+                                                <button class="btn btn-danger" onclick="actualizarsoats()">ActualizarSOAT</button>
+                                            ';
+
+                                }
+                        ?>
                     <hr>
-                    <div class="card-body"> <small class="text-muted">DNI Digital</small></br>
+                    <!-- <div class="card-body"> <small class="text-muted">DNI Digital</small></br> -->
                     <?php
-                            if($value['dni_digital']){
+                           /* if($value['dni_digital']){
                                 $foto = $value['dni_digital'];
 
                                 echo '
@@ -318,8 +276,7 @@ if(empresa =="cabify"){
                                     <a download="'.$foto.'" href="vistas/img/dni/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
                                     Descargar DNI Frontal</button></a>';
                             }
-                        ?>
-                    <?php
+
                             if($value['dni_digital_r']){
                                 $foto_r = $value['dni_digital_r'];
                                 echo '
@@ -329,26 +286,24 @@ if(empresa =="cabify"){
                                 echo '
                                     <a download="'.$foto_r.'" href="vistas/img/dni/'.$foto_r.'"><button class="btn btn-info" data-toggle="modal" data-target="#">
                                     Descargar DNI Reverso</button></a>';
-                            }
+                            }*/
                         ?>
 
-                        </div>
-
+                        <!-- </div>
+                         -->
                     <br/>
 
 
                         <script>
-                            function deshabilitar_btnEnviar(){
+
+                            function actualizararhu(){
 
                                         placa = '<?php echo $placa ?>'
                                         placa = placa.toUpperCase();
-                                        type= '<?php echo $extr ?>'
-                                        dni = '<?php echo $idconductor ?>'
-                                        cabify= '<?php echo $cabify ?>'
-                                        easy = '<?php echo $easy ?>'
-                                        if (type == 0){
-                                            type =1;
-                                        }
+                                        type  = 1
+                                        dni   = '<?php echo $idconductor ?>'
+                                        id    = '<?php echo $id ?>'
+
 
                                swal({
                                       title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
@@ -367,7 +322,7 @@ if(empresa =="cabify"){
                                           'success'
                                         )
 
-                                        $.ajax({
+                                      /*  $.ajax({
                                           type: "POST",
                                           url: 'https://captcharh.ddns.net/api/record',
                                           data: {
@@ -383,124 +338,24 @@ if(empresa =="cabify"){
                                         });
 
 
-                                        $.ajax({
-                                            type: "POST",
-                                            url: 'https://captcharh.ddns.net/api/record',
-                                            data: {
-                                                type: '1', //tipo de documento
-                                                documento: placa, //numero de documento
-                                                datas: 'placa' //tipo de solicitud
-                                            }
-
-                                            }).done(function(msg){
-                                               /* $("#resultado").html(msg);
-                                                console.log(msg)*/
-                                            });
-
-                                    parametros="&dni=" + dni+
-                                                "&placa=" + placa+
-                                                "&cabify=" + cabify+
-                                                "&easy=" + easy+
-                                                "&type=" + type;
-
-                                      $.ajax({
-                                        data:  parametros,
-                                        url:   'vistas/modulos/reniec/act.php',
-                                        type:  'post',
-                                        success:  function (response) {
-
-                                          }
-                                        });
-
-                                      param="&dni=" + dni;
-
-                                      $.ajax({
-                                        data:  param,
-                                        url:   'vistas/modulos/reniec/ruc.php',
-                                        type:  'post',
-                                        success:  function (response) {
-
-                                        }
-                                        });
-                               setTimeout('document.location.reload()',5000);
-
-                                  }
-                                    })
-
-
-                            }
-
-                            function actualizararhu(){
-
-                                        placa = '<?php echo $placa ?>'
-                                        placa = placa.toUpperCase();
-                                        type= '<?php echo $extr ?>'
-                                        dni = '<?php echo $idconductor ?>'
-                                        cabify= '<?php echo $cabify ?>'
-                                        easy = '<?php echo $easy ?>'
-                                        if (type == 0){
-                                            type =1;
-                                        }
-
-                               swal({
-                                      title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
-                                      text: "¡No podrás revertir esto!",
-                                      type: 'warning',
-                                      showCancelButton: true,
-                                      confirmButtonColor: '#3085d6',
-                                      cancelButtonColor: '#d33',
-                                      confirmButtonText: '¡Si, actualizar!',
-                                      cancelButtonText: '¡No actualizar!',
-                                    }).then((result) => {
-                                      if (result.value) {
-                                        swal(
-                                          'Solicitado!',
-                                          'La actualización puede tardar par de minutos.',
-                                          'success'
-                                        )
-
-                                        // $.ajax({
-                                        //   type: "POST",
-                                        //   url: 'https://captcharh.ddns.net/api/record',
-                                        //   data: {
-                                        //       type: type, //tipo de documento
-                                        //       documento: dni, //numero de documento
-                                        //       datas: 'record' //tipo de solicitud
-                                        //   }
-
-                                        // }).done(function(msg){
-                                        //  // $("#resultado").html(msg);
-                                        //   //console.log(msg)
-
-                                        // });
-
-
-                                        // $.ajax({
-                                        //     type: "POST",
-                                        //     url: 'https://captcharh.ddns.net/api/record',
-                                        //     data: {
-                                        //         type: '1', //tipo de documento
-                                        //         documento: placa, //numero de documento
-                                        //         datas: 'placa' //tipo de solicitud
-                                        //     }
-
-                                        //     }).done(function(msg){
-                                        //        /* $("#resultado").html(msg);
-                                        //         console.log(msg)*/
-                                        //     });
+                                        */
 
                                       param="&dni=" + dni+
-                                            "&type=" + type;
+                                            "&type=" + type+
+                                            "&id=" + id+
+                                            "&placa=" + placa;
 
                                       $.ajax({
                                         data:  param,
-                                        url:   'vistas/modulos/reniec/ruc.php',
+                                        url:   'vistas/modulos/reniec/historialruc.php',
                                         type:  'post',
                                         success:  function (response) {
 
                                         }
                                         });
-                               setTimeout('document.location.reload()',30000);
+
+
+                                        setTimeout('document.location.reload()',30000);
 
                                   }
                                     })
@@ -533,14 +388,14 @@ if(empresa =="cabify"){
                                 echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" id= "prue" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>';
                             }
 
-                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNO " || $value['placa'] == "NINGUNA") {
+                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNO " || $value['placa'] == "NINGUNA" || $value['placa'] == NULL) {
 
                                  } else {
 
                                 echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
                                 ';
                                 }
-                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNA" || $value['placa'] == "NINGUNO ") {
+                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNA" || $value['placa'] == "NINGUNO " || $value['placa'] == NULL) {
 
                                  } else {
                                     echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>';
@@ -564,10 +419,10 @@ if(empresa =="cabify"){
                                     <br>
                                     <p class="text-muted datosperso"><?php echo $value['nombre']; ?></p>
                                 </div>
-                                <div class="col-md-2 col-xs-6 b-r"> <strong>Apellidos</strong>
+                                <!-- <div class="col-md-2 col-xs-6 b-r"> <strong>Apellidos</strong>
                                     <br>
-                                    <p class="text-muted datosperso"><?php echo $value['apellido']; ?></p>
-                                </div>
+                                    <p class="text-muted datosperso"><?php //echo $value['apellido']; ?></p>
+                                </div> -->
                                 <div class="col-md-2 col-xs-6 b-r"> <strong>DNI</strong>
                                     <br>
                                     <p class="text-muted"><?php echo $value['dni']; ?></p>
@@ -595,15 +450,9 @@ if(empresa =="cabify"){
                                     <br>
                                     <p class="text-muted">
                                         <?php
-                                            $cbf = $value['cabify'];
-                                            $easy = $value['easytaxi'];
-
-                                            if ($cbf == 1) {
-                                                echo 'Cabify &nbsp&nbsp   <img width="30" src="vistas/img/plantilla/favicon.ico">';
-                                            }
-
-                                            if($easy == 1){
-                                                echo '<br>EasyTaxi <img width="30" src="vistas/img/plantilla/easy.png">';
+                                            $empresa = $value['descripcion'];
+                                            if ($empresa == "cabify") {
+                                                 echo 'Cabify &nbsp&nbsp   <img width="30" src="vistas/img/plantilla/favicon.ico">';
                                             }
 
                                         ?>
@@ -637,7 +486,7 @@ if(empresa =="cabify"){
 
 
 
-                                    if ($value['cabify'] == 1 &&  $value['easytaxi'] == 1) {
+                                    /*if ($value['cabify'] == 1 &&  $value['easytaxi'] == 1) {
 
                                     } else {
                                         echo '<div class="col-md-3 col-xs-6 b-r"> <strong>Migrar</strong>
@@ -646,7 +495,7 @@ if(empresa =="cabify"){
                                                     Migrar a empresa
                                               </button>
                                                </div>';
-                                    }
+                                    }*/
 
 
                                     ?>
@@ -994,18 +843,7 @@ if(empresa =="cabify"){
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
-                               <?php
-                                $fecha_actual = date('d/m/Y');
-                             //   echo $fecha_actual;
-                               if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "" ||$value['soat'] == "undefined" ) {
-                                    if ($value['ant_penales'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO") {
-                                       echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
-                                                <br>
-                                                <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>
-                                            </div>';
-                                    }
-                                }
-                               ?>
+
                             </div>
                         </div>
                     </div>
@@ -1013,10 +851,10 @@ if(empresa =="cabify"){
                             function actualizarsoats(){
 
                                         placa = '<?php echo $placa ?>'
-                                        type= '<?php echo $extr ?>'
-                                        dni = '<?php echo $idconductor ?>'
-                                        cabify= '<?php echo $cabify ?>'
-                                        easy = '<?php echo $easy ?>'
+                                        placa = placa.toUpperCase();
+                                        type  = 1
+                                        dni   = '<?php echo $idconductor ?>'
+                                        id    = '<?php echo $id ?>'
 
                                swal({
                                       title: 'Actualizar SOAT, ¿esta seguro?',
@@ -1036,20 +874,35 @@ if(empresa =="cabify"){
                                         )
 
 
+
+
                                     parametros= "&dni=" + dni+
-                                                "&placa=" + placa+
-                                                "&cabify=" + cabify+
-                                                "&easy=" + easy;
+                                                "&id=" + id+
+                                                "&placa=" + placa;
 
                                       $.ajax({
                                         data:  parametros,
-                                        url:   'vistas/modulos/reniec/actsoat.php',
+                                        url:   'vistas/modulos/reniec/historialsoat.php',
                                         type:  'post',
                                         success:  function (response) {
 
                                         }
-                                });
-                                setTimeout('document.location.reload()',3000);
+                                     });
+
+                                      $.ajax({
+                                        type: "POST",
+                                        url: 'https://captcharh.ddns.net/api/record',
+                                        data: {
+                                            type: '1', //tipo de documento
+                                            documento: placa, //numero de documento
+                                            datas: 'placa' //tipo de solicitud
+                                        }
+
+                                        }).done(function(msg){
+                                           // $("#resultado").html(msg);
+                                           // console.log(msg)
+                                        });
+                                    setTimeout('document.location.reload()',3000);
 
                                   }
                                     })
@@ -1241,45 +1094,7 @@ if(empresa =="cabify"){
     </div>
   </div>
 </div>
-<script type="text/javascript">
 
-
-    function realizamigrar(){
-    dni = '<?php echo $idconductor ?>'
-
-      cadena="cabify=" + $('#cabify').val() +
-             "&easytaxi=" + $('#easytaxi').val()+
-             "&dni=" + dni;
-
-          $.ajax({
-            type:"POST",
-            url:"vistas/modulos/reniec/migrar.php",
-            data:cadena,
-            success:function(r){
-
-              if(r==1){
-              swal({
-                  type: "success",
-                  title: "¡El Conductor ha sido migrado correctamente!",
-                  showConfirmButton: true,
-                  confirmButtonColor: "#8cd4f5",
-                  confirmButtonText: "Cerrar"
-
-                }).then(function(result){
-
-                  if(result.value){
-
-                    setTimeout('document.location.reload()',100);
-                  }
-             });
- }
-              }
- });
-
-}
-
-
-</script>
 <?php
 }
 ?>

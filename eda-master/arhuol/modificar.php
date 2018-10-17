@@ -278,7 +278,7 @@ $blacklist=$row['blacklist'];
             </div>
             <div class="form-group">
               <label for="color_vehiculo">Color del Vehiculo: </label>
-              <input type="text" name="color_vehiculo" class="form-control" id="color_vehiculo" placeholder="Color del Vehiculo"  value="<?php echo $row['color_vehiculo'] ?>" required="">
+              <input type="text" name="color_vehiculo" class="form-control" id="color_vehiculo" placeholder="Color del Vehiculo"  value="<?php echo $row['color_vehiculo'] ?>">
             </div>
 
              <div class="form-group">

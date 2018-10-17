@@ -10,7 +10,7 @@ $result=mysqli_query($conexion,$sql);
         foreach ($result as $key => $value) {
             $id = $value['id'];
 
-         $sentencia="INSERT INTO blacklist  (id, id_historial) values (NULL, '$id')";
+         $sentencia="INSERT INTO historial  (id, id_historial) values (NULL, '$id')";
 
         $reg=mysqli_query($conexion,$sentencia);
         //var_dump($reg);
