@@ -1,12 +1,12 @@
 <?php
-	require_once("./src/autoload.php");
+	require_once("./srcsunat/autoload.php");
 
 	$company = new \Sunat\Sunat( true, true );
-	$ruc = "20557675052";
-	$dni = "44274795";
+	$ruc = "15178520739";
+	//$dni = "44274795";
 
 	$search1 = $company->search( $ruc );
-	$search2 = $company->search( $dni );
+	//$search2 = $company->search( $dni );
 
 	var_dump($search1);
 	/*var_dump($search2);*/

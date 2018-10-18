@@ -147,13 +147,16 @@ if ($cabify == 0 && $easy == 1) {
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }
 } else {
+    $soat = 'El vehiculo consultado no posee SOAT';
     $estado = "VENCIDO";
     if ($cabify == 1 && $easy == 1) {
   $sentencia="UPDATE conductores SET
                  contsoat = contsoat+1,
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
-                 orden_captura = '".$crv."'
+                 orden_captura = '".$crv."',
+                 observacion = '".$soat."'',
+                 resultado = 'NO APTO'
                  WHERE dni='".$dni."' ";
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
@@ -164,8 +167,9 @@ if ($cabify == 0 && $easy == 0) {
                  contsoat = contsoat+1,
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
-
-                 orden_captura = '".$crv."'
+                 orden_captura = '".$crv."',
+                 observacion = '".$soat."'',
+                 resultado = 'NO APTO'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 //echo $sentencia;
@@ -177,7 +181,9 @@ if ($cabify == 1 && $easy == 0) {
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
                  placa = '".$placa."',
-                 orden_captura = '".$crv."'
+                 orden_captura = '".$crv."',
+                 observacion = '".$soat."'',
+                 resultado = 'NO APTO'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 //echo $sentencia;
@@ -189,7 +195,9 @@ if ($cabify == 0 && $easy == 1) {
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
                  placa = '".$placa."',
-                 orden_captura = '".$crv."'
+                 orden_captura = '".$crv."',
+                 observacion = '".$soat."'',
+                 resultado = 'NO APTO'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }

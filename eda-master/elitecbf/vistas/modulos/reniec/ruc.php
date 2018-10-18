@@ -5,7 +5,6 @@ $type = $_POST['type'];
 
 if ($type != 1){
 
-    //echo "es un extranjero";
 
 }else{
     require_once("srcsunat/autoload.php");
@@ -17,7 +16,7 @@ if ($type != 1){
        $ruc = $search2->result->ruc;
     }
     if($search2->message == "No se pudo conectar a sunat."){
-        echo "No se pudo conectar a sunat.";
+        $ruc = "No se pudo conectar a sunat.";
     }
     if($search2->success != true && $search2->message != "No se pudo conectar a sunat."){
         $ruc = "No posee RUC.";

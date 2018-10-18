@@ -69,14 +69,14 @@
 
                     </ul>
                 </li>
+                <?php
+                 if($_SESSION["empresa"] =="arhu"){
+                    echo '
+                            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="ti fa fa-list"></i><span class="hide-menu"> Seguimiento</span></a>
+                                <ul aria-expanded="false" class="collapse">
 
-                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                    <i class="ti fa fa-list"></i><span class="hide-menu"> Seguimiento</span></a>
-                    <ul aria-expanded="false" class="collapse">
 
-                        <?php
-                            if($_SESSION["perfil"] =="Administrador" || $_SESSION["perfil"] =="Operador"){
-                                echo '
                                       <li><a href="conductoreshistorial"><i class="ti fa fa-search"></i> Administrar</span></a></li>
                                     <!--   <li><a href="busqueda"><i class="ti fa fa-car"></i> Busqueda</span></a></li>
                                      <li><a href="conductoresactualizadosadmin"><i class="ti fa fa-car"></i> Actualizados</span></a></li>-->

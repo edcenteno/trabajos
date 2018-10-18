@@ -412,17 +412,17 @@ if(empresa =="cabify"){
                                           }
                                         });
 
-                                      param="&dni=" + dni;
+                                    /*   param="&dni=" + dni;
 
-                                      $.ajax({
+                                     $.ajax({
                                         data:  param,
                                         url:   'vistas/modulos/reniec/ruc.php',
                                         type:  'post',
                                         success:  function (response) {
 
                                         }
-                                        });
-                               setTimeout('document.location.reload()',5000);
+                                        });*/
+                              // setTimeout('document.location.reload()',5000);
 
                                   }
                                     })

@@ -19,13 +19,6 @@
         echo "No se pudo conectar a sunat.";
     }
 
-    /*if( $search2->success == true )
-    {
-        echo "Persona: " . $search1->result->RazonSocial;
-    }*/
 
-    // Mostrar en formato XML/JSON
-    /*echo $search1->json();
-    echo $search1->xml('empresa');*/
 
 ?>
