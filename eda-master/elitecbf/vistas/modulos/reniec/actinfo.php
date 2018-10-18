@@ -7,7 +7,7 @@ include "conex.php";
   $mintra = new \MinTra\mintra();
 
     $search1 = $essalud->search( $dni );
-    $search2 = $mintra->search( $dni );
+
 
 
     if( $search1->success == true )
@@ -20,13 +20,16 @@ include "conex.php";
 
         $nombres=$nombre . ' ' . $apellido. ' '.$apellidom;
 
-        echo $sentencia="UPDATE historial SET
+        $sentencia="UPDATE historial SET
                  nombre = '".$nombres."',
                  fecha_nacimiento = '".$fecha_nacimiento."'
                  WHERE dni='".$dni."' ";
 
         $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-    }
+
+    }else{
+        $search2 = $mintra->search( $dni );
+
 
     if( $search2->success == true )
     {
@@ -37,14 +40,14 @@ include "conex.php";
 
        $nombres= $nombre . ' ' . $apellido. ' '.$apellidom;
 
-        echo $sentencia="UPDATE historial SET
+        $sentencia="UPDATE historial SET
                  nombre = '".$nombres."',
                  fecha_nacimiento = '".$fecha_nacimiento."'
                  WHERE dni='".$dni."' ";
 
         $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
     }
-
+}
     if($search1->success==false && $search2->success==false)
     {
         echo "ERROR : " . $search->message;
