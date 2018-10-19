@@ -422,7 +422,7 @@ if(empresa =="cabify"){
 
                                         }
                                         });*/
-                              // setTimeout('document.location.reload()',5000);
+                               setTimeout('document.location.reload()',5000);
 
                                   }
                                     })
@@ -758,6 +758,45 @@ if(empresa =="cabify"){
                                 </div>
                             </div>
                         </div>
+                            <?php
+
+                             if ($value['status_licencia'] != "VIGENTE" && $value['status_licencia'] != "VERIFICADO" && $value['status_licencia'] != "" && $value['status_licencia'] != "NULL") {
+                            echo '
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12" style="width: 105%; height: 40px;">
+                                                <div class="d-flex no-block align-items-center">
+                                                    <div>
+                                                        <h2><i class="icon-user-unfollow"></i></h2>
+
+                                                        <h3 class="text-muted">Estado de Licencia</h3>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <h2 class="counter text-danger">'.$value['status_licencia'].'</h2>
+                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ' ;
+                                }/*else{
+                                                        echo '
+                                                        <h2 class="counter text-danger">'.$value['status_licencia'].'</h2>';
+                                                    }*/
+
+
+
+                                                ?>
+                                           <!--  </div>
+                                                                                   </div>
+                                                                               </div>
+                                                                           </div>
+                                                                       </div>
+                                                                   </div> -->
+
+
                     </div>
                 </div>
 
@@ -1007,8 +1046,10 @@ if(empresa =="cabify"){
                                 }
                                ?>
                             </div>
+                            <!-- <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button> -->
                         </div>
                     </div>
+
                     <script>
                             function actualizarsoats(){
 
@@ -1155,6 +1196,7 @@ if(empresa =="cabify"){
                                 </div>
                             </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <?php
 $dni=$_POST['dni'];
-include "conex.php";
+  include "conex.php";
   require_once("srchector/autoload.php" );
 
   $essalud = new \EsSalud\EsSalud();
@@ -8,10 +8,7 @@ include "conex.php";
 
     $search1 = $essalud->search( $dni );
 
-
-
-    if( $search1->success == true )
-    {
+    if( $search1->success == true ){
         $nombre = $search1->Nombres;
         $apellido = $search1->ApellidoPaterno;
         $apellidom = $search1->ApellidoMaterno;

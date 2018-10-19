@@ -265,6 +265,11 @@ $blacklist=$row['blacklist'];
               <label for="record_cond">Record del conductor: </label>
               <input type="text" name="record_cond" class="form-control" id="record_cond" placeholder="Record del conductor"  value="<?php echo $row['record_cond'] ?>" required="">
             </div>
+
+            <div class="form-group">
+              <label for="status_licencia">Estado de Licencia: </label>
+              <input type="text" name="status_licencia" class="form-control" id="status_licencia" placeholder="Record del conductor"  value="<?php echo $row['status_licencia'] ?>" required="">
+            </div>
           </div>
           <div class="col-6 col-sm-4">
           <div class="form-group">

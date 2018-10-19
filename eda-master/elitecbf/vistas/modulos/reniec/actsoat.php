@@ -144,6 +144,8 @@ if ($cabify == 0 && $easy == 1) {
                  resultado = 'APTO',
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
+
+                 echo $sentencia;
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }
 } else {
@@ -155,7 +157,7 @@ $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mys
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
                  orden_captura = '".$crv."',
-                 observacion = '".$soat."'',
+                 observacion = '".$soat."',
                  resultado = 'NO APTO'
                  WHERE dni='".$dni."' ";
 
@@ -168,7 +170,7 @@ if ($cabify == 0 && $easy == 0) {
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
                  orden_captura = '".$crv."',
-                 observacion = '".$soat."'',
+                 observacion = '".$soat."',
                  resultado = 'NO APTO'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
@@ -176,13 +178,13 @@ $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mys
 }
 
 if ($cabify == 1 && $easy == 0) {
-  $sentencia="UPDATE conductores SET
+ echo $sentencia="UPDATE conductores SET
                  contsoat = contsoat+1,
                  fecha_actsoat = NOW( ),
                  soat = '".$estado."',
                  placa = '".$placa."',
                  orden_captura = '".$crv."',
-                 observacion = '".$soat."'',
+                 observacion = '".$soat."',
                  resultado = 'NO APTO'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
@@ -196,9 +198,10 @@ if ($cabify == 0 && $easy == 1) {
                  soat = '".$estado."',
                  placa = '".$placa."',
                  orden_captura = '".$crv."',
-                 observacion = '".$soat."'',
+                 observacion = '".$soat."',
                  resultado = 'NO APTO'
                  WHERE dni='".$dni."' ";
+
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }
 }

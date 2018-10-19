@@ -345,14 +345,14 @@ if(empresa =="cabify"){
                                             "&id=" + id+
                                             "&placa=" + placa;
 
-                                      /*$.ajax({
+                                      $.ajax({
                                         data:  param,
                                         url:   'vistas/modulos/reniec/historialruc.php',
                                         type:  'post',
                                         success:  function (response) {
 
                                         }
-                                        });*/
+                                        });
 
                                       $.ajax({
                                         data:  param,

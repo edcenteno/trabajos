@@ -10,15 +10,21 @@
 
     if ($value['blacklist'] == 0) {
       $bl="No se encuentra en lista negra";
-    } else {
+    }
+    if ($value['blacklist'] == "") {
+      $bl="";
+    }
+    if ($value['blacklist'] == 1) {
       $bl="Si se encuentra en lista negra";
     }
 
     @$cabify = $value['cabify'];
-    @$easy = $value['easy'];
+
+    @$easy = $value['easytaxi'];
 
 $placa=$value['placa'];
 $placa = str_replace("-","",$placa);
+$placa = str_replace(" ","",$placa);
 $extr=$value['extr'];
 
 
@@ -39,12 +45,16 @@ $extr=$value['extr'];
 
         if (typeof msg[0] == "undefined") {
         $('.licencia')[3].innerText = msg['slc'][0]['ESTADO_DE_LA_LICENCIA'];
-        $("#inf").hide();
+        $('.licencia')[5].innerText = msg['slc'][0]['VIGENTE_HASTA'];
+        $('.licencia')[6].innerText = msg['slc'][0]['NRO_DE_LICENCIA'];
+        $(".inf").hide();
 
-         }elseif (typeof msg['slc'] == "undefined") {
-        $("#prue").hide();
+       /*  }elseif (typeof msg['slc'] == "undefined") {
+        $("#prue").hide();*/
         }else{
             //$('#puntos')[0].innerText = msg['slc']['PUNTOS'];
+        $('.datosperso')[0].innerText = msg[0]['var_nombre'];
+        $('.datosperso')[1].innerText = msg[0]['var_apellido_paterno']+ ' ' +msg[0]['var_apellido_materno'];
         $('.licencia')[0].innerText = msg[0]['var_direccion'];
         $('.licencia')[1].innerText = msg[0]['var_departamento'];
         $('.licencia')[2].innerText = msg[0]['var_distrito'];
@@ -55,10 +65,13 @@ $extr=$value['extr'];
         $('.licencia')[7].innerText = msg[0]['var_num_licencia'];
         $('.licencia')[8].innerText = msg[0]['var_restricciones1'];
         $('.licencia')[9].innerText = msg[0]['var_restricciones2'];
+
         $("#acthoy").hide();
 
          }
-
+         if (typeof msg[0] == "El record/placa no recaudo datos. intente de nuevo.") {
+        $("#acthoy").hide();
+         }
     });
 
     $.ajax({
@@ -93,7 +106,7 @@ $extr=$value['extr'];
 
     }).done(function(msg){
         //$("#resultado").html(msg);
-        //console.log(msg)//msg.vin.co
+       //console.log(msg['Especificaciones'][0]['class'])//msg.vin.co
        if (msg != "No existe la placa, intente mas tarde.") {
         $('.vehiculo')[0].innerText = msg['Marca'];
         $('.vehiculo')[1].innerText = msg['Modelo'];
@@ -109,21 +122,50 @@ $extr=$value['extr'];
         $('.vehiculo')[11].innerText = msg['Vin']['countries'];
         $('.vehiculo')[12].innerText = msg['Vin']['manufacture'];
         $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber'];
-        $('.vehiculo')[14].innerText = msg['Propietario'];
+        $('.vehiculo')[14].innerText = msg['Especificaciones'][0]['class'];
+        $('.vehiculo')[15].innerText = msg['Especificaciones'][0]['places'];
+        $('.vehiculo')[16].innerText = msg['Especificaciones'][0]['doors'];
+
+
 
 }
     });
+</script>
+<script type="text/javascript">
 
+empresa = '<?php echo $_SESSION["empresa"] ?>'
 
-$(document).ready(function(){
+if(empresa =="easytaxi"){
+   $(document).ready(function(){
     url = 'recibearchivo.php';
     url2 = 'recibearchivo2.php';
     $('#modalcapture').captureDevice([dni, dni], [url, url2])
 
+})
+}
+
+if(empresa =="cabify"){
+   $(document).ready(function(){
+    direccion = 'recibearchivocbf.php';
+    direccion2 = 'recibearchivo2cbf.php';
+    $('#modalcapturecabify').captureDevicecbf([dni, dni], [direccion, direccion2])
 
 })
 
+}
 </script>
+<style type="text/css" media="screen">
+.btn-cbf {
+  color: #fff;
+  background-color: #9675ce;
+  border-color: #9675ce; }
+  .btn-cbf:hover {
+    color: #fff;
+    background-color: #735a9e;
+    border-color: #735a9e; }
+
+</style>
+
 <div class="container-fluid">
 
     <div class="row page-titles">
@@ -153,53 +195,113 @@ $(document).ready(function(){
                     <center class="m-t-30">
 
                         <?php
-                            if($value['foto']){
-                                $foto = $value['foto'];
-                                echo '
-                                    <a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'">
+                        $foto = $value['foto'];
+
+                            $nombre_fichero ='extensiones/tcpdf/pdf/images/conductores/'.$foto;
+                            $nombre_ficherocbf ='extensiones/tcpdf/pdf/images/conductorescbf/'.$foto;
+
+                            if (file_exists($nombre_fichero)){
+                                echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'">
                                     <img src="extensiones/tcpdf/pdf/images/conductores/'.$foto.'" class="img-circle" width="100" height="100" />
                                     </a> ';
                             }else{
-                                 echo '
+                                echo '
                                     <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100" />
                                     ';
                             }
+
+                            if (file_exists($nombre_ficherocbf)) {
+
+                            echo '<a class="image-popup-vertical-fit" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'">
+                                <img src="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'" class="img-circle" width="100" height="100" />
+                                </a> ';
+                            }else{
+                                echo '
+                                    <img src="vistas/img/conductores/conductor.png" class="img-circle" width="100" height="100" />
+                                    ';
+                            }
+
+
+
+
+
+
                         ?>
                         <div id="modalcapture"></div>
+
+
+                        <div id="modalcapturecabify"></div>
 
                         <h4 class="card-title m-t-10"><?php echo $value['nombre'] ." " . $value['apellido']; ?></h4>
                         <h5 class="card-subtitle">DNI <?php echo $value['dni']; ?></h5>
                         <h6 class="card-subtitle">Conductor</h6>
-                        <div class="row text-center justify-content-md-center">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"></button>
+                        <?php
+                            if ($value['fecha_act'] != "") {
+                                echo '<h5 class="card-subtitle">Fecha de actualización '.$value['fecha_act'].'</h5>';
+                            } else {
 
-                        <button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>
+                            }
+
+                        ?>
+
+                        <div class="row text-center justify-content-md-center">
+                            <?php
+
+                           /* if($_SESSION["empresa"] =="easytaxi"){*/
+                                echo '<button class="btn btn-warning" data-toggle="modal" data-target="#modalcapture"><i class="ti-camera"></i> EasyTaxi </button>';
+                            /*}*/
+                            /* echo '<button class="btn btn-success" data-toggle="modal" data-target="#modalcapture"><i class="ti-camera"></i> </button>';*/
+
+                            /*if($_SESSION["empresa"] =="cabify"){*/
+                                echo '<button class="btn btn-cbf" data-toggle="modal" data-target="#modalcapturecabify"><i class="ti-camera"></i> Cabify </button>';
+                           /* }*/
+
+
+                            if($_SESSION["empresa"] =="arhu"){
+                                echo '<button class="btn btn-success" onclick="actualizararhu()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>';
+                            }
+
+                            ?>
+
+
+
                         <?php
                             $fecha_actual = date("Y-m-d");
-                            $mes = date("Y-m-d",strtotime($fecha_actual."- 1 month"));
+                            $mes = date("Y-m-d",strtotime($fecha_actual."- 20 day"));
+                            /*$date = date('Y-m-d h:i:s A');
+                            echo $date;*/
                                 if ($value['fecha'] < $mes) {
                                     echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
                                 } else {
 
-                                    echo '<button class="btn btn-warning" disabled="true">Actualizar</button>';
+                                    echo '<button class="btn btn-default" disabled="true">Actualizar</button>';
                                 }
 
                         ?>
 
                         <?php
                             if($value['foto']){
-                                $foto = $value['foto'];
-                                echo '
-                                    <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'"><button class="btn btn-primary" data-toggle="modal" data-target="#">
-                                    Descargar Foto</button></a>';
+
+                                if(file_exists($nombre_ficherocbf)){
+                                    echo '
+                                    <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductorescbf/'.$foto.'"><button class="btn btn-cbf" data-toggle="modal" data-target="#">
+                                    Descargar Foto Cabify</button></a>';
+                                }
+                                if(file_exists($nombre_fichero)){
+                                     echo '
+                                    <a download="'.$foto.'" href="extensiones/tcpdf/pdf/images/conductores/'.$foto.'"><button class="btn btn-warning" data-toggle="modal" data-target="#">
+                                    Descargar Foto EasyTaxi</button></a>';
+                                }
                             }
                         ?>
 
                         </div>
 
                      <?php
-                     if ($value['placa'] == "NINGUNO" || $value['placa'] == "" || $value['placa'] == "NINGUNA") {
+                     if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||   $value['placa'] == "NINGUNA") {
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
+                     }else{
+                         echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Cambiar Placa</button>';
                      }
                     ?>
                     <hr>
@@ -239,10 +341,14 @@ $(document).ready(function(){
                             function deshabilitar_btnEnviar(){
 
                                         placa = '<?php echo $placa ?>'
+                                        placa = placa.toUpperCase();
                                         type= '<?php echo $extr ?>'
                                         dni = '<?php echo $idconductor ?>'
                                         cabify= '<?php echo $cabify ?>'
                                         easy = '<?php echo $easy ?>'
+                                        if (type == 0){
+                                            type =1;
+                                        }
 
                                swal({
                                       title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
@@ -294,7 +400,8 @@ $(document).ready(function(){
                                     parametros="&dni=" + dni+
                                                 "&placa=" + placa+
                                                 "&cabify=" + cabify+
-                                                "&easy=" + easy;
+                                                "&easy=" + easy+
+                                                "&type=" + type;
 
                                       $.ajax({
                                         data:  parametros,
@@ -302,9 +409,98 @@ $(document).ready(function(){
                                         type:  'post',
                                         success:  function (response) {
 
+                                          }
+                                        });
+
+                                      param="&dni=" + dni;
+
+                                      $.ajax({
+                                        data:  param,
+                                        url:   'vistas/modulos/reniec/ruc.php',
+                                        type:  'post',
+                                        success:  function (response) {
+
                                         }
-                                });
-                                setTimeout('document.location.reload()',2000);
+                                        });
+                               setTimeout('document.location.reload()',5000);
+
+                                  }
+                                    })
+
+
+                            }
+
+                            function actualizararhu(){
+
+                                        placa = '<?php echo $placa ?>'
+                                        placa = placa.toUpperCase();
+                                        type= '<?php echo $extr ?>'
+                                        dni = '<?php echo $idconductor ?>'
+                                        cabify= '<?php echo $cabify ?>'
+                                        easy = '<?php echo $easy ?>'
+                                        if (type == 0){
+                                            type =1;
+                                        }
+
+                               swal({
+                                      title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
+                                      text: "¡No podrás revertir esto!",
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#3085d6',
+                                      cancelButtonColor: '#d33',
+                                      confirmButtonText: '¡Si, actualizar!',
+                                      cancelButtonText: '¡No actualizar!',
+                                    }).then((result) => {
+                                      if (result.value) {
+                                        swal(
+                                          'Solicitado!',
+                                          'La actualización puede tardar par de minutos.',
+                                          'success'
+                                        )
+
+                                        // $.ajax({
+                                        //   type: "POST",
+                                        //   url: 'https://captcharh.ddns.net/api/record',
+                                        //   data: {
+                                        //       type: type, //tipo de documento
+                                        //       documento: dni, //numero de documento
+                                        //       datas: 'record' //tipo de solicitud
+                                        //   }
+
+                                        // }).done(function(msg){
+                                        //  // $("#resultado").html(msg);
+                                        //   //console.log(msg)
+
+                                        // });
+
+
+                                        // $.ajax({
+                                        //     type: "POST",
+                                        //     url: 'https://captcharh.ddns.net/api/record',
+                                        //     data: {
+                                        //         type: '1', //tipo de documento
+                                        //         documento: placa, //numero de documento
+                                        //         datas: 'placa' //tipo de solicitud
+                                        //     }
+
+                                        //     }).done(function(msg){
+                                        //        /* $("#resultado").html(msg);
+                                        //         console.log(msg)*/
+                                        //     });
+
+                                      param="&dni=" + dni+
+                                            "&type=" + type;
+
+                                      $.ajax({
+                                        data:  param,
+                                        url:   'vistas/modulos/reniec/ruc.php',
+                                        type:  'post',
+                                        success:  function (response) {
+
+                                        }
+                                        });
+                               setTimeout('document.location.reload()',30000);
 
                                   }
                                     })
@@ -331,15 +527,20 @@ $(document).ready(function(){
                     <?php
 
                         if($_SESSION["perfil"] !="RRHH"){
-                            echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" id= "prue" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>';
-                                if ($value['placa'] == "NINGUNO") {
+                            if ($value['record_cond'] == "NO BREVETE") {
+
+                            }else{
+                                echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" id= "prue" href="#lice" role="tab"><i class="ti-car"></i> Licencia de Conducir</a> </li>';
+                            }
+
+                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNO " || $value['placa'] == "NINGUNA") {
 
                                  } else {
 
                                 echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#datosveh" role="tab"><i class="ti-car"></i> Datos del Vehiculo</a> </li>
                                 ';
                                 }
-                                if ($value['placa'] == "NINGUNO") {
+                                if ($value['placa'] == "NINGUNO" || $value['placa'] == "NINGUNA" || $value['placa'] == "NINGUNO ") {
 
                                  } else {
                                     echo '<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>';
@@ -361,11 +562,11 @@ $(document).ready(function(){
                             <div class="row">
                                 <div class="col-md-2 col-xs-6 b-r"> <strong>Nombres</strong>
                                     <br>
-                                    <p class="text-muted"><?php echo $value['nombre']; ?></p>
+                                    <p class="text-muted datosperso"><?php echo $value['nombre']; ?></p>
                                 </div>
                                 <div class="col-md-2 col-xs-6 b-r"> <strong>Apellidos</strong>
                                     <br>
-                                    <p class="text-muted"><?php echo $value['apellido']; ?></p>
+                                    <p class="text-muted datosperso"><?php echo $value['apellido']; ?></p>
                                 </div>
                                 <div class="col-md-2 col-xs-6 b-r"> <strong>DNI</strong>
                                     <br>
@@ -375,7 +576,7 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted"><?php echo $fechanac = $value['fecha_nacimiento']; ?></p>
                                 </div>
-                                <div class="col-md-2 col-xs-6"> <strong>Edad</strong>
+                                <div class="col-md-2 col-xs-6 b-r"> <strong>Edad</strong>
                                     <br>
                                     <p class="text-muted">
                                         <?php  $rest = substr("$fechanac", 6);
@@ -389,7 +590,8 @@ $(document).ready(function(){
                                              }
                                         ?></p>
                                 </div>
-                                <div class="col-md-2 col-xs-6"> <strong>Empresa</strong>
+
+                                <div class="col-md-2 col-xs-6 b-r"> <strong>Empresa</strong>
                                     <br>
                                     <p class="text-muted">
                                         <?php
@@ -416,16 +618,25 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Departamento</strong>
+                                <div class="col-md-2 col-xs-6 b-r inf"> <strong>Departamento</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Distrito</strong>
+                                <div class="col-md-2 col-xs-6 b-r inf"> <strong>Distrito</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
+                                <?php
+                                    if ($value['ruc'] != "") {
+                                        $ruc= $value['ruc'];
+                                        echo ' <div class="col-md-2 col-xs-6 b-r"> <strong>RUC</strong>
+                                                <br>
+                                                <p class="text-muted">'.$ruc.'</p>
+                                            </div>';
+                                    }
 
-                                    <?php
+
+
                                     if ($value['cabify'] == 1 &&  $value['easytaxi'] == 1) {
 
                                     } else {
@@ -565,7 +776,7 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6"> <strong>Año de Fabricación</strong>
+                                <div class="col-md-3 col-xs-6"> <strong>Año de Modelo</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
@@ -599,13 +810,17 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div> -->
-                                <div class="col-md-4 col-xs-6 b-r"> <strong>Tipo Uso</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo Uso</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
-                                <div class="col-md-2 col-xs-6"> <strong>Tipo de Sol</strong>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo de Sol</strong>
                                     <br>
                                     <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Color de Vehiculo</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $value['color_vehiculo'] ?></p>
                                 </div>
                             </div>
                             <hr>
@@ -626,6 +841,26 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
+                            </div>
+                             <hr>
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Clase</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Asientos</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Puertas</strong>
+                                    <br>
+                                    <p class="text-muted vehiculo"></p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r"> <strong>Año de Fabricación</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $value['fecha_fab_veh'] ?></p>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -657,23 +892,44 @@ $(document).ready(function(){
 
                             ?>
                             <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['soat']; ?></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de inicio</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['fecha_inicio_soat']; ?></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de fin</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['fecha_fin_soat']; ?></p>
-                                </div>
+                                <?php
+                            if ($value['soat']== "VIGENTE"){
+                                echo '<div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
+                                        <br>
+                                        <p class="text-muted">'.$value['soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de inicio</strong>
+                                            <br>
+                                            <p class="text-muted">'.$value['fecha_inicio_soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de fin</strong>
+                                            <br>
+                                            <p class="text-muted">'.$value['fecha_fin_soat'].'</p>
+                                        </div>';
+                            }else{
+                                echo '<div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
+                                        <br>
+                                        <p class="text-danger">'.$value['soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de inicio</strong>
+                                            <br>
+                                            <p class="text-danger">'.$value['fecha_inicio_soat'].'</p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de fin</strong>
+                                            <br>
+                                            <p class="text-danger">'.$value['fecha_fin_soat'].'</p>
+                                        </div>';
+                            }
+                            ?>
                                 <div class="col-md-3 col-xs-6 b-r"> <strong>Compañia Aseguradora</strong>
                                     <br>
                                     <p class="text-muted">
                                     <?php
                                     if ($value['nombrecompania']== "Mapfre PerÃº") {
+                                        echo '<img width="90" src="vistas/img/plantilla/mapfre.png">';
+                                    }
+
+                                    if ($value['nombrecompania']== "Mapfre Perú") {
                                         echo '<img width="90" src="vistas/img/plantilla/mapfre.png">';
                                     }
 
@@ -733,12 +989,75 @@ $(document).ready(function(){
                                     <p class="text-muted"><?php echo $value['TipoCertificado']; ?></p>
                                 </div>
                                 <div class="col-md-2 col-xs-6"> <strong>Titular del SOAT</strong>
+                              <!--  <h5 class="card-subtitle">Fecha de actualización '.$value['fecha_act'].'</h5> -->
+
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
+                               <?php
+                                $fecha_actual = date('d/m/Y');
+                             //   echo $fecha_actual;
+                               if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "" ||$value['soat'] == "undefined" ) {
+                                    if ($value['ant_penales'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO") {
+                                       echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
+                                                <br>
+                                                <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>
+                                            </div>';
+                                    }
+                                }
+                               ?>
                             </div>
                         </div>
                     </div>
+                    <script>
+                            function actualizarsoats(){
+
+                                        placa = '<?php echo $placa ?>'
+                                        type= '<?php echo $extr ?>'
+                                        dni = '<?php echo $idconductor ?>'
+                                        cabify= '<?php echo $cabify ?>'
+                                        easy = '<?php echo $easy ?>'
+
+                               swal({
+                                      title: 'Actualizar SOAT, ¿esta seguro?',
+                                      text: "¡No podrás revertir esto!",
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#3085d6',
+                                      cancelButtonColor: '#d33',
+                                      confirmButtonText: '¡Si, actualizar!',
+                                      cancelButtonText: '¡No actualizar!',
+                                    }).then((result) => {
+                                      if (result.value) {
+                                        swal(
+                                          'Solicitado!',
+                                          'La actualización puede tardar par de minutos.',
+                                          'success'
+                                        )
+
+
+                                    parametros= "&dni=" + dni+
+                                                "&placa=" + placa+
+                                                "&cabify=" + cabify+
+                                                "&easy=" + easy;
+
+                                      $.ajax({
+                                        data:  parametros,
+                                        url:   'vistas/modulos/reniec/actsoat.php',
+                                        type:  'post',
+                                        success:  function (response) {
+
+                                        }
+                                });
+                                setTimeout('document.location.reload()',3000);
+
+                                  }
+                                    })
+
+
+                            }
+                        </script>
+
 
                     <div class="tab-pane" id="lice" role="tabpanel">
                         <div class="card-body">
@@ -747,7 +1066,7 @@ $(document).ready(function(){
                                     <br>
                                     <p class="text-muted licencia "></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha de Expedicion</strong>
+                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Fecha de Expedicion</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
@@ -762,12 +1081,12 @@ $(document).ready(function(){
                             </div>
                             <hr>
                              <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Codigo Administrado</strong>
+                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Codigo Administrado</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
 
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Restricciones</strong>
+                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Restricciones</strong>
                                     <br>
                                     <p class="text-muted licencia"></p>
                                 </div>
@@ -888,6 +1207,9 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="migrar" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -967,9 +1289,11 @@ $(document).ready(function(){
     function realizaProcesoplaca(){
 
         placa = $('#placa').val();
+        placa = placa.toUpperCase();
+
         dni = '<?php echo $idconductor ?>'
 
-       /*  $.ajax({
+         $.ajax({
             type: "POST",
             url: 'https://captcharh.ddns.net/api/record',
             data: {
@@ -981,7 +1305,7 @@ $(document).ready(function(){
             }).done(function(msg){
                $("#resultado").html(msg);
                 console.log(msg)
-            });*/
+            });
 
         cadena="&dni=" + dni +
                "&placa=" + $('#placa').val()
@@ -1003,4 +1327,5 @@ $(document).ready(function(){
                 }
         });
 }
+
 </script>

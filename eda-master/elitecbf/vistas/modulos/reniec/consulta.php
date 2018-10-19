@@ -1,9 +1,11 @@
 <?php
 
-  namespace DatosPeru;
-error_reporting(0);
+//error_reporting(0);
   include "php/conexion.php";
+  require_once("srchector/autoload.php" );
   $conexion=conexion();
+  $essalud = new \EsSalud\EsSalud();
+  $mintra = new \MinTra\mintra();
 
 $dni=$_POST['dni'];
 $usuario_reg = $_POST['usuario_reg'];
@@ -25,75 +27,31 @@ if (is_numeric($dni) && strlen($dni) == 8) {
   }
 
   if(buscaRepetido($dni,$conexion)==0){
- // $dni=$_POST['dni'];
-  class Peru  {
-    function __construct()
+
+  $search1 = $essalud->search( $dni );
+    if( $search1->success == true ){
+        $nombre = $search1->Nombres;
+        $apellido = $search1->ApellidoPaterno;
+        $apellidom = $search1->ApellidoMaterno;
+        $fecha_nacimiento = $search1->FechaNacimiento;
+
+    }else{
+  $search2 = $mintra->search( $dni );
+       if( $search2->success == true ){
+            $nombre = $search2->nombre;
+            $apellido = $search2->paterno;
+            $apellidom = $search2->materno;
+            $fecha_nacimiento = $search2->nacimiento;
+
+        }
+}
+    if($search1->success==false && $search2->success==false)
     {
-      $this->reniec = new \Reniec\Reniec();
-      $this->essalud = new \EsSalud\EsSalud();
-      $this->mintra = new \MinTra\mintra();
-    }
-    function search( $dni )
-    {
-
- /*     $response = $this->reniec->search( $dni );
-      if($response->success == true)
-      {
-        $rpt = (object)array(
-          "success"     => true,
-          "source"    => "reniec",
-          "result"    => $response->result
-        );
-        return $rpt;
-      }*/
-/*
-        $response = $this->mintra->check( $dni );
-        if( $response->success == true )
-        {
-          $rpt = (object)array(
-            "success"     => true,
-            "source"    => "mintra",
-            "result"    => $response->result
-          );
-          return $rpt;
-        }*/
- $response = $this->essalud->check( $dni );
-      if($response->success == true)
-      {
-        $rpt = (object)array(
-          "success"     => true,
-          "source"    => "essalud",
-          "result"    => $response->result
-        );
-        return $rpt;
-      }
-
-
-
-
-      $rpt = (object)array(
-        "success"     => false,
-        "msg"       => "No se encontraron datos"
-      );
-      return $rpt;
-    }
-  }
-
-
-  require_once( __DIR__ . "/src/autoload.php" );
-
-  $test = new \DatosPeru\Peru();
-
-  $out=$test->search("$dni");
-  $a = json_encode($out);
-  //var_dump($out);
-
-  if (strlen($a) < 150) {
-     echo '<script>
+       echo '<script>
 
                 swal({
                     type: "error",
-                    title: "¡Error de DNI, ingrese uno valido!",
+                    title: "¡Error de Comunicación con el RENIEC!",
                     showConfirmButton: true,
                     confirmButtonColor: "#dd6b55",
                     confirmButtonText: "Cerrar"
@@ -103,7 +61,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
                   })
 
                 </script>';
-  } else {
+}else {
 
  echo '
  <div class="col-lg-12 col-xlg-10 col-md-7">
@@ -113,7 +71,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         <div class="col-sm-10">
             <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text"><i class="ti-user"></i></span></div>
-                <input type="text" readonly="" class="form-control" name="nombre" id="nombre">
+                <input type="text" readonly="" class="form-control" name="nombre" id="nombre" value="'.$nombre.'">
             </div>
         </div>
     </div>
@@ -122,7 +80,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         <div class="col-sm-10">
             <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text"><i class="ti-user"></i></span></div>
-                <input type="text" readonly="" class="form-control" name="apellidos" id="apellidos">
+                <input type="text" readonly="" class="form-control" name="apellidos" id="apellidos" value="'.$apellido.' '.$apellidom.'">
             </div>
         </div>
     </div>
@@ -131,7 +89,8 @@ if (is_numeric($dni) && strlen($dni) == 8) {
         <div class="col-sm-10">
             <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text"><i class="ti-user"></i></span></div>
-                <input type="text" readonly="" class="form-control" name="fechaNacimiento" id="fechaNacimiento">
+                <input type="text" readonly="" class="form-control" name="fechaNacimiento"
+                id="fechaNacimiento" value="'.$fecha_nacimiento.'">
             </div>
         </div>
     </div>
@@ -197,50 +156,6 @@ echo '
 
 ?>
 
-<script type="text/javascript">
-  var x =<?php echo $a ?>;
-
- $(document).ready(function(){
-    $('#nombre').val(x.result.Nombres);
-    $('#apellidos').val(x.result.ApellidoPaterno +' '+ x.result.ApellidoMaterno);
-    $('#dni').val(x.result.DNI);
-    $('#fechaNacimiento').val(x.result.FechaNacimiento);
-
-  });
-
-/*  $(document).ready(function(){
-    $('#nombre').val(x.result.nombre);
-    $('#apellidos').val(x.result.paterno +' '+ x.result.materno);
-    $('#dni').val(x.result.DNI);
-    $('#fechaNacimiento').val(x.result.nacimiento);
-
-  });*/
-
-
-/*  $(document).ready(function(){
-    $('#nombre').val(x.result.Nombres);
-    $('#apellidos').val(x.result.apellidos);
-    $('#dni').val(x.result.DNI);
-});*/
-
-      /* type= $('#tipo').val();
-        dni = $('#dni').val();
-
-        $.ajax({
-          type: "POST",
-          url: 'https://captcharh.ddns.net/api/record',
-          data: {
-              type: type, //tipo de documento
-              documento: dni, //numero de documento
-              datas: 'record' //tipo de solicitud
-          }
-
-        }).done(function(msg){
-         // $("#resultado").html(msg);
-          //console.log(msg)
-
-        });*/
-</script>
 
 
 <script>

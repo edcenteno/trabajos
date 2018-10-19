@@ -30,7 +30,7 @@ if ($type != 1){
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 //echo $sentencia;
-echo "rg";
+echo "TRUE";
 
 }
 ?>

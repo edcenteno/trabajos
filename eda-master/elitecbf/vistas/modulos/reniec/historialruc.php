@@ -21,8 +21,6 @@ $id = $_POST['id'];
         $ruc = "No posee RUC.";
     }
 
-
-
  $sentencia="UPDATE historial SET
                  ruc = '".$ruc."'
                  WHERE dni='".$dni."' ";
