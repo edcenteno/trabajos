@@ -690,6 +690,58 @@ class ModeloConductor{
 
 	}
 
+	/*=============================================
+	RANGO FECHAS
+	=============================================*/
+
+	static public function mdlRangoFechasConductorHistorial($fechaInicial, $fechaFinal){
+
+		if($fechaInicial == null){
+
+			@$stmt = Conexion::conectar()->prepare("SELECT T1.*, T2.*, T3.descripcion, T4.ant_penales, T4.ant_judicial, T4.ant_policial, T4.resultado FROM historial T1 INNER JOIN vehiculos T2 INNER JOIN empresas T3 INNER JOIN antecedentes T4 ON T1.id_vehiculo = T2.id AND T1.id_empresa = T3.id AND T1.id = T4.id_historial ORDER BY id ASC");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+
+		}else if($fechaInicial == $fechaFinal){
+
+			$stmt = Conexion::conectar()->prepare("SELECT T1.*, T2.*, T3.descripcion, T4.ant_penales, T4.ant_judicial, T4.ant_policial, T4.resultado FROM historial T1 INNER JOIN vehiculos T2 INNER JOIN empresas T3 INNER JOIN antecedentes T4 ON T1.id_vehiculo = T2.id AND T1.id_empresa = T3.id AND T1.id = T4.id_historial  WHERE fecha_revision like '%$fechaFinal%'");
+
+			$stmt -> bindParam(":fecha", $fechaFinal, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$fechaFinal = new DateTime($fechaFinal);
+			$fechaFinal->add(new DateInterval('P1D'));
+			$fechaFinal2 = $fechaFinal->format('Y-m-d');
+
+			//var_dump($fechaFinal2);
+			//echo "$fechaInicial";
+
+
+			try {
+				$stmt=Conexion::conectar()->prepare("SELECT T1.*, T2.*, T3.descripcion, T4.ant_penales, T4.ant_judicial, T4.ant_policial, T4.resultado FROM historial T1 INNER JOIN vehiculos T2 INNER JOIN empresas T3 INNER JOIN antecedentes T4 ON T1.id_vehiculo = T2.id AND T1.id_empresa = T3.id AND T1.id = T4.id_historial  WHERE fecha_revision BETWEEN '$fechaInicial' AND '$fechaFinal2'");
+			$stmt -> execute();
+			} catch (Exception $e) {
+				print_r($e);
+			}
+			//->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal2'");
+			//$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+	}
+
+
 	static public function mdlMostrarunConductor($tabla, $item, $valor, $idconductor){
 
 		if($item != null){
