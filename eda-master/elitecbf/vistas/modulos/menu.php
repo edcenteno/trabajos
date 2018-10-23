@@ -70,7 +70,7 @@
                     </ul>
                 </li>
                 <?php
-                 if($_SESSION["empresa"] =="arhu"){
+                 if($_SESSION["perfil"] =="Administrador"){
                     echo '
                             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="ti fa fa-list"></i><span class="hide-menu"> Seguimiento</span></a>

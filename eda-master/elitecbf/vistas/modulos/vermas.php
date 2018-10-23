@@ -422,7 +422,7 @@ if(empresa =="cabify"){
 
                                         }
                                         });*/
-                               setTimeout('document.location.reload()',5000);
+                             //  setTimeout('document.location.reload()',5000);
 
                                   }
                                     })

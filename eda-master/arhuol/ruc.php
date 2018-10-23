@@ -22,14 +22,14 @@ if(isset($_SESSION['user'])){
                         "targets":   0,
 
                     },
-                   /* { 'responsivePriority': 1, 'targets': 11 },
+                    { 'responsivePriority': 1, 'targets': 11 },
                     { 'responsivePriority': 1, 'targets': 3 },
                     { 'responsivePriority': 1, 'targets': 4 },
                     { 'responsivePriority': 2, 'targets': 14 },
-                    { 'responsivePriority': 2, 'targets': 11 },*/
+                    { 'responsivePriority': 2, 'targets': 11 },
 
                     ],
-                    "order": [[0, "asc"]],
+                    "order": [[2, "desc"]],
                     "language": {
 
                         "sProcessing":     "Procesando...",
@@ -59,7 +59,7 @@ if(isset($_SESSION['user'])){
 
                     "bProcessing": true,
                     "bServerSide": true,
-                    "sAjaxSource": "server_process4.php"
+                    "sAjaxSource": "server_process6.php"
                 });
             });
 
@@ -86,9 +86,12 @@ if(isset($_SESSION['user'])){
                                 <thead>
                                     <tr>
                                         <th></th>
+                                        <th>ID</th>
+                                        <th>FECHA DE REGISTRO</th>
+                                        <th>DNI</th>
+                                        <th>NOMBRE</th>
+                                        <th>APELLIDO</th>
                                         <th>PLACA</th>
-                                        <th>COLOR</th>
-                                        <th>FECHA DE FABRICACION</th>
                                         <th>MODIFICAR</th>
 
                                     </tr>

@@ -126,12 +126,12 @@ $rowvehiculo = $resultado->fetch_array(MYSQLI_ASSOC);
               <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" value="<?php echo $row['nombre'] ?>">
             </div>
 
-           <!--  <div class="form-group">
-             <label for="apellido">Apellido: </label>
-             <input type="text" name="apellido" class="form-control" id="apellido" placeholder="Apellido" value="<?php //echo $row['apellido'] ?>">
+             <div class="form-group">
+             <label for="apellido">Status de Licencia: </label>
+             <input type="text" name="status_licencia" class="form-control" id="status_licencia" placeholder="Status de Licencia" value="<?php echo $row['status_licencia'] ?>">
            </div>
 
-           <div class="form-group">
+          <!-- <div class="form-group">
              <label for="placa">Placa: </label>
              <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php //echo $row['placa'] ?>">
            </div>
@@ -139,7 +139,7 @@ $rowvehiculo = $resultado->fetch_array(MYSQLI_ASSOC);
 
 
            </div> -->
-           <input type="text" name="soat" class="form-control" id="soat" placeholder="soat" value="<?php echo $rowvehiculo['soat'] ?>">
+           <input type="text" name="soat" hidden class="form-control" id="soat" placeholder="soat" value="<?php echo $rowvehiculo['soat'] ?>">
           </div>
           <div class="col-6 col-sm-4">
             <div class="form-group">

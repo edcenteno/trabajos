@@ -8,6 +8,7 @@ $ant_penales = $_POST['ant_penales'];
 $ant_policial = $_POST['ant_policial'];
 $record_cond = $_POST['record_cond'];
 $resultado = $_POST['resultado'];
+$status_licencia = $_POST['status_licencia'];
 @$blacklist = $_POST['blacklist'];
 @$soat = $_POST['soat'];
 
@@ -17,6 +18,7 @@ if ($ant_judicial == 'POSITIVO' ||
 	$soat =='El vehiculo consultado no posee SOAT' ||
 	$soat =='NO POSEE' ||
 	$soat =='VENCIDO' ||
+	$status_licencia != 'VIGENTE' && $status_licencia != 'VERIFICADO' ||
 	$record_cond >= '55' ||
 	$blacklist == '1') {
 
@@ -29,9 +31,9 @@ if ($ant_judicial == 'POSITIVO' ||
 }
 
 
-	ModificarPersona($_POST['dni'], $_POST['nombre'], $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $_POST['id'],$_POST['observacion'], $blacklist,$_POST['observacionPenales'], $_POST['observacionJudicial'], $_POST['observacionPolicial'],$_POST['motivo_penal'], $_POST['autoridad_penal'], $_POST['documento_penal'], $_POST['fecha_proceso_penal'],  $_POST['estado_penal'], $_POST['tipo_ocurrecia_penal'],$_POST['tipo_penal'], $_POST['agraviado_penal'], $_POST['definicion_delito_penal'], $_POST['motivo_judicial'], $_POST['autoridad_judicial'], $_POST['documento_judicial'], $_POST['fecha_proceso_judicial'], $_POST['tipo_ocurrecia_judicial'], $_POST['tipo_judicial'],$_POST['agraviado_judicial'], $_POST['definicion_delito_judicial'], $_POST['motivo_Policial'], $_POST['autoridad_Policial'],$_POST['documento_Policial'], $_POST['fecha_proceso_Policial'], $_POST['estado_Policial'], $_POST['tipo_ocurrecia_Policial'], $_POST['tipo_Policial'],$_POST['agraviado_Policial'], $_POST['definicion_delito_Policial'], $_POST['estado_judicial']);
+	ModificarPersona($_POST['dni'], $_POST['nombre'], $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $_POST['id'],$_POST['observacion'], $blacklist,$_POST['observacionPenales'], $_POST['observacionJudicial'], $_POST['observacionPolicial'],$_POST['motivo_penal'], $_POST['autoridad_penal'], $_POST['documento_penal'], $_POST['fecha_proceso_penal'],  $_POST['estado_penal'], $_POST['tipo_ocurrecia_penal'],$_POST['tipo_penal'], $_POST['agraviado_penal'], $_POST['definicion_delito_penal'], $_POST['motivo_judicial'], $_POST['autoridad_judicial'], $_POST['documento_judicial'], $_POST['fecha_proceso_judicial'], $_POST['tipo_ocurrecia_judicial'], $_POST['tipo_judicial'],$_POST['agraviado_judicial'], $_POST['definicion_delito_judicial'], $_POST['motivo_Policial'], $_POST['autoridad_Policial'],$_POST['documento_Policial'], $_POST['fecha_proceso_Policial'], $_POST['estado_Policial'], $_POST['tipo_ocurrecia_Policial'], $_POST['tipo_Policial'],$_POST['agraviado_Policial'], $_POST['definicion_delito_Policial'], $_POST['estado_judicial'], $status_licencia);
 
-	function ModificarPersona($dni, $nombre, $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $id, $observacion, $blacklist, $observacionPenales, $observacionJudicial, $observacionPolicial, $motivo_penal, $autoridad_penal, $documento_penal, $fecha_proceso_penal, $estado_penal, $tipo_ocurrecia_penal, $tipo_penal, $agraviado_penal, $definicion_delito_penal, $motivo_judicial, $autoridad_judicial, $documento_judicial, $fecha_proceso_judicial, $tipo_ocurrecia_judicial, $tipo_judicial, $agraviado_judicial, $definicion_delito_judicial, $motivo_Policial, $autoridad_Policial, $documento_Policial, $fecha_proceso_Policial, $estado_Policial, $tipo_ocurrecia_Policial, $tipo_Policial, $agraviado_Policial, $definicion_delito_Policial, $estado_judicial)
+	function ModificarPersona($dni, $nombre, $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $id, $observacion, $blacklist, $observacionPenales, $observacionJudicial, $observacionPolicial, $motivo_penal, $autoridad_penal, $documento_penal, $fecha_proceso_penal, $estado_penal, $tipo_ocurrecia_penal, $tipo_penal, $agraviado_penal, $definicion_delito_penal, $motivo_judicial, $autoridad_judicial, $documento_judicial, $fecha_proceso_judicial, $tipo_ocurrecia_judicial, $tipo_judicial, $agraviado_judicial, $definicion_delito_judicial, $motivo_Policial, $autoridad_Policial, $documento_Policial, $fecha_proceso_Policial, $estado_Policial, $tipo_ocurrecia_Policial, $tipo_Policial, $agraviado_Policial, $definicion_delito_Policial, $estado_judicial, $status_licencia)
 	{
 		include 'conexion.php';
 		 $sentencia="UPDATE antecedentes SET
@@ -76,6 +78,7 @@ if ($ant_judicial == 'POSITIVO' ||
 		$sentenciahistorial="UPDATE historial SET dni ='".$dni."',
 		 							   nombre='".$nombre."',
 		 							   record_cond='".$record_cond."',
+		 							   status_licencia = '".$status_licencia."',
 		 							   fecha_revision = NOW()
 									   WHERE id='".$id."' ";
 		$mysqli->query($sentenciahistorial) or die ("Error al actualizar datos".mysqli_error($mysqli));

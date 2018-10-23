@@ -3,13 +3,13 @@
     require 'conexion.php';
 
     /* Nombre de La Tabla */
-    $sTabla = "vehiculos";
+    $sTabla = "conductores";
 
     /* Array que contiene los nombres de las columnas de la tabla*/
-    $aColumnas = array('id','placa', 'color_vehiculo', 'fecha_fab_veh');
+    $aColumnas = array('cont', 'fecha', 'dni', 'nombre', 'apellido', 'placa');
 
     /* columna indexada */
-    $sIndexColumn = "id";
+    $sIndexColumn = "dni";
 
     // Paginacion
     $sLimit = "";
@@ -125,7 +125,7 @@
         }
 
 
-        $row[] = "<a href='modificarcolor.php?id=".$aRow['id']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button>";
+        $row[] = "<a href='modificarcolor.php?id=".$aRow['cont']."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button>";
 
 
 

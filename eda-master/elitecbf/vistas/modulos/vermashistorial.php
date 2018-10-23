@@ -322,9 +322,9 @@ if(empresa =="cabify"){
                                           'success'
                                         )
 
-                                      /*  $.ajax({
+                                        $.ajax({
                                           type: "POST",
-                                          url: 'https://captcharh.ddns.net/api/record',
+                                          url: 'https://captcharh.ddns.net/api/historial',
                                           data: {
                                               type: type, //tipo de documento
                                               documento: dni, //numero de documento
@@ -337,8 +337,23 @@ if(empresa =="cabify"){
 
                                         });
 
+                                        $.ajax({
+                                            type: "POST",
+                                            url: 'https://captcharh.ddns.net/api/historial',
+                                            data: {
+                                                type: '1', //tipo de documento
+                                                documento: placa, //numero de documento
+                                                datas: 'placa' //tipo de solicitud
+                                            }
 
-                                        */
+                                            }).done(function(msg){
+                                               /* $("#resultado").html(msg);
+                                                console.log(msg)*/
+                                            });
+
+
+
+
 
                                       param="&dni=" + dni+
                                             "&type=" + type+
@@ -898,19 +913,7 @@ if(empresa =="cabify"){
                                         }
                                      });
 
-                                      $.ajax({
-                                        type: "POST",
-                                        url: 'https://captcharh.ddns.net/api/record',
-                                        data: {
-                                            type: '1', //tipo de documento
-                                            documento: placa, //numero de documento
-                                            datas: 'placa' //tipo de solicitud
-                                        }
 
-                                        }).done(function(msg){
-                                           // $("#resultado").html(msg);
-                                           // console.log(msg)
-                                        });
                                     setTimeout('document.location.reload()',3000);
 
                                   }
@@ -1119,7 +1122,7 @@ if(empresa =="cabify"){
 
          $.ajax({
             type: "POST",
-            url: 'https://captcharh.ddns.net/api/record',
+            url: 'https://captcharh.ddns.net/api/historial',
             data: {
                 type: '1', //tipo de documento
                 documento: placa, //numero de documento

@@ -75,7 +75,7 @@ $placa=$rowvehiculo['placa'];
 
             <!-- <div class="form-group">
               <label for="usuario_reg">Operador: </label>
-              <input type="text" name="usuario_reg" readonly class="form-control" id="usuario_reg" placeholder="Operador"  value="<?php echo $row['usuario_reg'] ?>" required="">
+              <input type="text" name="usuario_reg" readonly class="form-control" id="usuario_reg" placeholder="Operador"  value="<?php //echo $row['usuario_reg'] ?>" required="">
             </div> -->
             <div class="form-group">
               <label for="color_vehiculo">Color del Vehiculo: </label>

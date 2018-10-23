@@ -77,15 +77,15 @@ $type = $_POST['type'];
   $nombre=$out->result->Nombres;
   $fechanac=$out->result->FechaNacimiento;
 
- $sentencia="UPDATE conductores SET
-                 nombre = '".$nombre."',
-                 apellido = '".$apellidos."',
-                 fecha_nacimiento = '".$fechanac."',
+   $sentencia="UPDATE conductores SET
+                 nombre = ".$nombre.",
+                 apellido = ".$apellidos.",
+                 fecha_nacimiento = ".$fechanac.",
                  resultado = ''
                  WHERE dni='".$dni."' ";
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-echo $sentencia;
+//echo $sentencia;
 }
 
 
