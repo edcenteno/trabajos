@@ -25,6 +25,7 @@
 		$easytaxi=$_POST['easytaxi'];
 		$cabify=$_POST['cabify'];
 		$usuario_reg=$_POST['usuario_reg'];
+		$provincia=$_POST['provincia'];
 
 		if(buscaRepetido($dni,$conexion)==1){
 			echo 2;
@@ -52,13 +53,14 @@
 								(dni,nombre, apellido,soat,placa, orden_captura, fecha_inicio_soat,
 								 fecha_fin_soat, fecha_nacimiento, nombrecompania, numeropoliza,
 								 NombreUsoVehiculo, easytaxi, cabify, nombreclasevehiculo,
-								 fechacontrolpolicial, TipoCertificado, fecha, secuencia_arhu_ant, form, usuario_reg)
+								 fechacontrolpolicial, TipoCertificado, fecha, secuencia_arhu_ant, form,
+								 usuario_reg, id_provincia)
 						values
 								('$dni','$nombre', '$apellidos', '$estado', '$placa', '$crv',
 								 '$FechaInicio', '$FechaFin', '$fecha_nacimiento', '$NombreCompania',
 								 '$NumeroPoliza', '$NombreUsoVehiculo', '$easytaxi', '$cabify',
 								 '$NombreClaseVehiculo', '$FechaControlPolicial', '$TipoCertificado',
-								 '$fecha_reg', '$secuencia', 'Nuevo', '$usuario_reg')";
+								 '$fecha_reg', '$secuencia', 'Nuevo', '$usuario_reg', '$provincia')";
 								//echo $sql;
 			$result=mysqli_query($conexion,$sql);
 			/*$sql="INSERT into proceso

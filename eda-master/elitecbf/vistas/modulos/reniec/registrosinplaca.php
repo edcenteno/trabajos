@@ -13,6 +13,7 @@
 		$cabify=$_POST['cabify'];
 		$easytaxi=$_POST['easytaxi'];
 		$fecha_nacimiento=$_POST['fechaNacimiento'];
+		$provincia=$_POST['provincia'];
 		$placa="NINGUNO";
 
        if (!isset($_POST['tipoext'])){
@@ -73,8 +74,8 @@
 					$saa=str_pad($secuencia_arhu_ant, 5, "0", STR_PAD_LEFT);
 					$secuencia =  "RA-" .$año . $mes. $saa;
 				}
-				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant, form, usuario_reg, extr, soat)
-					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', '$fecha_reg', '$secuencia', 'Nuevo', '$usuario_reg', '$tipoext', 'NO POSEE')";
+				$sql="INSERT into conductores (dni,nombre, apellido, fecha_nacimiento, placa, cabify, easytaxi, fecha, secuencia_arhu_ant, form, usuario_reg, extr, soat, id_provincia)
+					values ('$dni','$nombre', '$apellidos','$fecha_nacimiento', '$placa', '$cabify', '$easytaxi', '$fecha_reg', '$secuencia', 'Nuevo', '$usuario_reg', '$tipoext', 'NO POSEE', '$provincia')";
 				$result=mysqli_query($conexion,$sql);
 
 				/*$sql="INSERT into proceso

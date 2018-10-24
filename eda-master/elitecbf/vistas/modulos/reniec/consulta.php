@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(0);
   include "php/conexion.php";
   require_once("srchector/autoload.php" );
   $conexion=conexion();
@@ -9,6 +9,7 @@
 
 $dni=$_POST['dni'];
 $usuario_reg = $_POST['usuario_reg'];
+$provincia = $_POST['provincia'];
 
 if (is_numeric($dni) && strlen($dni) == 8) {
 
@@ -103,7 +104,6 @@ if (is_numeric($dni) && strlen($dni) == 8) {
             </div>
         </div>
     </div>
-    <input type="text" hidden  class="form-control" name="usuario_reg" id="usuario_reg" value="'.$usuario_reg.'" />
 
     <div class="form-check-inline">
       <label class="custom-control custom-checkbox">
@@ -176,7 +176,8 @@ $(document).ready(function(){
           "&cabify=" + cabify +
           "&easytaxi=" + easytaxi +
           "&si=" + $('#si').val() +
-          "&usuario_reg=" + $('#usuario_reg').val() +
+          "&usuario_reg=" + '<?php echo $usuario_reg ?>' +
+          "&provincia=" + '<?php echo $provincia ?>' +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
 
@@ -249,7 +250,8 @@ $(document).ready(function(){
           "&dni=" + $('#dni').val() +
           "&cabify=" + cabify +
           "&easytaxi=" + easytaxi +
-          "&usuario_reg=" + $('#usuario_reg').val() +
+          "&usuario_reg=" + '<?php echo $usuario_reg ?>' +
+          "&provincia=" + '<?php echo $provincia ?>' +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
           $.ajax({

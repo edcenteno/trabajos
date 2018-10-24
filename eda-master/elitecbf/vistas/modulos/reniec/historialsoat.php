@@ -48,6 +48,8 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $jsonString = curl_exec ($ch);
 curl_close ($ch);
 $out = json_decode($jsonString, true);
+//var_dump($out);
+//
 
 $dni = $_POST['dni'];
 $estado = $out['Estado'];
@@ -61,14 +63,14 @@ $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
 
 
-if ($estado == "VIGENTE") {
-  $soat = "VIGENTE";
-} else {
+if ($estado != "VIGENTE") {
   $soat = 'El vehiculo consultado no posee SOAT';
+} else {
+  $soat = "VIGENTE";
 }
 
   $sentencia="UPDATE vehiculos SET
-                 soat = '".$estado."',
+                 soat = '".$soat."',
                  placa = '".$placa."',
                  orden_captura = '".$crv."',
                  fecha_inicio_soat = '".$FechaInicio."',
@@ -82,5 +84,5 @@ if ($estado == "VIGENTE") {
                  WHERE id_historial='".$id."' ";
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
+echo $sentencia;
 }

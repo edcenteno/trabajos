@@ -15,6 +15,8 @@ class TablaConductor{
   	$item = null;
     $valor = null;
     $orden = "id";
+   /* $provincia = $_SESSION["id_provincia"];*/
+
 
   	$conductores = ControladorConductor::ctrMostrarConductor($item, $valor, $orden);
   	//var_dump($conductores);

@@ -17,13 +17,13 @@ $dni = $_POST['dni'];
         $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
     }
 ?>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
-  placa = '<?php echo $placa ?>';
+  placa = '<?php// echo $placa ?>';
 
     $.ajax({
     type: "POST",
-    url: 'https://captcharh.ddns.net/api/record',
+    url: 'https://captcharh.ddns.net/api/historial',
     data: {
         type: '1', //tipo de documento
         documento: placa, //numero de documento
@@ -36,9 +36,7 @@ $dni = $_POST['dni'];
     });
 
 
-
-
-</script>
+</script> -->
 <script type="text/javascript">
 
     alert("Datos Actualizados Exitosamante!!");

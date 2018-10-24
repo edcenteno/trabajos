@@ -34,6 +34,7 @@ class ControladorUsuarios{
 						$_SESSION["foto"] = $respuesta["foto"];
 						$_SESSION["perfil"] = $respuesta["perfil"];
 						$_SESSION["empresa"] = $respuesta["empresa"];
+						$_SESSION["id_provincia"] = $respuesta["id_provincia"];
 
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
@@ -187,6 +188,7 @@ class ControladorUsuarios{
 					           "foto"=>$ruta,
 					       	   "dni" => $_POST["nuevoDni"],
 					       	   "correo" => $_POST["nuevoCorreo"],
+					       	   "id_provincia" => $_POST["nuevoUbicacion"],
 					       	   "telefono" => $_POST["nuevoTelefono"]);
 
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);

@@ -72,6 +72,7 @@ $TipoCertificado = $out['TipoCertificado'];
 $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
 $usuario_reg=$_POST['usuario_reg'];
+$provincia=$_POST['provincia'];
 
 if ($estado == "VIGENTE") {
   $soat = "VIGENTE";
@@ -225,6 +226,7 @@ if ($estado == "VIGENTE") {
           "&easytaxi=" + $('#easytaxi').val() +
           "&TipoCertificado=" + $('#TipoCertificado').val()+
           "&usuario_reg=" + $('#usuario_reg').val()+
+          "&provincia=" + '<?php echo $provincia ?>'+
           "&estado=" + $('#estado').val();
 
 					$.ajax({

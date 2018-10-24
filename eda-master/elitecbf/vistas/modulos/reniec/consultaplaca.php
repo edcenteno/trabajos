@@ -6,6 +6,7 @@ $dni = $_POST['dni'];
 $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
 $usuario_reg=$_POST['usuario_reg'];
+$provincia=$_POST['provincia'];
 
 if ($easytaxi == "undefined") {
             $easytaxi = "0" ;
@@ -37,7 +38,7 @@ if (isset($_POST['si'])){
 	function realizaProcesoplaca(){
 
         placa = $('#placa').val();
-        placa = cadena.toUpperCase();
+        placa = placa.toUpperCase();
 
          $.ajax({
             type: "POST",
@@ -54,14 +55,14 @@ if (isset($_POST['si'])){
             });
 
         cadena="placa=" + $('#placa').val() +
-        "&dni=" + $('#dni').val() +
-        "&nombre=" + $('#nombre').val() +
-        "&cabify=" + $('#cabify').val() +
-        "&easytaxi=" + $('#easytaxi').val() +
-        "&usuario_reg=" + $('#usuario_reg').val() +
-        "&fechaNacimiento=" + $('#fechaNacimiento').val()+
-
-        "&apellidos=" + $('#apellidos').val();
+        "&dni=" + '<?php echo $dni ?>' +
+        "&nombre=" + '<?php echo $nombre ?>' +
+        "&cabify=" + '<?php echo $cabify ?>' +
+        "&easytaxi=" + '<?php echo $easytaxi ?>' +
+        "&usuario_reg=" + '<?php echo $usuario_reg ?>' +
+        "&provincia=" + '<?php echo $provincia ?>' +
+        "&fechaNacimiento=" + '<?php echo $fechaNacimiento ?>' +
+        "&apellidos=" + '<?php echo $apellidos ?>' ;
         $.ajax({
                 data:  cadena,
                 url:   'vistas/modulos/reniec/placa.php',

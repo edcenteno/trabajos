@@ -216,6 +216,35 @@ MODAL AGREGAR USUARIO
 
             </div>
 
+            <div class="form-group">
+              <label for="Ubicación">Ubicación</label>
+              <div class="input-group">
+               <div class="input-group-prepend">
+                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-map-marker"></i></span>
+                    </div>
+
+                <select class="form-control input-lg" name="nuevoUbicacion">
+
+                  <?php
+
+                    $item = null;
+                    $valor = null;
+
+                    $provincia = ControladorProvincias::ctrMostrarProvincias($item, $valor);
+                    var_dump($provincia);
+                   foreach ($provincia as $key => $value){
+                  ?>
+                    <option value="<?php echo $value['id']  ?>"><?php echo $value['descripcion'] ?></option>
+                  <?php
+
+                    }
+                  ?>
+                </select>
+
+              </div>
+
+            </div>
+
             </div>
             <div class="col-6 col-sm-6">
 

@@ -240,7 +240,7 @@ $(document).ready(function() {
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
-    "order": [[0, "asc"]],
+    "order": [[0, "desc"]],
 		"language": {
 
 			"sProcessing":     "Procesando...",

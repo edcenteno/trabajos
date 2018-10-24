@@ -2,13 +2,14 @@
 <head>
 <?php
 $usuario_reg = $_SESSION["nombre"];
-$usuario_reg2 = $_SESSION["nombre"];
+$provincia = $_SESSION["id_provincia"];
 ?>
 
 <script>
 function realizaProceso(){
 
         parametros="&dni=" + $('#dni').val()+
+                   "&provincia=" + '<?php echo $provincia ?>'+
                    "&usuario_reg=" + $('#usuario_reg').val();
 
         $.ajax({
@@ -438,6 +439,7 @@ $(document).ready(function(){
           "&easytaxi=" + easytaxi2 +
           "&easyeconomy=" + easyeconomy2 +
           "&usuario_reg=" + $('#usuario_reg2').val() +
+          "&provincia=" + '<?php echo $provincia ?>' +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
           $.ajax({
@@ -548,6 +550,7 @@ $(document).ready(function(){
           "&easytaxi=" + easytaxi +
           "&easyeconomy=" + easyeconomy +
           "&si=" + $('#si').val() +
+          "&provincia=" + '<?php echo $provincia ?>' +
           "&usuario_reg=" + $('#usuario_reg2').val() +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
@@ -726,6 +729,7 @@ $(document).ready(function(){
         "&easytaxi=" + easytaxi +
         "&si=" + $('#si').val() +
         "&usuario_reg=" + $('#usuario_reg2').val() +
+        "&provincia=" + '<?php echo $provincia ?>' +
         "&fechaNacimiento=" + $('#fechaNacimientocarnet').val();
 
 

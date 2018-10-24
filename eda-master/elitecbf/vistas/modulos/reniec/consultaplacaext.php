@@ -8,6 +8,7 @@ $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
 $tipoext=$_POST['tipoext'];
 $usuario_reg=$_POST['usuario_reg'];
+$provincia=$_POST['provincia'];
 
 
 $conexion=conexion();
@@ -80,6 +81,7 @@ if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $nombre) && preg_match('
         "&easytaxi=" + '<?php echo $easytaxi ?>' +
         "&tipoext=" + '<?php echo $tipoext ?>' +
         "&usuario_reg=" + '<?php echo $usuario_reg ?>' +
+        "&provincia=" + '<?php echo $provincia ?>' +
         "&apellidos=" + '<?php echo $apellidos ?>';
         $.ajax({
                 data:  cadena,

@@ -63,6 +63,7 @@ $easytaxi=$_POST['easytaxi'];
 $cabify=$_POST['cabify'];
 $tipoext=$_POST['tipoext'];
 $usuario_reg=$_POST['usuario_reg'];
+$provincia=$_POST['provincia'];
 
 
 if ($easytaxi == "undefined") {
@@ -183,6 +184,7 @@ if ($estado == "VIGENTE") {
           "&TipoCertificado=" + '<?php echo $TipoCertificado ?>' +
           "&tipoext=" + '<?php echo $tipoext ?>' +
           "&usuario_reg=" + '<?php echo $usuario_reg ?>' +
+          "&provincia=" + '<?php echo $provincia ?>' +
           "&cabify=" + '<?php echo $cabify ?>' +
           "&easytaxi=" + '<?php echo $easytaxi ?>' +
           "&estado=" + '<?php echo $soat ?>';
