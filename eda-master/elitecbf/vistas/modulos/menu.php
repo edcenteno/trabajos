@@ -48,9 +48,17 @@
                     <ul aria-expanded="false" class="collapse">
 
                         <?php
-                            if($_SESSION["perfil"] =="Administrador" || $_SESSION["perfil"] =="Operador"){
+                            if($_SESSION["perfil"] =="Administrador"){
                                 echo '
                                       <li><a href="conductores"><i class="ti fa fa-search"></i> Administrar</span></a></li>
+                                      <li><a href="busqueda"><i class="ti fa fa-car"></i> Busqueda</span></a></li>
+                                     <!-- <li><a href="conductoresactualizados"><i class="ti fa fa-car"></i> Actualizados</span></a></li>-->
+                                      <li><a href="conductoressoat"><i class="ti fa fa-car"></i> SOAT Vencidos</span></a></li>';
+                            }
+
+                            if($_SESSION["perfil"] =="Operador"){
+                                echo '
+                                      <li><a href="conductoresprovincia"><i class="ti fa fa-search"></i> Administrar</span></a></li>
                                       <li><a href="busqueda"><i class="ti fa fa-car"></i> Busqueda</span></a></li>
                                      <!-- <li><a href="conductoresactualizados"><i class="ti fa fa-car"></i> Actualizados</span></a></li>-->
                                       <li><a href="conductoressoat"><i class="ti fa fa-car"></i> SOAT Vencidos</span></a></li>';

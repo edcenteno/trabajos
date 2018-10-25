@@ -24,7 +24,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT T1.*, T2.descripcion FROM conductores T1 INNER JOIN provincias T2 ON T1.id_provincia = T2.id");
 
 			$stmt -> execute();
 
@@ -38,6 +38,41 @@ class ModeloConductor{
 		$stmt = null;
 
 	}
+
+	/*=============================================
+	MOSTRAR USUARIOS
+	=============================================*/
+
+	static public function mdlMostrarConductorProvincia($item, $valor, $provincia){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT T1.*, T2.descripcion FROM conductores T1 INNER JOIN provincias T2 ON T1.id_provincia = T2.id WHERE id_provincia = $provincia");
+
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 
 /*=============================================
 	MOSTRAR USUARIOS

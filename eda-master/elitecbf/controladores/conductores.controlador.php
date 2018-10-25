@@ -106,6 +106,19 @@ class ControladorConductor{
 	MOSTRAR USUARIO
 	=============================================*/
 
+	static public function ctrMostrarConductorProvincia($item, $valor, $provincia){
+
+		//$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlMostrarConductorProvincia($item, $valor, $provincia);
+
+		return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR USUARIO
+	=============================================*/
+
 	static public function ctrMostrarConductorHistorial($item, $valor){
 
 		$respuesta = ModeloConductor::mdlMostrarConductorHistorial($item, $valor);
@@ -147,7 +160,6 @@ class ControladorConductor{
 
 			if(isset($fechaini) && isset($fechafin)){
 				$conductores = ModeloConductor::mdlRangoFechasConductor($tablas, $fechaini, $fechafin);
-
 
 
 			}else{
@@ -199,25 +211,6 @@ class ControladorConductor{
 					</tr>");
 
 			foreach ($conductores as $row => $value){
-				?>
-				<script type="text/javascript">
-
-				    var dni = '<?php echo $value["dni"] ?>'
-				    $.ajax({
-				    type: "GET",
-				    url: 'https://captcharh.ddns.net/api/record/principal/'+ dni
-
-				    }).done(function(msg){
-
-				        $('.licencia')[0].html = msg[0]['var_estado_licencia'];
-				        $('#excel').attr({
-				        	href: msg[0]['var_estado_licencia']
-				        });
-				    });
-				</script>
-				<?php
-
-				//$licencia = "<script>$('.licencia')[0].innerText = msg[0]['var_estado_licencia'] </script>";
 
 				$cabify = $value["cabify"];
                 $easytaxi = $value["easytaxi"];

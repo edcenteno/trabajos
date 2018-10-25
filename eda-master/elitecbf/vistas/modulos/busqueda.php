@@ -47,6 +47,7 @@
 
           $fechaini=$_GET["fechaInicial"];
           $fechafin=$_GET["fechaFinal"];
+          $provincia=$_GET["$provincia"];
 
          // echo $fechaini;
          // echo $fechafin;
