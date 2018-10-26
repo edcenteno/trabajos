@@ -30,7 +30,7 @@
                 <div class="card-body">
 
 
-         <button type="button" class="btn btn-default" id="daterange-btn-historial">
+         <button type="button" class="btn btn-default" id="daterange-btn-chiclayo">
 
             <span>
               <i class="fa fa-calendar"></i> Rango de fecha
@@ -42,6 +42,7 @@
           <div class="box-tools pull-right">
 
         <?php
+        $provincia = 2;
 
         if(isset($_GET["fechaInicial"])){
 
@@ -51,13 +52,13 @@
          // echo $fechaini;
          // echo $fechafin;
 
-          echo "<a href='vistas/modulos/descargar-reporte-historial.php?reporte=reporte&fechaInicial=$fechaini&fechaFinal=$fechafin'>";
+          echo "<a href='vistas/modulos/descargar-reporte-provincia.php?reporte=reporte&fechaInicial=$fechaini&fechaFinal=$fechafin&provincia=$provincia'>";
 
 
 
         }else{
 
-           echo '<a href="vistas/modulos/descargar-reporte-historial.php?reporte=reporte">';
+           echo '<a href="vistas/modulos/descargar-reporte-provincia.php?reporte=reporte&provincia=$provincia">';
 
         }
 
@@ -81,6 +82,7 @@
         <th>FECHA ACTUALIZADO</th>
         <th>DNI</th>
         <th>NOMBRE</th>
+        <th>APELLIDO</th>
         <th>PLACA</th>
         <th>ANTECEDENTES PENALES</th>
         <th>ANTECEDENTES JUDICIAL</th>
@@ -103,6 +105,7 @@
          $fechaInicial = $fechaini;
          $fechaFinal = $fechafin;
 
+
        }else{
 
          $fechaInicial = null;
@@ -110,12 +113,15 @@
 
        }
 
-       $respuesta = ControladorConductor::ctrRangoFechasConductorHistorial($fechaInicial, $fechaFinal);
+
+
+       $respuesta = ControladorConductor::ctrRangoFechasConductorProvincia($fechaInicial, $fechaFinal, $provincia);
+      // var_dump($respuesta);
 
        foreach ($respuesta as $key => $value) {
 
        echo ' <tr>
-               <td>'.$value["fecha_revision"].'</td>';
+               <td>'.$value["fecha"].'</td>';
 
                if($value["observacion"] != ""){
 
@@ -129,6 +135,7 @@
 
 
        echo '  <td>'.$value["nombre"].'</td>
+               <td>'.$value["apellido"].'</td>
                <td>'.$value["placa"].'</td>
                <td>'.$value["ant_penales"].'</td>
                <td>'.$value["ant_judicial"].'</td>

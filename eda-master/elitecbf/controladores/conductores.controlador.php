@@ -325,7 +325,6 @@ class ControladorConductor{
 					<td style='font-weight:bold; border:1px solid #eee;'>FECHA ACTUALIZADO</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>DNI</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>NOMBRE</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>APELLIDO</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>PLACA</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES PENALES</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES JUDICIAL</td>
@@ -348,6 +347,144 @@ class ControladorConductor{
 
 			 echo utf8_decode("<tr>
 			 			<td style='border:1px solid #eee;'>".$value["fecha"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["dni"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["nombre"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["placa"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["ant_penales"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["ant_judicial"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["ant_policial"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["record_cond"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["resultado"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["soat"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["fecha_inicio_soat"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["fecha_fin_soat"]."</td>
+						<td style='border:1px solid #eee;'>".$value["observacion"]."</td>
+						<td style='border:1px solid #eee;'>".$cabify."</td>
+
+
+			 			</tr>");
+
+			 	}
+
+			echo "</table>";
+
+
+
+	}
+
+
+
+}
+
+
+	/*=============================================
+	RANGO FECHAS
+	=============================================*/
+
+	static public function ctrRangoFechasConductorHistorial($fechaInicial, $fechaFinal){
+
+		$tabla = "conductores";
+
+		$respuesta = ModeloConductor::mdlRangoFechasConductorHistorial($fechaInicial, $fechaFinal);
+		//var_dump($respuesta);
+		return $respuesta;
+
+	}
+
+
+
+
+	/*=============================================
+	Provincia
+	=============================================*/
+	public function ctrDescargarReporteProvincia(){
+
+		  $fechaini=$_GET["fechaInicial"];
+          $fechafin=$_GET["fechaFinal"];
+          $provincia=$_GET["provincia"];
+
+
+         // echo $fechaini;
+          //echo $fechafin;
+
+		if(isset($_GET["reporte"])){
+
+			//$tablas = "conductores";
+
+
+			if(isset($fechaini) && isset($fechafin)){
+				$conductores = ModeloConductor::mdlRangoFechasConductorProvincia($fechaini, $fechafin, $provincia);
+			//var_dump($conductores);
+
+
+			}else{
+
+				$item = null;
+				$valor = null;
+
+				$conductores = ModeloConductor::mdlMostrarConductorProvincia($item, $valor, $provincia);
+
+
+			}
+
+
+			/*=============================================
+			CREAMOS EL ARCHIVO DE EXCEL
+			=============================================*/
+
+			$Name = $_GET["reporte"].'.xls';
+ 			//echo "<script> alert('excel');</script>";
+			header('Expires: 0');
+			header('Cache-control: private');
+			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
+			header("Cache-Control: cache, must-revalidate");
+			header('Content-Description: File Transfer');
+			header('Last-Modified: '.date('D, d M Y H:i:s'));
+			header("Pragma: public");
+			header('Content-Disposition:; filename="'.$Name.'"');
+			header("Content-Transfer-Encoding: binary");
+
+			echo utf8_decode("<table border='0'>
+
+					<tr>
+					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE REGISTRO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>PROVINCIA</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>DNI</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>NOMBRE</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>APELLIDO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>PLACA</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES PENALES</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES JUDICIAL</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES POLICIAL</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>RECORD CONDUCTOR</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>RESULTADO</td
+					<td style='font-weight:bold; border:1px solid #eee;'>SOAT</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE INICIO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE FIN</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>OBSERVACION</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>EMPRESA</td>
+
+
+					</tr>");
+
+			foreach ($conductores as $row => $value){
+
+				$cabify = $value["cabify"];
+                $easytaxi = $value["easytaxi"];
+
+                if ($cabify == '1' && $easytaxi == 1) {
+                    $cabify= "Cabify <br> Easytaxi";
+                }else if ($easytaxi == 1 && $cabify == 0) {
+                    $cabify= "easytaxi";
+                }else if ($easytaxi == 0 && $cabify == 1) {
+                    $cabify = "cabify";
+                }else if ($easytaxi == 0 && $cabify == 0) {
+                    $cabify = "";
+                }
+
+			 echo utf8_decode("<tr>
+			 			<td style='border:1px solid #eee;'>".$value["fecha"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["descripcion"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["dni"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["nombre"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["apellido"]."</td>
@@ -378,19 +515,19 @@ class ControladorConductor{
 
 }
 
-/*=============================================
+	/*=============================================
 	RANGO FECHAS
 	=============================================*/
 
-	static public function ctrRangoFechasConductorHistorial($fechaInicial, $fechaFinal){
+	static public function ctrRangoFechasConductorProvincia($fechaInicial, $fechaFinal, $provincia){
 
-		$tabla = "conductores";
 
-		$respuesta = ModeloConductor::mdlRangoFechasConductorHistorial($fechaInicial, $fechaFinal);
+		$respuesta = ModeloConductor::mdlRangoFechasConductorProvincia($fechaInicial, $fechaFinal, $provincia);
 		//var_dump($respuesta);
 		return $respuesta;
 
 	}
+
 
 	/*=============================================
 	MOSTRAR Conductores

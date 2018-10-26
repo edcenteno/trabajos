@@ -88,22 +88,29 @@
                                       <li><a href="conductoreshistorial"><i class="ti fa fa-search"></i> Administrar</span></a></li>
                                       <li><a href="busqueda-historial"><i class="ti fa fa-car"></i> Busqueda</span></a></li>
                                     <!--  <li><a href="conductoresactualizadosadmin"><i class="ti fa fa-car"></i> Actualizados</span></a></li>-->
-                                     ';
+                                    </li>
+                                  </ul>
+
+                             ';
                             }
-/*
-                            if($_SESSION["perfil"] =="Administrador" || $_SESSION["perfil"] =="RRHH"){
-                                echo '
-                                      <li><a href="rrhh"><i class="ti-notepad"></i> RRHH</span></a></li>';
-                            }*/
 
-                            /*if($_SESSION["perfil"] =="Administrador" || $_SESSION["perfil"] =="Call"){
-                                echo '
-                                      <li><a href="consultas-basicas"><i class="ti-folder"></i> Consulta Básica</span></a></li>';
-                            } */
-                        ?>
+                           if($_SESSION["perfil"] =="Administrador"){
+                              echo '
 
-                    </ul>
-                </li>
+                                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                  <i class="ti fa fa-search"></i><span class="hide-menu"> Provincias</span></a>
+                                  <ul aria-expanded="false" class="collapse">
+
+                                      <li><a href="busqueda-arequipa"><i class="ti fa fa-map-marker"></i> Arequipa</span></a></li>
+                                      <li><a href="busqueda-chiclayo"><i class="ti fa fa-map-marker"></i> Chiclayo</span></a></li>
+                                      <li><a href="busqueda-cusco"><i class="ti fa fa-map-marker"></i> Cusco</span></a></li>
+                                      <li><a href="busqueda-lima"><i class="ti fa fa-map-marker"></i> Lima</span></a></li>
+                                      <li><a href="busqueda-piura"><i class="ti fa fa-map-marker"></i> Piura</span></a></li>
+                                      <li><a href="busqueda-trujillo"><i class="ti fa fa-map-marker"></i> Trujillo</span></a></li>
+                                  </ul>
+                              </li>';
+                          }
+                    ?>
 
             </ul>
         </nav>

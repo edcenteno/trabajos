@@ -191,6 +191,12 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "conductoresprovincia" ||
          $_GET["ruta"] == "busqueda" ||
          $_GET["ruta"] == "busqueda-historial" ||
+         $_GET["ruta"] == "busqueda-arequipa" ||
+         $_GET["ruta"] == "busqueda-chiclayo" ||
+         $_GET["ruta"] == "busqueda-cusco" ||
+         $_GET["ruta"] == "busqueda-lima" ||
+         $_GET["ruta"] == "busqueda-piura" ||
+         $_GET["ruta"] == "busqueda-trujillo" ||
          $_GET["ruta"] == "listado" ||
          $_GET["ruta"] == "vermas" ||
          $_GET["ruta"] == "vermashistorial" ||
@@ -241,6 +247,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/prospectos.js"></script>
 <script src="vistas/js/datapicker.js"></script>
 <script src="vistas/js/datapickerHistorial.js"></script>
+<script src="vistas/js/datapickerProvincia.js"></script>
 <script src="vistas/js/ModalCapture.js"></script>
 <!-- <script src="vistas/js/ModalCaptureCbf.js"></script> -->
 

@@ -776,6 +776,58 @@ class ModeloConductor{
 
 	}
 
+	/*=============================================
+	RANGO FECHAS
+	=============================================*/
+
+	static public function mdlRangoFechasConductorProvincia($fechaInicial, $fechaFinal, $provincia){
+
+		if($fechaInicial == null){
+
+			@$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+
+		}else if($fechaInicial == $fechaFinal){
+
+			$stmt = Conexion::conectar()->prepare("SELECT T1.*, T2.descripcion FROM conductores T1 INNER JOIN provincias T2 ON T1.id_provincia = T2.id WHERE fecha_revision like '%$fechaFinal%' and id_provincia = $provincia");
+
+			$stmt -> bindParam(":fecha", $fechaFinal, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$fechaFinal = new DateTime($fechaFinal);
+			$fechaFinal->add(new DateInterval('P1D'));
+			$fechaFinal2 = $fechaFinal->format('Y-m-d');
+
+			//var_dump($fechaFinal2);
+			//echo "$fechaInicial";
+
+
+			try {
+				$stmt=Conexion::conectar()->prepare("SELECT T1.*, T2.descripcion FROM conductores T1 INNER JOIN provincias T2 ON T1.id_provincia = T2.id  WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal2' AND id_provincia = $provincia");
+			$stmt -> execute();
+			} catch (Exception $e) {
+				print_r($e);
+			}
+			//->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal2'");
+			//$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+	}
+
+
 
 	static public function mdlMostrarunConductor($tabla, $item, $valor, $idconductor){
 
