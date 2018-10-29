@@ -10,4 +10,8 @@ class Person extends Eloquent
     protected $connection = 'mongodb';
     protected $collection = 'persons';
     protected $fillable = ['doc_type','doc_value','name','first_last_name','last_last_name','id_company','phone','email'];
+
+    public function user(){
+        return $this->hasOne('App\User');
+    }
 }

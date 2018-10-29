@@ -169,7 +169,7 @@ require 'graficas/querys.php';
                         <div class="col-lg-12 col-md-6">
 
                         <?php
-                            include "inicio/cajas-superioreseasy.php";
+                          //  include "inicio/cajas-superioreseasy.php";
 
                         ?>
                         </div>

@@ -34,7 +34,7 @@
                                     <th>Opciones</th>
                                     <th>RUC</th>
                                     <th>Razon Social</th>
-                                    <th>Represante Legal</th>
+                                   <!--  <th>Represante Legal</th> -->
                                     <th>Teléfono</th>
                                     <th>Correo</th>
                                     <th>Estado</th>
@@ -59,7 +59,7 @@
                                     </td>
                                     <td v-text="company.ruc"></td>
                                     <td v-text="company.razon_social"></td>
-                                    <td v-text="company.representantes_legales"></td>
+                                    <!-- <td  v-text="company.representantes_legales.r1.nombre"></td> -->
                                     <td v-text="company.telefono"></td>
                                     <td v-text="company.email"></td>
                                     <td>
@@ -106,7 +106,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">RUC</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="ruc" class="form-control" placeholder="RUC de la empresa">
+                                        <input type="text" v-model="ruc" class="form-control" placeholder="RUC de la empresa" maxlength="11" pattern=".{11,}" >
 
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Teléfono</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="telefono" class="form-control" placeholder="Ingrese Teléfono">
+                                        <input type="text" v-model="telefono" class="form-control" placeholder="Ingrese Teléfono" maxlength="9" pattern=".{9,}">
                                     </div>
                                 </div>
                                 <div v-show="errorCompany" class="form-group row div-error">
@@ -243,9 +243,9 @@
                 me.listarCompany(page,buscar,criterio);
             },
             registrarCompany(){
-                if (this.validarCompany()){
+               /* if (this.validarCompany()){
                     return;
-                }
+                }*/
 
                 let me = this;
 
@@ -256,29 +256,13 @@
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarCompany(1,'','razon_social');
+                    /*console.log(response);*/
+
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            /*actualizarCategoria(){
-               if (this.validarCompany()){
-                    return;
-                }
 
-                let me = this;
-
-                axios.put('/company/actualizar',{
-                    'nombre': this.nombre,
-                    'descripcion': this.descripcion,
-                    'precio': this.precio,
-                    'id': this.categoria_id
-                }).then(function (response) {
-                    me.cerrarModal();
-                    me.listarCompany(1,'','nombre');
-                }).catch(function (error) {
-                    console.log(error);
-                });
-            },*/
             desactivarCompany(id){
                swal({
                 title: 'Esta seguro de desactivar esta categoría?',
@@ -320,7 +304,7 @@
             },
             activarCompany(id){
                swal({
-                title: 'Esta seguro de activar esta categoría?',
+                title: '¿Esta seguro de activar esta categoría?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -362,7 +346,7 @@
                 this.errorMostrarMsjCompany =[];
 
                 if (!this.ruc) this.errorMostrarMsjCompany.push("El RUC no puede estar vacío.");
-                if (!this.validRuc(this.ruc)) this.errorMostrarMsjCompany.push('El Email debe estar correcto.');
+                if (!this.validRuc(this.ruc)) this.errorMostrarMsjCompany.push('El RUC debe estar correcto.');
 
                 if (!this.email) this.errorMostrarMsjCompany.push("El Email no puede estar vacío.");
                 if (!this.validEmail(this.email)) this.errorMostrarMsjCompany.push('El Email debe estar correcto.');
@@ -385,7 +369,7 @@
             },
 
             validRuc: function (ruc) {
-              var re = /^\d{11}[0-9]$/;
+              var re = /^\d{11}$/;
               return re.test(ruc);
             },
 

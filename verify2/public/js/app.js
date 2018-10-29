@@ -50058,9 +50058,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.listarCompany(page, buscar, criterio);
         },
         registrarCompany: function registrarCompany() {
-            if (this.validarCompany()) {
-                return;
-            }
+            /* if (this.validarCompany()){
+                 return;
+             }*/
 
             var me = this;
 
@@ -50071,28 +50071,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 me.cerrarModal();
                 me.listarCompany(1, '', 'razon_social');
+                /*console.log(response);*/
             }).catch(function (error) {
                 console.log(error);
             });
         },
-
-        /*actualizarCategoria(){
-           if (this.validarCompany()){
-                return;
-            }
-             let me = this;
-             axios.put('/company/actualizar',{
-                'nombre': this.nombre,
-                'descripcion': this.descripcion,
-                'precio': this.precio,
-                'id': this.categoria_id
-            }).then(function (response) {
-                me.cerrarModal();
-                me.listarCompany(1,'','nombre');
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },*/
         desactivarCompany: function desactivarCompany(id) {
             var _this = this;
 
@@ -50129,7 +50112,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             swal({
-                title: 'Esta seguro de activar esta categoría?',
+                title: '¿Esta seguro de activar esta categoría?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -50162,7 +50145,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.errorMostrarMsjCompany = [];
 
             if (!this.ruc) this.errorMostrarMsjCompany.push("El RUC no puede estar vacío.");
-            if (!this.validRuc(this.ruc)) this.errorMostrarMsjCompany.push('El Email debe estar correcto.');
+            if (!this.validRuc(this.ruc)) this.errorMostrarMsjCompany.push('El RUC debe estar correcto.');
 
             if (!this.email) this.errorMostrarMsjCompany.push("El Email no puede estar vacío.");
             if (!this.validEmail(this.email)) this.errorMostrarMsjCompany.push('El Email debe estar correcto.');
@@ -50186,7 +50169,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         validRuc: function validRuc(ruc) {
-            var re = /^\d{11}[0-9]$/;
+            var re = /^\d{11}$/;
             return re.test(ruc);
         },
 
@@ -50429,12 +50412,6 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: {
-                        textContent: _vm._s(company.representantes_legales)
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
                       domProps: { textContent: _vm._s(company.telefono) }
                     }),
                     _vm._v(" "),
@@ -50625,7 +50602,9 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
-                            placeholder: "RUC de la empresa"
+                            placeholder: "RUC de la empresa",
+                            maxlength: "11",
+                            pattern: ".{11,}"
                           },
                           domProps: { value: _vm.ruc },
                           on: {
@@ -50701,7 +50680,9 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
-                            placeholder: "Ingrese Teléfono"
+                            placeholder: "Ingrese Teléfono",
+                            maxlength: "9",
+                            pattern: ".{9,}"
                           },
                           domProps: { value: _vm.telefono },
                           on: {
@@ -50826,8 +50807,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("RUC")]),
         _vm._v(" "),
         _c("th", [_vm._v("Razon Social")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Represante Legal")]),
         _vm._v(" "),
         _c("th", [_vm._v("Teléfono")]),
         _vm._v(" "),

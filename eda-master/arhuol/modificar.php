@@ -11,7 +11,21 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);
 $dni=$row['dni'];
 $pdf=$row['pdf'];
 $blacklist=$row['blacklist'];
+$placa=$row['placa'];
 /*var_dump($pdf);*/
+
+$cabify = $row["cabify"];
+$easytaxi = $row["easytaxi"];
+
+if ($cabify == '1' && $easytaxi == 1) {
+    $cabify= "<font color='purpure'>Cabify</font> &nbsp&nbsp  <br> <font color='green'>Easytaxi</font> ";
+}else if ($easytaxi == 1 && $cabify == 0) {
+    $cabify= "<font color='green'>easytaxi </font>";
+}else if ($easytaxi == 0 && $cabify == 1) {
+    $cabify = "<font color='purpure'>cabify</font>";
+}else if ($easytaxi == 0 && $cabify == 0) {
+    $cabify = "";
+}
 ?>
 <html lang="es">
 
@@ -19,7 +33,22 @@ $blacklist=$row['blacklist'];
   <title>ARHU Internacional</title>
   <link rel="shortcut icon" href="img/favicon.ico" type="image/ico" />
 
-  <script type="text/javascript">
+<script type="text/javascript">
+
+  placa = '<?php echo $placa ?>'
+  $.ajax({
+    type: "GET",
+    url: 'https://captcharh.ddns.net/api/record/placa/'+placa
+
+    }).done(function(msg){
+        //$("#resultado").html(msg);
+       //console.log(msg['Especificaciones'][0]['class'])//msg.vin.co
+       if (msg != "No existe la placa, intente mas tarde.") {
+
+        $('.vehiculo')[0].innerText = msg['Vin']['modelYear'];
+
+      }
+    });
 
      $(document).ready(function(){
           $('.targetpolicial').hide();
@@ -127,6 +156,18 @@ $blacklist=$row['blacklist'];
               <label for="placa">Placa: </label>
               <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php echo $row['placa'] ?>">
             </div>
+
+            <div class="form-group">
+              <label for="">Año del modelo de Vehiculo: </label>
+              <p class="text-danger vehiculo"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="empresa">Empresa: </label>
+              <?php echo $cabify ?>
+            </div>
+
+
             <div class="form-group">
 
               <input type="text" name="soat" hidden class="form-control" id="soat" placeholder="soat" value="<?php echo $row['soat'] ?>">
