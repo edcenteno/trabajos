@@ -48,4 +48,18 @@ class CompanyController extends Controller
             return response()->json($company);
 
     }
+
+    public function desactivar(Request $request){
+       if(!$request->ajax()) return redirect('/');
+        $company = Company::findOrFail($request->id);
+        $company ->condicion = '0';
+        $company -> save();
+    }
+
+    public function activar(Request $request){
+       if(!$request->ajax()) return redirect('/');
+        $company = Company::findOrFail($request->id);
+        $company ->condicion = '1';
+        $company -> save();
+    }
 }

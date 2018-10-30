@@ -2,15 +2,24 @@
 <title>ARHU Internacional</title>
 <link rel="shortcut icon" href="img/favicon.ico" type="image/ico" />
 <?php
-
+include 'conexion.php';
 $placa = $_POST['placa'];
-$placaoriginal=$_POST['placaoriginal'];
+$dni = $_POST['dni'];
+$fecha_fab_veh = $_POST['fecha_fab_veh'];
+$color_vehiculo = $_POST['color_vehiculo'];
 
+@$placanoex=$_POST['placanoex'];
 
-    ModificarPersona($_POST['dni'], $_POST['color_vehiculo'], $_POST['placa'], $_POST['fecha_fab_veh']);
+if ($placanoex == 1) {
+  $placanoex = "Placa no EXISTE";
+        $sentencia="UPDATE conductores SET
+                                       color_vehiculo='".$placanoex."',
+                                       fecha_placa = NOW()
+                                       WHERE dni='".$dni."' ";
+        $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 
-    function ModificarPersona($dni, $color_vehiculo, $placa, $fecha_fab_veh){
-        include 'conexion.php';
+} else {
+
          $sentencia="UPDATE conductores SET
                                        color_vehiculo='".$color_vehiculo."',
                                        placa='".$placa."',
@@ -18,7 +27,10 @@ $placaoriginal=$_POST['placaoriginal'];
                                        fecha_placa = NOW()
                                        WHERE dni='".$dni."' ";
         $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-    }
+}
+
+
+
 ?>
 <script type="text/javascript">
 

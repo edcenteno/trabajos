@@ -30,5 +30,7 @@ Route::put('/subject/activar', 'SubjectController@activar');
 
 Route::get('company', 'CompanyController@index');
 Route::post('/company/registrar', 'CompanyController@store');
+Route::put('/company/desactivar', 'CompanyController@desactivar');
+Route::put('/company/activar', 'CompanyController@activar');
 
 Route::get('rol', 'RolController@index');

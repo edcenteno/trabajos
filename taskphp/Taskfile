@@ -1,0 +1,22 @@
+<?php
+
+require 'vendor/autoload.php';
+
+use Task\Plugin;
+use mbfisher\Watch\EventDispatcher\Event\StartEvent;
+
+$project = new Task\Project('task', 'v0.1.0');
+
+$project->inject(function ($container) {
+    $container['phpspec'] = new Plugin\PhpSpecPlugin;
+
+});
+
+$project->addTask('test', 'Run PhpSpec', ['phpspec', function ($phpspec) {
+    return $phpspec->command('run')
+        ->setFormat('pretty')
+        ->setVerbose(true)
+        ->pipe($this->getOutput());
+}]);
+
+return $project;

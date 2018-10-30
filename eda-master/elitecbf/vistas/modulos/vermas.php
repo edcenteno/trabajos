@@ -26,6 +26,7 @@ $placa=$value['placa'];
 $placa = str_replace("-","",$placa);
 $placa = str_replace(" ","",$placa);
 $extr=$value['extr'];
+$color_vehiculo=$value['color_vehiculo'];
 
 
 ?>
@@ -99,37 +100,44 @@ $extr=$value['extr'];
 
     });
 
+    var color = '<?php echo $color_vehiculo ?>';
+        if (color == "Placa no EXISTE") {
 
-    $.ajax({
-    type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/placa/'+placa
+        }if (color == "") {
 
-    }).done(function(msg){
-        //$("#resultado").html(msg);
-       //console.log(msg['Especificaciones'][0]['class'])//msg.vin.co
-       if (msg != "No existe la placa, intente mas tarde.") {
-        $('.vehiculo')[0].innerText = msg['Marca'];
-        $('.vehiculo')[1].innerText = msg['Modelo'];
-        $('.vehiculo')[2].innerText = msg['Vin']['modelYear'];
-        $('.vehiculo')[3].innerText = msg['Nro_Serie'];
-        $('.vehiculo')[4].innerText = msg['Placa_Anterior'];
-        $('.vehiculo')[5].innerText = msg['Fecha_Entrega'];
-        $('.vehiculo')[6].innerText = msg['Propietario'];
-        $('.vehiculo')[7].innerText = msg['Estado'];
-        $('.vehiculo')[8].innerText = msg['Tipo_Uso'];
-        $('.vehiculo')[9].innerText = msg['Tipo_de_Sol'];
-        $('.vehiculo')[10].innerText = msg['Vin']['continent'];
-        $('.vehiculo')[11].innerText = msg['Vin']['countries'];
-        $('.vehiculo')[12].innerText = msg['Vin']['manufacture'];
-        $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber'];
-        $('.vehiculo')[14].innerText = msg['Especificaciones'][0]['class'];
-        $('.vehiculo')[15].innerText = msg['Especificaciones'][0]['places'];
-        $('.vehiculo')[16].innerText = msg['Especificaciones'][0]['doors'];
+        }else{
+            $.ajax({
+            type: "GET",
+            url: 'https://captcharh.ddns.net/api/record/placa/'+placa
+
+            }).done(function(msg){
+                //$("#resultado").html(msg);
+               //console.log(msg['Especificaciones'][0]['class'])//msg.vin.co
+               if (msg != "No existe la placa, intente mas tarde.") {
+                $('.vehiculo')[0].innerText = msg['Marca'];
+                $('.vehiculo')[1].innerText = msg['Modelo'];
+                $('.vehiculo')[2].innerText = msg['Vin']['modelYear'];
+                $('.vehiculo')[3].innerText = msg['Nro_Serie'];
+                $('.vehiculo')[4].innerText = msg['Placa_Anterior'];
+                $('.vehiculo')[5].innerText = msg['Fecha_Entrega'];
+                $('.vehiculo')[6].innerText = msg['Propietario'];
+                $('.vehiculo')[7].innerText = msg['Estado'];
+                $('.vehiculo')[8].innerText = msg['Tipo_Uso'];
+                $('.vehiculo')[9].innerText = msg['Tipo_de_Sol'];
+                $('.vehiculo')[10].innerText = msg['Vin']['continent'];
+                $('.vehiculo')[11].innerText = msg['Vin']['countries'];
+                $('.vehiculo')[12].innerText = msg['Vin']['manufacture'];
+                $('.vehiculo')[13].innerText = msg['Vin']['sequentialNumber'];
+                $('.vehiculo')[14].innerText = msg['Especificaciones'][0]['class'];
+                $('.vehiculo')[15].innerText = msg['Especificaciones'][0]['places'];
+                $('.vehiculo')[16].innerText = msg['Especificaciones'][0]['doors'];
 
 
 
-}
+        }
     });
+        }
+
 </script>
 <script type="text/javascript">
 
@@ -807,98 +815,116 @@ if(empresa =="cabify"){
                                     <br>
                                     <p class="text-muted"><?php echo $placa; ?></p>
                                 </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Marca</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Modelo</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6"> <strong>Año de Modelo</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Nro. Serie </strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Placa Anterior</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha Entrega</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-2 col-xs-6"> <strong>Propietario</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <!-- <div class="col-md-3 col-xs-6 b-r"> <strong>Punto de Entrega</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div> -->
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo Uso</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo de Sol</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Color de Vehiculo</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['color_vehiculo'] ?></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Continente</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>País</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Fabrica</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6"> <strong>Números secuenciales</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                            </div>
-                             <hr>
-                            <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Clase</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Asientos</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Puertas</strong>
-                                    <br>
-                                    <p class="text-muted vehiculo"></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6 b-r"> <strong>Año de Fabricación</strong>
-                                    <br>
-                                    <p class="text-muted"><?php echo $value['fecha_fab_veh'] ?></p>
-                                </div>
+                                <?php
+                                    if ($color_vehiculo == "Placa no EXISTE") {
+                                      echo' <div class="col-md-3 col-xs-6 b-r"> <strong>Placa</strong>
+                                            <br>
+                                            <p class="text-danger">Placa no EXISTE</p>
+                                        </div>';
+                                    }
+                                    if ($color_vehiculo == "") {
+                                      echo' <div class="col-md-3 col-xs-6 b-r"> <strong>Placa</strong>
+                                            <br>
+                                            <p class="text-success">EN PROCESO</p>
+                                        </div>';
+                                    }
+                                    if ($color_vehiculo != "" && $color_vehiculo != "Placa no EXISTE") {
+                                        echo '<div class="col-md-3 col-xs-6 b-r"> <strong>Marca</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Modelo</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6"> <strong>Año de Modelo</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Nro. Serie </strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Placa Anterior</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fecha Entrega</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-2 col-xs-6"> <strong>Propietario</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Estado</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <!-- <div class="col-md-3 col-xs-6 b-r"> <strong>Punto de Entrega</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div> -->
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo Uso</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Tipo de Sol</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Color de Vehiculo</strong>
+                                            <br>
+                                            <p class="text-muted">'.$value['color_vehiculo'].'</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Continente</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>País</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Fabrica</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6"> <strong>Números secuenciales</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                    </div>
+                                     <hr>
+                                    <div class="row">
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Clase</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Asientos</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Puertas</strong>
+                                            <br>
+                                            <p class="text-muted vehiculo"></p>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6 b-r"> <strong>Año de Fabricación</strong>
+                                            <br>
+                                            <p class="text-muted">'.$value['fecha_fab_veh'].'</p>
+                                        </div>';
+                                    }
+
+                                ?>
+
 
                             </div>
                         </div>

@@ -75,13 +75,23 @@ $blacklist=$row['blacklist'];
             </div>
             <div class="form-group">
               <label for="color_vehiculo">Color del Vehiculo: </label>
-              <input type="text" name="color_vehiculo" class="form-control" id="color_vehiculo" placeholder="Color del Vehiculo"  value="<?php echo $row['color_vehiculo'] ?>" required="">
+              <input type="text" name="color_vehiculo" class="form-control" id="color_vehiculo" placeholder="Color del Vehiculo"  value="<?php echo $row['color_vehiculo'] ?>" >
             </div>
             <div class="form-group">
               <label for="fecha_fab_veh">Año de Fabricación del Vehiculo: </label>
               <input type="text" name="fecha_fab_veh" class="form-control" id="fecha_fab_veh" placeholder="Año de Fabricación del Vehiculo"  value="<?php echo $row['fecha_fab_veh'] ?>">
             </div>
+
+
+            <div class="form-group">
+             <input class="form-group-input" type="checkbox" name="placanoex" id="placanoex" value="1">
+                <label class="form-group-label" for="exampleRadios1">
+                  Placa no EXISTE
+                </label>
+
             </div>
+
+          </div>
           </div>
 
             <div class="form-group">
