@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Subject;
 
+
 class SubjectController extends Controller{
 
   public function index(Request $request){
@@ -58,6 +59,7 @@ class SubjectController extends Controller{
         $subjects = Subject::findOrFail($request->id);
         $subjects ->condicion = '0';
         $subjects -> save();
+        return response()->json($subjects);
     }
 
     public function activar(Request $request){
@@ -65,6 +67,7 @@ class SubjectController extends Controller{
         $subjects = Subject::findOrFail($request->id);
         $subjects ->condicion = '1';
         $subjects -> save();
+        return response()->json($subjects);
     }
 
     public function inicio(Request $request){
@@ -105,5 +108,7 @@ class SubjectController extends Controller{
 
 
     }
+
+
 
 }

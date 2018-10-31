@@ -21,12 +21,14 @@ Route::post('/categoria/registrar', 'CategoriaController@store');
 Route::put('/categoria/actualizar', 'CategoriaController@update');
 Route::put('/categoria/desactivar', 'CategoriaController@desactivar');
 Route::put('/categoria/activar', 'CategoriaController@activar');
+Route::get('/categoria/categoria', 'CategoriaController@categoria');
 
 Route::get('/subject', 'SubjectController@index');
 Route::post('/subject/registrar', 'SubjectController@inicio');
 Route::put('/subject/actualizar', 'SubjectController@update');
-Route::put('/subject/desactivar', 'SubjectController@desactivar');
+Route::post('/subject/desactivar', 'SubjectController@desactivar');
 Route::put('/subject/activar', 'SubjectController@activar');
+
 
 Route::get('company', 'CompanyController@index');
 Route::post('/company/registrar', 'CompanyController@store');

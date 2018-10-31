@@ -85,7 +85,7 @@ $type = $_POST['type'];
                  WHERE dni='".$dni."' ";
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
+echo $sentencia;
 }
 
 
@@ -235,7 +235,7 @@ if ($cabify == 0 && $easy == 0) {
                  TipoCertificado = '".$TipoCertificado."'
                  WHERE dni='".$dni."' ";
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-////echo $sentencia;
+echo $sentencia;
 }
 
 if ($cabify == 1 && $easy == 0) {

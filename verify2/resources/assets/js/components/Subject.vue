@@ -46,7 +46,7 @@
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
                                         <template v-if="subject.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarSubject(subject.id)">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarSubject(subject._id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
@@ -109,12 +109,14 @@
 
                                     </div>
                                 </div>
-                                <!-- <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Descripción</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
-                                    </div>
-                                </div> -->
+
+                               <div class="form-group row">
+
+                                   <div class="col-md-9" v-for="categoria in categorias" :key="categoria._id">
+                                     <label class="col-md-6 form-control-label" for="text-input"  v-text="categoria.nombre"></label>
+                                       <input type="checkbox" :value="categoria._id" v-model="checkCategoria">
+                                   </div>
+                               </div>
                                 <div v-show="errorSubject" class="form-group row div-error">
                                     <div class="text-center text-error">
                                         <div v-for="error in errorMostrarMsjSubject" :key="error" v-text="error">
@@ -143,7 +145,10 @@
     export default {
         data (){
             return {
+                categorias:[],
+                checkCategoria:[],
                 subject_id: 0,
+                id:'',
                 doc_value : '',
                 name : '',
                 first_last_name : '',
@@ -197,7 +202,19 @@
 
             }
         },
+
         methods : {
+            listarCategoria (){
+                //let me=this.categorias;
+                var url= '/categoria/categoria';
+                axios.get(url).then((response)=> {
+                    this.categorias=response.data
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+
             listarSubject (page,buscar,criterio){
                 let me=this;
                 var url= '/subject?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
@@ -261,7 +278,7 @@
                     console.log(error);
                 });
             },*/
-            /*desactivarSubject(id){
+            desactivarSubject(id){
                swal({
                 title: 'Esta seguro de eliminar esta persona?',
                 type: 'warning',
@@ -278,7 +295,7 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/categoria/desactivar',{
+                    axios.post('/subject/desactivar',{
                         'id': id
                     }).then(function (response) {
                         me.listarSubject(1,'','name');
@@ -338,7 +355,7 @@
 
                 }
                 })
-            },*/
+            },
             validarSubject(){
                 this.errorSubject=0;
                 this.errorMostrarMsjSubject =[];
@@ -386,7 +403,11 @@
             }
         },
         mounted() {
+
             this.listarSubject(1,this.buscar,this.criterio);
+        },
+        created(){
+             this.listarCategoria();
         }
     }
 </script>

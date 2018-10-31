@@ -48277,7 +48277,7 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      _vm.desactivarCategoria(categoria.id)
+                                      _vm.desactivarCategoria(categoria._id)
                                     }
                                   }
                                 },
@@ -48954,11 +48954,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            categorias: [],
+            checkCategoria: [],
             subject_id: 0,
+            id: '',
             doc_value: '',
             name: '',
             first_last_name: '',
@@ -49012,7 +49017,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return pagesArray;
         }
     },
+
     methods: {
+        listarCategoria: function listarCategoria() {
+            var _this = this;
+
+            //let me=this.categorias;
+            var url = '/categoria/categoria';
+            axios.get(url).then(function (response) {
+                _this.categorias = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
         listarSubject: function listarSubject(page, buscar, criterio) {
             var me = this;
             var url = '/subject?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
@@ -49074,76 +49091,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },*/
-        /*desactivarSubject(id){
-           swal({
-            title: 'Esta seguro de eliminar esta persona?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar!',
-            cancelButtonText: 'Cancelar',
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            buttonsStyling: false,
-            reverseButtons: true
-            }).then((result) => {
-            if (result.value) {
-                let me = this;
-                 axios.put('/categoria/desactivar',{
-                    'id': id
-                }).then(function (response) {
-                    me.listarSubject(1,'','name');
-                    swal(
-                    'Desactivado!',
-                    'El registro ha sido desactivado con éxito.',
-                    'success'
-                    )
-                }).catch(function (error) {
-                    console.log(error);
-                });
-              } else if (
+        desactivarSubject: function desactivarSubject(id) {
+            var _this2 = this;
+
+            swal({
+                title: 'Esta seguro de eliminar esta persona?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar!',
+                cancelButtonText: 'Cancelar',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.value) {
+                    var me = _this2;
+
+                    axios.post('/subject/desactivar', {
+                        'id': id
+                    }).then(function (response) {
+                        me.listarSubject(1, '', 'name');
+                        swal('Desactivado!', 'El registro ha sido desactivado con éxito.', 'success');
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                } else if (
                 // Read more about handling dismissals
-                result.dismiss === swal.DismissReason.cancel
-            ) {
-             }
-            })
+                result.dismiss === swal.DismissReason.cancel) {}
+            });
         },
-        activarSubject(id){
-           swal({
-            title: 'Esta seguro de activar esta categoría?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Aceptar!',
-            cancelButtonText: 'Cancelar',
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            buttonsStyling: false,
-            reverseButtons: true
-            }).then((result) => {
-            if (result.value) {
-                let me = this;
-                 axios.put('/subject/activar',{
-                    'id': id
-                }).then(function (response) {
-                    me.listarCategoria(1,'','name');
-                    swal(
-                    'Activado!',
-                    'El registro ha sido activado con éxito.',
-                    'success'
-                    )
-                }).catch(function (error) {
-                    console.log(error);
-                });
-              } else if (
+        activarSubject: function activarSubject(id) {
+            var _this3 = this;
+
+            swal({
+                title: 'Esta seguro de activar esta categoría?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar!',
+                cancelButtonText: 'Cancelar',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.value) {
+                    var me = _this3;
+
+                    axios.put('/subject/activar', {
+                        'id': id
+                    }).then(function (response) {
+                        me.listarCategoria(1, '', 'name');
+                        swal('Activado!', 'El registro ha sido activado con éxito.', 'success');
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                } else if (
                 // Read more about handling dismissals
-                result.dismiss === swal.DismissReason.cancel
-            ) {
-             }
-            })
-        },*/
+                result.dismiss === swal.DismissReason.cancel) {}
+            });
+        },
         validarSubject: function validarSubject() {
             this.errorSubject = 0;
             this.errorMostrarMsjSubject = [];
@@ -49193,7 +49204,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
+
         this.listarSubject(1, this.buscar, this.criterio);
+    },
+    created: function created() {
+        this.listarCategoria();
     }
 });
 
@@ -49358,7 +49373,7 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      _vm.desactivarSubject(subject.id)
+                                      _vm.desactivarSubject(subject._id)
                                     }
                                   }
                                 },
@@ -49587,6 +49602,67 @@ var render = function() {
                         })
                       ])
                     ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group row" },
+                      _vm._l(_vm.categorias, function(categoria) {
+                        return _c(
+                          "div",
+                          { key: categoria._id, staticClass: "col-md-9" },
+                          [
+                            _c("label", {
+                              staticClass: "col-md-6 form-control-label",
+                              attrs: { for: "text-input" },
+                              domProps: {
+                                textContent: _vm._s(categoria.nombre)
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.checkCategoria,
+                                  expression: "checkCategoria"
+                                }
+                              ],
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                value: categoria._id,
+                                checked: Array.isArray(_vm.checkCategoria)
+                                  ? _vm._i(_vm.checkCategoria, categoria._id) >
+                                    -1
+                                  : _vm.checkCategoria
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.checkCategoria,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = categoria._id,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.checkCategoria = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.checkCategoria = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.checkCategoria = $$c
+                                  }
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      })
+                    ),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -50377,7 +50453,7 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      _vm.desactivarCompany(company.id)
+                                      _vm.desactivarCompany(company._id)
                                     }
                                   }
                                 },

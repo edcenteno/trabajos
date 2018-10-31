@@ -46,7 +46,7 @@
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
                                         <template v-if="categoria.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCategoria(categoria.id)">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCategoria(categoria._id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
