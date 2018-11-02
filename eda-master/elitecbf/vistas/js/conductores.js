@@ -45,10 +45,10 @@ CARGAR LA TABLA DINÁMICA
 	}
 
     });
-    /*setInterval( function () {
-    table.ajax.reload( null, false ); // user paging is not reset on reload
+    setInterval( function () {
+    table.ajax.reload(null, false); // user paging is not reset on reload
 	}, 30000 );
-*/
+
 } );
 
 	$(document).ready(function() {
