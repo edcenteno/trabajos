@@ -36,3 +36,8 @@ Route::put('/company/desactivar', 'CompanyController@desactivar');
 Route::put('/company/activar', 'CompanyController@activar');
 
 Route::get('rol', 'RolController@index');
+
+Route::get('user', 'UserController@index');
+Route::post('/user/registrar', 'UserController@store');
+Route::put('/user/desactivar', 'UserController@desactivar');
+Route::put('/user/activar', 'UserController@activar');

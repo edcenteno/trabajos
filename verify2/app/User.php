@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
+use Jenssegers\Mongodb\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -16,10 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'ruc', 'usuario', 'password', 'condicion', 'idrol'
+        '_id', 'usuario', 'password', 'condicion', 'idrol'
     ];
 
-    public $timestamps =  false;
+    //public $timestamps =  false;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -37,4 +38,10 @@ class User extends Authenticatable
     public function  person(){
         return  $this->belongsTo('App\Person');
     }
+
+    public function  company(){
+        return  $this->belongsTo('App\Company');
+    }
+
+
 }

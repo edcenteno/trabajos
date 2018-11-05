@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Empresas
-                        <button type="button" @click="abrirModal('company','registrar')" class="btn btn-secondary">
+                        <button type="button" @click="abrirModal('user','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -34,37 +34,37 @@
                                 <tr>
                                     <th>Opciones</th>
                                     <th>RUC</th>
-                                    <th>Razon Social</th>
-                                   <!--  <th>Represante Legal</th> -->
-                                    <th>Teléfono</th>
+                                    <!-- <th>Razon Social</th> -->
+                                    <th>Usuario</th>
+                                    <th>Telefono</th>
                                     <th>Correo</th>
                                     <th>Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="company in arrayCompany" :key="company.id">
+                                <tr v-for="user in arrayUser" :key="user.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('company','actualizar',company)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('user','actualizar',user)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
-                                        <template v-if="company.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCompany(company._id)">
+                                        <template v-if="user.condicion">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarUser(user._id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarCompany(company.id)">
+                                            <button type="button" class="btn btn-info btn-sm" @click="activarUser(user.id)">
                                                 <i class="icon-check"></i>
                                             </button>
                                         </template>
                                     </td>
-                                    <td v-text="company.ruc"></td>
-                                    <td v-text="company.razon_social"></td>
+                                    <td v-text="user.ruc"></td>
+                                    <td v-text="user.usuario"></td>
                                     <!-- <td  v-text="company.representantes_legales.r1.nombre"></td> -->
-                                    <td v-text="company.telefono"></td>
-                                    <td v-text="company.email"></td>
+                                    <td v-text="user.telefono"></td>
+                                    <td v-text="user.email"></td>
                                     <td>
-                                        <div v-if="company.condicion">
+                                        <div v-if="user.condicion">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
                                         <div v-else>
@@ -123,11 +123,23 @@
                                         <input type="text" v-model="telefono" class="form-control" placeholder="Ingrese Teléfono" maxlength="9" pattern=".{9,}">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
+                                    <div class="col-md-9">
+                                        <input type="text" v-model="usuario" class="form-control" placeholder="Ingrese Usuario" maxlength="9" pattern=".{9,}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Password</label>
+                                    <div class="col-md-9">
+                                        <input type="text" v-model="password" class="form-control" placeholder="Ingrese Password" maxlength="9" pattern=".{9,}">
+                                    </div>
+                                </div>
                                 <div v-show="errorCompany" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjCompany" :key="error" v-text="error">
+                                       <!--  <div v-for="error in errorMostrarMsjCompany" :key="error" v-text="error">
 
-                                        </div>
+                                       </div> -->
                                     </div>
                                 </div>
 
@@ -135,8 +147,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarCompany()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarCompany()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarUser()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarUser()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -153,34 +165,15 @@
             return {
                 company_id: 0,
                 ruc:'',
-                razon_social:'',
+                usuario:'',
+                rol:'',
                 condicion:'',
-                nombre_comercial:'',
-                tipo:'',
-                fecha_inscripcion:'',
-                estado:'',
-                direccion:'',
-                sistema_emision:'',
-                actividad_exterior:'',
-                oficio:'',
-                actividad_economica:'',
-                sistema_contabilidad:'',
-                emision_electronica:'',
-                ple:'',
-                cantidad_trabajadores:'',
-                telefono:'',
-                email:'',
-                representantes_legales:{
-                    r1:{
-                        nombre:'',
-                    }
-                },
-                arrayCompany : [],
+                arrayUser : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorCompany : 0,
-                errorMostrarMsjCompany : [],
+                errorUser : 0,
+                errorMostrarMsjUser : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -224,12 +217,12 @@
             }
         },
         methods : {
-            listarCompany (page,buscar,criterio){
+            listarUser (page,buscar,criterio){
                 let me=this;
-                var url= '/company?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/user?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayCompany = respuesta.companys.data;
+                    me.arrayUser = respuesta.user.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -241,16 +234,16 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarCompany(page,buscar,criterio);
+                me.listarUser(page,buscar,criterio);
             },
-            registrarCompany(){
+            registrarUser(){
                /* if (this.validarCompany()){
                     return;
                 }*/
 
                 let me = this;
 
-                axios.post('/company/registrar',{
+                axios.post('/user/registrar',{
                     'ruc': this.ruc,
                     'email': this.email,
                     'telefono': this.telefono,
@@ -258,7 +251,7 @@
                     'password': this.password
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarCompany(1,'','razon_social');
+                    me.listarUser(1,'','razon_social');
                     /*console.log(response);*/
 
                 }).catch(function (error) {
@@ -266,7 +259,7 @@
                 });
             },
 
-            desactivarCompany(id){
+            desactivarUser(id){
                swal({
                 title: 'Esta seguro de desactivar esta categoría?',
                 type: 'warning',
@@ -283,7 +276,7 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/company/desactivar',{
+                    axios.put('/user/desactivar',{
                         'id': id
                     }).then(function (response) {
                         me.listarCompany(1,'','razon_social');
@@ -305,7 +298,7 @@
                 }
                 })
             },
-            activarCompany(id){
+            activarUser(id){
                swal({
                 title: '¿Esta seguro de activar esta categoría?',
                 type: 'warning',
@@ -322,10 +315,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/company/activar',{
+                    axios.put('/user/activar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarCompany(1,'','razon_social');
+                        me.listarUser(1,'','razon_social');
                         swal(
                         'Activado!',
                         'El registro ha sido activado con éxito.',
@@ -344,9 +337,9 @@
                 }
                 })
             },
-            validarCompany(){
+            /*validarCompany(){
                 this.errorCompany=0;
-                this.errorMostrarMsjCompany =[];
+                this.errorMostrarMsjUser =[];
 
                 if (!this.ruc) this.errorMostrarMsjCompany.push("El RUC no puede estar vacío.");
                 if (!this.validRuc(this.ruc)) this.errorMostrarMsjCompany.push('El RUC debe estar correcto.');
@@ -374,7 +367,7 @@
             validRuc: function (ruc) {
               var re = /^\d{11}$/;
               return re.test(ruc);
-            },
+            },*/
 
             cerrarModal(){
                 this.modal=0;
@@ -384,7 +377,7 @@
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "company":
+                    case "user":
                     {
                         switch(accion){
                             case 'registrar':
@@ -394,6 +387,8 @@
                                 this.ruc= '';
                                 this.email = '';
                                 this.telefono = '';
+                                this.usuario = '';
+                                this.password = '';
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -415,7 +410,7 @@
             }
         },
         mounted() {
-            this.listarCompany(1,this.buscar,this.criterio);
+            this.listarUser(1,this.buscar,this.criterio);
         }
     }
 </script>

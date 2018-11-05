@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Company;
-
+use App\Jobs\ProcessRuc;
+use App\Http\Requests\StoreCompany;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,25 +16,16 @@ class UserController extends Controller
         $buscar = $request->buscar;
         $criterio = $request->criterio;
 
+
         if ($buscar==''){
-            $companies = User::join('companies','users.id','=','companies.id')
-            ->join('roles','users.idrol','=','roles.id')
-            ->select('companies.id','companies.ruc','companies.razon_social',
-            'companies.condicion','companies.nombre_comercial','companies.tipo',
-            'companies.fecha_inscripcion', 'companies.fecha_inscripcion',
-            'users.usuario','users.password', 'users.condicion','users.idrol',
-            'roles.nombre as rol')
-            ->orderBy('companies.id', 'desc')->paginate(3);
+            $companies = User::with('company')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         }
         else{
-            $companies = User::join('companies','users.id','=','companies.id')
-            ->join('roles','users.idrol','=','roles.id')
-            ->select('companies.id','companies.nombre','companies.tipo_documento',
-            'companies.num_documento','companies.direccion','companies.telefono',
-            'companies.email','users.usuario','users.password',
-            'users.condicion','users.idrol','roles.nombre as rol')
-            ->where('companies.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('companies.id', 'desc')->paginate(3);
+            $companies = User::with('company')->where($criterio, 'LIKE', '%' .$buscar. '%')
+            ->orderBy('created_at', 'desc')->get();
+            /*->paginate(10);*/
         }
 
 
@@ -52,28 +44,30 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+        /*if (!$request->ajax()) return redirect('/');*/
 
         try{
-            DB::beginTransaction();
-            $persona = new Persona();
-            $persona->nombre = $request->nombre;
-            $persona->tipo_documento = $request->tipo_documento;
-            $persona->num_documento = $request->num_documento;
-            $persona->direccion = $request->direccion;
-            $persona->telefono = $request->telefono;
-            $persona->email = $request->email;
-            $persona->save();
+            //DB::beginTransaction();
+            $company = new Company();
+            $company->ruc =$request->ruc;
+            $company->email =$request->email;
+            $company->telefono =$request->telefono;
+            $company->condicion = '1';
+            $company -> save();
+            ProcessRuc::dispatch($company);
+            return response()->json($company);
 
             $user = new User();
             $user->usuario = $request->usuario;
             $user->password = bcrypt( $request->password);
             $user->condicion = '1';
-            $user->idrol = $request->idrol;
+            $user->idrol = "3";
 
-            $user->id = $persona->id;
+            $user->company_id = $company->_id;
 
             $user->save();
+            return response()->json($user);
+
 
             DB::commit();
 

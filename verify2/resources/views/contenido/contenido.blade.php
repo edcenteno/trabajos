@@ -27,11 +27,11 @@
 
         <template v-if="menu==6">
             <h1>Contenido del menú 6</h1>
-        </template>
+        </template>--}}
 
         <template v-if="menu==7">
-            <h1>Contenido del menú 7</h1>
-        </template>--}}
+            <usuario></usuario>
+        </template>
 
         <template v-if="menu==8">
             <rol></rol>
