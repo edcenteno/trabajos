@@ -23,8 +23,8 @@
                                       <option value="ruc">Ruc</option>
                                       <option value="razon_social">Razon Social</option>
                                       </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarCompany(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarCompany(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarUser(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarUser(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                     </td>
                                     <td v-text="user.ruc"></td>
                                     <td v-text="user.usuario"></td>
-                                    <!-- <td  v-text="company.representantes_legales.r1.nombre"></td> -->
+                                    <!-- <td  v-text="User.representantes_legales.r1.nombre"></td> -->
                                     <td v-text="user.telefono"></td>
                                     <td v-text="user.email"></td>
                                     <td>
@@ -135,7 +135,7 @@
                                         <input type="text" v-model="password" class="form-control" placeholder="Ingrese Password" maxlength="9" pattern=".{9,}">
                                     </div>
                                 </div>
-                                <div v-show="errorCompany" class="form-group row div-error">
+                                <div v-show="errorUser" class="form-group row div-error">
                                     <div class="text-center text-error">
                                        <!--  <div v-for="error in errorMostrarMsjCompany" :key="error" v-text="error">
 
@@ -222,6 +222,7 @@
                 var url= '/user?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
+                    console.log(respuesta);
                     me.arrayUser = respuesta.user.data;
                     me.pagination= respuesta.pagination;
                 })
@@ -279,7 +280,7 @@
                     axios.put('/user/desactivar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarCompany(1,'','razon_social');
+                        me.listarUser(1,'','razon_social');
                         swal(
                         'Desactivado!',
                         'El registro ha sido desactivado con éxito.',
@@ -337,22 +338,22 @@
                 }
                 })
             },
-            /*validarCompany(){
-                this.errorCompany=0;
+            validarUser(){
+                this.errorUser=0;
                 this.errorMostrarMsjUser =[];
 
-                if (!this.ruc) this.errorMostrarMsjCompany.push("El RUC no puede estar vacío.");
-                if (!this.validRuc(this.ruc)) this.errorMostrarMsjCompany.push('El RUC debe estar correcto.');
+                if (!this.ruc) this.errorMostrarMsjUser.push("El RUC no puede estar vacío.");
+                if (!this.validRuc(this.ruc)) this.errorMostrarMsjUser.push('El RUC debe estar correcto.');
 
-                if (!this.email) this.errorMostrarMsjCompany.push("El Email no puede estar vacío.");
-                if (!this.validEmail(this.email)) this.errorMostrarMsjCompany.push('El Email debe estar correcto.');
+                if (!this.email) this.errorMostrarMsjUser.push("El Email no puede estar vacío.");
+                if (!this.validEmail(this.email)) this.errorMostrarMsjUser.push('El Email debe estar correcto.');
 
-                if (!this.telefono) this.errorMostrarMsjCompany.push("El telefono de la categoría no puede estar vacío.");
-                if (!this.validPhone(this.telefono)) this.errorMostrarMsjCompany.push('El telefono debe estar correcto.');
+                if (!this.telefono) this.errorMostrarMsjUser.push("El telefono de la categoría no puede estar vacío.");
+                if (!this.validPhone(this.telefono)) this.errorMostrarMsjUser.push('El telefono debe estar correcto.');
 
-                if (this.errorMostrarMsjCompany.length) this.errorCompany = 1;
+                if (this.errorMostrarMsjUser.length) this.errorUser = 1;
 
-                return this.errorCompany;
+                return this.errorUser;
             },
             validEmail: function (email) {
               var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -367,7 +368,7 @@
             validRuc: function (ruc) {
               var re = /^\d{11}$/;
               return re.test(ruc);
-            },*/
+            },
 
             cerrarModal(){
                 this.modal=0;

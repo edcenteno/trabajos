@@ -1,0 +1,10 @@
+{
+    "require": {
+        "purekid/mongodm": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modelos\\"  : "ModeloUsuarios/"
+        }
+    }
+}

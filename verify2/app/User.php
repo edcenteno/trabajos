@@ -10,6 +10,8 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    protected $connection = 'mongodb';
+    protected $collection = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        '_id', 'usuario', 'password', 'condicion', 'idrol'
+        '_id', 'usuario', 'password', 'condicion', 'rol_id'
     ];
 
     //public $timestamps =  false;
@@ -31,7 +33,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function  rol(){
+    public function  roles(){
         return  $this->belongsTo('App\Rol');
     }
 

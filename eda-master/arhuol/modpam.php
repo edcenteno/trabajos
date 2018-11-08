@@ -9,6 +9,7 @@ $sql = "SELECT * FROM conductores WHERE cont = '$id'";
 $resultado = $mysqli->query($sql);
 $row = $resultado->fetch_array(MYSQLI_ASSOC);
 $dni=$row['dni'];
+$placa=$row['placa'];
 
 $blacklist=$row['blacklist'];
 $tipodoc = $row['extr'];
@@ -186,6 +187,23 @@ switch ($tipodoc) {
               <label for="color_vehiculo">Color del Vehiculo: </label>
               <input type="text" name="color_vehiculo" class="form-control" id="color_vehiculo" placeholder="Color del Vehiculo"  value="<?php echo $row['color_vehiculo'] ?>" required="">
             </div>
+
+            <div class="form-group">
+              <label for="orden_captura">Orden de Captura: </label>
+              <?php
+              $orden_captura= $row['orden_captura'];
+                if ($orden_captura == "El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguientes conceptos.") {
+                 $a = "<font color = 'red' >$orden_captura</font>";
+                }
+                if ($orden_captura == "El vehiculo de placa BBO481 no tiene orden de captura en la provincia de Lima.") {
+                 $a = "<font color = 'green' >$orden_captura</font>";
+                }
+
+              ?>
+              <textarea name="orden_captura" class="form-control" id="orden_captura" placeholder="Orden de Captura"  ><?php echo $row['orden_captura'] ?></textarea>
+            </div>
+
+
           </div>
 
           </div>

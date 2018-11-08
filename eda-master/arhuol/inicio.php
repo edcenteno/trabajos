@@ -8,7 +8,7 @@ if(isset($_SESSION['user'])){
     <head>
         <script>
             $(document).ready(function(){
-                $('#mitabla').DataTable({
+               table=  $('#mitabla').DataTable({
 
                     "responsive": {
                         "details": {
@@ -60,9 +60,11 @@ if(isset($_SESSION['user'])){
                     "bProcessing": true,
                     "bServerSide": true,
                     "sAjaxSource": "server_process.php"
+                   // $.fn.table.ext.errMode = 'throw';
                 });
-            });
 
+            });
+$.fn.table.ext.errMode = 'throw';
         </script>
 
     </head>

@@ -17,7 +17,8 @@
     ],
     "require": {
         "ext-curl" : "*",
-        "lib-curl" : "*"
+        "lib-curl" : "*",
+        "purekid/mongodm": "dev-master"
     },
     "require-dev": {
         "php" 	: ">=5.2"
@@ -27,7 +28,8 @@
 			"Reniec\\" 	: "src/reniec/",
 			"MinTra\\" 	: "src/mintra/",
 			"EsSalud\\" : "src/essalud/",
-			"CURL\\" 	: "src/"
+            "CURL\\"    : "src/",
+			"Modelo\\" 	: "modelo/"
 		}
 	}
 }

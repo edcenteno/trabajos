@@ -269,6 +269,10 @@ if(empresa =="cabify"){
                                 echo '<button class="btn btn-success" onclick="actualizararhu()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>';
                             }
 
+                            if($_SESSION["usuario"] =="edcenteno"){
+                                echo '<button class="btn btn-info" onclick="actualizared()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>';
+                            }
+
                             ?>
 
 
@@ -467,36 +471,6 @@ if(empresa =="cabify"){
                                           'success'
                                         )
 
-                                        // $.ajax({
-                                        //   type: "POST",
-                                        //   url: 'https://captcharh.ddns.net/api/record',
-                                        //   data: {
-                                        //       type: type, //tipo de documento
-                                        //       documento: dni, //numero de documento
-                                        //       datas: 'record' //tipo de solicitud
-                                        //   }
-
-                                        // }).done(function(msg){
-                                        //  // $("#resultado").html(msg);
-                                        //   //console.log(msg)
-
-                                        // });
-
-
-                                        // $.ajax({
-                                        //     type: "POST",
-                                        //     url: 'https://captcharh.ddns.net/api/record',
-                                        //     data: {
-                                        //         type: '1', //tipo de documento
-                                        //         documento: placa, //numero de documento
-                                        //         datas: 'placa' //tipo de solicitud
-                                        //     }
-
-                                        //     }).done(function(msg){
-                                        //        /* $("#resultado").html(msg);
-                                        //         console.log(msg)*/
-                                        //     });
-
                                       param="&dni=" + dni+
                                             "&type=" + type;
 
@@ -515,6 +489,22 @@ if(empresa =="cabify"){
 
 
                             }
+
+                         function actualizared(){
+                           //ar placa="&placa=" +  '<?php echo $placa ?>' +
+                            //placa = '<?php echo $placa ?>'
+                            //
+                            param="&placa=" + placa
+                            $.ajax({
+                                data:  param,
+                                url:   'vistas/modulos/reniec/placaact.php',
+                                type:  'post',
+                                success:  function (response) {
+                               setTimeout('document.location.reload()',8000);
+
+                                }
+                        });
+                        }
                         </script>
 
                     </center>
@@ -1116,7 +1106,7 @@ if(empresa =="cabify"){
 
                                         }
                                 });
-                                setTimeout('document.location.reload()',3000);
+                                //setTimeout('document.location.reload()',3000);
 
                                   }
                                     })

@@ -51740,6 +51740,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = '/user?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
             axios.get(url).then(function (response) {
                 var respuesta = response.data;
+                console.log(respuesta);
                 me.arrayUser = respuesta.user.data;
                 me.pagination = respuesta.pagination;
             }).catch(function (error) {
@@ -51796,7 +51797,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     axios.put('/user/desactivar', {
                         'id': id
                     }).then(function (response) {
-                        me.listarCompany(1, '', 'razon_social');
+                        me.listarUser(1, '', 'razon_social');
                         swal('Desactivado!', 'El registro ha sido desactivado con éxito.', 'success');
                     }).catch(function (error) {
                         console.log(error);
@@ -51838,31 +51839,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 result.dismiss === swal.DismissReason.cancel) {}
             });
         },
+        validarUser: function validarUser() {
+            this.errorUser = 0;
+            this.errorMostrarMsjUser = [];
 
-        /*validarCompany(){
-            this.errorCompany=0;
-            this.errorMostrarMsjUser =[];
-             if (!this.ruc) this.errorMostrarMsjCompany.push("El RUC no puede estar vacío.");
-            if (!this.validRuc(this.ruc)) this.errorMostrarMsjCompany.push('El RUC debe estar correcto.');
-             if (!this.email) this.errorMostrarMsjCompany.push("El Email no puede estar vacío.");
-            if (!this.validEmail(this.email)) this.errorMostrarMsjCompany.push('El Email debe estar correcto.');
-             if (!this.telefono) this.errorMostrarMsjCompany.push("El telefono de la categoría no puede estar vacío.");
-            if (!this.validPhone(this.telefono)) this.errorMostrarMsjCompany.push('El telefono debe estar correcto.');
-             if (this.errorMostrarMsjCompany.length) this.errorCompany = 1;
-             return this.errorCompany;
+            if (!this.ruc) this.errorMostrarMsjUser.push("El RUC no puede estar vacío.");
+            if (!this.validRuc(this.ruc)) this.errorMostrarMsjUser.push('El RUC debe estar correcto.');
+
+            if (!this.email) this.errorMostrarMsjUser.push("El Email no puede estar vacío.");
+            if (!this.validEmail(this.email)) this.errorMostrarMsjUser.push('El Email debe estar correcto.');
+
+            if (!this.telefono) this.errorMostrarMsjUser.push("El telefono de la categoría no puede estar vacío.");
+            if (!this.validPhone(this.telefono)) this.errorMostrarMsjUser.push('El telefono debe estar correcto.');
+
+            if (this.errorMostrarMsjUser.length) this.errorUser = 1;
+
+            return this.errorUser;
         },
-        validEmail: function (email) {
-          var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return re.test(email);
+
+        validEmail: function validEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
         },
-         validPhone: function (telefono) {
-          var re = /^\d{9}$/;
-          return re.test(telefono);
+
+        validPhone: function validPhone(telefono) {
+            var re = /^\d{9}$/;
+            return re.test(telefono);
         },
-         validRuc: function (ruc) {
-          var re = /^\d{11}$/;
-          return re.test(ruc);
-        },*/
+
+        validRuc: function validRuc(ruc) {
+            var re = /^\d{11}$/;
+            return re.test(ruc);
+        },
 
         cerrarModal: function cerrarModal() {
             this.modal = 0;
@@ -52006,7 +52014,7 @@ var render = function() {
                       ) {
                         return null
                       }
-                      _vm.listarCompany(1, _vm.buscar, _vm.criterio)
+                      _vm.listarUser(1, _vm.buscar, _vm.criterio)
                     },
                     input: function($event) {
                       if ($event.target.composing) {
@@ -52024,7 +52032,7 @@ var render = function() {
                     attrs: { type: "submit" },
                     on: {
                       click: function($event) {
-                        _vm.listarCompany(1, _vm.buscar, _vm.criterio)
+                        _vm.listarUser(1, _vm.buscar, _vm.criterio)
                       }
                     }
                   },
@@ -52473,8 +52481,8 @@ var render = function() {
                           {
                             name: "show",
                             rawName: "v-show",
-                            value: _vm.errorCompany,
-                            expression: "errorCompany"
+                            value: _vm.errorUser,
+                            expression: "errorUser"
                           }
                         ],
                         staticClass: "form-group row div-error"

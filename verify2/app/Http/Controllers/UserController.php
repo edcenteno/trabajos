@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Company;
+use App\Rol;
 use App\Jobs\ProcessRuc;
 use App\Http\Requests\StoreCompany;
 use Illuminate\Http\Request;
@@ -52,21 +53,25 @@ class UserController extends Controller
             $company->ruc =$request->ruc;
             $company->email =$request->email;
             $company->telefono =$request->telefono;
-            $company->condicion = '1';
+            $company->condicion = TRUE;
             $company -> save();
             ProcessRuc::dispatch($company);
-            return response()->json($company);
 
             $user = new User();
             $user->usuario = $request->usuario;
             $user->password = bcrypt( $request->password);
-            $user->condicion = '1';
-            $user->idrol = "3";
-
+            $user->condicion = TRUE;
             $user->company_id = $company->_id;
+            $user->save();
+            $rol = Rol::where('name','SuperAdministrador')->first();
+            $user->roles()->associate($rol);
 
             $user->save();
-            return response()->json($user);
+
+
+
+            return response()->json([$user, $company]);
+           // return response()->json($company);
 
 
             DB::commit();
