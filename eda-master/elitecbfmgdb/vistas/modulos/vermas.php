@@ -1,11 +1,13 @@
 <?php
 
-    $idconductor = $_GET['idconductor'];
-    $item = null;
-    $valor = null;
+    $idconductor =$_GET['idconductor'];
+    $item = "dni";
+    $valor = $idconductor;
 
-    $unconductor = ControladorConductor::ctrMostrarunConductor($item, $valor, $idconductor);
+    $unconductor = ControladorConductor::ctrMostrarConductor($item, $valor);
     //var_dump($unconductor);
+
+
     foreach ($unconductor as $key => $value){
 
     if ($value['blacklist'] == 0) {

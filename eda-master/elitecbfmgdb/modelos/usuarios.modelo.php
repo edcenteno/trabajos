@@ -103,14 +103,22 @@ use Purekid\Mongodm\Model;
     ACTUALIZAR USUARIO
     =============================================*/
 
-    static public function mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2){
+    static public function mdlActualizarUsuario($item1, $valor1, $item2, $valor2){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
+        $usuarioscabify = ModeloUsuarios::one([
+            $item2=>$valor2
+            ]);
 
-        $stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
-        $stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
+        $fecha = $usuarioscabify->ultimo_login;
 
-        if($stmt -> execute()){
+        $usuarioscabify->update([
+            $item1=>$valor1
+        ]);
+        $usuarioscabify->save();
+
+       // var_dump($usuarioscabify);
+
+        if($fecha != $usuarioscabify->ultimo_login){
 
             return "ok";
 
@@ -119,10 +127,6 @@ use Purekid\Mongodm\Model;
             return "error";
 
         }
-
-        $stmt -> close();
-
-        $stmt = null;
 
     }
 

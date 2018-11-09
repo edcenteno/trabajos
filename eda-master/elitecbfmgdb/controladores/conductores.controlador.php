@@ -4,92 +4,6 @@ class ControladorConductor{
 
 
 	/*=============================================
-	REGISTRO DE USUARIO
-	=============================================*/
-
-	static public function ctrCrearConductor(){
-
-		if(isset($_POST["nuevoDni"])){
-
-			if(preg_match('/^[0-9]+$/', $_POST["nuevoDni"])){
-
-				$tabla = "conductores";
-				date_default_timezone_set('America/Lima');
-
-				$fecha = date('Y-m-d');
-				$hora = date('H:i:s');
-
-				$fechaActual = $fecha.' '.$hora;
-
-				$datos = array("dni" => $_POST["nuevoDni"],
-							   "nombre" => $_POST["nuevoNombre"],
-							   "apellido" => $_POST["nuevoApellido"],
-							   "placa" => $_POST["nuevoPlaca"],
-							   "fecha" => $fechaActual);
-
-				$respuesta = ModeloConductor::mdlIngresarConductor($tabla, $datos);
-
-				if($respuesta == "ok"){
-
-					echo '<script>
-
-					swal({
-
-						type: "success",
-						title: "¡El usuario ha sido guardado correctamente!",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-
-					}).then(function(result){
-
-						if(result.value){
-
-							window.location = "conductores";
-
-						}
-
-					});
-
-
-					</script>';
-
-
-				}
-
-
-			}else{
-
-				echo '<script>
-
-					swal({
-
-						type: "error",
-						title: "¡El usuario no puede ir vacío o llevar caracteres especiales!",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-
-					}).then(function(result){
-
-						if(result.value){
-
-							window.location = "usuarios";
-
-						}
-
-					});
-
-
-				</script>';
-
-			}
-
-
-		}
-
-
-	}
-
-	/*=============================================
 	MOSTRAR USUARIO
 	=============================================*/
 
@@ -768,32 +682,7 @@ class ControladorConductor{
 
 	}
 
-	/*static public function ctrMostrarConductorhoyactcbf($item, $valor){
 
-	$tabla = "conductores";
-
-	$respuesta = ModeloConductor::mdlMostrarConductorhoyactcbf($tabla, $item, $valor);
-
-	return $respuesta;
-	}*/
-
-
-
-
-	/*=============================================
-	MOSTRAR 1 Conductores
-	=============================================*/
-
-
-	static public function ctrMostrarunConductor($item2, $valor2, $idconductor){
-
-		$tabla = "conductores";
-
-		$respuesta = ModeloConductor::mdlMostrarunConductor($tabla, $item2, $valor2, $idconductor);
-
-		return $respuesta;
-
-	}
 
 	/*=============================================
 	MOSTRAR 1 Conductores

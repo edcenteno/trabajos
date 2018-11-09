@@ -3,54 +3,47 @@
 /*include 'conex.php';*/
     function conexion()
     {
-        return $conexion=mysqli_connect("localhost","arhuantecedentes","^Zi7ZZl!SCfA","arhuantecedentes");
+        //return $conexion=mysqli_connect("localhost","arhuantecedentes","^Zi7ZZl!SCfA","arhuantecedentes");
+        return $conexion=mysqli_connect("localhost","root","","arhuantecedentes");
+
     }
 date_default_timezone_set("America/Lima");
 $conexion = conexion();
 
-$sql = "SELECT * FROM excel";
+$sql = "SELECT * FROM restores";
 $result=mysqli_query($conexion,$sql);
 
     if(mysqli_num_rows($result) > 0){
         foreach ($result as $key => $value) {
             $fecha = $value['fecha'];
             $dni = $value['dni'];
-            $nombres = $value['nombres'];
-            $apellidos = $value['apellidos'];
+            $nombres = $value['nombre'];
             $placa = $value['placa'];
-            $empresa = $value['empresa'];
+            $puntaje = $value['puntaje'];
+            $apellido = $value['apellido'];
 
-            if($empresa == "Easy Taxi"){
-                $easy = 1;
-                $cabify = "";
+              $cabify = 1;
 
-            }
-            if($empresa == "Cabify"){
-                $cabify = 1;
-                $easy = "";
-
-            }
-            if($empresa == ""){
-                $easy = 1;
-                $cabify = 1;
-            }
             if($placa == ""){
                 $placa = "NINGUNO";
 
             }
 
-            if($placa == "COMPAN"){
+            if($placa == "NINGUNA"){
                 $placa = "NINGUNO";
 
             }
-
-         $sentencia="INSERT INTO conductores (fecha, dni, nombre, apellido, placa, cabify, easytaxi, id_provincia)
-                        values ('$fecha', '$dni', '$nombres', '$apellidos', '$placa', '$cabify', '$easy', '4')";
+            /*$sentencia="SELECT COUNT(*) as cont where dni = $dni";*/
+         $sentencia="INSERT INTO conductores (fecha, dni, nombre, apellido, placa, record_cond, cabify, id_provincia)
+                        values ('$fecha', '$dni', '$nombres', '$apellido', '$placa', '$puntaje', '$cabify', '4')";
 
         $reg=mysqli_query($conexion,$sentencia);
-        //var_dump($sentencia);
+       /* echo "<pre>";
+        var_dump($sentencia);
+        echo "</pre>";*/
 
         }
+        echo "ok";
     }else{
        echo "error";
 }

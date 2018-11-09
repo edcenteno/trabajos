@@ -52,11 +52,11 @@ class ControladorUsuarios{
 						$item1 = "ultimo_login";
 						$valor1 = $fechaActual;
 
-						$item2 = "id";
-						$valor2 = $respuesta->id;
+						$item2 = "usuario";
+						$valor2 = $respuesta->usuario;
 
 						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($item1, $valor1, $item2, $valor2);
-
+						//var_dump($ultimoLogin);
 						if($ultimoLogin == "ok"){
 
 							echo '<script>

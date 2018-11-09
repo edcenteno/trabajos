@@ -21,7 +21,9 @@ class ModeloConductor extends Model {
 
 		if($item != null){
 
-            $params = array($item=>$valor);
+            $params = ([
+            			$item=>$valor
+            			]);
             $conductores = ModeloConductor::one($params);
            // var_dump($conductores);
            return $conductores;
@@ -29,6 +31,7 @@ class ModeloConductor extends Model {
         }else{
 
            $conductores = ModeloConductor::all();
+
             //var_dump($conductores);
            return $conductores;
         }
@@ -577,36 +580,7 @@ class ModeloConductor extends Model {
 
 	}
 
-	/*=============================================
-	ACT CBF
-	=============================================*/
-	/*static public function mdlMostrarConductorhoyactcbf($tabla, $item, $valor){
 
-		if($item != null){
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf >0");
-
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-
-			$stmt -> execute();
-
-			return $stmt -> fetch();
-
-		}else{
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE act_cbf >0");
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
-		}
-
-		$stmt -> close();
-
-		$stmt = null;
-
-	}*/
 
 		static public function mdlMostrarConductoresMesactcbf($tabla, $item2, $valor2){
 
@@ -825,32 +799,11 @@ class ModeloConductor extends Model {
 
 
 
-	static public function mdlMostrarunConductor($tabla, $item, $valor, $idconductor){
+	static public function mdlMostrarunConductor($idconductor){
 
-		if($item != null){
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where dni = $idconductor");
-
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-
-			$stmt -> execute();
-
-			return $stmt -> fetch();
-
-		}else{
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where dni = $idconductor");
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
-		}
-
-		$stmt -> close();
-
-		$stmt = null;
-
+		$user = ModeloConductor::one([
+							'dni'=>$idconductor
+						] );
 	}
 
 

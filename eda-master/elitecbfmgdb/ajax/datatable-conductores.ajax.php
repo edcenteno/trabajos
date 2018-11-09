@@ -3,6 +3,19 @@
 require_once "../controladores/conductores.controlador.php";
 require_once "../modelos/conductores.modelo.php";
 
+require '../modelos/vendor/autoload.php'; //
+
+use Purekid\Mongodm\Model;
+//require_once "conexion.php";
+ class Provincias extends Model
+    {
+
+        static $collection = "provincias";
+
+        /** use specific config section **/
+        public static $config = 'default';
+
+    }
 
 class TablaConductor{
 
@@ -17,6 +30,7 @@ class TablaConductor{
     $orden = "id";
 
     $conductores = ControladorConductor::ctrMostrarConductor($item, $valor, $orden);
+
     //var_dump($conductores);
     //return;
 
@@ -57,10 +71,13 @@ class TablaConductor{
                 }else if ($easytaxi == 0 && $cabify == 0) {
                     $cabify = "";
                 }
+            $provincias = Provincias::one(['id'=>$conductores[$i]->id_provincia
+            ]);
 
 
         echo '[
             "'.$conductores[$i]->fecha.'",
+            "'.$provincias->descripcion.'",
             "'.$dni.'",
             "'.$conductores[$i]->nombre.'",
             "'.$conductores[$i]->apellido.'",
@@ -98,10 +115,14 @@ class TablaConductor{
 
             }
 
+            $provincias = Provincias::one(['id'=>$conductores[count($conductores)-1]->id_provincia
+            ]);
+
 
        echo'[
 
             "'.$conductores[count($conductores)-1]->fecha.'",
+            "'.$provincias->descripcion.'",
             "'.$conductores[count($conductores)-1]->dni.'",
             "'.$conductores[count($conductores)-1]->nombre.'",
             "'.$conductores[count($conductores)-1]->apellido.'",
