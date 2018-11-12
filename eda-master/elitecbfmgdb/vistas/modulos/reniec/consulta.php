@@ -1,9 +1,17 @@
 <?php
+require_once("srchector/autoload.php" );
+require 'vendor3/autoload.php'; // incluir lo bueno de Composer
+/*use Modelo\Conductores;*/
+use Purekid\Mongodm\Model;
+class ModeloConductor extends Model {
 
-error_reporting(0);
-  include "php/conexion.php";
-  require_once("srchector/autoload.php" );
-  $conexion=conexion();
+        static $collection = "conductores";
+
+        /** use specific config section **/
+        public static $config = 'default';
+
+}
+
   $essalud = new \EsSalud\EsSalud();
   $mintra = new \MinTra\mintra();
 
@@ -13,21 +21,18 @@ $provincia = $_POST['provincia'];
 
 if (is_numeric($dni) && strlen($dni) == 8) {
 
-  function buscaRepetido($dni,$conexion){
-    $sql="SELECT * from conductores where dni='$dni'";
-    $result=mysqli_query($conexion,$sql);
-    while($row = $result->fetch_array(MYSQLI_ASSOC)){
-      $rows[] = $row;
-    }
+  function buscaRepetido($dni){
 
-    if(mysqli_num_rows($result) > 0){
-      return 1;
-    }else{
-      return 0;
-    }
+      $count = ModeloConductor::count(array('dni'=>$dni));
+
+      if($count > 0){
+        return 1;
+      }else{
+        return 0;
+      }
   }
 
-  if(buscaRepetido($dni,$conexion)==0){
+  if(buscaRepetido($dni)==0){
 
   $search1 = $essalud->search( $dni );
     if( $search1->success == true ){
