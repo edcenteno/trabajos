@@ -1,5 +1,4 @@
 <?php
-
 date_default_timezone_set('America/Lima');
 
 require 'vendor/autoload.php'; //
@@ -13,6 +12,8 @@ class ModeloConductor extends Model {
 
         /** use specific config section **/
         public static $config = 'default';
+
+
 	/*=============================================
 	MOSTRAR USUARIOS
 	=============================================*/

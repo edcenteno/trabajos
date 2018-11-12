@@ -1,5 +1,5 @@
 <?php
-
+//use Controladores\ControladorConductor;
     $idconductor =$_GET['idconductor'];
     $item = "dni";
     $valor = $idconductor;
@@ -205,6 +205,7 @@ if(empresa =="cabify"){
                     <center class="m-t-30">
 
                         <?php
+
                         $foto = $value['foto'];
 
                             $nombre_fichero ='extensiones/tcpdf/pdf/images/conductores/'.$foto;

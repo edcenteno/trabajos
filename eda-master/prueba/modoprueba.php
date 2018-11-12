@@ -3,7 +3,7 @@
 /*include 'conex.php';*/
     function conexion()
     {
-        //return $conexion=mysqli_connect("localhost","arhuantecedentes","^Zi7ZZl!SCfA","arhuantecedentes");
+       // return $conexion=mysqli_connect("localhost","arhuantecedentes","^Zi7ZZl!SCfA","arhuantecedentes");
         return $conexion=mysqli_connect("localhost","root","","arhuantecedentes");
 
     }
@@ -17,13 +17,14 @@ $result=mysqli_query($conexion,$sql);
         foreach ($result as $key => $value) {
             $fecha = $value['fecha'];
             $dni = $value['dni'];
-            $nombres = $value['nombre'];
+           /* $nombres = $value['nombre'];
             $placa = $value['placa'];
             $puntaje = $value['puntaje'];
             $apellido = $value['apellido'];
+            $extr = $value['tipo'];*/
 
-              $cabify = 1;
-
+            //  $cabify = 1;
+/*
             if($placa == ""){
                 $placa = "NINGUNO";
 
@@ -32,15 +33,17 @@ $result=mysqli_query($conexion,$sql);
             if($placa == "NINGUNA"){
                 $placa = "NINGUNO";
 
-            }
+            }*/
             /*$sentencia="SELECT COUNT(*) as cont where dni = $dni";*/
-         $sentencia="INSERT INTO conductores (fecha, dni, nombre, apellido, placa, record_cond, cabify, id_provincia)
-                        values ('$fecha', '$dni', '$nombres', '$apellido', '$placa', '$puntaje', '$cabify', '4')";
+
+          $sentencia=  "UPDATE conductores SET easytaxi = '1', cabify = '0' WHERE dni = '$dni'";
+       /*  $sentencia="INSERT INTO conductores (fecha, dni, nombre, apellido, placa, record_cond, cabify, extr, id_provincia)
+                        values ('$fecha', '$dni', '$nombres', '$apellido', '$placa', '$puntaje', '$cabify', '$extr', '4')";*/
 
         $reg=mysqli_query($conexion,$sentencia);
-       /* echo "<pre>";
+        echo "<pre>";
         var_dump($sentencia);
-        echo "</pre>";*/
+        echo "</pre>";
 
         }
         echo "ok";

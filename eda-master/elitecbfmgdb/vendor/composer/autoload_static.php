@@ -12,6 +12,10 @@ class ComposerStaticInitf91f76b9090c1973986130942e47b011
     );
 
     public static $prefixLengthsPsr4 = array (
+        'm' => 
+        array (
+            'modelo\\' => 7,
+        ),
         'P' => 
         array (
             'Purekid\\Mongodm\\' => 16,
@@ -27,6 +31,10 @@ class ComposerStaticInitf91f76b9090c1973986130942e47b011
     );
 
     public static $prefixDirsPsr4 = array (
+        'modelo\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modelos',
+        ),
         'Purekid\\Mongodm\\' => 
         array (
             0 => __DIR__ . '/..' . '/purekid/mongodm/src',
@@ -39,6 +47,10 @@ class ComposerStaticInitf91f76b9090c1973986130942e47b011
         array (
             0 => __DIR__ . '/..' . '/alcaeus/mongo-php-adapter/lib/Alcaeus/MongoDbAdapter',
         ),
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/../..' . '/controladores',
     );
 
     public static $prefixesPsr0 = array (
@@ -56,6 +68,7 @@ class ComposerStaticInitf91f76b9090c1973986130942e47b011
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitf91f76b9090c1973986130942e47b011::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitf91f76b9090c1973986130942e47b011::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitf91f76b9090c1973986130942e47b011::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitf91f76b9090c1973986130942e47b011::$prefixesPsr0;
 
         }, null, ClassLoader::class);

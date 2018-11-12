@@ -46,7 +46,7 @@ echo $users->nombre;*/
         //echo "</pre>";
         //
         //
-    $usuarioscabify = Conductores::all();
+   /* $usuarioscabify = Conductores::all();
 
 
     //var_dump($provincias);
@@ -61,7 +61,26 @@ echo $users->nombre;*/
             ]);
      echo $provincias->descripcion . "<br>";
     break;
-    }
-    //echo "</pre>";
+    }*/
+    $conductores = Conductores::all()->sortBy(function($conductor){
+    return $conductor->_id;
+
+    })->take(1);
+   // var_dump($conductores);
+   /* foreach ($conductores as $key => $value) {
+        echo $value->secuencia_arhu_ant . "<br>";
+       // echo $value->id_provincia . "<br>";
+
+    }*/
+   //var_dump($conductores)
+
+
+
+
+  //reverse collection items
+  //echo "<pre>";
+  //var_dump($conductores['nombre']);
+  echo $conductores[0]->secuencia_arhu_ant;
+  //  echo "</pre>";
 
 ?>

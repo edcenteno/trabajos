@@ -4,7 +4,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modelos\\"  : "ModeloUsuarios/"
+             "Modelos\\"  : "ModeloUsuarios/"
         }
     }
 }
