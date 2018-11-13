@@ -24,7 +24,7 @@ class ModeloConductor{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT T1.*, T2.descripcion FROM conductores T1 INNER JOIN provincias T2 ON T1.id_provincia = T2.id");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM antecedentes");
 
 			$stmt -> execute();
 

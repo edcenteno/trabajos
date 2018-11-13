@@ -1,16 +1,7 @@
 <?php
 
-require 'vendor3/autoload.php'; // incluir lo bueno de Composer
-/*use Modelo\Conductores;*/
-use Purekid\Mongodm\Model;
-class ModeloConductor extends Model {
+require 'modelo/modeloconductor.php';
 
-        static $collection = "conductores";
-
-        /** use specific config section **/
-        public static $config = 'default';
-
-}
 
 		$fecha_reg = date("Y-m-d H:i:s");
 		$nombre = $_POST['nombre'];
@@ -41,7 +32,7 @@ class ModeloConductor extends Model {
 				$conductores = ModeloConductor::all()->sortBy(function($conductor){
 			    return $conductor->_id;
 			    })->take(1);
-			    $secuencia_arhu_ant = $conductores[0]->secuencia_arhu_ant;;
+			    $secuencia_arhu_ant = $conductores[0]->secuencia_arhu_ant;
 				$secu = substr($secuencia_arhu_ant, 7, -5);
 				$mes = date("M");
 
