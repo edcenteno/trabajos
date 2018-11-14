@@ -1,10 +1,18 @@
 <?php
-require_once "conex.php";
+require 'modelo/modeloconductor.php';
+require_once("crv/src/autoload.php");
+
+$conductores = ModeloConductor::one(['dni'=>$dni]);
+$contsoat = $conductores->contsoat;
+$contsoat++;
+
+
+$fecha_reg = date("Y-m-d H:i:s");
 $placa=$_POST['placa'];
 $cabify = $_POST['cabify'];
 $easy = $_POST['easy'];
 
-require_once("crv/src/autoload.php");
+
 
 $test = new \Pit\Pit();
 $out=$test->check( "$placa" ); // Sin Requisitoria
@@ -60,148 +68,40 @@ $TipoCertificado = $out['TipoCertificado'];
 $observacion = "";
 
 if ($estado == "VIGENTE") {
-    if ($cabify == 1 && $easy == 1) {
-  $sentencia="UPDATE conductores SET
-                 contsoat = contsoat+1,
-                 fecha_actsoat = NOW( ),
-                 soat = '".$estado."',
-                 placa = '".$placa."',
-                 orden_captura = '".$crv."',
-                 fecha_inicio_soat = '".$FechaInicio."',
-                 fecha_fin_soat = '".$FechaFin."',
-                 nombrecompania = '".$NombreCompania."',
-                 numeropoliza = '".$NumeroPoliza."',
-                 NombreUsoVehiculo = '".$NombreUsoVehiculo."',
-                 nombreclasevehiculo = '".$NombreClaseVehiculo."',
-                 fechacontrolpolicial = '".$FechaControlPolicial."',
-                 observacion = '',
-                 resultado = 'APTO',
-                 TipoCertificado = '".$TipoCertificado."'
-                 WHERE dni='".$dni."' ";
 
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
-}
-if ($cabify == 0 && $easy == 0) {
-  $sentencia="UPDATE conductores SET
-                 contsoat = contsoat+1,
-                 fecha_actsoat = NOW( ),
-                 soat = '".$estado."',
-                 placa = '".$placa."',
-                 orden_captura = '".$crv."',
-                 fecha_inicio_soat = '".$FechaInicio."',
-                 fecha_fin_soat = '".$FechaFin."',
-                 nombrecompania = '".$NombreCompania."',
-                 numeropoliza = '".$NumeroPoliza."',
-                 NombreUsoVehiculo = '".$NombreUsoVehiculo."',
-                 nombreclasevehiculo = '".$NombreClaseVehiculo."',
-                 fechacontrolpolicial = '".$FechaControlPolicial."',
-                 observacion = '',
-                 resultado = 'APTO',
-                 TipoCertificado = '".$TipoCertificado."'
-                 WHERE dni='".$dni."' ";
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
-}
+        $conductores->update([
+                        'fecha_actsoat'=>$fecha_reg,
+                        'soat'=>$estado,
+                        'fecha_inicio_soat'=>$FechaInicio,
+                        'fecha_fin_soat'=>$FechaFin,
+                        'nombrecompania'=>$NombreCompania,
+                        'numeropoliza'=>$NumeroPoliza,
+                        'NombreUsoVehiculo'=>$NombreUsoVehiculo,
+                        'orden_captura'=>$crv,
+                        'nombreclasevehiculo'=>$NombreClaseVehiculo,
+                        'fechacontrolpolicial'=>$FechaControlPolicial,
+                        'contsoat'=>$contsoat,
+                        'observacion'=>'',
+                        'resultado'=>'APTO',
+                        'TipoCertificado'=>$TipoCertificado
+                            ]);
+        $conductores->save();
 
-if ($cabify == 1 && $easy == 0) {
-  $sentencia="UPDATE conductores SET
-                 contsoat = contsoat+1,
-                 fecha_actsoat = NOW( ),
-                 soat = '".$estado."',
-                 placa = '".$placa."',
-                 orden_captura = '".$crv."',
-                 fecha_inicio_soat = '".$FechaInicio."',
-                 fecha_fin_soat = '".$FechaFin."',
-                 nombrecompania = '".$NombreCompania."',
-                 numeropoliza = '".$NumeroPoliza."',
-                 NombreUsoVehiculo = '".$NombreUsoVehiculo."',
-                 nombreclasevehiculo = '".$NombreClaseVehiculo."',
-                 fechacontrolpolicial = '".$FechaControlPolicial."',
-                 observacion = '',
-                 resultado = 'APTO',
-                 TipoCertificado = '".$TipoCertificado."'
-                 WHERE dni='".$dni."' ";
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
-}
-
-if ($cabify == 0 && $easy == 1) {
-  $sentencia="UPDATE conductores SET
-                 contsoat = contsoat + 1,
-                 fecha_actsoat = NOW( ),
-                 soat = '".$estado."',
-                 placa = '".$placa."',
-                 orden_captura = '".$crv."',
-                 fecha_inicio_soat = '".$FechaInicio."',
-                 fecha_fin_soat = '".$FechaFin."',
-                 nombrecompania = '".$NombreCompania."',
-                 numeropoliza = '".$NumeroPoliza."',
-                 NombreUsoVehiculo = '".$NombreUsoVehiculo."',
-                 nombreclasevehiculo = '".$NombreClaseVehiculo."',
-                 fechacontrolpolicial = '".$FechaControlPolicial."',
-                 observacion = '',
-                 resultado = 'APTO',
-                 TipoCertificado = '".$TipoCertificado."'
-                 WHERE dni='".$dni."' ";
-
-                 echo $sentencia;
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-}
 } else {
+
     $soat = 'El vehiculo consultado no posee SOAT';
     $estado = "VENCIDO";
-    if ($cabify == 1 && $easy == 1) {
-  $sentencia="UPDATE conductores SET
-                 contsoat = contsoat+1,
-                 fecha_actsoat = NOW( ),
-                 soat = '".$estado."',
-                 orden_captura = '".$crv."',
-                 observacion = '".$soat."',
-                 resultado = 'NO APTO'
-                 WHERE dni='".$dni."' ";
 
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
-}
-if ($cabify == 0 && $easy == 0) {
-  $sentencia="UPDATE conductores SET
-                 contsoat = contsoat+1,
-                 fecha_actsoat = NOW( ),
-                 soat = '".$estado."',
-                 orden_captura = '".$crv."',
-                 observacion = '".$soat."',
-                 resultado = 'NO APTO'
-                 WHERE dni='".$dni."' ";
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
-}
+        $conductores->update([
+                'fecha_actsoat'=>$fecha_reg,
+                'soat'=>$estado,
+                'orden_captura'=>$crv,
+                'contsoat'=>$contsoat,
+                'observacion'=>$soat,
+                'resultado'=>'NO APTO',
+                'TipoCertificado'=>$TipoCertificado
+                    ]);
+        $conductores->save();
 
-if ($cabify == 1 && $easy == 0) {
- echo $sentencia="UPDATE conductores SET
-                 contsoat = contsoat+1,
-                 fecha_actsoat = NOW( ),
-                 soat = '".$estado."',
-                 placa = '".$placa."',
-                 orden_captura = '".$crv."',
-                 observacion = '".$soat."',
-                 resultado = 'NO APTO'
-                 WHERE dni='".$dni."' ";
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
-}
 
-if ($cabify == 0 && $easy == 1) {
-  $sentencia="UPDATE conductores SET
-                 contsoat = contsoat + 1,
-                 fecha_actsoat = NOW( ),
-                 soat = '".$estado."',
-                 placa = '".$placa."',
-                 orden_captura = '".$crv."',
-                 observacion = '".$soat."',
-                 resultado = 'NO APTO'
-                 WHERE dni='".$dni."' ";
-
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-}
 }

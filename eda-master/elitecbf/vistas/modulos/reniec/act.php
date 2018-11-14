@@ -142,8 +142,14 @@ else {
     $out=$test->check( "$placa" ); // Sin Requisitoria
 
 
-    $crv = $out['message'];
-    //echo $crv;
+    $crv = $out["message"];
+      if ($crv == "El vehiculo de placa $placa no tiene orden de captura en la provincia de Lima.") {
+
+        $crv = "El vehiculo de placa $placa no tiene orden de captura en la provincia de $provincia.";
+      } else {
+         $crv ="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguientes conceptos.";
+
+      }
 
 $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MTA2MQ.mNioS0vL0ckba0lPV955HvekjFHzvIcqEVqy1_kBerM';//token prestado
 $query = "

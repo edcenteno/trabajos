@@ -28,6 +28,23 @@
                 <div class="card-body">
                     <button type="button" class="btn btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarConductor"><i class="fa fa-plus-circle"></i> Nuevo Conductor </button>
                       <div class="table-responsive m-t-20">
+                        <!-- <table class="display nowrap table table-hover table-striped table-bordered dt-responsive">
+                          <tbody>
+                            <tr>
+                              <select name="">
+                                <option value="1"> Arequipa</option>
+                                <option value="2"> Chiclayo</option>
+                                <option value="3"> Cusco</option>
+                                <option value="4"> Lima</option>
+                                <option value="5"> Piura</option>
+                                <option value="6"> Trujillo</option>
+                                <option value="7"> App</option>
+                              </select>
+
+                          </tr>
+
+                        </tbody>
+                                              </table> -->
                         <table class="display nowrap table table-hover table-striped table-bordered dt-responsive tablaConductores" id = "condu" cellspacing="0" width="100%">
                             <thead>
                                 <tr>

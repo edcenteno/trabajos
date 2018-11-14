@@ -27,6 +27,40 @@
         $usuario_reg=$_POST['usuario_reg'];
         $provincia=$_POST['provincia'];
 
+        switch ($provincia) {
+            case '1':
+                $circunscripcion = "Arequipa";
+                break;
+            case '2':
+                $circunscripcion = "Chiclayo";
+                break;
+            case '3':
+                $circunscripcion = "Cusco";
+                break;
+            case '4':
+                $circunscripcion = "Lima";
+                break;
+            case '5':
+                $circunscripcion = "Piura";
+                break;
+            case '6':
+                $circunscripcion = "Trujillo";
+                break;
+
+        }
+
+          if ($crv != "El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguientes conceptos.") {
+
+            $crv = "El vehiculo de placa $placa no tiene orden de captura en la provincia de $circunscripcion.";
+            $observacion ="";
+            $conclusion = "";
+          } else {
+             $crv ="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA";
+             $observacion ="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA";
+             $conclusion = "NO APTO";
+
+          }
+
         if(buscaRepetido($dni,$conexion)==1){
             echo 2;
         }else{
@@ -50,12 +84,14 @@
                     $secuencia =  "RA-" .$año . $mes. $saa;
                 }
             $sql="INSERT into conductores
-                                (dni,nombre, apellido,soat,placa, orden_captura, fecha_inicio_soat,
+                                (dni,nombre, apellido,soat,resultado,
+                                 placa, observacion, orden_captura, fecha_inicio_soat,
                                  fecha_fin_soat, fecha_nacimiento, nombrecompania, numeropoliza,
                                  NombreUsoVehiculo, easytaxi, cabify, nombreclasevehiculo,
                                  fechacontrolpolicial, TipoCertificado, fecha, secuencia_arhu_ant, extr, form, usuario_reg, id_provincia)
                         values
-                                ('$dni','$nombre', '$apellidos', '$estado', '$placa', '$crv',
+                                ('$dni','$nombre', '$apellidos', '$estado', '$conclusion',
+                                 '$placa', '$observacion','$crv',
                                  '$FechaInicio', '$FechaFin', '$fecha_nacimiento', '$NombreCompania',
                                  '$NumeroPoliza', '$NombreUsoVehiculo', '$easytaxi', '$cabify',
                                  '$NombreClaseVehiculo', '$FechaControlPolicial', '$TipoCertificado',

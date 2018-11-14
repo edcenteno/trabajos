@@ -1,23 +1,13 @@
 <?php
 require_once("srchector/autoload.php" );
-require 'vendor3/autoload.php'; // incluir lo bueno de Composer
-/*use Modelo\Conductores;*/
-use Purekid\Mongodm\Model;
-class ModeloConductor extends Model {
-
-        static $collection = "conductores";
-
-        /** use specific config section **/
-        public static $config = 'default';
-
-}
+require 'modelo/modeloconductor.php';
 
   $essalud = new \EsSalud\EsSalud();
   $mintra = new \MinTra\mintra();
 
-$dni=$_POST['dni'];
-$usuario_reg = $_POST['usuario_reg'];
-$provincia = $_POST['provincia'];
+  $dni=$_POST['dni'];
+  $usuario_reg = $_POST['usuario_reg'];
+  $provincia = $_POST['provincia'];
 
 if (is_numeric($dni) && strlen($dni) == 8) {
 

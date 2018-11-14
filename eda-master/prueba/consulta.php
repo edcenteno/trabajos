@@ -81,7 +81,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
   //echo"<pre>";
   //print_r($test->search("$dni"));
   $out=$test->search("$dni");
-  //var_dump($out);
+  var_dump($out);
  /*$a = json_encode($out);*/
 
  /*$value = get_object_vars($out);*/
