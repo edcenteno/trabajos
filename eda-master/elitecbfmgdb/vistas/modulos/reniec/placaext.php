@@ -1,9 +1,7 @@
 <?php
 
-include 'php/conexion.php';
 $placa=$_POST['placa'];
-$conexion=conexion();
-//$placa="ABC123";
+
 if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $placa) &&
    preg_match('/^[a-zA-Z0-9]+$/', $placa) && strlen($placa) == 6){
 

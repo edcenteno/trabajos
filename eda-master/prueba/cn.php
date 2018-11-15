@@ -62,10 +62,10 @@ echo $users->nombre;*/
      echo $provincias->descripcion . "<br>";
     break;
     }*/
-    $conductores = Conductores::all()->sortBy(function($conductor){
+    /*$conductores = Conductores::all()->sortBy(function($conductor){
     return $conductor->_id;
 
-    })->take(1);
+    })->take(1);*/
    // var_dump($conductores);
    /* foreach ($conductores as $key => $value) {
         echo $value->secuencia_arhu_ant . "<br>";
@@ -74,13 +74,22 @@ echo $users->nombre;*/
     }*/
    //var_dump($conductores)
 
-
-
-
   //reverse collection items
   //echo "<pre>";
   //var_dump($conductores['nombre']);
-  echo $conductores[0]->secuencia_arhu_ant;
+  /*echo $conductores[0]->secuencia_arhu_ant;*/
   //  echo "</pre>";
+  //
+   //$conductores = Conductores::count({"fecha": /.*2018-11.*/});
+   // $regex = new MongoRegex("/.*2018-11-10.*/");
+//$collection->find(array('street_name' => $regex));
+  //$regex = new MongoRegex("/.*2018-11-10.*/");
+  //$params = array('fecha'=> "/.*2018-11-10.*/");
+  //$users = Conductores::find(['dni'=> "/.4.*/"]);     // $users is instance of Collection
+  $users = Conductores::count(array("fecha" => new MongoRegex("/2018-11/")));
+  //var_dump($users);
+  echo $users;
 
+  /* $count = Conductores::count(array('fecha'=>2018-11));
+   echo $count;*/
 ?>

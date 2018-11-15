@@ -3,6 +3,9 @@ error_reporting(0);
 $dni = $_POST['dni'];
 $type = $_POST['type'];
 
+require 'modelo/modeloconductor.php';
+$conductores = ModeloConductor::one(['dni'=>$dni]);
+
 if ($type != 1){
 
 
@@ -22,14 +25,11 @@ if ($type != 1){
         $ruc = "No posee RUC.";
     }
 
+    $conductores->update([
+                          'ruc'=>'$ruc'
+                        ]);
+    $conductores->save();
 
- include "conex.php";
- $sentencia="UPDATE conductores SET
-                 ruc = '".$ruc."'
-                 WHERE dni='".$dni."' ";
-
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-//echo $sentencia;
 echo "TRUE";
 
 }

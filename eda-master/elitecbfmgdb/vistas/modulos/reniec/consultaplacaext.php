@@ -1,5 +1,5 @@
 <?php
-include 'php/conexion.php';
+require 'modelo/modeloconductor.php';
 $nombre =$_POST['nombre'];
 $fecha_nacimiento= $_POST['fechaNacimiento'];
 $apellidos= $_POST['apellidos'];
@@ -12,21 +12,18 @@ $provincia=$_POST['provincia'];
 
 
 $conexion=conexion();
-function buscaRepetido($dni,$conexion){
-    $sql="SELECT * from conductores where dni='$dni'";
-    $result=mysqli_query($conexion,$sql);
-    while($row = $result->fetch_array(MYSQLI_ASSOC)){
-      $rows[] = $row;
-    }
+function buscaRepetido($dni){
 
-    if(mysqli_num_rows($result) > 0){
-      return 1;
-    }else{
-      return 0;
-    }
+     $count = ModeloConductor::count(array('dni'=>$dni));
+
+        if($count > 0){
+          return 1;
+        }else{
+          return 0;
+        }
   }
 
-if(buscaRepetido($dni,$conexion)==1){
+if(buscaRepetido($dni)==1){
       echo '<script>
 
                 swal({

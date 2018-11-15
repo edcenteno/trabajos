@@ -151,61 +151,22 @@ class ModeloConductor extends Model {
 
 	}
 
-	static public function mdlMostrarConductorhoy($tabla, $item, $valor){
-		$mes=date('Y-m');
-		if($item != null){
+	static public function mdlMostrarConductorhoy($item, $valor){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '$mes%'");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+		$conductores = ModeloConductor::count(array($item => new MongoRegex("/$valor/")));
 
-			$stmt -> execute();
-
-			return $stmt -> fetch();
-
-		}else{
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '$mes%'");
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
-		}
-
-		$stmt -> close();
-
-		$stmt = null;
+            //var_dump($conductores);
+           return $conductores;
 
 	}
 
-		static public function mdlMostrarConductoresMes($tabla, $item2, $valor2){
-			$fecha_actual = date("Y-m-d");
-			$mes_anterior = date("Y-m",strtotime($fecha_actual."- 1 month"));
-		if($item2 != null){
+		static public function mdlMostrarConductoresMes($item, $valor2){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '$mes_anterior%'");
+		$conductores = ModeloConductor::count(array($item => new MongoRegex("/$valor2/")));
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-
-			$stmt -> execute();
-
-			return $stmt -> fetch();
-
-		}else{
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '$mes_anterior%'");
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
-		}
-
-		$stmt -> close();
-
-		$stmt = null;
-
+            //var_dump($conductores);
+           return $conductores;
 	}
 
 	/*=============================================

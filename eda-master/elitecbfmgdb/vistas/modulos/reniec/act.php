@@ -47,13 +47,13 @@ if ($type == 1) {
   $fechanac=$out->result->FechaNacimiento;
 
 
-  $conductores->update([
-                        'nombre'=>$nombre,
-                        'apellido'=>$apellidos,
-                        'fecha_nacimiento'=>$fechanac,
-                        'resultado'=>''
-                            ]);
-  $conductores->save();
+    $conductores->update([
+                          'nombre'=>$nombre,
+                          'apellido'=>$apellidos,
+                          'fecha_nacimiento'=>$fechanac,
+                          'resultado'=>''
+                              ]);
+    $conductores->save();
 
 }
 
@@ -277,50 +277,48 @@ if ($cabify == 0 && $easy == 0) {
     $conductores->save();
 
   }
-if ($cabify == 0 && $easy == 0) {
-  $sentencia="UPDATE conductores SET
-                 act = act+1,
-                 act_cbf = act_cbf + 1,
-                 act_easy = act_easy + 1,
-                 fecha_act = '".$fecha_reg."',
-                 soat = '".$soat."',
-                 placa = '".$placa."',
-                 orden_captura = '".$crv."',
-                 observacion = '".$soat."',
-                 resultado = 'NO APTO'
-                 WHERE dni='".$dni."' ";
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-////echo $sentencia;
+
+  if ($cabify == 0 && $easy == 0) {
+
+    $conductores->update([
+          'act'=>$act,
+          'act_cbf'=>$act_cbf,
+          'act_easy'=>$act_easy,
+          'fecha_act'=>$fecha_reg,
+          'soat'=>$soat,
+          'observacion'=>$soat,
+          'resultado'=>'NO APTO'
+              ]);
+    $conductores->save();
+
 }
 
-if ($cabify == 1 && $easy == 0) {
-  $sentencia="UPDATE conductores SET
-                 act = act+1,
-                 act_cbf = act_cbf + 1,
-                 fecha_act = '".$fecha_reg."',
-                 soat = '".$soat."',
-                 placa = '".$placa."',
-                 orden_captura = '".$crv."',
-                 observacion = '".$soat."',
-                 resultado = 'NO APTO'
-                 WHERE dni='".$dni."' ";
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-////echo $sentencia;
-}
+  if ($cabify == 1 && $easy == 0) {
 
-if ($cabify == 0 && $easy == 1) {
-  $sentencia="UPDATE conductores SET
-                 act_easy = act_easy + 1,
-                 act = act+1,
-                 fecha_act = '".$fecha_reg."',
-                 soat = '".$soat."',
-                 placa = '".$placa."',
-                 orden_captura = '".$crv."',
-                 observacion = '".$soat."',
-                  resultado = 'NO APTO'
-                  WHERE dni='".$dni."' ";
-$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-}
+    $conductores->update([
+          'act'=>$act,
+          'act_cbf'=>$act_cbf,
+          'fecha_act'=>$fecha_reg,
+          'soat'=>$soat,
+          'observacion'=>$soat,
+          'resultado'=>'NO APTO'
+              ]);
+    $conductores->save();
+
+  }
+
+  if ($cabify == 0 && $easy == 1) {
+
+    $conductores->update([
+          'act'=>$act,
+          'act_easy'=>$act_easy,
+          'fecha_act'=>$fecha_reg,
+          'soat'=>$soat,
+          'observacion'=>$soat,
+          'resultado'=>'NO APTO'
+              ]);
+    $conductores->save();
+  }
 }
 
 }

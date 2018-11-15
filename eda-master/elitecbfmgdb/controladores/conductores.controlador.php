@@ -448,9 +448,7 @@ class ControladorConductor{
 
 	static public function ctrMostrarConductorMes($item2, $valor2){
 
-		$tabla = "conductores";
-
-		$respuesta = ModeloConductor::mdlMostrarConductoresMes($tabla, $item2, $valor2);
+		$respuesta = ModeloConductor::mdlMostrarConductoresMes($item2, $valor2);
 
 		return $respuesta;
 
@@ -458,9 +456,8 @@ class ControladorConductor{
 
 	static public function ctrMostrarConductorhoy($item, $valor){
 
-	$tabla = "conductores";
 
-	$respuesta = ModeloConductor::mdlMostrarConductorhoy($tabla, $item, $valor);
+	$respuesta = ModeloConductor::mdlMostrarConductorhoy($item, $valor);
 
 	return $respuesta;
 	}

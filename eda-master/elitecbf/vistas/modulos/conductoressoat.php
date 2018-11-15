@@ -26,7 +26,18 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarConductor"><i class="fa fa-plus-circle"></i> Nuevo Conductor </button> -->
+                  <div class="box-tools pull-right">
+
+                    <?php
+                     echo '<a href="vistas/modulos/descargar-reporte-soat.php?reporte=reporte">';
+                    ?>
+
+                       <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
+
+                      </a>
+
+                    </div>
+
                       <div class="table-responsive m-t-20">
                         <table class="display nowrap table table-hover table-striped table-bordered dt-responsive tablaConductoresSoat" cellspacing="0" width="100%">
                             <thead>

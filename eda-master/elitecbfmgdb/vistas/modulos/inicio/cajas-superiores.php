@@ -1,22 +1,19 @@
 <?php
 
-$item = null;
-$valor = null;
-$orden = "id";
+$item = "fecha";
+$valor = date('Y-m');
+$fecha_actual = date("Y-m-d");
 
-$item2 = null;
-$valor2 = null;
+$valor2 = date("Y-m",strtotime($fecha_actual."- 1 month"));
 
 //$ventas = ControladorVentas::ctrSumaTotalVentas();
 
 
-$clientes = ControladorConductor::ctrMostrarConductorhoy($item, $valor);
-$totalClientes = count($clientes);
+$totalClientes = ControladorConductor::ctrMostrarConductorhoy($item, $valor);
+$totalClientes2 = ControladorConductor::ctrMostrarConductorMes($item, $valor2);
 
-$clientes2 = ControladorConductor::ctrMostrarConductorMes($item2, $valor2);
-$totalClientes2 = count($clientes2);
 $a = number_format($totalClientes);
-$fecha_actual = date("M-Y");
+
 
 ?>
 

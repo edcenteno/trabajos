@@ -1,5 +1,4 @@
-<html>
-<head>
+
 <?php
 $usuario_reg = $_SESSION["nombre"];
 $provincia = $_SESSION["id_provincia"];
