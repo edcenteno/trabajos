@@ -257,11 +257,12 @@ if(empresa =="cabify"){
                            if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == NULL ||$value['soat'] == "undefined" ) {
 
                                        echo '
-                                                <button class="btn btn-danger" onclick="actualizarsoats()">ActualizarSOAT</button>
+
                                             ';
 
                                 }
                         ?>
+                        <button class="btn btn-danger" onclick="actualizarsoats()">ActualizarSOAT</button>
                     <hr>
                     <!-- <div class="card-body"> <small class="text-muted">DNI Digital</small></br> -->
                     <?php
@@ -914,7 +915,7 @@ if(empresa =="cabify"){
                                      });
 
 
-                                  //  setTimeout('document.location.reload()',3000);
+                                    setTimeout('document.location.reload()',3000);
 
                                   }
                                     })

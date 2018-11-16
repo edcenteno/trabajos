@@ -1,35 +1,25 @@
 <?php
 
-$item = null;
-$valor = null;
-$orden = "id";
+$totalClientes =ModeloConductor::count([
+                                  'easytaxi'=>'1',
+                                  'fecha' => new MongoRegex("/$mes/")
+                                ]);
 
-$item2 = null;
-$valor2 = null;
+$easy = ModeloConductor::count([
+                                'easytaxi'=>'1'
+                                ]);
 
-//$ventas = ControladorVentas::ctrSumaTotalVentas();
+$acteasy = ModeloConductor::count([
+                                  'easytaxi'=>'1',
+                                  'fecha' => new MongoRegex("/$mes/")
+                                ]);
+
+$migradosmes = ModeloConductor::count([
+                                  'migrareasy'=>'1',
+                                  'fechamigra' => new MongoRegex("/$mes/")
+                                ]);
 
 
-$clientes = ControladorConductor::ctrMostrarConductorhoyEasy($item, $valor);
-$totalClientes = count($clientes);
-
-$clientes2 = ControladorConductor::ctrMostrarConductorMesEasy($item2, $valor2);
-$easy = count($clientes2);
-
-$clientes3 = ControladorConductor::ctrMostrarConductorhoyeasyact($item2, $valor2);
-$acteasy = count($clientes3);
-
-$clientes4 = ControladorConductor::ctrMostrarConductorMeseasyact($item2, $valor2);
-$acteasymes = count($clientes4);
-
-$easy5 = ControladorConductor::ctrMostrarConductormigradosmeseasy($item2, $valor2);
-$migradosmes = count($easy5);
-
-$easy6 = ControladorConductor::ctrMostrarConductormigradosmesanterioreasy($item2, $valor2);
-$migradosmesanterior = count($easy6);
-
-$a = number_format($totalClientes);
-$e = number_format($easy);
 $fecha_actual = date("M-Y");
 ?>
 
@@ -47,8 +37,8 @@ $fecha_actual = date("M-Y");
                         <h2 class="counter text-warning"><?php echo $a ?></h2>
                     </div><br>
                     <?php
-                    $ab = str_replace(',','',$a);
-                     $b = ($ab *100)/2500;
+                    $totalClientes = str_replace(',','',$a);
+                     $b = ($totalClientes *100)/2500;
                      ?>
                 </div>
             </div>
@@ -106,8 +96,7 @@ $fecha_actual = date("M-Y");
                     <div class="ml-auto">
                         <h2 class="counter text-info"><?php echo number_format($migradosmes); ?></h2>
                         <?php
-                         $easy = $acteasy;
-                         $cbf = ($c *100)/20000;
+
                         ?>
                     </div>
                 </div>

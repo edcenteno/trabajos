@@ -56,9 +56,11 @@ class ModeloConductor{
 			return $stmt -> fetch();
 
 		}else{
-
-			$stmt = Conexion::conectar()->prepare("SELECT T1.*, T2.descripcion FROM conductores T1 INNER JOIN provincias T2 ON T1.id_provincia = T2.id WHERE id_provincia = $provincia");
-
+			if ($provincia == 4) {
+				$stmt = Conexion::conectar()->prepare("SELECT T1.*, T2.descripcion FROM conductores T1 INNER JOIN provincias T2 ON T1.id_provincia = T2.id WHERE id_provincia = $provincia  or id_provincia = 7");
+			} else {
+				$stmt = Conexion::conectar()->prepare("SELECT T1.*, T2.descripcion FROM conductores T1 INNER JOIN provincias T2 ON T1.id_provincia = T2.id WHERE id_provincia = $provincia");
+			}
 
 			$stmt -> execute();
 

@@ -169,7 +169,7 @@ require 'graficas/querys.php';
                         <div class="col-lg-12 col-md-6">
 
                         <?php
-                          //  include "inicio/cajas-superioreseasy.php";
+                            include "inicio/cajas-superioreseasy.php";
 
                         ?>
                         </div>
@@ -207,7 +207,7 @@ require 'graficas/querys.php';
                         <div class="col-lg-12 col-md-6">
 
                         <?php
-                            include "inicio/cajas-superioreseasy.php";
+                          //  include "inicio/cajas-superioreseasy.php";
 
                         ?>
                         </div>
@@ -283,281 +283,120 @@ require 'graficas/querys.php';
 <!-- ============================================================== -->
 
 <script type="text/javascript">
-  // ==============================================================
-    // Variales diarias
-    // ==============================================================
-    var dia1 = <?php echo json_encode($dia1)?>;
-    var dia1 = parseInt(dia1[0].dia1);
-
-    var dia2 = <?php echo json_encode($dia2)?>;
-    var dia2 = parseInt(dia2[0].dia2);
-
-    var dia3 = <?php echo json_encode($dia3)?>;
-    var dia3 = parseInt(dia3[0].dia3);
-
-    var dia4 = <?php echo json_encode($dia4)?>;
-    var dia4 = parseInt(dia4[0].dia4);
-
-    var dia5 = <?php echo json_encode($dia5)?>;
-    var dia5 = parseInt(dia5[0].dia5);
-
-    var dia6 = <?php echo json_encode($dia6)?>;
-    var dia6 = parseInt(dia6[0].dia6);
-
-    var dia7 = <?php echo json_encode($dia7)?>;
-    var dia7 = parseInt(dia7[0].dia7);
-
-    var dia8 = <?php echo json_encode($dia8)?>;
-    var dia8 = parseInt(dia8[0].dia8);
-
-    var dia9 = <?php echo json_encode($dia9)?>;
-    var dia9 = parseInt(dia9[0].dia9);
-
-    var dia10 = <?php echo json_encode($dia10)?>;
-    var dia10 = parseInt(dia10[0].dia10);
-
-    var dia11 = <?php echo json_encode($dia11)?>;
-    var dia11 = parseInt(dia11[0].dia11);
-
-    var dia12 = <?php echo json_encode($dia12)?>;
-    var dia12 = parseInt(dia12[0].dia12);
-
-    var dia13 = <?php echo json_encode($dia13)?>;
-    var dia13 = parseInt(dia13[0].dia13);
-
-    var dia14 = <?php echo json_encode($dia14)?>;
-    var dia14 = parseInt(dia14[0].dia14);
-
-    var dia15 = <?php echo json_encode($dia15)?>;
-    var dia15 = parseInt(dia15[0].dia15);
-
-    var dia16 = <?php echo json_encode($dia16)?>;
-    var dia16 = parseInt(dia16[0].dia16);
-
-    var dia17 = <?php echo json_encode($dia17)?>;
-    var dia17 = parseInt(dia17[0].dia17);
-
-    var dia18 = <?php echo json_encode($dia18)?>;
-    var dia18 = parseInt(dia18[0].dia18);
-
-    var dia19 = <?php echo json_encode($dia19)?>;
-    var dia19 = parseInt(dia19[0].dia19);
-
-    var dia20 = <?php echo json_encode($dia20)?>;
-    var dia20 = parseInt(dia20[0].dia20);
-
-    var dia21 = <?php echo json_encode($dia21)?>;
-    var dia21 = parseInt(dia21[0].dia21);
-
-    var dia22 = <?php echo json_encode($dia22)?>;
-    var dia22 = parseInt(dia22[0].dia22);
-
-    var dia23 = <?php echo json_encode($dia23)?>;
-    var dia23 = parseInt(dia23[0].dia23);
-
-    var dia24 = <?php echo json_encode($dia24)?>;
-    var dia24 = parseInt(dia24[0].dia24);
-
-    var dia25 = <?php echo json_encode($dia25)?>;
-    var dia25 = parseInt(dia25[0].dia25);
-
-    var dia26 = <?php echo json_encode($dia26)?>;
-    var dia26 = parseInt(dia26[0].dia26);
-
-    var dia27 = <?php echo json_encode($dia27)?>;
-    var dia27 = parseInt(dia27[0].dia27);
-
-    var dia28 = <?php echo json_encode($dia28)?>;
-    var dia28 = parseInt(dia28[0].dia28);
-
-    var dia29 = <?php echo json_encode($dia29)?>;
-    var dia29 = parseInt(dia29[0].dia29);
-
-    var dia30 = <?php echo json_encode($dia30)?>;
-    var dia30 = parseInt(dia30[0].dia30);
-
-    var dia31 = <?php echo json_encode($dia31)?>;
-    var dia31 = parseInt(dia31[0].dia31);
-
-    // ==============================================================
-    // Variables Apto - no aptos
-    // ==============================================================
-
-    var apto = <?php echo json_encode($apto)?>  ;
-    var apto = parseInt(apto[0].apto);
-
-    var noapto = <?php echo json_encode($noapto)?>;
-    var noapto = parseInt(noapto[0].noapto);
-
-    // ==============================================================
-    // Variables meses
-    // ==============================================================
-
-    var mayo = <?php echo json_encode($mayo)?>;
-    var mayo = parseInt(mayo[0].mayo);
-
-    var junio = <?php echo json_encode($junio)?>;
-    var junio = parseInt(junio[0].junio);
-
-    var julio = <?php echo json_encode($julio)?>;
-    var julio = parseInt(julio[0].julio);
-
-    var agosto = <?php echo json_encode($agosto)?>;
-    var agosto = parseInt(agosto[0].agosto);
-
-    var septiembre = <?php echo json_encode($septiembre)?>;
-    var septiembre = parseInt(septiembre[0].septiembre);
-
-    var octubre = <?php echo json_encode($octubre)?>;
-    var octubre = parseInt(octubre[0].octubre);
-
-    var noviembre = <?php echo json_encode($noviembre)?>;
-    var noviembre = parseInt(noviembre[0].noviembre);
-
-    var diciembre = <?php echo json_encode($diciembre)?>;
-    var diciembre = parseInt(diciembre[0].diciembre);
-
-    var enero = <?php echo json_encode($enero)?>;
-    var enero = parseInt(enero[0].enero);
-
-    var febrero = <?php echo json_encode($febrero)?>;
-    var febrero = parseInt(febrero[0].febrero);
-
-    var marzo = <?php echo json_encode($marzo)?>;
-    var marzo = parseInt(marzo[0].marzo);
-
-    var abril = <?php echo json_encode($abril)?>;
-    var abril = parseInt(abril[0].abril);
-
-
-</script>
-
-<script type="text/javascript">
     Morris.Area({
         element: 'morris-area-chart'
         , data: [{
                 period: '2018-10-01'
-                , Conductores: dia1
+                , Conductores: '<?php echo $dia1 ?>'
 
         }, {
                 period: '2018-10-02'
-                , Conductores: dia2
-
+                , Conductores: '<?php echo $dia2 ?>'
         }, {
                 period: '2018-10-03'
-                , Conductores: dia3
+                , Conductores: '<?php echo $dia3 ?>'
 
         }, {
                 period: '2018-10-04'
-                , Conductores: dia4
-
+                , Conductores:'<?php echo $dia4 ?>'
         }, {
                 period: '2018-10-05'
-                , Conductores: dia5
-
+                , Conductores:'<?php echo $dia5 ?>'
         }, {
                 period: '2018-10-06'
-                , Conductores: dia6
-
+                , Conductores:'<?php echo $dia6 ?>'
         }, {
                 period: '2018-10-07'
-                , Conductores: dia7
-
+                , Conductores:'<?php echo $dia7 ?>'
         },{
                 period: '2018-10-08'
-                , Conductores: dia8
-
+                , Conductores:'<?php echo $dia8 ?>'
         },{
                 period: '2018-10-09'
-                , Conductores: dia9
-
+                , Conductores:'<?php echo $dia9 ?>'
         },{
                 period: '2018-10-10'
-                , Conductores: dia10
+                , Conductores: '<?php echo $dia10 ?>'
 
         },{
                 period: '2018-10-11'
-                , Conductores: dia11
+                , Conductores: '<?php echo $dia11 ?>'
 
         },{
                 period: '2018-10-12'
-                , Conductores: dia12
+                , Conductores: '<?php echo $dia12 ?>'
 
         },{
                 period: '2018-10-13'
-                , Conductores: dia13
+                , Conductores: '<?php echo $dia13 ?>'
 
         },{
                 period: '2018-10-14'
-                , Conductores: dia14
+                , Conductores: '<?php echo $dia14 ?>'
 
         },{
                 period: '2018-10-15'
-                , Conductores: dia15
+                , Conductores: '<?php echo $dia15 ?>'
 
         },{
                 period: '2018-10-16'
-                , Conductores: dia16
+                , Conductores: '<?php echo $dia16 ?>'
 
         },{
                 period: '2018-10-17'
-                , Conductores: dia17
+                , Conductores: '<?php echo $dia17 ?>'
 
         }, {
                 period: '2018-10-18'
-                , Conductores: dia18
+                , Conductores: '<?php echo $dia18 ?>'
 
         }, {
                 period: '2018-10-19'
-                , Conductores: dia19
+                , Conductores: '<?php echo $dia19 ?>'
 
         },{
                 period: '2018-10-20'
-                , Conductores: dia20
-
+                , Conductores:'<?php echo $dia20 ?>'
         },{
                 period: '2018-10-21'
-                , Conductores: dia21
-
+                , Conductores:'<?php echo $dia21 ?>'
         },{
                 period: '2018-10-22'
-                , Conductores: dia22
-
+                , Conductores:'<?php echo $dia22 ?>'
         },{
                 period: '2018-10-23'
-                , Conductores: dia23
-
+                , Conductores:'<?php echo $dia23 ?>'
         },{
                 period: '2018-10-24'
-                , Conductores: dia24
+                , Conductores: '<?php echo $dia24 ?>'
 
         },{
                 period: '2018-10-25'
-                , Conductores: dia25
+                , Conductores: '<?php echo $dia25 ?>'
 
         },{
                 period: '2018-10-26'
-                , Conductores: dia26
+                , Conductores: '<?php echo $dia26 ?>'
 
         },{
                 period: '2018-10-27'
-                , Conductores: dia27
+                , Conductores: '<?php echo $dia27 ?>'
 
         },{
                 period: '2018-10-28'
-                , Conductores: dia28
+                , Conductores: '<?php echo $dia28 ?>'
 
         },{
                 period: '2018-10-29'
-                , Conductores: dia29
+                , Conductores: '<?php echo $dia29 ?>'
 
         },{
                 period: '2018-10-30'
-                , Conductores: dia30
+                , Conductores: '<?php echo $dia30 ?>'
 
         },{
                 period: '2018-10-31'
-                , Conductores: dia31
+                , Conductores: '<?php echo $dia31 ?>'
 
         }]
         , xkey: 'period'
@@ -582,11 +421,11 @@ require 'graficas/querys.php';
 $(function () {
     var data = [{
         label: "Aptos"
-        , data: apto
+        , data: '<?php echo $apto ?>'
         , color: "#9675ce"
     , }, {
         label: "No Aptos"
-        , data: noapto
+        , data: '<?php echo $noapto ?>'
         , color: "#e46a76"
     , }];
     var plotObj = $.plot($("#flot-pie-chart"), data, {
@@ -622,18 +461,18 @@ $(function () {
 Morris.Bar({
   element: 'bar-example',
   data: [
-    { y: 'Mayo', a: mayo },
-    { y: 'Junio', a: junio },
-    { y: 'Julio', a: julio },
-    { y: 'Agosto', a: agosto},
-    { y: 'Septiembre', a: septiembre},
-    { y: 'Octubre', a: octubre},
-    { y: 'Noviembre', a: noviembre},
-    /*{ y: 'Diciembre', a: diciembre},
-    { y: 'Enero', a:  enero },
-    { y: 'Febrero', a: febrero },
-    { y: 'Marzo', a: marzo},
-    { y: 'Abril', a: abril}*/
+    { y: 'Mayo', a: '<?php echo $mayo ?>' },
+    { y: 'Junio', a: '<?php echo $junio ?>' },
+    { y: 'Julio', a: '<?php echo $julio ?>' },
+    { y: 'Agosto', a: '<?php echo $agosto ?>'},
+    { y: 'Septiembre', a: '<?php echo $septiembre ?>'},
+    { y: 'Octubre', a: '<?php echo $octubre ?>'},
+    { y: 'Noviembre', a: '<?php echo $noviembre ?>'},
+    /*{ y: 'Diciembre', a: '<?php echo $diciembre ?>'},
+    { y: 'Enero', a:  '<?php echo $enero ?>' },
+    { y: 'Febrero', a: '<?php echo $febrero ?>' },
+    { y: 'Marzo', a: '<?php echo $marzo ?>'},
+    { y: 'Abril', a: '<?php echo $abril ?>'}*/
   ],
   xkey: 'y',
   ykeys: ['a'],

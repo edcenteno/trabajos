@@ -86,10 +86,20 @@ echo $users->nombre;*/
   //$regex = new MongoRegex("/.*2018-11-10.*/");
   //$params = array('fecha'=> "/.*2018-11-10.*/");
   //$users = Conductores::find(['dni'=> "/.4.*/"]);     // $users is instance of Collection
-  $users = Conductores::count(array("fecha" => new MongoRegex("/2018-11/")));
+  //$users = Conductores::count(array("fecha" => new MongoRegex("/2018-11/")));
   //var_dump($users);
-  echo $users;
+  /*echo $users;*/
 
   /* $count = Conductores::count(array('fecha'=>2018-11));
    echo $count;*/
+
+   $dia=0;
+   $mes=10;
+  while ($dia <= 31) {
+    $dia++;
+    $cond = Conductores::count([
+                                  'fecha' => new MongoRegex("/2018-$mes-$dia/")
+                                ]);
+    var_dump($cond) ;
+  }
 ?>

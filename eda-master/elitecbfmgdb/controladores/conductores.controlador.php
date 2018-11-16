@@ -478,10 +478,8 @@ class ControladorConductor{
 
 	static public function ctrMostrarConductorhoyCabify($item, $valor){
 
-	$tabla = "conductores";
 
-
-	$respuesta = ModeloConductor::mdlMostrarConductorhoyCabify($tabla, $item, $valor);
+	$respuesta = ModeloConductor::mdlMostrarConductorhoyCabify($item, $valor);
 
 	return $respuesta;
 	}

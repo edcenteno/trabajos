@@ -65,6 +65,15 @@ $TipoCertificado = $out['TipoCertificado'];
 
 if ($estado != "VIGENTE") {
   $soat = 'El vehiculo consultado no posee SOAT';
+
+  $sentencia="UPDATE antecedentes SET
+                 resultado = 'NO APTO',
+                 observacion = '".$soat."'
+                 WHERE id_historial='".$id."' ";
+
+$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
+
+
 } else {
   $soat = "VIGENTE";
 }
@@ -84,5 +93,5 @@ if ($estado != "VIGENTE") {
                  WHERE id_historial='".$id."' ";
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-echo $sentencia;
+//echo $sentencia;
 }

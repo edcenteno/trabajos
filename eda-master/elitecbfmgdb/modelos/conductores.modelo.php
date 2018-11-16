@@ -4,7 +4,7 @@ date_default_timezone_set('America/Lima');
 require 'vendor/autoload.php'; //
 
 use Purekid\Mongodm\Model;
-//require_once "conexion.php";
+
 
 class ModeloConductor extends Model {
 
@@ -174,6 +174,11 @@ class ModeloConductor extends Model {
 	=============================================*/
 	static public function mdlMostrarConductorhoyCabify($tabla, $item, $valor){
 		$mes = date('Y-m');
+		$apto = ModeloConductor::count([
+                                  'cabify'=>'1',
+                                  'fecha' => new MongoRegex("/2018-$mes/")
+                                ]);
+
 		if($item != null){
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE cabify = '1' and fecha like '$mes%'");

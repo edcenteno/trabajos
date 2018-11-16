@@ -1,14 +1,8 @@
 <?php
-require 'conexion.php';
-$fecha=date('Y-m');
-$sql="SELECT SUM(act) as sumaact FROM conductores where fecha_act LIKE '$fecha%'";
-    $result=mysqli_query($conexion,$sql);
-    while($row = $result->fetch_array(MYSQLI_ASSOC)){
-      $rows[] = $row;
-    }
-    foreach ($rows as $key => $value) {
-        $suma = $value['sumaact'];
-    }
+
+    $suma = ModeloConductor::count([
+                                  'fecha_act' => new MongoRegex("/$mes/")
+                                ]);
 ?>
 
 

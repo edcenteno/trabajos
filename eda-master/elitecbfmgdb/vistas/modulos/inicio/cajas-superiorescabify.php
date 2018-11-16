@@ -1,35 +1,29 @@
 <?php
-
-$item = null;
-$valor = null;
-$orden = "id";
-
-$item2 = null;
-$valor2 = null;
+$mes = date('Y-m');
+$mesact = date("Y-m",strtotime($mes."- 1 month"));
 
 //$ventas = ControladorVentas::ctrSumaTotalVentas();
 
 
-$clientes = ControladorConductor::ctrMostrarConductorhoyCabify($item, $valor);
-$totalClientes = count($clientes);
+$totalClientes = ModeloConductor::count([
+                                  'cabify'=>'1',
+                                  'fecha' => new MongoRegex("/$mes/")
+                                ]);
 
-$clientes2 = ControladorConductor::ctrMostrarConductorMesCabify($item2, $valor2);
-$cabify = count($clientes2);
+$cabify = ModeloConductor::count([
+                                  'cabify'=>'1'
+                                ]);
 
-$clientes3 = ControladorConductor::ctrMostrarConductorhoyCabifyact($item2, $valor2);
-$actcbf = count($clientes3);
+$actcbf = ModeloConductor::count([
+                                  'cabify'=>'1',
+                                  'fecha' => new MongoRegex("/$mes/")
+                                ]);
 
-$clientes4 = ControladorConductor::ctrMostrarConductorMesCabifyact($item2, $valor2);
-$actcbfmes = count($clientes4);
 
-$cbf5 = ControladorConductor::ctrMostrarConductormigradosmescbf($item2, $valor2);
-$migradosmes = count($cbf5);
-
-$cbf6 = ControladorConductor::ctrMostrarConductormigradosmesanteriorcbf($item2, $valor2);
-$migradosmesanterior = count($cbf6);
-
-$a = number_format($totalClientes);
-$c = number_format($cabify);
+$migradosmes =  ModeloConductor::count([
+                                  'migrarcabf'=>'1',
+                                  'fechamigra' => new MongoRegex("/$mes/")
+                                ]);
 
 
 $fecha_actual = date("M-Y");
@@ -46,11 +40,11 @@ $fecha_actual = date("M-Y");
                         <h3 class="text-muted">Reporte de conductores Cabify del mes </h3>
                     </div>
                     <div class="ml-auto">
-                        <h2 class="counter text-purple"><?php echo $a ?></h2>
+                        <h2 class="counter text-purple"><?php echo $totalClientes ?></h2>
                     </div><br>
                     <?php
-                    $ab = str_replace(',','',$a);
-                     $b = ($ab *100)/2500;
+                    $totalClientes = str_replace(',','',$a);
+                     $b = ($totalClientes *100)/2500;
                      ?>
                 </div>
             </div>
