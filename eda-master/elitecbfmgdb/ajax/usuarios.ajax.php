@@ -3,6 +3,14 @@
 require_once "../controladores/usuarios.controlador.php";
 require_once "../modelos/usuarios.modelo.php";
 
+use Purekid\Mongodm\Model;
+class ModeloUsuarios extends Model {
+
+        static $collection = "usuario_cabify";
+
+        /** use specific config section **/
+        public static $config = 'default';
+    }
 class AjaxUsuarios{
 
 	/*=============================================
@@ -13,12 +21,12 @@ class AjaxUsuarios{
 
 	public function ajaxEditarUsuario(){
 
-		$item = "id";
+		$item = "usuario";
 		$valor = $this->idUsuario;
 
 		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
-		echo json_encode($respuesta);
+		echo json_encode($respuesta->cleanData);
 
 	}
 
@@ -32,15 +40,27 @@ class AjaxUsuarios{
 
 	public function ajaxActivarUsuario(){
 
-		$tabla = "usuarioscabify";
-
 		$item1 = "estado";
 		$valor1 = $this->activarUsuario;
 
-		$item2 = "id";
+		$item2 = "usuario";
 		$valor2 = $this->activarId;
 
-		$respuesta = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+		$respuesta =ModeloUsuarios::one([
+						            $item2=>$valor2
+						            ]);
+
+						        //$fecha = $respuesta->ultimo_login;
+
+						        $respuesta->update([
+						            $item1=>$valor1
+						        ]);
+						        $respuesta->save();
+
+						       // var_dump($usuarioscabify);
+
+
+						            return "ok";
 
 	}
 

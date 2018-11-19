@@ -67,6 +67,8 @@ $(".tablas").on("click", ".btnEditarUsuario", function(){
 		processData: false,
 		dataType: "json",
 		success: function(respuesta){
+           // console.dir(respuesta.cleanData.);
+            //let {cleanData} = respuesta;
 
 			$("#editarNombre").val(respuesta["nombre"]);
 			$("#editarUsuario").val(respuesta["usuario"]);
@@ -174,7 +176,6 @@ ELIMINAR USUARIO
 =============================================*/
 $(".tablas").on("click", ".btnEliminarUsuario", function(){
 
-  var idUsuario = $(this).attr("idUsuario");
   var fotoUsuario = $(this).attr("fotoUsuario");
   var usuario = $(this).attr("usuario");
 
@@ -191,7 +192,7 @@ $(".tablas").on("click", ".btnEliminarUsuario", function(){
 
     if(result.value){
 
-      window.location = "index.php?ruta=usuarios&idUsuario="+idUsuario+"&usuario="+usuario+"&fotoUsuario="+fotoUsuario;
+      window.location = "index.php?ruta=usuarios&usuario="+usuario+"&fotoUsuario="+fotoUsuario;
 
     }
 

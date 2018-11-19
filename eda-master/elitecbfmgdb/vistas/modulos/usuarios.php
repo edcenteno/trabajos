@@ -1,3 +1,16 @@
+<?php
+
+require 'vendor/autoload.php'; //
+
+use Purekid\Mongodm\Model;
+
+    class ModeloProvincias extends Model {
+        static $collection = "provincias";
+
+        /** use specific config section **/
+        public static $config = 'default';
+}
+?>
 <!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
@@ -63,17 +76,17 @@
                             $valor = null;
 
                             $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
-
+                            $contador=0;
                            foreach ($usuarios as $key => $value){
-
+                            $contador++;
                               echo ' <tr>
-                                      <td>'.($key+1).'</td>
-                                      <td>'.$value["nombre"].'</td>
-                                      <td>'.$value["usuario"].'</td>';
+                                      <td>'.($contador).'</td>
+                                      <td>'.$value->nombre.'</td>
+                                      <td>'.$value->usuario.'</td>';
 
-                                      if($value["foto"] != ""){
+                                      if($value->foto != ""){
 
-                                        echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
+                                        echo '<td><img src="'.$value->foto.'" class="img-thumbnail" width="40px"></td>';
 
                                       }else{
 
@@ -81,28 +94,28 @@
 
                                       }
 
-                                      echo '<td>'.$value["perfil"].'</td>';
-                                      echo '<td>'.$value["empresa"].'</td>';
+                                      echo '<td>'.$value->perfil.'</td>';
+                                      echo '<td>'.$value->empresa.'</td>';
 
-                                      if($value["estado"] != 0){
+                                      if($value->estado != 0){
 
-                                        echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="0">Activado</button></td>';
+                                        echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value->usuario.'" estadoUsuario="0">Activado</button></td>';
 
                                       }else{
 
-                                        echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="1">Desactivado</button></td>';
+                                        echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value->usuario.'" estadoUsuario="1">Desactivado</button></td>';
 
 
                                       }
 
-                                      echo '<td>'.$value["ultimo_login"].'</td>
+                                      echo '<td>'.$value->ultimo_login.'</td>
                                       <td>
 
                                         <div class="btn-group">
 
-                                          <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+                                          <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value->usuario.'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
-                                          <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
+                                          <button class="btn btn-danger btnEliminarUsuario" fotoUsuario="'.$value->foto.'" usuario="'.$value->usuario.'"><i class="fa fa-times"></i></button>
 
                                         </div>
 
@@ -227,14 +240,12 @@ MODAL AGREGAR USUARIO
 
                   <?php
 
-                    $item = null;
-                    $valor = null;
 
-                    $provincia = ControladorProvincias::ctrMostrarProvincias($item, $valor);
-                    var_dump($provincia);
+                    $provincia = ModeloProvincias::all();
+                  //  var_dump($provincia);
                    foreach ($provincia as $key => $value){
                   ?>
-                    <option value="<?php echo $value['id']  ?>"><?php echo $value['descripcion'] ?></option>
+                    <option value="<?php echo $value->id  ?>"><?php echo $value->descripcion ?></option>
                   <?php
 
                     }

@@ -37,22 +37,28 @@ use Purekid\Mongodm\Model;
     REGISTRO DE USUARIO
     =============================================*/
 
-    static public function mdlIngresarUsuario($tabla, $datos){
+    static public function mdlIngresarUsuario($datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, usuario, password, perfil, foto, dni, correo, telefono, empresa, id_provincia) VALUES (:nombre, :usuario, :password, :perfil, :foto, :dni, :correo, :telefono, :empresa, :id_provincia)");
+        $usuarioscabify = new ModeloUsuarios([
+                    'nombre' => $datos['nombre'],
+                    'usuario' => $datos['usuario'],
+                    'password' => $datos['password'],
+                    'perfil' => $datos['perfil'],
+                    'foto' => $datos['foto'],
+                    'estado' => '0',
+                    'ultimo_login' => '',
+                    'fecha' => '',
+                    'dni' => $datos['dni'],
+                    'correo' => $datos['correo'],
+                    'telefono' => $datos['telefono'],
+                    'empresa' => $datos['empresa'],
+                    'id_provincia' => $datos['id_provincia'],
+                ]);
 
-        $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-        $stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
-        $stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
-        $stmt->bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
-        $stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
-        $stmt->bindParam(":dni", $datos["dni"], PDO::PARAM_STR);
-        $stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
-        $stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
-        $stmt->bindParam(":empresa", $datos["empresa"], PDO::PARAM_STR);
-        $stmt->bindParam(":id_provincia", $datos["id_provincia"], PDO::PARAM_STR);
+        $usuarioscabify->save();
 
-        if($stmt->execute()){
+
+        if($usuarioscabify->save()){
 
             return "ok";
 
@@ -61,10 +67,6 @@ use Purekid\Mongodm\Model;
             return "error";
 
         }
-
-        $stmt->close();
-
-        $stmt = null;
 
     }
 
@@ -72,18 +74,19 @@ use Purekid\Mongodm\Model;
     EDITAR USUARIO
     =============================================*/
 
-    static public function mdlEditarUsuario($tabla, $datos){
+    static public function mdlEditarUsuario($datos){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, password = :password, perfil = :perfil, empresa = :empresa, foto = :foto WHERE usuario = :usuario");
+        $usuarioscabify = ModeloUsuarios::one(['usuario'=>$datos['usuario'],]);
+         $usuarioscabify->update([
+                    'nombre' => $datos['nombre'],
+                    'password' => $datos['password'],
+                    'perfil' => $datos['perfil'],
+                    'foto' => $datos['foto']
+                    ]);
 
-        $stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-        $stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
-        $stmt -> bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
-        $stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
-        $stmt -> bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
-        $stmt -> bindParam(":empresa", $datos["empresa"], PDO::PARAM_STR);
+        $usuarioscabify->save();
 
-        if($stmt -> execute()){
+        if($usuarioscabify->save()){
 
             return "ok";
 
@@ -92,11 +95,6 @@ use Purekid\Mongodm\Model;
             return "error";
 
         }
-
-        $stmt -> close();
-
-        $stmt = null;
-
     }
 
     /*=============================================
@@ -118,15 +116,10 @@ use Purekid\Mongodm\Model;
 
        // var_dump($usuarioscabify);
 
-        if($fecha != $usuarioscabify->ultimo_login){
 
             return "ok";
 
-        }else{
 
-            return "error";
-
-        }
 
     }
 
@@ -134,25 +127,16 @@ use Purekid\Mongodm\Model;
     BORRAR USUARIO
     =============================================*/
 
-    static public function mdlBorrarUsuario($tabla, $datos){
+    static public function mdlBorrarUsuario($datos){
 
-        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+        $usuarioscabify = ModeloUsuarios::one(['usuario'=>$datos]);
+        $usuarioscabify->delete();
 
-        $stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
 
-        if($stmt -> execute()){
 
             return "ok";
 
-        }else{
 
-            return "error";
-
-        }
-
-        $stmt -> close();
-
-        $stmt = null;
 
 
     }

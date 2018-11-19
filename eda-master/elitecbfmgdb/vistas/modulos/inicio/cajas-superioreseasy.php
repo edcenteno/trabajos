@@ -34,7 +34,7 @@ $fecha_actual = date("M-Y");
                         <h3 class="text-muted">Reporte de conductores EasyTaxis del mes </h3>
                     </div>
                     <div class="ml-auto">
-                        <h2 class="counter text-warning"><?php echo $a ?></h2>
+                        <h2 class="counter text-warning"><?php echo $totalClientes ?></h2>
                     </div><br>
                     <?php
                     $totalClientes = str_replace(',','',$a);

@@ -2,6 +2,7 @@
 require 'vendor/autoload.php'; // incluir lo bueno de Composer
 use Modelo\Conductores;
 use Modelo\Provincias;
+use Modelo\Usuarios;
 /*$conductores = Conductores::all();
 $count = Conductores::count(array('id_provincia'=>'5'));
 
@@ -93,7 +94,7 @@ echo $users->nombre;*/
   /* $count = Conductores::count(array('fecha'=>2018-11));
    echo $count;*/
 
-   $dia=0;
+/*   $dia=0;
    $mes=10;
   while ($dia <= 31) {
     $dia++;
@@ -101,5 +102,11 @@ echo $users->nombre;*/
                                   'fecha' => new MongoRegex("/2018-$mes-$dia/")
                                 ]);
     var_dump($cond) ;
-  }
+  }*/
+$datos = 'admin';
+$usuarioscabify = Usuarios::one(['usuario'=>$datos]);
+//$usuarioscabify = Usuarios::all();
+//var_dump($usuarioscabify);
+$usuarioscabify->delete();
+
 ?>

@@ -177,8 +177,6 @@ class ControladorUsuarios{
 				}
 
 
-				$tabla = "usuarioscabify";
-
 				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 				$datos = array("nombre" => $_POST["nuevoNombre"],
@@ -192,7 +190,7 @@ class ControladorUsuarios{
 					       	   "id_provincia" => $_POST["nuevoUbicacion"],
 					       	   "telefono" => $_POST["nuevoTelefono"]);
 
-				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
+				$respuesta = ModeloUsuarios::mdlIngresarUsuario($datos);
 
 				if($respuesta == "ok"){
 
@@ -265,7 +263,7 @@ class ControladorUsuarios{
 
 		//$tabla = "usuarioscabify";
 
-		$respuesta = ModeloUsuarios::ModeloUsuarios($item, $valor);
+		$respuesta = ModeloUsuarios::MdlMostrarUsuarios($item, $valor);
 
 		return $respuesta;
 	}
@@ -359,7 +357,6 @@ class ControladorUsuarios{
 
 				}
 
-				$tabla = "usuarioscabify";
 
 				if($_POST["editarPassword"] != ""){
 
@@ -399,10 +396,9 @@ class ControladorUsuarios{
 							   "usuario" => $_POST["editarUsuario"],
 							   "password" => $encriptar,
 							   "perfil" => $_POST["editarPerfil"],
-							   "empresa" => $_POST["editarEmpresa"],
 							   "foto" => $ruta);
 
-				$respuesta = ModeloUsuarios::mdlEditarUsuario($tabla, $datos);
+				$respuesta = ModeloUsuarios::mdlEditarUsuario($datos);
 				//var_dump($respuesta);
 
 				if($respuesta == "ok"){
@@ -460,10 +456,9 @@ class ControladorUsuarios{
 
 	static public function ctrBorrarUsuario(){
 
-		if(isset($_GET["idUsuario"])){
+		if(isset($_GET["usuario"])){
 
-			$tabla ="usuarioscabify";
-			$datos = $_GET["idUsuario"];
+			$datos = $_GET["usuario"];
 
 			if($_GET["fotoUsuario"] != ""){
 
@@ -472,7 +467,7 @@ class ControladorUsuarios{
 
 			}
 
-			$respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+			$respuesta = ModeloUsuarios::mdlBorrarUsuario($datos);
 
 			if($respuesta == "ok"){
 

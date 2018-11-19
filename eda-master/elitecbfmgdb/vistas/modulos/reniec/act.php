@@ -6,13 +6,6 @@ require 'modelo/modeloconductor.php';
   $mintra = new \MinTra\mintra();
 
 
-  $conductores = ModeloConductor::one(['dni'=>$dni]);
-  $act = $conductores->act;
-  $act++;
-  $act_cbf = $conductores->act_cbf;
-  $act_cbf++;
-  $act_easy = $conductores->act_easy;
-  $act_easy ++;
 
   $fecha_reg = date("Y-m-d H:i:s");
   $dni=$_POST['dni'];
@@ -20,6 +13,8 @@ require 'modelo/modeloconductor.php';
   $cabify = $_POST['cabify'];
   $easy = $_POST['easy'];
   $type = $_POST['type'];
+
+
 
   $search1 = $essalud->search( $dni );
 
@@ -38,8 +33,9 @@ require 'modelo/modeloconductor.php';
               $fecha_nacimiento = $search2->nacimiento;
 
           }
+        }
 
- // var_dump($out);
+
 if ($type == 1) {
   $dni=$out->result->DNI;
   $apellidos=$out->result->ApellidoPaterno. " " .$out->result->ApellidoMaterno;
@@ -322,6 +318,7 @@ if ($cabify == 0 && $easy == 0) {
 }
 
 }
+
 
 
 ?>
