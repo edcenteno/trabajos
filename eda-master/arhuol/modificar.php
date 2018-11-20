@@ -1,13 +1,16 @@
 <?php
-require 'conexion.php';
 require 'scripts.php';
+require 'modeloconductor.php'; //
 
 
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM conductores WHERE cont = '$id'";
-$resultado = $mysqli->query($sql);
-$row = $resultado->fetch_array(MYSQLI_ASSOC);
+  $params = ([
+              'cont'=>$id
+            ]);
+$unconductor = ModeloConductor::one($params);
+foreach ($unconductor as $key => $row){
+
 $dni=$row['dni'];
 $pdf=$row['pdf'];
 $blacklist=$row['blacklist'];
@@ -349,6 +352,9 @@ if ($cabify == '1' && $easytaxi == 1) {
               <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
           </div>
+          <?php
+        }
+          ?>
         </div>
       </div>
     </form>

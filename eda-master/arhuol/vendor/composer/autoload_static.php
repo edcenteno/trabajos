@@ -4,51 +4,64 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd2e8a41e86ffcd17270bedd9ad1c61fd
+class ComposerStaticInit5c735690b7cd88386e6e8cb6527aa2c1
 {
     public static $files = array (
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '3a37ebac017bc098e9a86b35401e7a68' => __DIR__ . '/..' . '/mongodb/mongodb/src/functions.php',
+        '06dd8487319ccd8403765f5b8c9f2d61' => __DIR__ . '/..' . '/alcaeus/mongo-php-adapter/lib/Mongo/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
-            'Psr\\Http\\Message\\' => 17,
+            'Purekid\\Mongodm\\' => 16,
         ),
-        'G' => 
+        'M' => 
         array (
-            'GuzzleHttp\\Psr7\\' => 16,
-            'GuzzleHttp\\Promise\\' => 19,
-            'GuzzleHttp\\' => 11,
+            'MongoDB\\' => 8,
+            'Modelos\\' => 8,
+        ),
+        'A' => 
+        array (
+            'Alcaeus\\MongoDbAdapter\\' => 23,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Psr\\Http\\Message\\' => 
+        'Purekid\\Mongodm\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/purekid/mongodm/src',
         ),
-        'GuzzleHttp\\Psr7\\' => 
+        'MongoDB\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+            0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
         ),
-        'GuzzleHttp\\Promise\\' => 
+        'Modelos\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+            0 => __DIR__ . '/../..' . '/ModeloUsuarios',
         ),
-        'GuzzleHttp\\' => 
+        'Alcaeus\\MongoDbAdapter\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+            0 => __DIR__ . '/..' . '/alcaeus/mongo-php-adapter/lib/Alcaeus/MongoDbAdapter',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'M' => 
+        array (
+            'Mongo' => 
+            array (
+                0 => __DIR__ . '/..' . '/alcaeus/mongo-php-adapter/lib/Mongo',
+            ),
         ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd2e8a41e86ffcd17270bedd9ad1c61fd::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd2e8a41e86ffcd17270bedd9ad1c61fd::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5c735690b7cd88386e6e8cb6527aa2c1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5c735690b7cd88386e6e8cb6527aa2c1::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit5c735690b7cd88386e6e8cb6527aa2c1::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

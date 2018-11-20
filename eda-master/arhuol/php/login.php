@@ -1,18 +1,28 @@
-<?php 
+<?php
+namespace Modelos;
+session_start();
+require '../vendor/autoload.php'; //
 
+use Purekid\Mongodm\Model;
 
-	session_start();
-	require_once "conexion.php";
+    class ModeloUsuarios extends Model {
 
-	$conexion=conexion();
+        static $collection = "usuarios";
 
+        /** use specific config section **/
+        public static $config = 'default';
+
+}
 		$usuario=$_POST['usuario'];
 		$pass=sha1($_POST['password']);
 
-		$sql="SELECT * from usuarios where usuario='$usuario' and password='$pass'";
-		$result=mysqli_query($conexion,$sql);
-		
-		if(mysqli_num_rows($result) > 0){
+		$params = array('usuario'=>$usuario
+						);
+
+        $respuesta = ModeloUsuarios::one($params);
+       // var_dump($respuesta);
+
+		if($respuesta->usuario == $_POST["usuario"] && $respuesta->password == $pass){
 			$_SESSION['user']=$usuario;
 			echo 1;
 		}else{
