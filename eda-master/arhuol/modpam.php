@@ -1,13 +1,15 @@
 <?php
-require 'conexion.php';
+require 'modeloconductor.php'; //
 require 'scripts.php';
 
 
 $id = $_GET['id'];
+$params = ([
+              'dni'=>$id
+            ]);
+$unconductor = ModeloConductor::one($params);
 
-$sql = "SELECT * FROM conductores WHERE cont = '$id'";
-$resultado = $mysqli->query($sql);
-$row = $resultado->fetch_array(MYSQLI_ASSOC);
+foreach ($unconductor as $key => $row){
 $dni=$row['dni'];
 $placa=$row['placa'];
 
@@ -205,7 +207,9 @@ switch ($tipodoc) {
 
 
           </div>
-
+<?php
+}
+?>
           </div>
 
             <div class="form-group">

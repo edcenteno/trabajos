@@ -1,13 +1,16 @@
 <?php
-require 'conexion.php';
+require 'modeloconductor.php'; //
 require 'scripts.php';
 
 
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM conductores WHERE cont = '$id'";
-$resultado = $mysqli->query($sql);
-$row = $resultado->fetch_array(MYSQLI_ASSOC);
+  $params = ([
+              'dni'=>$id
+            ]);
+$unconductor = ModeloConductor::one($params);
+
+foreach ($unconductor as $key => $row){
 $dni=$row['dni'];
 $pdf=$row['pdf'];
 $blacklist=$row['blacklist'];
@@ -54,34 +57,6 @@ $blacklist=$row['blacklist'];
           });
 
     });
-
-   /* $(document).ready(function(){
-    $("#mostrarpolicial").click(function(){
-      $('.targetpolicial').show("swing");
-     });
-    $("#ocultarpolicial").click(function(){
-      $('.targetpolicial').hide("linear");
-    });
-  });
-    $(document).ready(function(){
-    $("#mostrarjudicial").click(function(){
-      $('.targetjudicial').show("swing");
-     });
-    $("#ocultarjudicial").click(function(){
-      $('.targetjudicial').hide("linear");
-    });
-  });
-    $(document).ready(function(){
-    $("#mostrarpenales").click(function(){
-      $('.targetpenales').show("swing");
-     });
-    $("#ocultarpenales").click(function(){
-      $('.targetpenales').hide("linear");
-    });
-  });*/
-
-
-
 
   </script>
 
@@ -295,6 +270,9 @@ $blacklist=$row['blacklist'];
               </div>
 
             </div>
+            <?php
+              }
+            ?>
           </div>
 
             <div class="form-group">

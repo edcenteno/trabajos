@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'conexion.php';
+
 require 'scripts.php';
 if(isset($_SESSION['user'])){
     ?>
@@ -13,7 +13,7 @@ if(isset($_SESSION['user'])){
         "deferRender": true,
         "retrieve": true,
         "processing": true,
-        "order": [[1, "desc"]],
+        "order": [[0, "desc"]],
             "language": {
 
                 "sProcessing":     "Procesando...",
@@ -72,20 +72,18 @@ if(isset($_SESSION['user'])){
                             <table class="table table-bordered table-striped responsive " id="tablaConductores">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>FECHA DE REGISTRO</th>
                                         <th>DNI</th>
                                         <th>NOMBRE</th>
                                         <th>APELLIDO</th>
                                         <th>PLACA</th>
-                                        <th>RESULTADO</th>
                                         <th>SOAT</th>
+                                        <th>RESULTADO</th>
+                                        <th>MODIFICAR</th>
                                         <th>ANTECEDENTES PENALES</th>
                                         <th>ANTECEDENTES JUDICIAL</th>
                                         <th>ANTECEDENTES POLICIAL</th>
-                                        <th>MODIFICAR</th>
                                         <th>ELIMINAR</th>
-
                                     </tr>
                                 </thead>
 

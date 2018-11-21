@@ -13,6 +13,9 @@
     if ($value['blacklist'] == 0) {
       $bl="No se encuentra en lista negra";
     }
+    if ($value['blacklist'] == 2) {
+      $bl="No se encuentra en lista negra";
+    }
     if ($value['blacklist'] == "") {
       $bl="";
     }

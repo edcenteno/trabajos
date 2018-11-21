@@ -6,9 +6,10 @@ require 'modeloconductor.php'; //
 $id = $_GET['id'];
 
   $params = ([
-              'cont'=>$id
+              'dni'=>$id
             ]);
 $unconductor = ModeloConductor::one($params);
+
 foreach ($unconductor as $key => $row){
 
 $dni=$row['dni'];
@@ -86,35 +87,6 @@ if ($cabify == '1' && $easytaxi == 1) {
           });
 
     });
-
-   /* $(document).ready(function(){
-    $("#mostrarpolicial").click(function(){
-      $('.targetpolicial').show("swing");
-     });
-    $("#ocultarpolicial").click(function(){
-      $('.targetpolicial').hide("linear");
-    });
-  });
-    $(document).ready(function(){
-    $("#mostrarjudicial").click(function(){
-      $('.targetjudicial').show("swing");
-     });
-    $("#ocultarjudicial").click(function(){
-      $('.targetjudicial').hide("linear");
-    });
-  });
-    $(document).ready(function(){
-    $("#mostrarpenales").click(function(){
-      $('.targetpenales').show("swing");
-     });
-    $("#ocultarpenales").click(function(){
-      $('.targetpenales').hide("linear");
-    });
-  });*/
-
-
-
-
   </script>
 
 </head>

@@ -1,69 +1,49 @@
 <?php
 session_start();
-require 'conexion.php';
+
 require 'scripts.php';
 if(isset($_SESSION['user'])){
     ?>
     <html lang="es">
     <head>
-        <script>
-            $(document).ready(function(){
-                $('#mitabla').DataTable({
+<script>
+ $(document).ready(function() {
+     var table = $('#tablaConductores').DataTable( {
+        "ajax": "ajax/conductores-especial.ajax.php",
+        "deferRender": true,
+        "retrieve": true,
+        "processing": true,
+        "order": [[0, "desc"]],
+            "language": {
 
-                    "responsive": {
-                        "details": {
-                            "type": 'column',
-                            "target": 'tr'
-                        }
-                    },
-                    "columnDefs": [ {
-                        "className": 'control',
-                        "orderable": false,
-                        "targets":   0,
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
 
-                    },
-                    { 'responsivePriority': 1, 'targets': 11 },
-                    { 'responsivePriority': 1, 'targets': 3 },
-                    { 'responsivePriority': 1, 'targets': 4 },
-                    { 'responsivePriority': 2, 'targets': 14 },
-                    { 'responsivePriority': 2, 'targets': 11 },
+        }
 
-                    ],
-                    "order": [[2, "desc"]],
-                    "language": {
-
-                        "sProcessing":     "Procesando...",
-                        "sLengthMenu":     "Mostrar _MENU_ registros",
-                        "sZeroRecords":    "No se encontraron resultados",
-                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix":    "",
-                        "sSearch":         "Buscar:",
-                        "sUrl":            "",
-                        "sInfoThousands":  ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst":    "Primero",
-                            "sLast":     "Último",
-                            "sNext":     "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                        }
-
-                    },
-
-                    "bProcessing": true,
-                    "bServerSide": true,
-                    "sAjaxSource": "server_process2.php"
-                });
-            });
-
-        </script>
+        });
+    });
+</script>
 
     </head>
 
@@ -82,23 +62,15 @@ if(isset($_SESSION['user'])){
                         <hr>
 
                         <div class="row table-responsive">
-                            <table class="table table-bordered table-striped responsive" id="mitabla">
+                            <table class="table table-bordered table-striped responsive" id="tablaConductores">
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th>ID</th>
                                         <th>FECHA DE REGISTRO</th>
                                         <th>DNI</th>
                                         <th>NOMBRE</th>
                                         <th>APELLIDO</th>
                                         <th>PLACA</th>
-                                        <th>ANTECEDENTES PENALES</th>
-                                        <th>ANTECEDENTES JUDICIAL</th>
-                                        <th>ANTECEDENTES POLICIAL</th>
-                                        <th>RECORD CONDUCTOR</th>
                                         <th>RESULTADO</th>
-                                        <th>SOAT</th>
-                                        <th>OBSERVACION</th>
                                         <th>MODIFICAR</th>
 
                                     </tr>

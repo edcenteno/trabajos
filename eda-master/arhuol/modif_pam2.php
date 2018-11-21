@@ -3,31 +3,43 @@
         <link rel="shortcut icon" href="img/favicon.ico" type="image/ico" />
 <?php
 
-$soat = $_POST['soat'];
+require 'modeloconductor.php';
+
+    $soat = $_POST['soat'];
 
 
-$resultado = $_POST['resultado'];
+    $resultado = $_POST['resultado'];
+    $placa = $_POST['placa'];
+    $dni = $_POST['dni'];
+    $fecha_inicio_soat = $_POST['fecha_inicio_soat'];
+    $fecha_fin_soat = $_POST['fecha_fin_soat'];
+    $nombrecompania = $_POST['nombrecompania'];
+    $numeropoliza = $_POST['numeropoliza'];
+    $NombreUsoVehiculo = $_POST['NombreUsoVehiculo'];
+    $nombreclasevehiculo = $_POST['nombreclasevehiculo'];
+    $fechacontrolpolicial = $_POST['fechacontrolpolicial'];
+    $TipoCertificado = $_POST['TipoCertificado'];
+    $color_vehiculo = $_POST['color_vehiculo'];
+    $tipodoc = $_POST['tipodoc'];
 
-    ModificarPersona($_POST['dni'], $_POST['fecha_inicio_soat'], $_POST['fecha_fin_soat'], $_POST['nombrecompania'], $_POST['numeropoliza'],$_POST['NombreUsoVehiculo'], $_POST['nombreclasevehiculo'], $_POST['fechacontrolpolicial'], $_POST['TipoCertificado'], $_POST['soat'], $resultado, $_POST['color_vehiculo'], $_POST['tipodoc']);
+        $conductores = ModeloConductor::one(['dni'=>$dni]);
+        $conductores->update([
+                          'placa'=>$placa,
+                          'extr' => $tipodoc,
+                          'resultado'=>$resultado,
+                          'soat'=>$soat,
+                          'fecha_inicio_soat'=>$fecha_inicio_soat,
+                          'fecha_fin_soat'=>$fecha_fin_soat,
+                          'nombrecompania'=>$nombrecompania,
+                          'numeropoliza'=>$numeropoliza,
+                          'NombreUsoVehiculo'=>$NombreUsoVehiculo,
+                          'nombreclasevehiculo'=>$nombreclasevehiculo,
+                          'fechacontrolpolicial'=>$fechacontrolpolicial,
+                          'TipoCertificado'=>$TipoCertificado,
+                          'color_vehiculo' => $color_vehiculo
+                            ]);
 
-    function ModificarPersona($dni, $fecha_inicio_soat, $fecha_fin_soat, $nombrecompania, $numeropoliza, $NombreUsoVehiculo, $nombreclasevehiculo, $fechacontrolpolicial, $TipoCertificado, $soat, $resultado, $color_vehiculo, $tipodoc){
-        include 'conexion.php';
-         $sentencia="UPDATE conductores SET
-                                       fecha_inicio_soat='".$fecha_inicio_soat."',
-                                       fecha_fin_soat='".$fecha_fin_soat."',
-                                       nombrecompania='".$nombrecompania."',
-                                       numeropoliza='".$numeropoliza."',
-                                       NombreUsoVehiculo='".$NombreUsoVehiculo."',
-                                       nombreclasevehiculo='".$nombreclasevehiculo."',
-                                       fechacontrolpolicial='".$fechacontrolpolicial."',
-                                       soat='".$soat."',
-                                       extr='".$tipodoc."',
-                                       TipoCertificado='".$TipoCertificado."',
-                                       color_vehiculo='".$color_vehiculo."',
-                                       resultado='".$resultado."'
-                                       WHERE dni='".$dni."' ";
-        $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-    }
+                $conductores->save();
 ?>
 
 <script type="text/javascript">

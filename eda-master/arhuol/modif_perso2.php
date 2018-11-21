@@ -13,6 +13,10 @@ $soat = $_POST['soat'];
 $status_licencia = $_POST['status_licencia'];
 @$blacklist = $_POST['blacklist'];
 
+if ($blacklist == "") {
+	$blacklist = 2;
+}
+
 if ($ant_judicial == 'POSITIVO' ||
 	$ant_penales == 'POSITIVO' ||
 	$ant_policial =='POSITIVO' ||
@@ -31,16 +35,48 @@ if ($ant_judicial == 'POSITIVO' ||
 
 }
 
-	ModificarPersona($_POST['dni'], $_POST['nombre'], $_POST['apellido'], $_POST['placa'],  $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $_POST['cont'],$_POST['observacion'], $pdf, $blacklist,$_POST['observacionPenales'], $_POST['observacionJudicial'], $_POST['observacionPolicial'],$_POST['motivo_penal'], $_POST['autoridad_penal'], $_POST['documento_penal'], $_POST['fecha_proceso_penal'],  $_POST['estado_penal'], $_POST['tipo_ocurrecia_penal'],$_POST['tipo_penal'], $_POST['agraviado_penal'], $_POST['definicion_delito_penal'], $_POST['motivo_judicial'], $_POST['autoridad_judicial'], $_POST['documento_judicial'], $_POST['fecha_proceso_judicial'], $_POST['tipo_ocurrecia_judicial'], $_POST['tipo_judicial'],$_POST['agraviado_judicial'], $_POST['definicion_delito_judicial'], $_POST['motivo_Policial'], $_POST['autoridad_Policial'],$_POST['documento_Policial'], $_POST['fecha_proceso_Policial'], $_POST['estado_Policial'], $_POST['tipo_ocurrecia_Policial'], $_POST['tipo_Policial'],$_POST['agraviado_Policial'], $_POST['definicion_delito_Policial'], $_POST['estado_judicial'], $_POST['color_vehiculo'], $status_licencia);
+	$dni= $_POST['dni'];
+	$nombre= $_POST['nombre'];
+	$apellido= $_POST['apellido'];
+	$placa= $_POST['placa'];
+	$cont=$_POST['cont'];
+	$observacion = $_POST['observacion'];
+	$observacionPenales = $_POST['observacionPenales'];
+	$observacionJudicial = $_POST['observacionJudicial'];
+	$observacionPolicial = $_POST['observacionPolicial'];
+	$motivo_penal =$_POST['motivo_penal'];
+	$autoridad_penal =$_POST['autoridad_penal'];
+	$documento_penal =$_POST['documento_penal'];
+	$fecha_proceso_penal =$_POST['fecha_proceso_penal'];
+	$estado_penal =$_POST['estado_penal'];
+	$tipo_ocurrecia_penal =$_POST['tipo_ocurrecia_penal'];
+	$tipo_penal =$_POST['tipo_penal'];
+	$agraviado_penal =$_POST['agraviado_penal'];
+	$definicion_delito_penal =$_POST['definicion_delito_penal'];
+	$motivo_judicial =$_POST['motivo_judicial'];
+	$autoridad_judicial =$_POST['autoridad_judicial'];
+	$documento_judicial =$_POST['documento_judicial'];
+	$fecha_proceso_judicial =$_POST['fecha_proceso_judicial'];
+	$tipo_ocurrecia_judicial =$_POST['tipo_ocurrecia_judicial'];
+	$tipo_judicial =$_POST['tipo_judicial'];
+	$agraviado_judicial =$_POST['agraviado_judicial'];
+	$definicion_delito_judicial =$_POST['definicion_delito_judicial'];
+	$motivo_Policial =$_POST['motivo_Policial'];
+	$autoridad_Policial =$_POST['autoridad_Policial'];
+	$documento_Policial =$_POST['documento_Policial'];
+	$fecha_proceso_Policial =$_POST['fecha_proceso_Policial'];
+	$estado_Policial =$_POST['estado_Policial'];
+	$tipo_ocurrecia_Policial =$_POST['tipo_ocurrecia_Policial'];
+	$tipo_Policial =$_POST['tipo_Policial'];
+	$agraviado_Policial =$_POST['agraviado_Policial'];
+	$definicion_delito_Policial =$_POST['definicion_delito_Policial'];
+	$estado_judicial =$_POST['estado_judicial'];
+	$color_vehiculo =$_POST['color_vehiculo'];
 
-	function ModificarPersona($dni, $nombre, $apellido, $placa, $ant_penales, $ant_judicial, $ant_policial, $record_cond, $resultado, $cont, $observacion, $pdf, $blacklist, $observacionPenales, $observacionJudicial, $observacionPolicial, $motivo_penal, $autoridad_penal, $documento_penal, $fecha_proceso_penal, $estado_penal, $tipo_ocurrecia_penal, $tipo_penal, $agraviado_penal, $definicion_delito_penal, $motivo_judicial, $autoridad_judicial, $documento_judicial, $fecha_proceso_judicial, $tipo_ocurrecia_judicial, $tipo_judicial, $agraviado_judicial, $definicion_delito_judicial, $motivo_Policial, $autoridad_Policial, $documento_Policial, $fecha_proceso_Policial, $estado_Policial, $tipo_ocurrecia_Policial, $tipo_Policial, $agraviado_Policial, $definicion_delito_Policial, $estado_judicial, $color_vehiculo, $status_licencia)
-	{
-
-		$conductores = ModeloConductor::one(['cont'=>$cont]);
+		$conductores = ModeloConductor::one(['dni'=>$dni]);
 		$conductores->update([
-			                    'dni' => $dni,
 			                    'nombre' => $nombre,
-			                    'apellido' => $apellidos,
+			                    'apellido' => $apellido,
 			                    'placa' => $placa,
 			                    'ant_penales' => $ant_penales,
 			                    'ant_judicial' => $ant_judicial,
@@ -84,7 +120,6 @@ if ($ant_judicial == 'POSITIVO' ||
 			                ]);
 
                 $conductores->save();
-	}
 ?>
 
 <script type="text/javascript">

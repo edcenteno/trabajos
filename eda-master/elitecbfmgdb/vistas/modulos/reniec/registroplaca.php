@@ -38,7 +38,6 @@ if ($crv =="El vehiculo de placa $placa TIENE ORDEN DE CAPTURA por los siguiente
                     'fechacontrolpolicial'=>$FechaControlPolicial,
                     'contador_act_placa'=>$contador_placa,
                     'fecha_act_placa'=>$fecha_reg,
-                    'TipoCertificado'=>$TipoCertificado,
                     'TipoCertificado'=>$TipoCertificado
                         ]);
     $conductores->save();
