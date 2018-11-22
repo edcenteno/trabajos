@@ -31,7 +31,7 @@ class ModeloProspecto{
 			return $stmt -> fetchAll();
 
 		}
-		
+
 
 		$stmt -> close();
 

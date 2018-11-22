@@ -34,7 +34,7 @@ class TablaConductor{
 
       for($i = 0; $i < count($conductores)-1; $i++){
 
-        $modificar = "<a href='modpam.php?id=".$conductores[$i]->dni."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button></a>";
+        $modificar = "<a href='modificarcolor.php?id=".$conductores[$i]->dni."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button></a>";
 
           echo '[
             "'.$conductores[$i]->fecha.'",
@@ -48,7 +48,7 @@ class TablaConductor{
 
       }
 
-      $modificar = "<a href='modpam.php?id=".$conductores[count($conductores)-1]->dni."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button></a>";
+      $modificar = "<a href='modificarcolor.php?id=".$conductores[count($conductores)-1]->dni."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button></a>";
 
        echo'[
 

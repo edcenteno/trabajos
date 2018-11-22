@@ -1,13 +1,18 @@
 <?php
-require 'conexion.php';
 require 'scripts.php';
+
+require 'modeloconductor.php'; //
 
 
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM conductores WHERE cont = '$id'";
-$resultado = $mysqli->query($sql);
-$row = $resultado->fetch_array(MYSQLI_ASSOC);
+  $params = ([
+              'dni'=>$id
+            ]);
+$unconductor = ModeloConductor::one($params);
+
+foreach ($unconductor as $key => $row){
+
 $dni=$row['dni'];
 $pdf=$row['pdf'];
 $blacklist=$row['blacklist'];
@@ -92,6 +97,9 @@ $blacklist=$row['blacklist'];
             </div>
 
           </div>
+          <?php
+            }
+          ?>
           </div>
 
             <div class="form-group">

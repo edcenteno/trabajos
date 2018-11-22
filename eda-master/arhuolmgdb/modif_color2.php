@@ -2,31 +2,39 @@
 <title>ARHU Internacional</title>
 <link rel="shortcut icon" href="img/favicon.ico" type="image/ico" />
 <?php
-include 'conexion.php';
+
+require 'modeloconductor.php';
+
+
 $placa = $_POST['placa'];
 $dni = $_POST['dni'];
 $fecha_fab_veh = $_POST['fecha_fab_veh'];
 $color_vehiculo = $_POST['color_vehiculo'];
-
+$fecha= date('d-m-Y H:i:s');
 @$placanoex=$_POST['placanoex'];
 
 if ($placanoex == 1) {
   $placanoex = "Placa no EXISTE";
-        $sentencia="UPDATE conductores SET
-                                       color_vehiculo='".$placanoex."',
-                                       fecha_placa = NOW()
-                                       WHERE dni='".$dni."' ";
-        $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
+
+        $conductores = ModeloConductor::one(['dni'=>$dni]);
+        $conductores->update([
+                              'color_vehiculo'=>$placanoex,
+                              'fecha_placa' => $fecha
+                            ]);
+
+        $conductores->save();
 
 } else {
 
-         $sentencia="UPDATE conductores SET
-                                       color_vehiculo='".$color_vehiculo."',
-                                       placa='".$placa."',
-                                       fecha_fab_veh='".$fecha_fab_veh."',
-                                       fecha_placa = NOW()
-                                       WHERE dni='".$dni."' ";
-        $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
+        $conductores = ModeloConductor::one(['dni'=>$dni]);
+        $conductores->update([
+                              'color_vehiculo'=>$color_vehiculo,
+                              'placa'=>$placa,
+                              'fecha_fab_veh'=>$fecha_fab_veh,
+                              'fecha_placa' => $fecha
+                            ]);
+        $conductores->save();
+
 }
 
 

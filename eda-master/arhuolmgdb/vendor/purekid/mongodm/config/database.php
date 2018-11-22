@@ -25,14 +25,22 @@ if (file_exists($local_config_file)) {
 return array(
 
    /* Configuration section name*/
+
     'default' => array(
+                  'connection' => array(
+                  'hostnames' => 'localhost:27017',
+                  'database'  => 'arhuantecedentes',
+                  'options'  => [ "connectTimeoutMS" => 500 , "username" => "antecedentes", "password" => "antecedentes*123#", "authSource" => "admin"] )
+    ),
+
+    /*'default' => array(
         'connection' => array(
             'hostnames' => 'localhost',
             'database'  => 'arhuantecedentes',
 //          'username'  => ''
 //          'password'  => ''
         )
-    ),
+    ),*/
     'development' => array(
         'connection' => array(
             'hostnames' => 'localhost',
