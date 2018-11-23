@@ -1,4 +1,3 @@
-
 <?php
 $usuario_reg = $_SESSION["nombre"];
 $provincia = $_SESSION["id_provincia"];
@@ -414,6 +413,7 @@ $(document).ready(function(){
 
       var dni = $('#ptp').val()
       var type = $('#tipoext').val()
+      var provincia = '<?php echo $provincia ?>'
 
       $.ajax({
                     type: "POST",
@@ -431,15 +431,14 @@ $(document).ready(function(){
                   });
 
       cadena="nombre=" + $('#nombreext').val() +
-          "&apellidos=" + $('#apellidosext').val() +
-          "&dni=" + $('#ptp').val() +
-          "&tipoext=" + $('#tipoext').val() +
-          "&cabify=" + cabify2 +
-          "&easytaxi=" + easytaxi2 +
-          "&easyeconomy=" + easyeconomy2 +
-          "&usuario_reg=" + $('#usuario_reg2').val() +
-          "&provincia=" + '<?php echo $provincia ?>' +
-          "&fechaNacimiento=" + $('#fechaNacimiento').val();
+              "&apellidos=" + $('#apellidosext').val() +
+              "&dni=" + $('#ptp').val() +
+              "&tipoext=" + $('#tipoext').val() +
+              "&cabify=" + cabify2 +
+              "&easytaxi=" + easytaxi2 +
+              "&usuario_reg=" + $('#usuario_reg2').val() +
+              "&provincia=" + provincia +
+              "&fechaNacimiento=" + $('#fechaNacimiento').val();
 
           $.ajax({
             type:"POST",

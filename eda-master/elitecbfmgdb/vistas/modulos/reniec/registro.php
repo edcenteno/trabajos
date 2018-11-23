@@ -28,6 +28,7 @@ require 'modelo/modeloconductor.php';
 		if(buscaRepetido($dni)==1){
 			echo 2;
 		}else{
+		//	echo $estado;
 
 				$conductores = ModeloConductor::all()->sortBy(function($conductor){
 			    return $conductor->_id;
@@ -68,7 +69,6 @@ require 'modelo/modeloconductor.php';
 			        'ant_policial' => '',
 			        'record_cond' => '',
 			        'resultado' => '',
-			        'soat' => '',
 			        'observacion' => '',
 			        'validarpdf' => 0,
 			        'empresa' => '',

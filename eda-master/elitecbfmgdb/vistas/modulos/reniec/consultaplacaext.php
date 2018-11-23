@@ -10,8 +10,6 @@ $tipoext=$_POST['tipoext'];
 $usuario_reg=$_POST['usuario_reg'];
 $provincia=$_POST['provincia'];
 
-
-$conexion=conexion();
 function buscaRepetido($dni){
 
      $count = ModeloConductor::count(array('dni'=>$dni));

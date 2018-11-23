@@ -1,6 +1,18 @@
 <?php
 $file = $_POST['id_file'];
 
+$fecha_reg = date("Y-m-d H:i:s");
+
+require 'vendor/autoload.php';
+use Purekid\Mongodm\Model;
+class ModeloConductor extends Model {
+
+        static $collection = "conductores";
+
+        /** use specific config section **/
+        public static $config = 'default';
+
+}
 
 if (isset($file) && isset($_FILES["file"])){
     $uploads_dirpdf = 'extensiones/tcpdf/pdf/images/conductorescbf';
@@ -27,11 +39,13 @@ if (isset($file) && isset($_FILES["file"])){
 
 echo json_encode($return);
 
+$conductores = ModeloConductor::one(['dni'=>$file]);
 
-
-$conexion=mysqli_connect("localhost","root","","arhuantecedentes");
-$sql="UPDATE conductores SET foto = '$name', fecha_foto = NOW() WHERE dni = '$file'";
-    $result=mysqli_query($conexion,$sql);
+$conductores->update([
+                    'foto' => '$name',
+                    'fecha_foto' => '$fecha_reg'
+                    ]);
+$conductores->save();
 
 
 ?>

@@ -6,7 +6,6 @@ require 'modelo/modeloconductor.php';
 		$nombre=$_POST['nombre'];
 		$apellidos=$_POST['apellidos'];
 		$dni=$_POST['dni'];
-		//$easytaxi=$_POST['easytaxi'];
 		$cabify=$_POST['cabify'];
 		$easytaxi=$_POST['easytaxi'];
 		$fecha_nacimiento=$_POST['fechaNacimiento'];

@@ -1,5 +1,18 @@
 <?php
 $file = $_POST['id_file'];
+$fecha_reg = date("Y-m-d H:i:s");
+
+require 'vendor/autoload.php'; // incluir lo bueno de Composer
+/*use Modelo\Conductores;*/
+use Purekid\Mongodm\Model;
+class ModeloConductor extends Model {
+
+        static $collection = "conductores";
+
+        /** use specific config section **/
+        public static $config = 'default';
+
+}
 
 
 if (isset($file) && isset($_FILES["file"])){
@@ -32,18 +45,21 @@ if (isset($file) && isset($_FILES["file"])){
 
 echo json_encode($return);
 
+$conductores = ModeloConductor::one(['dni'=>$file]);
 
-//require_once "php/conexion.php";
-$conexion=mysqli_connect("localhost","root","","arhuantecedentes");
 if ($_POST['back']== "true"){
-		$sql="UPDATE conductores SET dni_digital_r = '$name', fecha_dni_digital_r = NOW() WHERE dni = '$file'";
-	$result=mysqli_query($conexion,$sql);
-	}else{
-		$sql="UPDATE conductores SET dni_digital = '$name', fecha_dni_digital = NOW() WHERE dni = '$file'";
-	$result=mysqli_query($conexion,$sql);
-	}
+	$conductores->update([
+				'dni_digital_r' => '$name',
+				'fecha_dni_digital_r' => '$fecha_reg'
+				]);
+	$conductores->save();
+}else{
+	$conductores->update([
+				'dni_digital' => '$name',
+				'fecha_dni_digital' => '$fecha_reg'
+				]);
+	$conductores->save();
 
-
-	//echo $sql;
+}
 
 ?>
