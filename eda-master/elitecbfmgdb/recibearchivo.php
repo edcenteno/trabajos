@@ -37,13 +37,14 @@ if (isset($file) && isset($_FILES["file"])){
 	];
 }
 
-echo json_encode($return);
-
 $conductores = ModeloConductor::one(['dni'=>$file]);
 
 $conductores->update([
-					'foto' => '$name',
-					'fecha_foto' => '$fecha_reg'
+					'foto' => $name,
+					'fecha_foto' => $fecha_reg
 					]);
+echo($conductores);
 $conductores->save();
+
+//echo json_encode($return);
 ?>

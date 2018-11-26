@@ -49,14 +49,14 @@ $conductores = ModeloConductor::one(['dni'=>$file]);
 
 if ($_POST['back']== "true"){
     $conductores->update([
-                'dni_digital_r' => '$name',
-                'fecha_dni_digital_r' => '$fecha_reg'
+                'dni_digital_r' => $name,
+                'fecha_dni_digital_r' => $fecha_reg
                 ]);
     $conductores->save();
 }else{
     $conductores->update([
-                'dni_digital' => '$name',
-                'fecha_dni_digital' => '$fecha_reg'
+                'dni_digital' => $name,
+                'fecha_dni_digital' => $fecha_reg
                 ]);
     $conductores->save();
 

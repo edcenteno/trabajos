@@ -291,7 +291,7 @@ $.fn.captureDevicecbf = function(idFile, arg){
                 window.objectCapture.insertAjax();
                 element.modal("hide");
                 window.objectCapture.stop();
-               setTimeout(function(){location.reload(true)}, 1000);
+              // setTimeout(function(){location.reload(true)}, 1000);
             });
         },
         btnCancel: function(){

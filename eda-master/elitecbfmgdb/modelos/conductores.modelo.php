@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('America/Lima');
-
+require 'conexion.php';
 require 'vendor/autoload.php'; //
 
 use Purekid\Mongodm\Model;

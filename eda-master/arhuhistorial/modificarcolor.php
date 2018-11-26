@@ -63,7 +63,7 @@ $placa=$rowvehiculo['placa'];
 
             <div class="form-group">
               <label for="placa">Placa: </label>
-              <input type="text" name="placa" readonly class="form-control" id="placa" placeholder="Placa" value="<?php echo $placa ?>">
+              <input type="text" name="placa" class="form-control" id="placa" placeholder="Placa" value="<?php echo $placa ?>">
             </div>
             <div class="form-group">
 

@@ -5,7 +5,6 @@
     $valor = $idconductor;
 
     $unconductor = ControladorConductor::ctrMostrarConductor($item, $valor);
-    //var_dump($unconductor);
 
 
     foreach ($unconductor as $key => $value){
@@ -106,9 +105,11 @@ $color_vehiculo=$value['color_vehiculo'];
     });
 
     var color = '<?php echo $color_vehiculo ?>';
+
         if (color == "Placa no EXISTE") {
 
-        }if (color == "") {
+        }
+        if (color == "") {
 
         }else{
             $.ajax({
@@ -429,7 +430,7 @@ if(empresa =="cabify"){
 
                                           }
                                         });
-
+                                    setTimeout('document.location.reload()',5000);
                                     /*   param="&dni=" + dni;
 
                                      $.ajax({
@@ -488,6 +489,7 @@ if(empresa =="cabify"){
 
                                         }
                                         });
+
                                setTimeout('document.location.reload()',30000);
 
                                   }
@@ -496,7 +498,7 @@ if(empresa =="cabify"){
 
                             }
 
-                         function actualizared(){
+                         /*function actualizared(){
                            //ar placa="&placa=" +  '<?php echo $placa ?>' +
                             //placa = '<?php echo $placa ?>'
                             //
@@ -510,7 +512,7 @@ if(empresa =="cabify"){
 
                                 }
                         });
-                        }
+                        }*/
                         </script>
 
                     </center>

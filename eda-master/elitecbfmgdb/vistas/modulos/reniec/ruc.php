@@ -26,7 +26,7 @@ if ($type != 1){
     }
 
     $conductores->update([
-                          'ruc'=>'$ruc'
+                          'ruc'=>$ruc
                         ]);
     $conductores->save();
 

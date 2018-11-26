@@ -1,5 +1,6 @@
 <?php
 require 'modelo/modeloconductor.php';
+
 $nombre =$_POST['nombre'];
 $fecha_nacimiento= $_POST['fechaNacimiento'];
 $apellidos= $_POST['apellidos'];

@@ -2,10 +2,6 @@
 require 'modelo/modeloconductor.php';
 require_once("crv/src/autoload.php");
 
-$conductores = ModeloConductor::one(['dni'=>$dni]);
-$contsoat = $conductores->contsoat;
-$contsoat++;
-
 
 $fecha_reg = date("Y-m-d H:i:s");
 $placa=$_POST['placa'];
@@ -66,6 +62,9 @@ $NombreClaseVehiculo = $out['NombreClaseVehiculo'];
 $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
 $observacion = "";
+$conductores = ModeloConductor::one(['dni'=>$dni]);
+$contsoat = $conductores->contsoat;
+$contsoat++;
 
 if ($estado == "VIGENTE") {
 

@@ -35,18 +35,15 @@ require 'modelo/modeloconductor.php';
           }
         }
 
-
+$conductores = ModeloConductor::one(['dni'=>$dni]);
+$act = $conductores->act;
+$act++;
 if ($type == 1) {
-  $dni=$out->result->DNI;
-  $apellidos=$out->result->ApellidoPaterno. " " .$out->result->ApellidoMaterno;
-  $nombre=$out->result->Nombres;
-  $fechanac=$out->result->FechaNacimiento;
-
 
     $conductores->update([
                           'nombre'=>$nombre,
-                          'apellido'=>$apellidos,
-                          'fecha_nacimiento'=>$fechanac,
+                          'apellido'=>$apellido,
+                          'fecha_nacimiento'=>$fecha_nacimiento,
                           'resultado'=>''
                               ]);
     $conductores->save();
@@ -161,6 +158,10 @@ $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
 
 
+$contsoat = $conductores->contsoat;
+    $contsoat++;
+
+
 if ($estado == "VIGENTE") {
   $soat = "VIGENTE";
 
@@ -189,7 +190,12 @@ if ($estado == "VIGENTE") {
 
   }
 if ($cabify == 0 && $easy == 0) {
-  $conductores->update([
+  $act_cbf = $conductores->act_cbf;
+    $act_cbf++;
+  $act_easy = $conductores->act_easy;
+    $act_easy++;
+
+    $conductores->update([
           'act'=>$act,
           'act_cbf'=>$act_cbf,
           'act_easy'=>$act_easy,
@@ -212,8 +218,10 @@ if ($cabify == 0 && $easy == 0) {
   }
 
   if ($cabify == 1 && $easy == 0) {
+    $act_cbf = $conductores->act_cbf;
+    $act_cbf++;
 
-    $conductores->update([
+      $conductores->update([
           'act'=>$act,
           'act_cbf'=>$act_cbf,
           'fecha_act'=>$fecha_reg,
@@ -235,6 +243,8 @@ if ($cabify == 0 && $easy == 0) {
   }
 
   if ($cabify == 0 && $easy == 1) {
+    $act_easy = $conductores->act_easy;
+    $act_easy++;
 
       $conductores->update([
           'act'=>$act,
@@ -260,36 +270,47 @@ if ($cabify == 0 && $easy == 0) {
   $soat = 'El vehiculo consultado no posee SOAT';
 
   if ($cabify == 1 && $easy == 1) {
+    $act_easy = $conductores->act_easy;
+    $act_easy++;
+    $act_cbf = $conductores->act_cbf;
+    $act_cbf++;
 
-    $conductores->update([
-          'act'=>$act,
-          'act_cbf'=>$act_cbf,
-          'act_easy'=>$act_easy,
-          'fecha_act'=>$fecha_reg,
-          'soat'=>$soat,
-          'observacion'=>$soat,
-          'resultado'=>'NO APTO'
-              ]);
-    $conductores->save();
+      $conductores->update([
+            'act'=>$act,
+            'act_cbf'=>$act_cbf,
+            'act_easy'=>$act_easy,
+            'fecha_act'=>$fecha_reg,
+            'soat'=>$soat,
+            'observacion'=>$soat,
+            'resultado'=>'NO APTO'
+                ]);
+      $conductores->save();
 
   }
 
   if ($cabify == 0 && $easy == 0) {
+    $act_easy = $conductores->act_easy;
+    $act_easy++;
+    $act_cbf = $conductores->act_cbf;
+    $act_cbf++;
 
-    $conductores->update([
-          'act'=>$act,
-          'act_cbf'=>$act_cbf,
-          'act_easy'=>$act_easy,
-          'fecha_act'=>$fecha_reg,
-          'soat'=>$soat,
-          'observacion'=>$soat,
-          'resultado'=>'NO APTO'
-              ]);
-    $conductores->save();
+      $conductores->update([
+            'act'=>$act,
+            'act_cbf'=>$act_cbf,
+            'act_easy'=>$act_easy,
+            'fecha_act'=>$fecha_reg,
+            'soat'=>$soat,
+            'observacion'=>$soat,
+            'resultado'=>'NO APTO'
+                ]);
+      $conductores->save();
 
 }
 
   if ($cabify == 1 && $easy == 0) {
+
+    $act_cbf = $conductores->act_cbf;
+    $act_cbf++;
 
     $conductores->update([
           'act'=>$act,
@@ -305,15 +326,17 @@ if ($cabify == 0 && $easy == 0) {
 
   if ($cabify == 0 && $easy == 1) {
 
-    $conductores->update([
-          'act'=>$act,
-          'act_easy'=>$act_easy,
-          'fecha_act'=>$fecha_reg,
-          'soat'=>$soat,
-          'observacion'=>$soat,
-          'resultado'=>'NO APTO'
-              ]);
-    $conductores->save();
+    $act_easy = $conductores->act_easy;
+    $act_easy++;
+      $conductores->update([
+            'act'=>$act,
+            'act_easy'=>$act_easy,
+            'fecha_act'=>$fecha_reg,
+            'soat'=>$soat,
+            'observacion'=>$soat,
+            'resultado'=>'NO APTO'
+                ]);
+      $conductores->save();
   }
 }
 
