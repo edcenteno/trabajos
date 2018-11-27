@@ -1114,7 +1114,7 @@ if(empresa =="cabify"){
 
                                         }
                                 });
-                                setTimeout('document.location.reload()',3000);
+                                setTimeout('document.location.reload()',5000);
 
                                   }
                                     })

@@ -433,130 +433,131 @@ require 'graficas/querys.php';
 </script>
 
 <script type="text/javascript">
+    var d = new Date("YYYY-m");
     Morris.Area({
         element: 'morris-area-chart'
         , data: [{
-                period: '2018-10-01'
+                period: '2018-11-01'
                 , Conductores: dia1
 
         }, {
-                period: '2018-10-02'
+                period: '2018-11-02'
                 , Conductores: dia2
 
         }, {
-                period: '2018-10-03'
+                period: '2018-11-03'
                 , Conductores: dia3
 
         }, {
-                period: '2018-10-04'
+                period: '2018-11-04'
                 , Conductores: dia4
 
         }, {
-                period: '2018-10-05'
+                period: '2018-11-05'
                 , Conductores: dia5
 
         }, {
-                period: '2018-10-06'
+                period: '2018-11-06'
                 , Conductores: dia6
 
         }, {
-                period: '2018-10-07'
+                period: '2018-11-07'
                 , Conductores: dia7
 
         },{
-                period: '2018-10-08'
+                period: '2018-11-08'
                 , Conductores: dia8
 
         },{
-                period: '2018-10-09'
+                period: '2018-11-09'
                 , Conductores: dia9
 
         },{
-                period: '2018-10-10'
+                period: '2018-11-10'
                 , Conductores: dia10
 
         },{
-                period: '2018-10-11'
+                period: '2018-11-11'
                 , Conductores: dia11
 
         },{
-                period: '2018-10-12'
+                period: '2018-11-12'
                 , Conductores: dia12
 
         },{
-                period: '2018-10-13'
+                period: '2018-11-13'
                 , Conductores: dia13
 
         },{
-                period: '2018-10-14'
+                period: '2018-11-14'
                 , Conductores: dia14
 
         },{
-                period: '2018-10-15'
+                period: '2018-11-15'
                 , Conductores: dia15
 
         },{
-                period: '2018-10-16'
+                period: '2018-11-16'
                 , Conductores: dia16
 
         },{
-                period: '2018-10-17'
+                period: '2018-11-17'
                 , Conductores: dia17
 
         }, {
-                period: '2018-10-18'
+                period: '2018-11-18'
                 , Conductores: dia18
 
         }, {
-                period: '2018-10-19'
+                period: '2018-11-19'
                 , Conductores: dia19
 
         },{
-                period: '2018-10-20'
+                period: '2018-11-20'
                 , Conductores: dia20
 
         },{
-                period: '2018-10-21'
+                period: '2018-11-21'
                 , Conductores: dia21
 
         },{
-                period: '2018-10-22'
+                period: '2018-11-22'
                 , Conductores: dia22
 
         },{
-                period: '2018-10-23'
+                period: '2018-11-23'
                 , Conductores: dia23
 
         },{
-                period: '2018-10-24'
+                period: '2018-11-24'
                 , Conductores: dia24
 
         },{
-                period: '2018-10-25'
+                period: '2018-11-25'
                 , Conductores: dia25
 
         },{
-                period: '2018-10-26'
+                period: '2018-11-26'
                 , Conductores: dia26
 
         },{
-                period: '2018-10-27'
+                period: '2018-11-27'
                 , Conductores: dia27
 
         },{
-                period: '2018-10-28'
+                period: '2018-11-28'
                 , Conductores: dia28
 
         },{
-                period: '2018-10-29'
+                period: '2018-11-29'
                 , Conductores: dia29
 
         },{
-                period: '2018-10-30'
+                period: '2018-11-30'
                 , Conductores: dia30
 
         },{
-                period: '2018-10-31'
+                period: '2018-11-31'
                 , Conductores: dia31
 
         }]

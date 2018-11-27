@@ -62,16 +62,13 @@ class ControladorConductor{
           $fechafin=$_GET["fechaFinal"];
 
 
-         // echo $fechaini;
-          //echo $fechafin;
-
 		if(isset($_GET["reporte"])){
 
 			$tablas = "conductores";
 
 
 			if(isset($fechaini) && isset($fechafin)){
-				$conductores = ModeloConductor::mdlRangoFechasConductor($tablas, $fechaini, $fechafin);
+				$conductores = ModeloConductor::mdlRangoFechasConductor($fechaini, $fechafin);
 
 
 			}else{
@@ -79,7 +76,7 @@ class ControladorConductor{
 				$item = null;
 				$valor = null;
 
-				$conductores = ModeloConductor::MdlMostrarConductor($tabla, $item, $valor);
+				$conductores = ModeloConductor::MdlMostrarConductor($item, $valor);
 
 			}
 
@@ -124,8 +121,8 @@ class ControladorConductor{
 
 			foreach ($conductores as $row => $value){
 
-				$cabify = $value["cabify"];
-                $easytaxi = $value["easytaxi"];
+				$cabify = $value->cabify;
+                $easytaxi = $value->easytaxi;
 
                 if ($cabify == '1' && $easytaxi == 1) {
                     $cabify= "Cabify <br> Easytaxi";
@@ -137,20 +134,20 @@ class ControladorConductor{
                     $cabify = "";
                 }
 			 echo utf8_decode("<tr>
-			 			<td style='border:1px solid #eee;'>".$value["fecha"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["dni"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["nombre"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["apellido"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["placa"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["ant_penales"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["ant_judicial"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["ant_policial"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["record_cond"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["resultado"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["soat"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["fecha_inicio_soat"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["fecha_fin_soat"]."</td>
-						<td style='border:1px solid #eee;'>".$value["observacion"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value->fecha."</td>
+			 			<td style='border:1px solid #eee;'>".$value->dni."</td>
+			 			<td style='border:1px solid #eee;'>".$value->nombre."</td>
+			 			<td style='border:1px solid #eee;'>".$value->apellido."</td>
+			 			<td style='border:1px solid #eee;'>".$value->placa."</td>
+			 			<td style='border:1px solid #eee;'>".$value->ant_penales."</td>
+			 			<td style='border:1px solid #eee;'>".$value->ant_judicial."</td>
+			 			<td style='border:1px solid #eee;'>".$value->ant_policial."</td>
+			 			<td style='border:1px solid #eee;'>".$value->record_cond."</td>
+			 			<td style='border:1px solid #eee;'>".$value->resultado."</td>
+			 			<td style='border:1px solid #eee;'>".$value->soat."</td>
+			 			<td style='border:1px solid #eee;'>".$value->fecha_inicio_soat."</td>
+			 			<td style='border:1px solid #eee;'>".$value->fecha_fin_soat."</td>
+						<td style='border:1px solid #eee;'>".$value->observacion."</td>
 						<td style='border:1px solid #eee;'>".$cabify."</td>
 
 
@@ -176,7 +173,7 @@ class ControladorConductor{
 
 		$tabla = "conductores";
 
-		$respuesta = ModeloConductor::mdlRangoFechasConductor($tabla, $fechaInicial, $fechaFinal);
+		$respuesta = ModeloConductor::mdlRangoFechasConductor($fechaInicial, $fechaFinal);
 
 		return $respuesta;
 
@@ -316,18 +313,12 @@ class ControladorConductor{
           $provincia=$_GET["provincia"];
 
 
-         // echo $fechaini;
-          //echo $fechafin;
-
 		if(isset($_GET["reporte"])){
 
-			//$tablas = "conductores";
 
 
 			if(isset($fechaini) && isset($fechafin)){
 				$conductores = ModeloConductor::mdlRangoFechasConductorProvincia($fechaini, $fechafin, $provincia);
-			//var_dump($conductores);
-
 
 			}else{
 
@@ -381,8 +372,8 @@ class ControladorConductor{
 
 			foreach ($conductores as $row => $value){
 
-				$cabify = $value["cabify"];
-                $easytaxi = $value["easytaxi"];
+				$cabify = $value->cabify;
+                $easytaxi = $value->easytaxi;
 
                 if ($cabify == '1' && $easytaxi == 1) {
                     $cabify= "Cabify <br> Easytaxi";
@@ -395,21 +386,21 @@ class ControladorConductor{
                 }
 
 			 echo utf8_decode("<tr>
-			 			<td style='border:1px solid #eee;'>".$value["fecha"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["descripcion"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["dni"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["nombre"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["apellido"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["placa"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["ant_penales"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["ant_judicial"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["ant_policial"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["record_cond"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["resultado"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["soat"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["fecha_inicio_soat"]."</td>
-			 			<td style='border:1px solid #eee;'>".$value["fecha_fin_soat"]."</td>
-						<td style='border:1px solid #eee;'>".$value["observacion"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value->fecha."</td>
+			 			<td style='border:1px solid #eee;'>".$value->descripcion."</td>
+			 			<td style='border:1px solid #eee;'>".$value->dni."</td>
+			 			<td style='border:1px solid #eee;'>".$value->nombre."</td>
+			 			<td style='border:1px solid #eee;'>".$value->apellido."</td>
+			 			<td style='border:1px solid #eee;'>".$value->placa."</td>
+			 			<td style='border:1px solid #eee;'>".$value->ant_penales."</td>
+			 			<td style='border:1px solid #eee;'>".$value->ant_judicial."</td>
+			 			<td style='border:1px solid #eee;'>".$value->ant_policial."</td>
+			 			<td style='border:1px solid #eee;'>".$value->record_cond."</td>
+			 			<td style='border:1px solid #eee;'>".$value->resultado."</td>
+			 			<td style='border:1px solid #eee;'>".$value->soat."</td>
+			 			<td style='border:1px solid #eee;'>".$value->fecha_inicio_soat."</td>
+			 			<td style='border:1px solid #eee;'>".$value->fecha_fin_soat."</td>
+						<td style='border:1px solid #eee;'>".$value->observacion."</td>
 						<td style='border:1px solid #eee;'>".$cabify."</td>
 
 
@@ -703,11 +694,9 @@ class ControladorConductor{
 
 	}
 
-	static public function ctrMostrarConductorsoatvencido($item, $valor){
+	static public function ctrMostrarConductorsoatvencido(){
 
-		$tabla = "conductores";
-
-		$respuesta = ModeloConductor::mdlMostrarSoatConductorvencido($tabla, $item, $valor);
+		$respuesta = ModeloConductor::mdlMostrarSoatConductorvencido();
 
 		return $respuesta;
 

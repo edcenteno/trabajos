@@ -42,7 +42,7 @@
           <div class="box-tools pull-right">
 
        <?php
-        $provincia = 1;
+        $provincia = "1";
 
         if(isset($_GET["fechaInicial"])){
 
@@ -121,69 +121,48 @@
        foreach ($respuesta as $key => $value) {
 
        echo ' <tr>
-               <td>'.$value["fecha"].'</td>';
+               <td>'.$value->fecha.'</td>';
 
-               if($value["observacion"] != ""){
+               if($value->observacion != ""){
 
-                  echo '<td><label class="label label-warning">'.$value["dni"].'</label></td>';
+                  echo '<td><label class="label label-warning">'.$value->dni.'</label></td>';
 
                }else{
 
-                 echo '<td>'.$value["dni"].'</td>';
+                 echo '<td>'.$value->dni.'</td>';
 
                }
 
 
-       echo '  <td>'.$value["nombre"].'</td>
-               <td>'.$value["apellido"].'</td>
-               <td>'.$value["placa"].'</td>
-               <td>'.$value["ant_penales"].'</td>
-               <td>'.$value["ant_judicial"].'</td>
-               <td>'.$value["ant_policial"].'</td>
-               <td>'.$value["record_cond"].'</td>';
+       echo '  <td>'.$value->nombre.'</td>
+               <td>'.$value->apellido.'</td>
+               <td>'.$value->placa.'</td>
+               <td>'.$value->ant_penales.'</td>
+               <td>'.$value->ant_judicial.'</td>
+               <td>'.$value->ant_policial.'</td>
+               <td>'.$value->record_cond.'</td>';
 
-               if($value["resultado"] == "APTO"){
+               if($value->resultado == "APTO"){
 
-                  echo '<td><label class="label label-success">'.$value["resultado"].'</label></td>';
+                  echo '<td><label class="label label-success">'.$value->resultado.'</label></td>';
 
                }else{
 
-                 echo '<td><label class="label label-danger">'.$value["resultado"].'</label></td>';
+                 echo '<td><label class="label label-danger">'.$value->resultado.'</label></td>';
 
                }
 
-               echo '<td>'.$value["soat"].'</td>';
+               echo '<td>'.$value->soat.'</td>';
 
-               /*if($value["pdf"] != 0){
+              if($value->observacion != ""){
 
-                 echo '<td><a href="https://cabifyperu.pe/usuario_arhu/docs/'.$value['pdf'].'" target="_blank"><img src="vistas/img/sist/pdf.png">';
-
-               }else{
-
-                 echo '<td><img src="vistas/img/sist/pdfoff.png" onClick="alerta()"></td>';
-
-               }*/
-
-               if($value["observacion"] != ""){
-
-                  echo '<td><label class="label label-warning">'.$value["observacion"].'</label></td>';
+                  echo '<td><label class="label label-warning">'.$value->observacion.'</label></td>';
 
                }else{
 
-                 echo '<td>'.$value["observacion"].'</td>';
+                 echo '<td>'.$value->observacion.'</td>';
 
                }
-
-               /* echo  '</td>
-               <td>
-
-                 <div class="btn-group">
-
-                   <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["cont"].'" data-toggle="modal" data-target="#modalEditarConductor"><i class="fa fa-pencil"></i></button>
-
-                 </div>
-
-               </td>*/
 
             echo '</tr>';
      }

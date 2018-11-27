@@ -31,9 +31,6 @@ class TablaConductor{
 
     $conductores = ControladorConductor::ctrMostrarConductor($item, $valor, $orden);
 
-    //var_dump($conductores);
-    //return;
-
     echo '{
       "data": [';
 

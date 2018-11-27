@@ -13,9 +13,10 @@ CARGAR LA TABLA DINÁMICA
 	$(document).ready(function() {
     var table = $('.tablaConductores').DataTable( {
     "ajax": "ajax/datatable-conductores.ajax.php",
-    "deferRender": true,
+	"deferRender": true,
 	"retrieve": true,
 	"processing": true,
+
     "order": [[0, "desc"]],
 		"language": {
 

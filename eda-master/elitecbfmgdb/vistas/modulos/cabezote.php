@@ -62,26 +62,21 @@
 
                                 <?php
 
-
-                                    $item = null;
-                                    $valor = null;
-
-
-                                    $soatconductor = ControladorConductor::ctrMostrarConductorsoatvencido($item, $valor);
+                                    $soatconductor = ControladorConductor::ctrMostrarConductorsoatvencido();
 
                                     //var_dump($soatconductor);
                                     foreach ($soatconductor as $key => $value){
-                                        $fecha_fin_soat = $value['fecha_fin_soat'];
+                                        $fecha_fin_soat = $value->fecha_fin_soat;
                                           $dia = date("d-M-Y");
                                             $d =date("d-M-Y",strtotime($dia."- 1 Moth"));
 
-                                        $nombre = $value['nombre'];
-                                        $apellido = $value['apellido'];
-                                        $soat = $value['soat'];
-                                        $dni = $value['dni'];
+                                        $nombre = $value->nombre;
+                                        $apellido = $value->apellido;
+                                        $soat = $value->soat;
+                                        $dni = $value->dni;
 
-                                        $cbf = $value['cabify'];
-                                        $easy = $value['easytaxi'];
+                                        $cbf = $value->cabify;
+                                        $easy = $value->easytaxi;
 
                                         if ($cbf == 1) {
                                             $empresa = '<img width="30" class="user-image" src="vistas/img/plantilla/favicon.ico">';

@@ -42,6 +42,23 @@
                               </li>';
                     }
 
+                    if($_SESSION["perfil"] =="Administrador"){
+                              echo '
+
+                                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                  <i class="ti fa fa-search"></i><span class="hide-menu"> Provincias</span></a>
+                                  <ul aria-expanded="false" class="collapse">
+
+                                      <li><a href="busqueda-arequipa"><i class="ti fa fa-map-marker"></i> Arequipa</span></a></li>
+                                      <li><a href="busqueda-chiclayo"><i class="ti fa fa-map-marker"></i> Chiclayo</span></a></li>
+                                      <li><a href="busqueda-cusco"><i class="ti fa fa-map-marker"></i> Cusco</span></a></li>
+                                      <li><a href="busqueda-lima"><i class="ti fa fa-map-marker"></i> Lima</span></a></li>
+                                      <li><a href="busqueda-piura"><i class="ti fa fa-map-marker"></i> Piura</span></a></li>
+                                      <li><a href="busqueda-trujillo"><i class="ti fa fa-map-marker"></i> Trujillo</span></a></li>
+                                  </ul>
+                              </li>';
+                          }
+
 
                 ?>
 

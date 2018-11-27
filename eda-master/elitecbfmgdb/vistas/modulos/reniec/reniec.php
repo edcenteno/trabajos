@@ -47,7 +47,7 @@ function realizaProcesocarnet(){
  $('#consultacarnet').hide();
 
     carnet = $('#carnet').val();
-    provincia = '<?php echo $provincia ?>'+
+    //provincia = '<?php echo $provincia ?>'+
     fechaNacimientocarnet = $('#fechaNacimientocarnet').val();
     filter_number = /^[0-9]+$/;
 
@@ -598,6 +598,7 @@ $(document).ready(function(){
 
     var dni = $('#carnet').val()
     var type = 2;
+    provincia = '<?php echo $provincia ?>'
 
     $.ajax({
         type: "POST",
@@ -621,6 +622,7 @@ $(document).ready(function(){
         "&cabify=" + cabify2 +
         "&easytaxi=" + easytaxi2 +
         "&usuario_reg=" + $('#usuario_reg2').val() +
+        "&provincia=" + provincia +
         "&fechaNacimiento=" + $('#fechaNacimientocarnet').val();
 
         $.ajax({
