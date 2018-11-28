@@ -1,6 +1,5 @@
 <?php
 
-
 require_once "../../../controladores/conductores.controlador.php";
 require_once "../../../modelos/conductores.modelo.php";
 //$idconductor=0;
@@ -9,34 +8,12 @@ require_once "../../../modelos/conductores.modelo.php";
     $valor = null;
 require 'vendor/autoload.php';
 require "phpqrcode/qrlib.php";
-$dir = 'temp/';
-
-	//Si no existe la carpeta la creamos
-	if (!file_exists($dir))
-        mkdir($dir);
-
-        //Declaramos la ruta y nombre del archivo a generar
-	$filename = $dir.'test.png';
-
-        //Parametros de Condiguración
-
-	$tamaño = 2; //Tamaño de Pixel
-	$level = 'L'; //Precisión Baja
-	$framSize = 3; //Tamaño en blanco
-	$contenido = "https://arhuantecedentes.com/elitecbf/extensiones/tcpdf/pdf/reporte.php?idconductor=$idconductor"; //Texto
-
-        //Enviamos los parametros a la Función para generar código QR
-	QRcode::png($contenido, $filename, $level, $tamaño, $framSize);
-
-        //Mostramos la imagen generada
-	$qr ='<img src="'.$dir.basename($filename).'" /><hr/>';
-
 
     $unconductor = ControladorConductor::ctrMostrarunConductor($item, $valor, $idconductor);
     //var_dump($unconductor);
     foreach ($unconductor as $key => $value){
 	$foto = $value['foto'];
-	if ($foto == "") {
+	if ($foto > "") {
 		$foto = "conductor.jpg";
 	}
 

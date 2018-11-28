@@ -283,119 +283,121 @@ require 'graficas/querys.php';
 <!-- ============================================================== -->
 
 <script type="text/javascript">
+    anomes = '<?php echo $anomes ?>'
+
     Morris.Area({
         element: 'morris-area-chart'
         , data: [{
-                period: '2018-10-01'
+                period: anomes+'-01'
                 , Conductores: '<?php echo $dia1 ?>'
 
         }, {
-                period: '2018-10-02'
+                period: anomes+'-02'
                 , Conductores: '<?php echo $dia2 ?>'
         }, {
-                period: '2018-10-03'
+                period: anomes+'-03'
                 , Conductores: '<?php echo $dia3 ?>'
 
         }, {
-                period: '2018-10-04'
+                period: anomes+'-04'
                 , Conductores:'<?php echo $dia4 ?>'
         }, {
-                period: '2018-10-05'
+                period: anomes+'-05'
                 , Conductores:'<?php echo $dia5 ?>'
         }, {
-                period: '2018-10-06'
+                period: anomes+'-06'
                 , Conductores:'<?php echo $dia6 ?>'
         }, {
-                period: '2018-10-07'
+                period: anomes+'-07'
                 , Conductores:'<?php echo $dia7 ?>'
         },{
-                period: '2018-10-08'
+                period: anomes+'-08'
                 , Conductores:'<?php echo $dia8 ?>'
         },{
-                period: '2018-10-09'
+                period: anomes+'-09'
                 , Conductores:'<?php echo $dia9 ?>'
         },{
-                period: '2018-10-10'
+                period: anomes+'-10'
                 , Conductores: '<?php echo $dia10 ?>'
 
         },{
-                period: '2018-10-11'
+                period: anomes+'-11'
                 , Conductores: '<?php echo $dia11 ?>'
 
         },{
-                period: '2018-10-12'
+                period: anomes+'-12'
                 , Conductores: '<?php echo $dia12 ?>'
 
         },{
-                period: '2018-10-13'
+                period: anomes+'-13'
                 , Conductores: '<?php echo $dia13 ?>'
 
         },{
-                period: '2018-10-14'
+                period: anomes+'-14'
                 , Conductores: '<?php echo $dia14 ?>'
 
         },{
-                period: '2018-10-15'
+                period: anomes+'-15'
                 , Conductores: '<?php echo $dia15 ?>'
 
         },{
-                period: '2018-10-16'
+                period: anomes+'-16'
                 , Conductores: '<?php echo $dia16 ?>'
 
         },{
-                period: '2018-10-17'
+                period: anomes+'-17'
                 , Conductores: '<?php echo $dia17 ?>'
 
         }, {
-                period: '2018-10-18'
+                period: anomes+'-18'
                 , Conductores: '<?php echo $dia18 ?>'
 
         }, {
-                period: '2018-10-19'
+                period: anomes+'-19'
                 , Conductores: '<?php echo $dia19 ?>'
 
         },{
-                period: '2018-10-20'
+                period: anomes+'-20'
                 , Conductores:'<?php echo $dia20 ?>'
         },{
-                period: '2018-10-21'
+                period: anomes+'-21'
                 , Conductores:'<?php echo $dia21 ?>'
         },{
-                period: '2018-10-22'
+                period: anomes+'-22'
                 , Conductores:'<?php echo $dia22 ?>'
         },{
-                period: '2018-10-23'
+                period: anomes+'-23'
                 , Conductores:'<?php echo $dia23 ?>'
         },{
-                period: '2018-10-24'
+                period: anomes+'-24'
                 , Conductores: '<?php echo $dia24 ?>'
 
         },{
-                period: '2018-10-25'
+                period: anomes+'-25'
                 , Conductores: '<?php echo $dia25 ?>'
 
         },{
-                period: '2018-10-26'
+                period: anomes+'-26'
                 , Conductores: '<?php echo $dia26 ?>'
 
         },{
-                period: '2018-10-27'
+                period: anomes+'-27'
                 , Conductores: '<?php echo $dia27 ?>'
 
         },{
-                period: '2018-10-28'
+                period: anomes+'-28'
                 , Conductores: '<?php echo $dia28 ?>'
 
         },{
-                period: '2018-10-29'
+                period: anomes+'-29'
                 , Conductores: '<?php echo $dia29 ?>'
 
         },{
-                period: '2018-10-30'
+                period: anomes+'-30'
                 , Conductores: '<?php echo $dia30 ?>'
 
         },{
-                period: '2018-10-31'
+                period: anomes+'-31'
                 , Conductores: '<?php echo $dia31 ?>'
 
         }]

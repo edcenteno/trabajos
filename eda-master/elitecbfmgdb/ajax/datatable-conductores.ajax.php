@@ -35,6 +35,7 @@ class TablaConductor{
       "data": [';
 
       for($i = 0; $i < count($conductores)-1; $i++){
+
          $vermas= "<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermas&idconductor=".$conductores[$i]->dni."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
 
 
@@ -69,7 +70,7 @@ class TablaConductor{
                     $cabify = "";
                 }
             $provincias = Provincias::one(['id'=>$conductores[$i]->id_provincia
-            ]);
+                                          ]);
 
 
         echo '[
