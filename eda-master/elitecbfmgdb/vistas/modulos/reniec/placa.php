@@ -153,7 +153,7 @@ if ($estado == "VIGENTE") {
 
 
 
-<span class="btn btn-primary" id="registrarNuevo">Registrar</span>
+<button class="btn btn-primary" id="registrarNuevo">Registrar</button>
 
 <script type="text/javascript">
   placa = $('#placa').val();
@@ -179,6 +179,7 @@ if ($estado == "VIGENTE") {
 
     $('#registrarNuevo').click(function(){
 
+        return(false);
          type= 1;
          dni = $('#dni').val();
 

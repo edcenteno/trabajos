@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class ControladorConductor{
 
 
@@ -18,11 +18,11 @@ class ControladorConductor{
 	MOSTRAR USUARIO
 	=============================================*/
 
-	static public function ctrMostrarConductorProvincia($item, $valor, $provincia){
+	static public function ctrMostrarConductorProvincia(){
 
-		//$tabla = "conductores";
-
-		$respuesta = ModeloConductor::mdlMostrarConductorProvincia($item, $valor, $provincia);
+		 $provincia = $_SESSION["id_provincia"];
+    		//echo $provincia;
+		$respuesta = ModeloConductor::mdlMostrarConductorProvincia($provincia);
 
 		return $respuesta;
 	}

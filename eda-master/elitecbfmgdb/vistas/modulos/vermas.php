@@ -1014,6 +1014,8 @@ if(empresa =="cabify"){
                                     if ($value['nombrecompania']== "Bnp Paribas Cardif") {
                                         echo '<img width="90" src="vistas/img/plantilla/bnpparibascardif.png">';
                                     }
+
+
                                     if ($value['nombrecompania']== "Protecta") {
                                         echo '<img width="90" src="vistas/img/plantilla/protecta.png">';
                                     }

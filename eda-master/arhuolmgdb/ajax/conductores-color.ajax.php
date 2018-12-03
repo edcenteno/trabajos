@@ -42,6 +42,7 @@ class TablaConductor{
             "'.$conductores[$i]->nombre.'",
             "'.$conductores[$i]->apellido.'",
             "'.$conductores[$i]->placa.'",
+            "'.$conductores[$i]->color_vehiculo.'",
 
             "'.$modificar.'"
           ],';
@@ -57,6 +58,7 @@ class TablaConductor{
             "'.$conductores[count($conductores)-1]->nombre.'",
             "'.$conductores[count($conductores)-1]->apellido.'",
             "'.$conductores[count($conductores)-1]->placa.'",
+            "'.$conductores[count($conductores)-1]->color_vehiculo.'",
 
             "'.$modificar.'"
       ]

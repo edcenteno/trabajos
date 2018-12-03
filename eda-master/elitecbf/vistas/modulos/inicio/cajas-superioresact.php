@@ -1,7 +1,7 @@
 <?php
 require 'conexion.php';
 $fecha=date('Y-m');
-$sql="SELECT SUM(act) as sumaact FROM conductores where fecha_act LIKE '$fecha%'";
+$sql="SELECT SUM(act) as sumaact FROM conductores where fecha_act LIKE '2018-11%'";
     $result=mysqli_query($conexion,$sql);
     while($row = $result->fetch_array(MYSQLI_ASSOC)){
       $rows[] = $row;

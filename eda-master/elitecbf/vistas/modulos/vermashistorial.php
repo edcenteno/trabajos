@@ -825,6 +825,12 @@ if(empresa =="cabify"){
                                     if ($value['nombrecompania']== "Bnp Paribas Cardif") {
                                         echo '<img width="90" src="vistas/img/plantilla/bnpparibascardif.png">';
                                     }
+                                    if ($value['nombrecompania']== "BNP PARIBAS CARDIF") {
+                                        echo '<img width="90" src="vistas/img/plantilla/bnpparibascardif.png">';
+                                    }
+                                    if ($value['nombrecompania']== "Crecer Seguros") {
+                                        echo '<img width="90" src="vistas/img/plantilla/crecerseguros.png">';
+                                    }
                                     if ($value['nombrecompania']== "Protecta") {
                                         echo '<img width="90" src="vistas/img/plantilla/protecta.png">';
                                     }

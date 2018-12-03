@@ -51,7 +51,7 @@ class TablaConductor{
 
             }
 
-            $vermas="<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermas&idconductor=".$conductores[count($conductores)-1]["dni"]."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
+            $vermas="<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermashistorial&idconductor=".$conductores[count($conductores)-1]["dni"]."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
 
 
            echo'[

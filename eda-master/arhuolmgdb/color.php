@@ -70,7 +70,7 @@ if(isset($_SESSION['user'])){
                                         <th>NOMBRE</th>
                                         <th>APELLIDO</th>
                                         <th>PLACA</th>
-                                       <!-- <th>COLOR</th>-->
+                                        <th>COLOR</th>
                                         <th>MODIFICAR</th>
 
                                     </tr>

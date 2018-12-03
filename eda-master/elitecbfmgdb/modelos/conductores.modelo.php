@@ -42,14 +42,11 @@ class ModeloConductor extends Model {
 	MOSTRAR USUARIOS
 	=============================================*/
 
-	static public function mdlMostrarConductorProvincia($item, $valor, $provincia){
+	static public function mdlMostrarConductorProvincia($provincia){
 
 
-			$params = ([
-        			$item=>$valor,
-        			'id_provincia' => $provincia
-        			]);
-        	$conductores = ModeloConductor::one($params);
+
+        	$conductores = ModeloConductor::find(array('id_provincia' => $provincia));
 
            return $conductores;
 

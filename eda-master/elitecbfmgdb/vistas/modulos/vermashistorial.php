@@ -427,7 +427,7 @@ if(empresa =="cabify"){
 
                                 echo '
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>
-                               <li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reporte.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>';
+                               <li class="nav-item"> <a class="nav-link btnreporte"  href="extensiones/tcpdf/pdf/reportehist.php?idconductor='.$idconductor.'" target="_blank" role="tab"><i class="ti-download"></i> PDF</a> </li>';
                         }
 
 

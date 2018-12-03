@@ -1,25 +1,32 @@
 <?php
-session_start();
+//error_reporting(0);
+//session_start();
 require_once "../controladores/conductores.controlador.php";
 require_once "../modelos/conductores.modelo.php";
+require '../modelos/vendor/autoload.php'; //
 
+use Purekid\Mongodm\Model;
+ class Provincias extends Model
+    {
+
+        static $collection = "provincias";
+
+        /** use specific config section **/
+        public static $config = 'default';
+
+    }
 
 class TablaConductor{
-
-  /*=============================================
+/*=============================================
   MOSTRAR LA TABLA DE PRODUCTO
   =============================================*/
 
   public function mostrarTabla(){
 
-    $item = null;
-    $valor = null;
-    $orden = "id";
-    $provincia = $_SESSION["id_provincia"];
 
 
-    $conductores = ControladorConductor::ctrMostrarConductorProvincia($item, $valor, $provincia);
 
+    $conductores = ControladorConductor::ctrMostrarConductorProvincia();
 
     echo '{
             "data": [';
@@ -59,15 +66,18 @@ class TablaConductor{
                     $cabify = "";
                 }
 
+                 $provincias = Provincias::one(['id'=>$conductores[$i]->id_provincia
+                                          ]);
+
 
                 echo '[
-            "'.$conductores[$i]->fecha.'",
-                  "'.$conductores[$i]->descripcion.'",
+                  "'.$conductores[$i]->fecha.'",
+                  "'.$provincias->descripcion.'",
                   "'.$dni.'",
                   "'.$conductores[$i]->nombre.'",
-            "'.$conductores[$i]->apellido.'",
+                  "'.$conductores[$i]->apellido.'",
                   "'.$conductores[$i]->placa.'",
-            "'.$cabify.'",
+                  "'.$cabify.'",
                   "'.$soat.'",
                   "'.$vermas.'"
                 ],';
@@ -100,11 +110,13 @@ class TablaConductor{
 
             }
 
+              $provincias = Provincias::one(['id'=>$conductores[count($conductores)-1]->id_provincia
+            ]);
 
            echo'[
 
             "'.$conductores[count($conductores)-1]->fecha.'",
-            "'.$conductores[count($conductores)-1]->descripcion.'",
+            "'.$provincias->descripcion.'",
             "'.$conductores[count($conductores)-1]->dni.'",
             "'.$conductores[count($conductores)-1]->nombre.'",
             "'.$conductores[count($conductores)-1]->apellido.'",

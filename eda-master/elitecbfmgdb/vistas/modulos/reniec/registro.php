@@ -50,6 +50,7 @@ require 'modelo/modeloconductor.php';
 					$secuencia =  "RA-" .$año . $mes. $saa;
 				}
 
+
 			$conductores = new ModeloConductor([
 					'plus' => '',
 					'dni' => $dni,

@@ -72,6 +72,7 @@ if(isset($_SESSION['user'])){
                             <table class="table table-bordered table-striped responsive " id="tablaConductores">
                                 <thead>
                                     <tr>
+
                                         <th>FECHA DE REGISTRO</th>
                                         <th>DNI</th>
                                         <th>NOMBRE</th>

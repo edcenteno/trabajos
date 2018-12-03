@@ -6,7 +6,7 @@ require_once "../modelos/conductores.modelo.php";
 require '../modelos/vendor/autoload.php'; //
 
 use Purekid\Mongodm\Model;
-//require_once "conexion.php";
+
  class Provincias extends Model
     {
 

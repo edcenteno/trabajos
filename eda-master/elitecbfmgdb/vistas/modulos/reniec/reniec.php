@@ -401,6 +401,7 @@ function realizaProcesocarnet(){
 $(document).ready(function(){
 
   $("#registrarNuevo").click(function () {
+    document.getElementById("registrarNuevo").setAttribute('disabled',true);
   easytaxi2 = ($('input:checkbox[name=easytaxi]:checked').val());
   cabify2 = ($('input:checkbox[name=cabify]:checked').val());
   easyeconomy2 = ($('input:checkbox[name=easyeconomy]:checked').val());
@@ -411,6 +412,7 @@ $(document).ready(function(){
   $(document).ready(function(){
 
     $('#registrarNuevo').click(function(){
+      document.getElementById("registrarNuevo").setAttribute('disabled',true);
 
       var dni = $('#ptp').val()
       var type = $('#tipoext').val()
@@ -584,6 +586,7 @@ $(document).ready(function(){
   $(document).ready(function(){
 
   $("#registrarNuevoCarnet").click(function () {
+    document.getElementById("registrarNuevoCarnet").setAttribute('disabled',true);
   easytaxi2 = ($('input:checkbox[name=easytaxi]:checked').val());
   cabify2 = ($('input:checkbox[name=cabify]:checked').val());
   easyeconomy2 = ($('input:checkbox[name=easyeconomy]:checked').val());
@@ -595,6 +598,7 @@ $(document).ready(function(){
   $(document).ready(function(){
 
   $('#registrarNuevoCarnet').click(function(){
+    document.getElementById("registrarNuevoCarnet").setAttribute('disabled',true);
 
     var dni = $('#carnet').val()
     var type = 2;
