@@ -84,6 +84,7 @@ if(isset($_SESSION['user'])){
                                         <th>ANTECEDENTES PENALES</th>
                                         <th>ANTECEDENTES JUDICIAL</th>
                                         <th>ANTECEDENTES POLICIAL</th>
+                                        <th>OBSERVACION </th>
                                         <th>ELIMINAR</th>
                                     </tr>
                                 </thead>

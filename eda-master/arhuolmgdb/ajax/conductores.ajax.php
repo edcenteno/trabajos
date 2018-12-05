@@ -35,7 +35,7 @@ class TablaConductor{
         $eliminar = "<a href='#' data-href='eliminar.php?id=".$conductores[$i]->dni."' data-toggle='modal' data-target='#confirm-delete'><button type='button' class='btn btn-outline-danger'><i class='fa fa-trash-o'></i></button></a>";
 
         $obs=str_replace('.', '', $conductores[$i]->observacion);
-        $o=trim($obs);
+        $o=preg_replace("/\s+/"," ",$obs);
 
           echo '[
 
@@ -50,7 +50,7 @@ class TablaConductor{
             "'.$conductores[$i]->ant_penales.'",
             "'.$conductores[$i]->ant_judicial.'",
             "'.$conductores[$i]->ant_policial.'",
-
+            "'.$o.'",
             "'.$eliminar.'"
           ],';
 
@@ -61,7 +61,7 @@ class TablaConductor{
 
       $eliminar = "<a href='#' data-href='eliminar.php?id=".$conductores[count($conductores)-1]->dni."' data-toggle='modal' data-target='#confirm-delete'><button type='button' class='btn btn-outline-danger'><i class='fa fa-trash-o'></i></button></a>";
        $obs=str_replace('.', '',$conductores[count($conductores)-1]->observacion);
-        $o=trim($obs);
+       $o=preg_replace("/\s+/"," ",$obs);
 
 
        echo'[
@@ -78,7 +78,7 @@ class TablaConductor{
             "'.$conductores[count($conductores)-1]->ant_penales.'",
             "'.$conductores[count($conductores)-1]->ant_judicial.'",
             "'.$conductores[count($conductores)-1]->ant_policial.'",
-
+            "'.$o.'",
             "'.$eliminar.'"
       ]
       ]

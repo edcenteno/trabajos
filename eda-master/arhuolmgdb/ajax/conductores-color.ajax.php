@@ -33,6 +33,8 @@ class TablaConductor{
       "data": [';
 
       for($i = 0; $i < count($conductores)-1; $i++){
+      $color=str_replace('.', '', $conductores[$i]->color_vehiculo);
+      $c=trim($color);
 
         $modificar = "<a href='modificarcolor.php?id=".$conductores[$i]->dni."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button></a>";
 
@@ -42,15 +44,15 @@ class TablaConductor{
             "'.$conductores[$i]->nombre.'",
             "'.$conductores[$i]->apellido.'",
             "'.$conductores[$i]->placa.'",
-            "'.$conductores[$i]->color_vehiculo.'",
-
+            "'.$c.'",
             "'.$modificar.'"
           ],';
 
       }
 
       $modificar = "<a href='modificarcolor.php?id=".$conductores[count($conductores)-1]->dni."'><button type='button' class='btn btn-outline-primary'><i class='fa fa-pencil'></i></button></a>";
-
+      $color=str_replace('.', '', $conductores[count($conductores)-1]->color_vehiculo);
+      $c=trim($color);
        echo'[
 
             "'.$conductores[count($conductores)-1]->fecha.'",
@@ -58,8 +60,7 @@ class TablaConductor{
             "'.$conductores[count($conductores)-1]->nombre.'",
             "'.$conductores[count($conductores)-1]->apellido.'",
             "'.$conductores[count($conductores)-1]->placa.'",
-            "'.$conductores[count($conductores)-1]->color_vehiculo.'",
-
+            "'.$c.'",
             "'.$modificar.'"
       ]
       ]
