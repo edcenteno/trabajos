@@ -391,6 +391,7 @@ class ControladorUsuarios{
 							   "usuario" => $_POST["editarUsuario"],
 							   "password" => $encriptar,
 							   "perfil" => $_POST["editarPerfil"],
+							   "empresa" => $_POST["editarEmpresa"],
 							   "foto" => $ruta);
 
 				$respuesta = ModeloUsuarios::mdlEditarUsuario($datos);

@@ -21,13 +21,13 @@ use Purekid\Mongodm\Model;
 
             $params = array($item=>$valor);
             $usuarioscabify = ModeloUsuarios::one($params);
-           // var_dump($usuarioscabify);
+
            return $usuarioscabify;
 
         }else{
 
-           $usuarioscabify = ModeloUsuarios::all();
-            //var_dump($usuarioscabify);
+           $usuarioscabify = ModeloUsuarios::find(array('$or' => array(array("empresa" => 'cabify'), array("empresa" => 'easytaxi'))));
+
            return $usuarioscabify;
         }
 
@@ -81,7 +81,8 @@ use Purekid\Mongodm\Model;
                     'nombre' => $datos['nombre'],
                     'password' => $datos['password'],
                     'perfil' => $datos['perfil'],
-                    'foto' => $datos['foto']
+                    'foto' => $datos['foto'],
+                    'empresa' => $datos['empresa']
                     ]);
 
         $usuarioscabify->save();

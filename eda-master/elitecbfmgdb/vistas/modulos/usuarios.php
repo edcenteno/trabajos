@@ -51,6 +51,7 @@ use Purekid\Mongodm\Model;
                                    <th>Foto</th>
                                    <th>Perfil</th>
                                    <th>Empresa</th>
+                                   <th>Provincia</th>
                                    <th>Estado</th>
                                    <th>Último login</th>
                                    <th>Acciones</th>
@@ -64,6 +65,7 @@ use Purekid\Mongodm\Model;
                                    <th>Foto</th>
                                    <th>Perfil</th>
                                    <th>Empresa</th>
+                                   <th>Provincia</th>
                                    <th>Estado</th>
                                    <th>Último login</th>
                                    <th>Acciones</th>
@@ -77,7 +79,11 @@ use Purekid\Mongodm\Model;
 
                             $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
                             $contador=0;
-                           foreach ($usuarios as $key => $value){
+                            foreach ($usuarios as $key => $value){
+
+                            $provincias = ModeloProvincias::one(['id'=>$value->id_provincia
+                                          ]);
+
                             $contador++;
                               echo ' <tr>
                                       <td>'.($contador).'</td>
@@ -96,6 +102,7 @@ use Purekid\Mongodm\Model;
 
                                       echo '<td>'.$value->perfil.'</td>';
                                       echo '<td>'.$value->empresa.'</td>';
+                                      echo '<td>'.$provincias->descripcion.'</td>';
 
                                       if($value->estado != 0){
 
@@ -208,7 +215,7 @@ MODAL AGREGAR USUARIO
                     </div>
                 </div>
 
-                <div class="form-group">
+              <div class="form-group">
               <label for="Empresa">Empresa</label>
               <div class="input-group">
                <div class="input-group-prepend">
@@ -465,6 +472,54 @@ MODAL EDITAR USUARIO
               </div>
 
             </div>
+
+            <div class="form-group">
+              <label for="Empresa">Empresa</label>
+              <div class="input-group">
+               <div class="input-group-prepend">
+                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-building"></i></span>
+                    </div>
+
+                <select class="form-control input-lg" name="editarEmpresa">
+                  <option value="" id="editarEmpresa"></option>
+                  <option value="cabify">Cabify</option>
+
+                  <option value="easytaxi">EasyTaxy</option>
+
+                 <!--  <option value="EasyTaxyEconomy">Easy Taxy Economy</option> -->
+
+                </select>
+
+              </div>
+
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="Ubicación">Ubicación</label>
+              <div class="input-group">
+               <div class="input-group-prepend">
+                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-map-marker"></i></span>
+                    </div>
+
+                <select class="form-control input-lg" name="nuevoUbicacion">
+                  <option value="" id="editarProvincia"></option>
+                  <?php
+
+
+                    $provincia = ModeloProvincias::all();
+                  //  var_dump($provincia);
+                   foreach ($provincia as $key => $value){
+                  ?>
+                    <option value="<?php echo $value->id  ?>"><?php echo $value->descripcion ?></option>
+                  <?php
+
+                    }
+                  ?>
+                </select>
+
+              </div>
+
+            </div> -->
 
             <!-- ENTRADA PARA SUBIR FOTO -->
 
