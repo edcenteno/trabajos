@@ -66,7 +66,6 @@ class TablaConductor{
 
        echo'[
 
-
             "'.$conductores[count($conductores)-1]->fecha.'",
             "'.$conductores[count($conductores)-1]->dni.'",
             "'.$conductores[count($conductores)-1]->nombre.'",

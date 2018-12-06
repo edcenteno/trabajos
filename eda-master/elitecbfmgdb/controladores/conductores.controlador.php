@@ -2,7 +2,6 @@
 session_start();
 class ControladorConductor{
 
-
 	/*=============================================
 	MOSTRAR USUARIO
 	=============================================*/
@@ -21,7 +20,7 @@ class ControladorConductor{
 	static public function ctrMostrarConductorProvincia(){
 
 		 $provincia = $_SESSION["id_provincia"];
-    		//echo $provincia;
+
 		$respuesta = ModeloConductor::mdlMostrarConductorProvincia($provincia);
 
 		return $respuesta;
@@ -86,7 +85,7 @@ class ControladorConductor{
 			=============================================*/
 
 			$Name = $_GET["reporte"].'.xls';
- //echo "<script> alert('excel');</script>";
+
 			header('Expires: 0');
 			header('Cache-control: private');
 			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
@@ -157,8 +156,6 @@ class ControladorConductor{
 
 			echo "</table>";
 
-
-
 	}
 
 
@@ -187,20 +184,12 @@ class ControladorConductor{
 		  $fechaini=$_GET["fechaInicial"];
           $fechafin=$_GET["fechaFinal"];
 
-
-         // echo $fechaini;
-          //echo $fechafin;
-
 		if(isset($_GET["reporte"])){
 
-			//$tablas = "conductores";
 
 
 			if(isset($fechaini) && isset($fechafin)){
 				$conductores = ModeloConductor::mdlRangoFechasConductorHistorial($fechaini, $fechafin);
-			//var_dump($conductores);
-
-
 			}else{
 
 				$item = null;
@@ -217,7 +206,7 @@ class ControladorConductor{
 			=============================================*/
 
 			$Name = $_GET["reporte"].'.xls';
- 			//echo "<script> alert('excel');</script>";
+
 			header('Expires: 0');
 			header('Cache-control: private');
 			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
@@ -255,7 +244,7 @@ class ControladorConductor{
                     $cabify = "cabify";
 
 			 echo utf8_decode("<tr>
-			 			<td style='border:1px solid #eee;'>".$value["fecha"]."</td>
+			 			<td style='border:1px solid #eee;'>".$value["fecha_revision"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["dni"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["nombre"]."</td>
 			 			<td style='border:1px solid #eee;'>".$value["placa"]."</td>
@@ -292,10 +281,8 @@ class ControladorConductor{
 
 	static public function ctrRangoFechasConductorHistorial($fechaInicial, $fechaFinal){
 
-		$tabla = "conductores";
-
 		$respuesta = ModeloConductor::mdlRangoFechasConductorHistorial($fechaInicial, $fechaFinal);
-		//var_dump($respuesta);
+
 		return $respuesta;
 
 	}
@@ -326,7 +313,6 @@ class ControladorConductor{
 				$valor = null;
 
 				$conductores = ModeloConductor::mdlMostrarConductorProvincia($item, $valor, $provincia);
-
 
 			}
 

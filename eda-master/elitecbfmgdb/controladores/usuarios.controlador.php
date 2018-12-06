@@ -16,13 +16,10 @@ class ControladorUsuarios{
 
 			   	$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-				/*$tabla = "usuarioscabify"*/;
-
 				$item = "usuario";
 				$valor = $_POST["ingUsuario"];
 
 				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($item, $valor);
-				//var_dump($respuesta);
 
 				if($respuesta->usuario == $_POST["ingUsuario"] && $respuesta->password == $encriptar){
 
@@ -56,7 +53,7 @@ class ControladorUsuarios{
 						$valor2 = $respuesta->usuario;
 
 						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($item1, $valor1, $item2, $valor2);
-						//var_dump($ultimoLogin);
+
 						if($ultimoLogin == "ok"){
 
 							echo '<script>
@@ -261,8 +258,6 @@ class ControladorUsuarios{
 
 	static public function ctrMostrarUsuarios($item, $valor){
 
-		//$tabla = "usuarioscabify";
-
 		$respuesta = ModeloUsuarios::MdlMostrarUsuarios($item, $valor);
 
 		return $respuesta;
@@ -399,7 +394,6 @@ class ControladorUsuarios{
 							   "foto" => $ruta);
 
 				$respuesta = ModeloUsuarios::mdlEditarUsuario($datos);
-				//var_dump($respuesta);
 
 				if($respuesta == "ok"){
 
