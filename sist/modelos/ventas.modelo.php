@@ -29,7 +29,7 @@ class ModeloVentas{
 			return $stmt -> fetchAll();
 
 		}
-		
+
 		$stmt -> close();
 
 		$stmt = null;
@@ -60,7 +60,7 @@ class ModeloVentas{
 		}else{
 
 			return "error";
-		
+
 		}
 
 		$stmt->close();
@@ -92,7 +92,7 @@ class ModeloVentas{
 		}else{
 
 			return "error";
-		
+
 		}
 
 		$stmt->close();
@@ -113,10 +113,10 @@ class ModeloVentas{
 		if($stmt -> execute()){
 
 			return "ok";
-		
+
 		}else{
 
-			return "error";	
+			return "error";
 
 		}
 
@@ -128,7 +128,7 @@ class ModeloVentas{
 
 	/*=============================================
 	RANGO FECHAS
-	=============================================*/	
+	=============================================*/
 
 	static public function mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal){
 
@@ -138,7 +138,7 @@ class ModeloVentas{
 
 			$stmt -> execute();
 
-			return $stmt -> fetchAll();	
+			return $stmt -> fetchAll();
 
 
 		}else if($fechaInicial == $fechaFinal){
@@ -171,7 +171,7 @@ class ModeloVentas{
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
 
 			}
-		
+
 			$stmt -> execute();
 
 			return $stmt -> fetchAll();
@@ -184,7 +184,7 @@ class ModeloVentas{
 	SUMAR EL TOTAL DE VENTAS
 	=============================================*/
 
-	static public function mdlSumaTotalVentas($tabla){	
+	static public function mdlSumaTotalVentas($tabla){
 
 		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla");
 
@@ -198,5 +198,5 @@ class ModeloVentas{
 
 	}
 
-	
+
 }

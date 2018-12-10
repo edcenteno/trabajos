@@ -16,6 +16,8 @@ CARGAR LA TABLA DINÁMICA
 	"deferRender": true,
 	"retrieve": true,
 	"processing": true,
+	"bPaginate":true,
+	"iDisplayLength": 10,
 
     "order": [[0, "desc"]],
 		"language": {
@@ -58,6 +60,8 @@ CARGAR LA TABLA DINÁMICA
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
+	"bPaginate":true,
+	"iDisplayLength": 10,
     "order": [[0, "desc"]],
 		"language": {
 
@@ -99,6 +103,8 @@ CARGAR LA TABLA DINÁMICA
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
+	"bPaginate":true,
+	"iDisplayLength": 10,
     "order": [[0, "desc"]],
 		"language": {
 
@@ -138,6 +144,8 @@ CARGAR LA TABLA DINÁMICA
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
+	"bPaginate":true,
+	"iDisplayLength": 10,
     "order": [[0, "desc"]],
 		"language": {
 
@@ -174,6 +182,8 @@ CARGAR LA TABLA DINÁMICA
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
+	"bPaginate":true,
+	"iDisplayLength": 10,
     "order": [[0, "desc"]],
 		"language": {
 
@@ -210,6 +220,8 @@ CARGAR LA TABLA DINÁMICA
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
+	"bPaginate":true,
+	"iDisplayLength": 10,
     "order": [[0, "desc"]],
 		"language": {
 
@@ -246,6 +258,8 @@ $(document).ready(function() {
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
+	"bPaginate":true,
+	"iDisplayLength": 10,
     "order": [[0, "asc"]],
 		"language": {
 
@@ -282,6 +296,8 @@ $(document).ready(function() {
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
+	"bPaginate":true,
+	"iDisplayLength": 10,
     "order": [[0, "desc"]],
 		"language": {
 

@@ -181,8 +181,8 @@ class ControladorConductor{
 	=============================================*/
 	public function ctrDescargarReporteHistorial(){
 
-		  $fechaini=$_GET["fechaInicial"];
-          $fechafin=$_GET["fechaFinal"];
+		  @$fechaini=$_GET["fechaInicial"];
+          @$fechafin=$_GET["fechaFinal"];
 
 		if(isset($_GET["reporte"])){
 
@@ -192,10 +192,7 @@ class ControladorConductor{
 				$conductores = ModeloConductor::mdlRangoFechasConductorHistorial($fechaini, $fechafin);
 			}else{
 
-				$item = null;
-				$valor = null;
-
-				$conductores = ModeloConductor::mdlMostrarConductorHistorial($item, $valor);
+				$conductores = ModeloConductor::mdlMostrarConductorHistorialexcel();
 
 
 			}

@@ -53,7 +53,7 @@ class ModeloConductor extends Model {
 	}
 
 
-/*=============================================
+	/*=============================================
 	MOSTRAR USUARIOS
 	=============================================*/
 
@@ -89,6 +89,25 @@ class ModeloConductor extends Model {
 			return $stmt -> fetchAll();
 
 		}
+
+
+		$stmt -> close();
+
+		$stmt = null;
+
+
+	}
+
+	static public function mdlMostrarConductorHistorialexcel(){
+
+		$sql ="SELECT T1.*, T2.*, T3.descripcion, T4.ant_penales, T4.ant_judicial, T4.ant_policial, T4.resultado, T4.observacion FROM historial T1 INNER JOIN vehiculos T2 INNER JOIN empresas T3 INNER JOIN antecedentes T4 ON T1.id_vehiculo = T2.id AND T1.id_empresa = T3.id AND T1.id = T4.id_historial";
+
+
+			$stmt = Conexion::conectar()->prepare("$sql");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
 
 
 		$stmt -> close();
