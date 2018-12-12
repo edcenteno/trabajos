@@ -47,7 +47,7 @@ function realizaProcesocarnet(){
  $('#consultacarnet').hide();
 
     carnet = $('#carnet').val();
-    //provincia = '<?php echo $provincia ?>'+
+
     fechaNacimientocarnet = $('#fechaNacimientocarnet').val();
     filter_number = /^[0-9]+$/;
 

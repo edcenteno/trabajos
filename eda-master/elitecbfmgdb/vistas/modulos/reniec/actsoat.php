@@ -62,6 +62,7 @@ $NombreClaseVehiculo = $out['NombreClaseVehiculo'];
 $FechaControlPolicial = $out['FechaControlPolicial'];
 $TipoCertificado = $out['TipoCertificado'];
 $observacion = "";
+
 $conductores = ModeloConductor::one(['dni'=>$dni]);
 $contsoat = $conductores->contsoat;
 $contsoat++;
