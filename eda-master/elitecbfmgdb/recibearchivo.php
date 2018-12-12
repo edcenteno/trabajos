@@ -16,6 +16,7 @@ class ModeloConductor extends Model {
 
 if (isset($file) && isset($_FILES["file"])){
 	$uploads_dirpdf = 'extensiones/tcpdf/pdf/images/conductores';
+
 	foreach ($_FILES["file"]["error"] as $key => $error) {
 	    if ($error == UPLOAD_ERR_OK) {
 	        $tmp_name = $_FILES["file"]["tmp_name"][$key];
@@ -43,8 +44,8 @@ $conductores->update([
 					'foto' => $name,
 					'fecha_foto' => $fecha_reg
 					]);
-echo($conductores);
-$conductores->save();
 
+$conductores->save();
+/*echo($conductores);*/
 //echo json_encode($return);
 ?>

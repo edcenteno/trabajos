@@ -37,7 +37,7 @@ if (isset($file) && isset($_FILES["file"])){
     ];
 }
 
-echo json_encode($return);
+json_encode($return);
 
 $conductores = ModeloConductor::one(['dni'=>$file]);
 

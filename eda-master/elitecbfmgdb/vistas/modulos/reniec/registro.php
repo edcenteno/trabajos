@@ -156,11 +156,11 @@ require 'modelo/modeloconductor.php';
 		function buscaRepetido($dni){
 			$count = ModeloConductor::count(array('dni'=>$dni));
 
-			if($count > 0){
-				return 1;
-			}else{
-				return 0;
-			}
+				if($count > 0){
+					return 1;
+				}else{
+					return 0;
+				}
 		}
 
  ?>

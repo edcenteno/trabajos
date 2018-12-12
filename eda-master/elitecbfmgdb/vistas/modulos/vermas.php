@@ -278,6 +278,7 @@ if(empresa =="cabify"){
 
                             if($_SESSION["usuario"] =="edcenteno"){
                                 echo '<button class="btn btn-info" onclick="actualizared()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>';
+                                echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar información solicitada </button>';
                             }
 
                             ?>

@@ -9,7 +9,7 @@
 
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="librerias/dt/datatables.min.css"/>
- 
+
 
 
 <link rel="stylesheet" type="text/css" href="librerias/bootstrap/bootstrap.min.css">
@@ -25,7 +25,7 @@
 <!-- <link rel="stylesheet" href="librerias/datatablesres/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="librerias/datatablesres/css/responsive.bootstrap.min.css"> -->
 <!-- <link rel="stylesheet" type="text/css" href="librerias/datatables/datatables.css">
- 
+
 
 <script type="text/javascript" charset="utf8" src="librerias/datatables/datatables.js"></script> -->
 <script src="librerias/jquery.min.js"></script>
