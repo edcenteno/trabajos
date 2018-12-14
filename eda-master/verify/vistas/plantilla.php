@@ -10,12 +10,12 @@ session_start();
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Cabify - Disfruta del viaje</title>
+  <title>Verify</title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-  <link rel="icon" href="vistas/img/plantilla/favicon.ico">
+  <link rel="icon" href="vistas/img/plantilla/logoverify.png">
 
    <!--=====================================
   PLUGINS DE CSS

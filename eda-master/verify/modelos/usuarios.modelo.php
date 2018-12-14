@@ -6,7 +6,7 @@ use Purekid\Mongodm\Model;
 
     class ModeloUsuarios extends Model {
 
-        static $collection = "usuario_cabify";
+        static $collection = "usuario";
 
         /** use specific config section **/
         public static $config = 'default';
@@ -26,7 +26,7 @@ use Purekid\Mongodm\Model;
 
         }else{
 
-           $usuarioscabify = ModeloUsuarios::find(array('$or' => array(array("empresa" => 'cabify'), array("empresa" => 'easytaxi'))));
+           $usuarioscabify = ModeloUsuarios::find();
 
            return $usuarioscabify;
         }

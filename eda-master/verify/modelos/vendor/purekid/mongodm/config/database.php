@@ -28,7 +28,7 @@ return array(
     'default' => array(
         'connection' => array(
             'hostnames' => 'localhost',
-            'database'  => 'arhuantecedentes',
+            'database'  => 'verify',
 //          'username'  => ''
 //          'password'  => ''
         )

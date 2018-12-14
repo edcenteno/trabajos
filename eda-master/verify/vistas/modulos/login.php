@@ -2,7 +2,7 @@
 <div class="preloader">
     <div class="loader">
         <div class="loader__figure"></div>
-        <p class="loader__label">Cabify</p>
+        <p class="loader__label">Verify</p>
     </div>
 </div>
 
@@ -12,7 +12,7 @@
 
             <div class="card-body">
                 <form class="form-horizontal form-material"  method="post">
-                    <h3 class="box-title m-b-20" align="center">Cabify - Disfruta del viaje</h3>
+                    <h3 class="box-title m-b-20" align="center">Verify</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control" type="text" required="" placeholder="Usuario" name="ingUsuario"> </div>

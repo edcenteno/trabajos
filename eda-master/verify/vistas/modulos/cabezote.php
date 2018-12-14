@@ -62,43 +62,7 @@
 
                                 <?php
 
-                                    $soatconductor = ControladorConductor::ctrMostrarConductorsoatvencido();
 
-                                    //var_dump($soatconductor);
-                                    foreach ($soatconductor as $key => $value){
-                                        $fecha_fin_soat = $value->fecha_fin_soat;
-                                          $dia = date("d-M-Y");
-                                            $d =date("d-M-Y",strtotime($dia."- 1 Moth"));
-
-                                        $nombre = $value->nombre;
-                                        $apellido = $value->apellido;
-                                        $soat = $value->soat;
-                                        $dni = $value->dni;
-
-                                        $cbf = $value->cabify;
-                                        $easy = $value->easytaxi;
-
-                                        if ($cbf == 1) {
-                                            $empresa = '<img width="30" class="user-image" src="vistas/img/plantilla/favicon.ico">';
-                                        }
-
-                                        if($easy == 1){
-                                            $empresa= '<img width="30" class="user-image" src="vistas/img/plantilla/easy.png">';
-                                        }
-
-                                    if($easy == 0 && $cbf == 0){
-                                            $empresa= '';
-                                        }
-                                        if ($fecha_fin_soat <= $d) {
-                                                 echo ' <a href="index.php?ruta=vermassoat&idconductor='.$dni.'" target="_blank">
-                                                            <div class="btn-circle">'.$empresa.'</div>
-                                                            <div class="mail-contnet">
-                                                                <h5>'. $nombre . $apellido.'</h5> <span class="mail-desc"><?php echo $soat ?></span> <span class="time">'.$soat.' ' .$fecha_fin_soat. '</span> </div></a>';
-                                             } else {
-                                                 # code...
-                                             }
-
-                                }
                                 ?>
 
                                 </div>
