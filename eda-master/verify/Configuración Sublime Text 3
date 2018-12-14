@@ -1,0 +1,156 @@
+Vue
+VueFormatter
+Vue Syntax Highlight
+Vuejs Complete Package
+Vuejs Snippets
+
+
+
+laravel
+
+Laravel 5 Snippets
+laravel 5 Artisan
+Laravel 5 Docs Light Color Scheme
+Laravel blade highlighter
+LaravelBlade Spacer
+
+TypeScript
+Angular2 HTML Syntax
+Angular2 Snippets
+TypeScriptSyntax
+ExpressComplete
+Bootstrap 3 autocomplete
+
+Phpcs
+- Estandares de programacion. PSR 2
+
+Emmet
+- Es el más utilizado, alcanza 1.5 millones de instalaciones y automatiza la creación de bloques de etiquetas HTML utilizando abreviaciones.
+
+SideBarEnhancements
+- Potencia la barra lateral añadiendo un amplio conjunto de operaciones, desde mi punto de vista es un imprescindible.
+
+Color Highlighter
+- Este package es usado por los diseñadores y permite ver los colores que hemos elegido en las CSS.
+
+BracketHighlighter
+- Un package sencillo pero muy práctico, se encarga de destacar los límites de cada pareja de llaves.
+
+HTML5
+- La llegada de la versión 5 ha incrementado considerablemente su número. Este package aporta intellisense para ellas.
+
+Terminal
+- Uno de los que más me gusta , permite abrir una ventana de terminal en la misma carpeta en donde se encuentra el fichero con el que estás trabajando.
+
+
+LiveReload
+- Refresca el navegador cuando guardas un archivo para ver los últimos cambios que hemos realizado
+
+AdvancedNewFile
+- Mejor manera de crear nuevos archivos.
+
+TrailingSpaces
+- Elimina todos los espacios finales del archivo actual. y muestra los espacios en color rosa;
+
+Alignment
+- Obligado para indentar bien vuestro código, un código bien estructurado es una buena práctica que debes seguir para tener un código de fácil lectura.
+seting user aligment
+{
+    "alignment_chars": [
+        "=", ":", "=>", " AS ", ","
+    ]
+}
+
+Auto Filename
+- Permite vincular archivos  mediante la sugerencia ya sean imágenes, hojas de estilo al usar etiquetas  como:  href, src, en php require_once y otros.
+
+DocBlockr
+- Permite insertar comentario para la documentación,  tiene soporte para PHP ,ActionScript ,, CoffeeScript , Java , Apex , Objective C , C , C ++   y entre otros, para usar escriba las primeras lineas  /** presione la tecla tab.
+
+SublimeCodeIntel
+- Plugin  mas completo para el auto completado de código y también reconoce las funciones definidas en nuestro proyecto .
+
+All Autocomplete
+- Añade autocompletar para palabras encontradas en todos los archivos abiertos. Funciona como un suplemento a SublimeCodeIntel.
+
+ColorPicker
+- Permite seleccionar en la paleta de color un color especifico, muy bueno al escribir código CSS. Para usar presione ctrl+alt+c.
+
+jQuery
+- Plugin para ayudar la sugerencia de JQuery, al escribir código puede mostrar casi la totalidad de los métodos que existen en JQuery en forma de fragmentos.
+
+Git
+- Este complemento integra SublimeText con Git para que pueda ejecutar algunos comandos de Git desde SublimeText, como Añadir y Cometer Archivos, Ver Registro y Anotar Archivos.
+
+Seti UI
+- Es un tema para mejorar la interfaz de la lista de los archivos , asocia icono a cada archivo, por defecto sublime tex3 tiene un tema que casi es aburrido.  se debe pegar el siguiente código en –>Preferences ->Settings:
+{
+    "caret_extra_bottom": 3,
+    "caret_extra_top": 3,
+    "caret_extra_width": 2,
+    "font_size": 10,
+    "highlight_line": true,
+    "highlight_modified_tabs": true,
+    "bold_folder_labels": true,
+    "fade_fold_buttons": false,
+    "trim_trailing_white_space_on_save": true,
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "open_files_in_new_window": false,
+    "overlay_scroll_bars": "enabled",
+    "save_on_focus_lost": true,
+    "tab_size": 4,
+    "theme": "Seti.sublime-theme",
+    "translate_tabs_to_spaces": true,
+    "word_wrap": true,
+    "line_padding_bottom": 4,
+    "line_padding_top": 4,
+    "always_show_minimap_viewport": true,
+    "draw_minimap_border": false,
+    "folder_exclude_patterns": [".svn", ".git", ".vagrant", ".sync"],
+}
+
+ JSHint
+ - Un plugin para JavaScript. Cada vez que guardamos nuestros archivos .js nos mostrará una consola con los errores y las líneas en que se encuentran.
+
+ // autocompletador
+SublimeLinter
+SublimeLinter-php
+SublimeLinter-csslint
+SublimeLinter-jshint
+
+// instalar para verificar los errores
+ sudo npm install -g jshint
+
+livereload
+Package Control: Add Repository
+https://raw.github.com/Grafikart/ST3-LiveReload/master/package.json
+seting default
+{
+    "enabled_plugins": [
+        "SimpleReloadPlugin",
+        "SimpleRefresh"
+    ]
+}
+
+php companion
+preferent->key bildings
+[
+  { "keys": ["f6"], "command": "expand_fqcn" },
+  { "keys": ["shift+f6"], "command": "expand_fqcn", "args": {"leading_separator": true} },
+  { "keys": ["f5"], "command": "find_use" },
+  { "keys": ["f4"], "command": "import_namespace" },
+  { "keys": ["f3"], "command": "implement" },
+  { "keys": ["shift+f12"], "command": "goto_definition_scope" },
+  { "keys": ["f7"], "command": "insert_php_constructor_property" },
+  { "keys": ["ctrl+7"], "command": "toggle_comment", "args": { "block": false } },
+  { "keys": ["ctrl+shift+7"], "command": "toggle_comment", "args": { "block": true } },
+  {"keys": ["alt+shift+f"], "command": "reindent", "args": {"single_line": false}}
+]
+
+preferent->package settings->php companion->seting user
+{
+    "use_sort_length": true,
+}
