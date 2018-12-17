@@ -19,16 +19,16 @@
                 <!-- Logo icon --><b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="vistas/img/plantilla/logoblanco.png" alt="homepage" class="dark-logo" />
+                    <img src="vistas/img/plantilla/verifyblanco.png" alt="homepage" class="dark-logo" height="30px"/>
                     <!-- Light Logo icon -->
-                    <img src="vistas/img/plantilla/logoblanco.png" alt="homepage" class="light-logo" />
+                    <img src="vistas/img/plantilla/verifyblanco.png" alt="homepage" class="light-logo" height="30px"/>
                 </b>
                 <!--End Logo icon -->
                 <!-- Logo text --><span>
                  <!-- dark Logo text -->
-                 <img src="vistas/img/plantilla/logocabify3.png" alt="homepage" class="dark-logo" />
+                 <img src="vistas/img/plantilla/logo_blanco.png" alt="homepage" class="dark-logo" />
                  <!-- Light Logo text -->
-                 <img src="vistas/img/plantilla/logocabify3.png" class="light-logo" alt="homepage" height="40px" /></span> </a>
+                 <img src="vistas/img/plantilla/logo_blanco.png" class="light-logo" alt="homepage" height="40px" /></span> </a>
         </div>
 
         <div class="navbar-collapse">

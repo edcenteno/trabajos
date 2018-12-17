@@ -104,7 +104,7 @@ require 'graficas/querys.php';
                         ?>
                         <?php
 
-                        if($_SESSION["perfil"] =="Operador" || $_SESSION["perfil"] =="RRHH"){
+                        if($_SESSION["perfil"] =="Operador" || $_SESSION["perfil"] =="RRHH"|| $_SESSION["perfil"] =="CallCenter"){
 
                          echo '<div class="col-lg-12">
                              <div class="card">

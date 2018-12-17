@@ -188,6 +188,7 @@ CUERPO DOCUMENTO
 
       if($_GET["ruta"] == "inicio" ||
          $_GET["ruta"] == "usuarios" ||
+         $_GET["ruta"] == "usuariosemer" ||
          $_GET["ruta"] == "conductores" ||
          $_GET["ruta"] == "conductoresprovincia" ||
          $_GET["ruta"] == "busqueda" ||

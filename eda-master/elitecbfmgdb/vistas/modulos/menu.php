@@ -75,7 +75,7 @@
                                       <li><a href="conductoressoat"><i class="ti fa fa-car"></i> SOAT Vencidos</span></a></li>';
                             }
 
-                            if($_SESSION["perfil"] =="Operador"){
+                            if($_SESSION["perfil"] =="Operador" || $_SESSION["perfil"] =="CallCenter"){
                                 echo '
                                       <li><a href="conductoresprovincia"><i class="ti fa fa-search"></i> Administrar</span></a></li>
                                       <li><a href="busqueda"><i class="ti fa fa-car"></i> Busqueda</span></a></li>
@@ -88,10 +88,7 @@
                                       <li><a href="rrhh"><i class="ti-notepad"></i> RRHH</span></a></li>';
                             }
 
-                            /*if($_SESSION["perfil"] =="Administrador" || $_SESSION["perfil"] =="Call"){
-                                echo '
-                                      <li><a href="consultas-basicas"><i class="ti-folder"></i> Consulta Básica</span></a></li>';
-                            } */
+
                         ?>
 
                     </ul>

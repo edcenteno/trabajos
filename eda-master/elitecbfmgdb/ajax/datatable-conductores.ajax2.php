@@ -6,16 +6,16 @@ require_once "../modelos/conductores.modelo.php";
 require '../modelos/vendor/autoload.php'; //
 
 use Purekid\Mongodm\Model;
-
+//require_once "conexion.php";
  class Provincias extends Model
     {
 
         static $collection = "provincias";
 
+        /** use specific config section **/
         public static $config = 'default';
 
     }
-
 
     $item = null;
     $valor = null;
