@@ -6,11 +6,12 @@ require_once "../modelos/usuarios.modelo.php";
 use Purekid\Mongodm\Model;
 class ModeloUsuarios extends Model {
 
-        static $collection = "usuario_cabify";
+        static $collection = "usuarios";
 
         /** use specific config section **/
         public static $config = 'default';
     }
+
 class AjaxUsuarios{
 
 	/*=============================================
@@ -21,7 +22,7 @@ class AjaxUsuarios{
 
 	public function ajaxEditarUsuario(){
 
-		$item = "usuario";
+		$item = "usuarios";
 		$valor = $this->idUsuario;
 
 		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
@@ -43,7 +44,7 @@ class AjaxUsuarios{
 		$item1 = "estado";
 		$valor1 = $this->activarUsuario;
 
-		$item2 = "usuario";
+		$item2 = "usuarios";
 		$valor2 = $this->activarId;
 
 		$respuesta =ModeloUsuarios::one([
@@ -72,7 +73,7 @@ class AjaxUsuarios{
 
 	public function ajaxValidarUsuario(){
 
-		$item = "usuario";
+		$item = "usuarios";
 		$valor = $this->validarUsuario;
 
 		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);

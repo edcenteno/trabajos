@@ -6,7 +6,7 @@ use Purekid\Mongodm\Model;
 
     class ModeloUsuarios extends Model {
 
-        static $collection = "usuario";
+        static $collection = "usuarios";
 
         /** use specific config section **/
         public static $config = 'default';
