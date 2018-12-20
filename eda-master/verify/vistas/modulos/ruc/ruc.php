@@ -12,7 +12,6 @@ $fecha_reg = date("Y-m-d H:i:s");
       echo 2;
     }else{
       if (is_numeric($ruc) && strlen($ruc) == 11) {
-        if(substr($ruc,0,1)==20){
 
         $search2 = $company->search( $ruc );
           if($search2->success == true ){
@@ -28,6 +27,7 @@ $fecha_reg = date("Y-m-d H:i:s");
                           'direccion' =>$search2->result->direccion,             // Solo Empresas
                           'sistema_emision' =>$search2->result->sistema_emision,
                           'actividad_exterior' =>$search2->result->actividad_exterior,
+                          'oficio' =>$search2->result->oficio,
                           'actividad_economica' =>$search2->result->actividad_economica,
                           'sistema_contabilidad' =>$search2->result->sistema_contabilidad,
                           'emision_electronica' =>$search2->result->emision_electronica,
@@ -39,28 +39,6 @@ $fecha_reg = date("Y-m-d H:i:s");
                           'fecha_registro'=>$fecha_reg
                                              ]);
               $cliente->save();
-
-                $s = $search2->result->razon_social;
-
-                  $s = str_replace('á', 'a', $s);
-                  $s = str_replace('Á', 'A', $s);
-                  $s = str_replace('é', 'e', $s);
-                  $s = str_replace('É', 'E', $s);
-                  $s = str_replace('í', 'i', $s);
-                  $s = str_replace('Í', 'I', $s);
-                  $s = str_replace('ó', 'o', $s);
-                  $s = str_replace('Ó', 'O', $s);
-                  $s = str_replace('Ú', 'U', $s);
-                  $s = str_replace('ú', 'u', $s);
-                  $s = str_replace('"', '', $s);
-                  $s = str_replace(':', '', $s);
-                  $s = str_replace('.', '', $s);
-                  $s = str_replace(',', '', $s);
-                  $s = str_replace(';', '', $s);
-                  $s = str_replace(' ', '', $s);
-                  $s = strtolower ($s);
-
-              $result = $db->createCollection($s);
 
              echo 1;
           }
@@ -76,9 +54,7 @@ $fecha_reg = date("Y-m-d H:i:s");
              echo 4;
 
           }
-        }else{
-          echo 6;
-        }
+
       }else{
         echo 5;
       }

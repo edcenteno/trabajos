@@ -72,7 +72,7 @@ class ControladorUsuarios{
                                 		<span aria-hidden="true">&times;</span>
                                 	</button>
                                     <h3 class="text-warning"><i class="fa fa-exclamation-triangle"></i> Atención</h3>
-                                    		El usuario aún no está activado.
+                                    		El usuario no está activado, debe comuniquese con nosotros.
                                 </div>';
 
 					}
@@ -184,7 +184,6 @@ class ControladorUsuarios{
 					           "foto"=>$ruta,
 					       	   "dni" => $_POST["nuevoDni"],
 					       	   "correo" => $_POST["nuevoCorreo"],
-					       	   "id_provincia" => $_POST["nuevoUbicacion"],
 					       	   "telefono" => $_POST["nuevoTelefono"]);
 
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($datos);

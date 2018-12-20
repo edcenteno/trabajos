@@ -51,8 +51,7 @@ use Purekid\Mongodm\Model;
                     'dni' => $datos['dni'],
                     'correo' => $datos['correo'],
                     'telefono' => $datos['telefono'],
-                    'empresa' => $datos['empresa'],
-                    'id_provincia' => $datos['id_provincia'],
+                    'empresa' => $datos['empresa']
                 ]);
 
         $usuarioscabify->save();

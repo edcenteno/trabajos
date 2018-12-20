@@ -1,14 +1,15 @@
 <?php
 session_start();
-class ControladorConductor{
+class ControladorPersonas{
 
 	/*=============================================
 	MOSTRAR USUARIO
 	=============================================*/
 
-	static public function ctrMostrarConductor($item, $valor){
+	public function ctrMostrarPersonas($item = null, $valor=null){
 
-		$respuesta = ModeloConductor::mdlMostrarConductor($item, $valor);
+		$respuesta = new ModeloPersonas();
+
 
 		return $respuesta;
 	}
@@ -17,11 +18,11 @@ class ControladorConductor{
 	MOSTRAR USUARIO
 	=============================================*/
 
-	static public function ctrMostrarConductorProvincia(){
+	public function ctrMostrarPersonasProvincia(){
 
 		 $provincia = $_SESSION["id_provincia"];
 
-		$respuesta = ModeloConductor::mdlMostrarConductorProvincia($provincia);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasProvincia($provincia);
 
 		return $respuesta;
 	}
@@ -30,9 +31,9 @@ class ControladorConductor{
 	MOSTRAR USUARIO
 	=============================================*/
 
-	static public function ctrMostrarConductorHistorial($item, $valor){
+	public function ctrMostrarPersonasHistorial($item, $valor){
 
-		$respuesta = ModeloConductor::mdlMostrarConductorHistorial($item, $valor);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasHistorial($item, $valor);
 
 		return $respuesta;
 	}
@@ -41,11 +42,11 @@ class ControladorConductor{
 	MOSTRAR USUARIO
 	=============================================*/
 
-	static public function ctrMostrarConductoract($item, $valor){
+	public function ctrMostrarPersonasact($item, $valor){
 
-		$tabla = "conductores_act";
+		$tabla = "Personases_act";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoract($tabla, $item, $valor);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasact($tabla, $item, $valor);
 
 		return $respuesta;
 	}
@@ -63,11 +64,11 @@ class ControladorConductor{
 
 		if(isset($_GET["reporte"])){
 
-			$tablas = "conductores";
+			$tablas = "Personases";
 
 
 			if(isset($fechaini) && isset($fechafin)){
-				$conductores = ModeloConductor::mdlRangoFechasConductor($fechaini, $fechafin);
+				$Personases = ModeloPersonas::mdlRangoFechasPersonas($fechaini, $fechafin);
 
 
 			}else{
@@ -75,7 +76,7 @@ class ControladorConductor{
 				$item = null;
 				$valor = null;
 
-				$conductores = ModeloConductor::MdlMostrarConductor($item, $valor);
+				$Personases = ModeloPersonas::mdlMostrarPersonas($item, $valor);
 
 			}
 
@@ -107,7 +108,7 @@ class ControladorConductor{
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES PENALES</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES JUDICIAL</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES POLICIAL</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>RECORD CONDUCTOR</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>RECORD Personas</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>RESULTADO</td
 					<td style='font-weight:bold; border:1px solid #eee;'>SOAT</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE INICIO</td>
@@ -118,7 +119,7 @@ class ControladorConductor{
 
 					</tr>");
 
-			foreach ($conductores as $row => $value){
+			foreach ($Personases as $row => $value){
 
 				$cabify = $value->cabify;
                 $easytaxi = $value->easytaxi;
@@ -166,11 +167,11 @@ class ControladorConductor{
 	RANGO FECHAS
 	=============================================*/
 
-	static public function ctrRangoFechasConductor($fechaInicial, $fechaFinal){
+	public function ctrRangoFechasPersonas($fechaInicial, $fechaFinal){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlRangoFechasConductor($fechaInicial, $fechaFinal);
+		$respuesta = ModeloPersonas::mdlRangoFechasPersonas($fechaInicial, $fechaFinal);
 
 		return $respuesta;
 
@@ -189,10 +190,10 @@ class ControladorConductor{
 
 
 			if(isset($fechaini) && isset($fechafin)){
-				$conductores = ModeloConductor::mdlRangoFechasConductorHistorial($fechaini, $fechafin);
+				$Personases = ModeloPersonas::mdlRangoFechasPersonasHistorial($fechaini, $fechafin);
 			}else{
 
-				$conductores = ModeloConductor::mdlMostrarConductorHistorialexcel();
+				$Personases = ModeloPersonas::mdlMostrarPersonasHistorialexcel();
 
 
 			}
@@ -224,7 +225,7 @@ class ControladorConductor{
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES PENALES</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES JUDICIAL</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES POLICIAL</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>RECORD CONDUCTOR</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>RECORD Personas</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>RESULTADO</td
 					<td style='font-weight:bold; border:1px solid #eee;'>SOAT</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE INICIO</td>
@@ -235,7 +236,7 @@ class ControladorConductor{
 
 					</tr>");
 
-			foreach ($conductores as $row => $value){
+			foreach ($Personases as $row => $value){
 
 
                     $cabify = "cabify";
@@ -276,9 +277,9 @@ class ControladorConductor{
 	RANGO FECHAS
 	=============================================*/
 
-	static public function ctrRangoFechasConductorHistorial($fechaInicial, $fechaFinal){
+	public function ctrRangoFechasPersonasHistorial($fechaInicial, $fechaFinal){
 
-		$respuesta = ModeloConductor::mdlRangoFechasConductorHistorial($fechaInicial, $fechaFinal);
+		$respuesta = ModeloPersonas::mdlRangoFechasPersonasHistorial($fechaInicial, $fechaFinal);
 
 		return $respuesta;
 
@@ -302,14 +303,14 @@ class ControladorConductor{
 
 
 			if(isset($fechaini) && isset($fechafin)){
-				$conductores = ModeloConductor::mdlRangoFechasConductorProvincia($fechaini, $fechafin, $provincia);
+				$Personases = ModeloPersonas::mdlRangoFechasPersonasProvincia($fechaini, $fechafin, $provincia);
 
 			}else{
 
 				$item = null;
 				$valor = null;
 
-				$conductores = ModeloConductor::mdlMostrarConductorProvincia($item, $valor, $provincia);
+				$Personases = ModeloPersonas::mdlMostrarPersonasProvincia($item, $valor, $provincia);
 
 			}
 
@@ -342,7 +343,7 @@ class ControladorConductor{
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES PENALES</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES JUDICIAL</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>ANTECEDENTES POLICIAL</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>RECORD CONDUCTOR</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>RECORD Personas</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>RESULTADO</td
 					<td style='font-weight:bold; border:1px solid #eee;'>SOAT</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>FECHA DE INICIO</td>
@@ -353,7 +354,7 @@ class ControladorConductor{
 
 					</tr>");
 
-			foreach ($conductores as $row => $value){
+			foreach ($Personases as $row => $value){
 
 				$cabify = $value->cabify;
                 $easytaxi = $value->easytaxi;
@@ -405,10 +406,10 @@ class ControladorConductor{
 	RANGO FECHAS
 	=============================================*/
 
-	static public function ctrRangoFechasConductorProvincia($fechaInicial, $fechaFinal, $provincia){
+	public function ctrRangoFechasPersonasProvincia($fechaInicial, $fechaFinal, $provincia){
 
 
-		$respuesta = ModeloConductor::mdlRangoFechasConductorProvincia($fechaInicial, $fechaFinal, $provincia);
+		$respuesta = ModeloPersonas::mdlRangoFechasPersonasProvincia($fechaInicial, $fechaFinal, $provincia);
 		//var_dump($respuesta);
 		return $respuesta;
 
@@ -416,236 +417,236 @@ class ControladorConductor{
 
 
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductorMes($item2, $valor2){
+	public function ctrMostrarPersonasMes($item2, $valor2){
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresMes($item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesMes($item2, $valor2);
 
 		return $respuesta;
 
 	}
 
-	static public function ctrMostrarConductorhoy($item, $valor){
+	public function ctrMostrarPersonashoy($item, $valor){
 
 
-	$respuesta = ModeloConductor::mdlMostrarConductorhoy($item, $valor);
+	$respuesta = ModeloPersonas::mdlMostrarPersonashoy($item, $valor);
 
 	return $respuesta;
 	}
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductorMesCabify($item2, $valor2){
+	public function ctrMostrarPersonasMesCabify($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresMesCabify($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesMesCabify($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
 
-	static public function ctrMostrarConductorhoyCabify($item, $valor){
+	public function ctrMostrarPersonashoyCabify($item, $valor){
 
 
-	$respuesta = ModeloConductor::mdlMostrarConductorhoyCabify($item, $valor);
+	$respuesta = ModeloPersonas::mdlMostrarPersonashoyCabify($item, $valor);
 
 	return $respuesta;
 	}
 
 /*=============================================
-	MOSTRAR Conductores act
+	MOSTRAR Personases act
 	=============================================*/
 
 
-	static public function ctrMostrarConductoractcbf($item2, $valor2){
+	public function ctrMostrarPersonasactcbf($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresactcbf($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesactcbf($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
 
-	static public function ctrMostrarConductoracteasy($item, $valor){
+	public function ctrMostrarPersonasacteasy($item, $valor){
 
-	$tabla = "conductores";
+	$tabla = "Personases";
 
 
-	$respuesta = ModeloConductor::mdlMostrarConductoracteasy($tabla, $item, $valor);
+	$respuesta = ModeloPersonas::mdlMostrarPersonasacteasy($tabla, $item, $valor);
 
 	return $respuesta;
 	}
 
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductorMesCabifyact($item2, $valor2){
+	public function ctrMostrarPersonasMesCabifyact($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresMesCabify($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesMesCabify($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
 
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductormigradosmescbf($item2, $valor2){
+	public function ctrMostrarPersonasmigradosmescbf($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresmigradosmescbf($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesmigradosmescbf($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductormigradosmesanteriorcbf($item2, $valor2){
+	public function ctrMostrarPersonasmigradosmesanteriorcbf($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresmigradosmesanteriorcbf($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesmigradosmesanteriorcbf($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
 
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductormigradosmeseasy($item2, $valor2){
+	public function ctrMostrarPersonasmigradosmeseasy($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresmigradosmeseasy($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesmigradosmeseasy($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductormigradosmesanterioreasy($item2, $valor2){
+	public function ctrMostrarPersonasmigradosmesanterioreasy($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresmigradosmesanterioreasy($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesmigradosmesanterioreasy($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
-	static public function ctrMostrarConductorhoyCabifyact($item, $valor){
+	public function ctrMostrarPersonashoyCabifyact($item, $valor){
 
-	$tabla = "conductores";
+	$tabla = "Personases";
 
-	$respuesta = ModeloConductor::mdlMostrarConductorhoyCabify($tabla, $item, $valor);
+	$respuesta = ModeloPersonas::mdlMostrarPersonashoyCabify($tabla, $item, $valor);
 
 	return $respuesta;
 	}
 
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductorMesEasyact($item2, $valor2){
+	public function ctrMostrarPersonasMesEasyact($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresMesEasyact($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesMesEasyact($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
 
-	static public function ctrMostrarConductorhoyeasyact($item, $valor){
+	public function ctrMostrarPersonashoyeasyact($item, $valor){
 
-	$tabla = "conductores";
+	$tabla = "Personases";
 
-	$respuesta = ModeloConductor::mdlMostrarConductorhoyEasyact($tabla, $item, $valor);
+	$respuesta = ModeloPersonas::mdlMostrarPersonashoyEasyact($tabla, $item, $valor);
 
 	return $respuesta;
 	}
 
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductorMesEasy($item2, $valor2){
+	public function ctrMostrarPersonasMesEasy($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresMesEasy($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesMesEasy($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
 
-	static public function ctrMostrarConductorhoyEasy($item, $valor){
+	public function ctrMostrarPersonashoyEasy($item, $valor){
 
-	$tabla = "conductores";
+	$tabla = "Personases";
 
-	$respuesta = ModeloConductor::mdlMostrarConductorhoyEasy($tabla, $item, $valor);
+	$respuesta = ModeloPersonas::mdlMostrarPersonashoyEasy($tabla, $item, $valor);
 
 	return $respuesta;
 	}
 
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductorMesact($item2, $valor2){
+	public function ctrMostrarPersonasMesact($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresMesact($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesMesact($tabla, $item2, $valor2);
 
 		return $respuesta;
 
 	}
 
-	static public function ctrMostrarConductorhoyact($item, $valor){
+	public function ctrMostrarPersonashoyact($item, $valor){
 
-	$tabla = "conductores";
+	$tabla = "Personases";
 
-	$respuesta = ModeloConductor::mdlMostrarConductorhoyact($tabla, $item, $valor);
+	$respuesta = ModeloPersonas::mdlMostrarPersonashoyact($tabla, $item, $valor);
 
 	return $respuesta;
 	}
 
 	/*=============================================
-	MOSTRAR Conductores
+	MOSTRAR Personases
 	=============================================*/
 
 
-	static public function ctrMostrarConductorMesactcbf($item2, $valor2){
+	public function ctrMostrarPersonasMesactcbf($item2, $valor2){
 
-		$tabla = "conductores";
+		$tabla = "Personases";
 
-		$respuesta = ModeloConductor::mdlMostrarConductoresMesactcbf($tabla, $item2, $valor2);
+		$respuesta = ModeloPersonas::mdlMostrarPersonasesMesactcbf($tabla, $item2, $valor2);
 
 		return $respuesta;
 
@@ -654,32 +655,32 @@ class ControladorConductor{
 
 
 	/*=============================================
-	MOSTRAR 1 Conductores
+	MOSTRAR 1 Personases
 	=============================================*/
 
 
-	static public function ctrMostrarunConductorHistorial($item2, $valor2, $idconductor){
+	public function ctrMostrarunPersonasHistorial($item2, $valor2, $idPersonas){
 
 
-		$respuesta = ModeloConductor::mdlMostrarunConductorHistorial($item2, $valor2, $idconductor);
-
-		return $respuesta;
-
-	}
-
-	static public function ctrMostrarSoatConductor($item, $valor){
-
-		$tabla = "conductores";
-
-		$respuesta = ModeloConductor::mdlMostrarSoatConductor($tabla, $item, $valor);
+		$respuesta = ModeloPersonas::mdlMostrarunPersonasHistorial($item2, $valor2, $idPersonas);
 
 		return $respuesta;
 
 	}
 
-	static public function ctrMostrarConductorsoatvencido(){
+	public function ctrMostrarSoatPersonas($item, $valor){
 
-		$respuesta = ModeloConductor::mdlMostrarSoatConductorvencido();
+		$tabla = "Personases";
+
+		$respuesta = ModeloPersonas::mdlMostrarSoatPersonas($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
+
+	public function ctrMostrarPersonassoatvencido(){
+
+		$respuesta = ModeloPersonas::mdlMostrarSoatPersonasvencido();
 
 		return $respuesta;
 

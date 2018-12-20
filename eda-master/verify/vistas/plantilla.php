@@ -188,28 +188,12 @@ CUERPO DOCUMENTO
 
       if($_GET["ruta"] == "inicio" ||
          $_GET["ruta"] == "usuarios" ||
-         $_GET["ruta"] == "conductores" ||
-         $_GET["ruta"] == "conductoresprovincia" ||
+         $_GET["ruta"] == "individuos" ||
+         $_GET["ruta"] == "configuracion" ||
          $_GET["ruta"] == "busqueda" ||
-         $_GET["ruta"] == "busqueda-historial" ||
-         $_GET["ruta"] == "busqueda-arequipa" ||
-         $_GET["ruta"] == "busqueda-chiclayo" ||
-         $_GET["ruta"] == "busqueda-cusco" ||
-         $_GET["ruta"] == "busqueda-lima" ||
-         $_GET["ruta"] == "busqueda-piura" ||
-         $_GET["ruta"] == "busqueda-trujillo" ||
          $_GET["ruta"] == "listado" ||
          $_GET["ruta"] == "vermas" ||
-         $_GET["ruta"] == "vermashistorial" ||
-         $_GET["ruta"] == "vermassoat" ||
-         $_GET["ruta"] == "rrhh" ||
-         $_GET["ruta"] == "consultas-basicas" ||
          $_GET["ruta"] == "reporte-diario" ||
-         $_GET["ruta"] == "conductorescabify" ||
-         $_GET["ruta"] == "conductoreseasy" ||
-         $_GET["ruta"] == "conductoressoat" ||
-         $_GET["ruta"] == "conductoresactualizados" ||
-         $_GET["ruta"] == "conductoreshistorial" ||
          $_GET["ruta"] == "clientes" ||
          $_GET["ruta"] == "salir"){
 
@@ -246,7 +230,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/plantilla.js"></script>
 <script src="vistas/js/clientes.js"></script>
 <script src="vistas/js/usuarios.js"></script>
-<script src="vistas/js/conductores.js"></script>
+<script src="vistas/js/personas.js"></script>
 <script src="vistas/js/prospectos.js"></script>
 <script src="vistas/js/datapicker.js"></script>
 <script src="vistas/js/datapickerHistorial.js"></script>

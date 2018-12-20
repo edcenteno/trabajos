@@ -2,6 +2,7 @@
 
 require 'vendor/autoload.php'; //
 $db = (new MongoDB\Client)->verify;
+
 use Purekid\Mongodm\Model;
 
 class ModeloClientes extends Model {

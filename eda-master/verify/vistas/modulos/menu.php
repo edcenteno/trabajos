@@ -27,7 +27,8 @@
                 </a>
                     <ul aria-expanded="false" class="collapse">
                         <!-- <li><a href="javascript:void(0)"><i class="ti-settings"></i> Configuración de cuenta</a></li> -->
-                        <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i> Cerrar sesión</a></li>
+                        <li><a href="configuracion"><i class="fa fa-cog"></i> Configuración</a></li>
+                        <li><a href="salir"><i class="fa fa-power-off"></i> Cerrar sesión</a></li>
                     </ul>
                 </li>
                 <li class="nav-small-cap">--- PERSONAL</li>
@@ -38,11 +39,17 @@
 
                     if($_SESSION["perfil"] =="Administrador"){
                         echo '
-                              <li> <a class="waves-effect waves-dark" href="usuarios" aria-expanded="false"><i class="ti fa fa-user"></i><span class="hide-menu">Usuarios</span></a>
+                              <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                  <i class="ti fa fa-building"></i><span class="hide-menu">Empresas</span></a>
+                                  <ul aria-expanded="false" class="collapse">
+                                      <li><a href="clientes"><i class="ti fa fa-id-card"></i> Clientes</span></a></li>
+                                      <li><a href="usuarios"><i class="ti fa fa-user"></i> Usuarios</span></a></li>
+
+                                  </ul>
                               </li>';
                     }
 
-                    if($_SESSION["perfil"] =="Administrador"){
+                   /* if($_SESSION["perfil"] =="Administrador"){
                               echo '
 
                                 <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
@@ -58,18 +65,18 @@
                                   </ul>
                               </li>';
                           }
-
+*/
 
                 ?>
 
                 <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                    <i class="ti fa fa-list"></i><span class="hide-menu"> Conductores</span></a>
+                    <i class="ti fa fa-list"></i><span class="hide-menu"> Personas</span></a>
                     <ul aria-expanded="false" class="collapse">
 
                         <?php
                             if($_SESSION["perfil"] =="Administrador"){
                                 echo '
-                                      <li><a href="conductores"><i class="ti fa fa-search"></i> Administrar</span></a></li>
+                                      <li><a href="individuos"><i class="ti fa fa-search"></i> Administrar</span></a></li>
                                       <li><a href="busqueda"><i class="ti fa fa-car"></i> Busqueda</span></a></li>
                                      <!-- <li><a href="conductoresactualizados"><i class="ti fa fa-car"></i> Actualizados</span></a></li>-->
                                       <li><a href="conductoressoat"><i class="ti fa fa-car"></i> SOAT Vencidos</span></a></li>';

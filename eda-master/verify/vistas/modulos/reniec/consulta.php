@@ -1,6 +1,6 @@
 <?php
 require_once("srchector/autoload.php" );
-require 'modelo/modeloconductor.php';
+require '../../../modelos/personas.modelo.php';
 
   $essalud = new \EsSalud\EsSalud();
   $mintra = new \MinTra\mintra();
@@ -13,7 +13,7 @@ if (is_numeric($dni) && strlen($dni) == 8) {
 
   function buscaRepetido($dni){
 
-      $count = ModeloConductor::count(array('dni'=>$dni));
+      $count = ModeloPersonas::count(array('dni'=>$dni));
 
       if($count > 0){
         return 1;
@@ -99,24 +99,46 @@ if (is_numeric($dni) && strlen($dni) == 8) {
             </div>
         </div>
     </div>
+    <div class="row">
+      <div class="col">
+    <div class="form-check-inline">
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" name="antecedentes" id="antecedentes" class="form-check-input" value="1">Antecedentes
+
+      </label>
+    </div>
 
     <div class="form-check-inline">
       <label class="custom-control custom-checkbox">
-        <input type="checkbox" name="cabify" id="cabify" class="form-check-input" value="1">Cabify
+        <input type="checkbox" name="recordconductor" id="recordconductor" class="form-check-input" value="1">Record de conductor
+      </label>
+    </div>
+
+    <div class="form-check-inline">
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" name="historialacademico" id="historialacademico" class="form-check-input" value="1">Historial académico
+      </label>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-check-inline">
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" name="recordcrediticio" id="recordcrediticio" class="form-check-input" value="1">Record crediticio
 
       </label>
     </div>
     <div class="form-check-inline">
       <label class="custom-control custom-checkbox">
-        <input type="checkbox" name="easytaxi" id="easytaxi" class="form-check-input" value="1">Easy Taxi
+        <input type="checkbox" name="historial laboral" id="historial laboral" class="form-check-input" value="1">historial Laboral
       </label>
     </div>
-   <!-- <div class="form-check-inline">
+    <div class="form-check-inline">
       <label class="custom-control custom-checkbox">
-        <input type="checkbox" name="easyeconomy" id="easyeconomy" class="form-check-input" value="1">Easy Economy
+        <input type="checkbox" name="verificaciondomiciliaria" id="verificaciondomiciliaria" class="form-check-input" value="1">Verificación domiciliaria
       </label>
-    </div>-->
-
+    </div>
+  </div>
+  </div>
 
 </form>
 <span id="resultado">
@@ -125,15 +147,11 @@ echo '
 
 <form class="form-horizontal p-t-20" id="form">
     <div class="form-group row">
-        <label for="exampleInputuname3" class="col-sm-4 control-label">¿Posee Vehiculo?</label>
+
         <div class="col-sm-8">
             <div class="input-group">
 
-                <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlaca"">SI</span>
-
-                <input type="text" hidden class="form-control" name="si" id="si" value="Si">
-
-                <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevo">NO</span>
+                <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevo">Registrar</span>
 
 
             </div>
@@ -152,57 +170,12 @@ echo '
 ?>
 
 
-
-<script>
-  $(document).ready(function(){
-  $("#consultarPlaca").click(function () {
-    easytaxi = ($('input:checkbox[name=easytaxi]:checked').val());
-    cabify = ($('input:checkbox[name=cabify]:checked').val());
-  });
-});
-$(document).ready(function(){
-
-      $('#consultarPlaca').click(function(){
-
-
-    cadena="nombre=" + $('#nombre').val() +
-          "&apellidos=" + $('#apellidos').val() +
-          "&dni=" + $('#dni').val() +
-          "&cabify=" + cabify +
-          "&easytaxi=" + easytaxi +
-          "&si=" + $('#si').val() +
-          "&usuario_reg=" + '<?php echo $usuario_reg ?>' +
-          "&provincia=" + '<?php echo $provincia ?>' +
-          "&fechaNacimiento=" + $('#fechaNacimiento').val();
-
-
-    $.ajax({
-            data:  cadena,
-            url:   'vistas/modulos/reniec/consultaplaca.php',
-            type:  'post',
-            beforeSend: function () {
-                    $("#resultado").html("Procesando, espere por favor...");
-            },
-            success:  function (response) {
-                   // alert(response);
-                    $("#resultado").html(response);
-                    //console.log(response)
-
-                   // consultadni.style.display = 'none'; // No ocupa espacio
-                   //   $("#form").hide("slow");
-
-            }
-    });
-});
-});
-</script>
-
 <script type="text/javascript">
    $(document).ready(function(){
 
   $("#registrarNuevo").click(function () {
   easytaxi = ($('input:checkbox[name=easytaxi]:checked').val());
-  cabify = ($('input:checkbox[name=cabify]:checked').val());
+  antecedentes = ($('input:checkbox[name=antecedentes]:checked').val());
     //$("#formulario").submit();
   });
 });
@@ -214,7 +187,7 @@ $(document).ready(function(){
       type= 1
       dni = $('#dni').val();
 
-        $.ajax({
+       /* $.ajax({
           type: "POST",
           url: 'https://captcharh.ddns.net/api/record',
           data: {
@@ -227,24 +200,24 @@ $(document).ready(function(){
          // $("#resultado").html(msg);
           //console.log(msg)
 
-        });
+        });*/
 
           param="&dni=" + dni;
 
-          $.ajax({
+        /*  $.ajax({
             data:  param,
             url:   'vistas/modulos/reniec/ruc.php',
             type:  'post',
             success:  function (response) {
 
             }
-            });
+            });*/
 
       cadena="nombre=" + $('#nombre').val() +
           "&apellidos=" + $('#apellidos').val() +
           "&dni=" + $('#dni').val() +
-          "&cabify=" + cabify +
-          "&easytaxi=" + easytaxi +
+          "&antecedentes=" + antecedentes +
+
           "&usuario_reg=" + '<?php echo $usuario_reg ?>' +
           "&provincia=" + '<?php echo $provincia ?>' +
           "&fechaNacimiento=" + $('#fechaNacimiento').val();

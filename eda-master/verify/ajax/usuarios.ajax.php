@@ -11,7 +11,6 @@ class ModeloUsuarios extends Model {
         /** use specific config section **/
         public static $config = 'default';
     }
-
 class AjaxUsuarios{
 
 	/*=============================================
@@ -22,7 +21,7 @@ class AjaxUsuarios{
 
 	public function ajaxEditarUsuario(){
 
-		$item = "usuarios";
+		$item = "usuario";
 		$valor = $this->idUsuario;
 
 		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
@@ -44,24 +43,17 @@ class AjaxUsuarios{
 		$item1 = "estado";
 		$valor1 = $this->activarUsuario;
 
-		$item2 = "usuarios";
+		$item2 = "usuario";
 		$valor2 = $this->activarId;
 
 		$respuesta =ModeloUsuarios::one([
 						            $item2=>$valor2
 						            ]);
-
-						        //$fecha = $respuesta->ultimo_login;
-
-						        $respuesta->update([
-						            $item1=>$valor1
-						        ]);
-						        $respuesta->save();
-
-						       // var_dump($usuarioscabify);
-
-
-						            return "ok";
+			        $respuesta->update([
+			            $item1=>$valor1
+			        ]);
+			        $respuesta->save();
+	return "ok";
 
 	}
 
@@ -73,7 +65,7 @@ class AjaxUsuarios{
 
 	public function ajaxValidarUsuario(){
 
-		$item = "usuarios";
+		$item = "usuario";
 		$valor = $this->validarUsuario;
 
 		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);

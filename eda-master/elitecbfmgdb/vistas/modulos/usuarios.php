@@ -250,9 +250,10 @@ MODAL AGREGAR USUARIO
 
                     $provincia = ModeloProvincias::all();
                   //  var_dump($provincia);
+                  $a=1;
                    foreach ($provincia as $key => $value){
                   ?>
-                    <option value="<?php echo $value->id  ?>"><?php echo $value->descripcion ?></option>
+                    <option value="<?php echo $a++  ?>"><?php echo $value->descripcion ?></option>
                   <?php
 
                     }

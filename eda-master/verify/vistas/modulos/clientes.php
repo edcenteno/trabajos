@@ -96,21 +96,6 @@ function realizaProceso(){
                     $('#consultaruc').show();
 
                 });
-              }if(r==6){
-              swal({
-                  type: "warning",
-                  title: "¡Solo personas JURIDICAS!",
-                  showConfirmButton: true,
-                  confirmButtonColor: "#8cd4f5",
-                  confirmButtonText: "Cerrar"
-
-                }).then(function(result){
-
-                    $('#ruc').val('');
-                    $("#resultado").hide('');
-                    $('#consultaruc').show();
-
-                });
               }
           }
   });
@@ -150,6 +135,7 @@ function realizaProceso(){
                         <table class="display nowrap table table-hover table-striped table-bordered dt-responsive tablaClientes" id = "condu" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th>FECHA DE REGISTRO</th>
                                     <th>RUC</th>
                                     <th>RAZON SOCIAL</th>
                                     <th>REPRESENTANTE LEGAL </th>
@@ -158,6 +144,7 @@ function realizaProceso(){
                             </thead>
                             <tfoot>
                                 <tr>
+                                   <th>FECHA DE REGISTRO</th>
                                    <th>RUC</th>
                                    <th>RAZON SOCIAL</th>
                                    <th>REPRESENTANTE LEGAL </th>

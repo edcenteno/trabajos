@@ -11,8 +11,8 @@ CARGAR LA TABLA DINÁMICA
 	});
 */
 	$(document).ready(function() {
-    var table = $('.tablaConductores').DataTable( {
-    "ajax": "ajax/datatable-conductores.ajax.php",
+    var table = $('.tablaPersonas').DataTable( {
+    "ajax": "ajax/datatable-personas.ajax.php",
 	"deferRender": true,
 	"retrieve": true,
 	"processing": true,
@@ -48,10 +48,7 @@ CARGAR LA TABLA DINÁMICA
 	}
 
     });
-   /* setInterval( function () {
-    table.ajax.reload(null, false); // user paging is not reset on reload
-	}, 30000 );
-*/
+
 } );
 
 	$(document).ready(function() {
