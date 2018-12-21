@@ -1,122 +1,74 @@
-<!-- <div class="preloader">
-	<div class="loader">
-		<div class="loader__figure"></div>
-		<p class="loader__label">Cabify</p>
-	</div>
-</div> -->
-
-<div id="main-wrapper">
-<!-- ============================================================== -->
-<!-- Topbar header - style you can find in pages.scss -->
-<!-- ============================================================== -->
-<header class="topbar">
-    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-        <!-- ============================================================== -->
-        <!-- Logo -->
-        <!-- ============================================================== -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                <!-- Logo icon --><b>
-                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                    <!-- Dark Logo icon -->
-                    <img src="vistas/img/plantilla/verifyblanco.png" alt="homepage" class="dark-logo" height="30px"/>
-                    <!-- Light Logo icon -->
-                    <img src="vistas/img/plantilla/verifyblanco.png" alt="homepage" class="light-logo" height="30px"/>
-                </b>
-                <!--End Logo icon -->
-                <!-- Logo text --><span>
-                 <!-- dark Logo text -->
-                 <img src="vistas/img/plantilla/logo_blanco.png" alt="homepage" class="dark-logo" />
-                 <!-- Light Logo text -->
-                 <img src="vistas/img/plantilla/logo_blanco.png" class="light-logo" alt="homepage" height="40px" /></span> </a>
+<!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
         </div>
-
-        <div class="navbar-collapse">
-            <!-- ============================================================== -->
-            <!-- toggle and nav items -->
-            <!-- ============================================================== -->
-            <ul class="navbar-nav mr-auto">
-                <!-- This is  -->
-                <li class="nav-item"> <a class="nav-link nav-toggler d-block d-sm-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
-
-            </ul>
-            <!-- ============================================================== -->
-            <!-- User profile and search -->
-            <!-- ============================================================== -->
-            <ul class="navbar-nav my-lg-0">
-                <!-- ============================================================== -->
-                <!-- Comment -->
-                <!-- ============================================================== -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="ti-email"></i>
-                        <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
-                        <ul>
-                            <li>
-                                <div class="drop-title">Notificaciones</div>
-                            </li>
-                            <li>
-                                <div class="message-center">
-
-                                <?php
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
 
 
-                                ?>
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <!-- <div id="main-wrapper"> -->
 
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo"><a href="inicio"><b><img src="vistas/img/plantilla/verifyblanco.png" alt=""  height="50px"> </b><span class="brand-title"><img src="vistas/img/plantilla/logo_blanco.png" alt="" height="40px"></span></a>
+            </div>
+            <div class="nav-control">
+                <div class="hamburger"><span class="line"></span>  <span class="line"></span>  <span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+     <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content">
+
+                <div class="header-right">
+                    <ul>
+                        <li class="icons">
+
+                        <li class="icons">
+                            <a href="javascript:void(0)" class="log-user">
+                                <img src="../../assets/images/avatar/1.jpg" alt=""> <span>George Martin</span>  <i class="fa fa-caret-down f-s-14" aria-hidden="true"></i>
+                            </a>
+                            <div class="drop-down dropdown-profile animated bounceInDown">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li><a href="javascript:void()"><i class="icon-user"></i> <span>My Profile</span></a>
+                                        </li>
+                                        <li><a href="javascript:void()"><i class="icon-wallet"></i> <span>My Wallet</span></a>
+                                        </li>
+                                        <li><a href="javascript:void()"><i class="icon-envelope"></i> <span>Inbox</span></a>
+                                        </li>
+                                        <li><a href="javascript:void()"><i class="fa fa-cog"></i> <span>Setting</span></a>
+                                        </li>
+                                        <li><a href="javascript:void()"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                                        </li>
+                                        <li><a href="javascript:void()"><i class="icon-power"></i> <span>Logout</span></a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </li>
-
-                            <li>
-                                <a class="nav-link text-center link" href="conductoressoat"> <strong>Verificar todas las notificaciones</strong> <i class="fa fa-angle-right"></i> </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <!-- ============================================================== -->
-                <!-- End Comment -->
-                <!-- ============================================================== -->
-
-                <!-- ============================================================== -->
-                <!-- User Profile -->
-                <!-- ============================================================== -->
-                <li class="nav-item dropdown u-pro">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?php
-
-                    if($_SESSION["foto"] != ""){
-
-                        echo '<img src="'.$_SESSION["foto"].'" class="user-image">';
-
-                    }else{
-
-
-                        echo '<img src="vistas/img/usuarios/default/anonymous.png" class="user-image">';
-
-                    }
-
-
-                    ?>
-                     <span class="hidden-md-down"><?php  echo $_SESSION["nombre"]; ?> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
-                    <div class="dropdown-menu dropdown-menu-right animated flipInY">
-                        <!-- text-->
-                        <!-- <div class="dropdown-divider"></div>
-                        text
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Configuración de cuenta</a> -->
-                        <!-- text-->
-                        <div class="dropdown-divider"></div>
-                        <!-- text-->
-                        <a href="salir" class="dropdown-item"><i class="fa fa-power-off"></i> Cerrar sesión</a>
-                        <!-- text-->
-                    </div>
-                </li>
-                <!-- ============================================================== -->
-                <!-- End User Profile -->
-                <!-- ============================================================== -->
-               <!--  <li class="nav-item right-side-toggle"> <a class="nav-link  waves-effect waves-light" href="javascript:void(0)"><i class="ti-settings"></i></a></li> -->
-            </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </nav>
-</header>
-
+        <!--**********************************
+            Header end
+        ***********************************-->
