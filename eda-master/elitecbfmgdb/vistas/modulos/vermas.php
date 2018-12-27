@@ -281,6 +281,11 @@ if(empresa =="cabify"){
                                 echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar información solicitada </button>';
                             }
 
+                            if($value['id_provincia'] =="11" && $_SESSION["empresa"] =="arhu"){
+                                echo '<button class="btn btn-info" onclick="actualizared()" data-toggle="tooltip" data-placement="top" title="Tooltip on top" id="consultacall">ActualizarCall</button>';
+
+                            }
+
                             ?>
 
 
@@ -500,6 +505,9 @@ if(empresa =="cabify"){
                             }
 
                          function actualizared(){
+
+                            document.getElementById("consultacall").setAttribute('disabled',true);
+
                            placa = '<?php echo $placa ?>'
                             placa = placa.toUpperCase();
                             type= '<?php echo $extr ?>'
@@ -529,10 +537,10 @@ if(empresa =="cabify"){
                                 }
 
                                 }).done(function(msg){
-                                   /* $("#resultado").html(msg);
-                                    console.log(msg)*/
+                                   setTimeout('document.location.reload()',15000)
                                 });
                         }
+
                         </script>
 
                     </center>

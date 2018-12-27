@@ -7,18 +7,29 @@
             <li class="nav-label">Dashboard</li>
             <li class="mega-menu mega-menu-lg">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="mdi mdi-view-dashboard"></i><span class="nav-text">Dashboard</span><span class="badge bg-dpink text-white nav-badge">21</span>
+                    <i class="mdi mdi-view-dashboard"></i><span class="nav-text">Dashboard</span>
                 </a>
 
             </li>
             <li class="nav-label">Empresas</li>
             <li class="mega-menu mega-menu-lg">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="mdi mdi-view-dashboard"></i><span class="nav-text">Empresas</span><span class="badge bg-dpink text-white nav-badge">21</span>
+                    <i class="mdi mdi-office-building"></i><span class="nav-text">Empresas</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="clientes">Clientes</a></li>
-                    <li><a href="usuario">Usuarios</a></li>
+                    <li><a href="usuarios">Usuarios</a></li>
+
+                </ul>
+            </li>
+            <li class="nav-label">Personas</li>
+            <li class="mega-menu mega-menu-lg">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="mdi mdi-office-building"></i><span class="nav-text">Personas</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="personas">Personas</a></li>
+                   <!--  <li><a href="usuarios">Usuarios</a></li> -->
 
                 </ul>
             </li>

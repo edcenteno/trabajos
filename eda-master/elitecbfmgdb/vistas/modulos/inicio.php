@@ -38,6 +38,7 @@ require 'graficas/querys.php';
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#easy" role="tab"><i class="fa fa-taxi"></i> Easy Taxi</a> </li>
                     <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#easyEconomy" role="tab"><i class="fa fa-taxi"></i> Easy Economy</a> </li> -->
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#act" role="tab"><i class="ti-reload"></i> Reporte General </a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#acthist" role="tab"><i class="ti-reload"></i> Historial Actualizados </a> </li>
                     <?php
                         }
                     ?>
@@ -197,6 +198,22 @@ require 'graficas/querys.php';
 
                         <?php
                             include "inicio/cajas-superioresact.php";
+
+                        ?>
+                        </div>
+
+
+                            </div>
+                         </div>
+                     </div>
+                     <div class="tab-pane" id="acthist" role="tabpanel">
+                        <div class="card-body">
+                            <div class="row">
+
+                        <div class="col-lg-12 col-md-6">
+
+                        <?php
+                            include "inicio/cajas-superioresacthist.php";
 
                         ?>
                         </div>

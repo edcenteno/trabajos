@@ -22,6 +22,7 @@
 
     <!-- Stylesheets -->
     <link href="vistas/main/css/style.css" rel="stylesheet">
+    <link href="vistas/DataTable/datatables.min.css" rel="stylesheet">
     </head>
     <body>
      <?php
@@ -52,7 +53,8 @@
            $_GET["ruta"] == "configuracion" ||
            $_GET["ruta"] == "busqueda" ||
            $_GET["ruta"] == "listado" ||
-           $_GET["ruta"] == "vermas" ||
+           $_GET["ruta"] == "personas" ||
+           $_GET["ruta"] == "vermascliente" ||
            $_GET["ruta"] == "reporte-diario" ||
            $_GET["ruta"] == "clientes" ||
            $_GET["ruta"] == "salir"){
@@ -79,7 +81,7 @@
 
 ?>
 
-<!--**********************************
+    <!--**********************************
         Scripts
     ***********************************-->
     <script src="vistas/assets/plugins/common/common.min.js"></script>
@@ -89,5 +91,24 @@
     <script src="vistas/main/js/styleSwitcher.js"></script>
     <script src="vistas/assets/plugins/chart.js/Chart.bundle.min.js"></script>
     <script src="vistas/main/js/plugins-init/chartjs-init.js"></script>
+    <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+
+    <script src="vistas/dt/js/dataTables.buttons.min.js"></script>
+    <script src="vistas/dt/js/buttons.flash.min.js"></script>
+    <script src="vistas/dt/js/jszip.min.js"></script>
+    <script src="vistas/dt/js/pdfmake.min.js"></script>
+    <script src="vistas/dt/js/vfs_fonts.js"></script>
+    <script src="vistas/dt/js/buttons.html5.min.js"></script>
+    <script src="vistas/dt/js/buttons.print.min.js"></script>
+    <script src="vistas/dt/js/dataTables.responsive.min.js"></script>
+    <script src="vistas/dt/js/responsive.bootstrap.min.js"></script>
+    <script src="vistas/dt/js/jquery.dataTables.min.js"></script>
+    <script src="vistas/DataTable/datatables.min.js"></script>
+
+
+    <script src="vistas/js/clientes.js"></script>
+    <script src="vistas/js/usuarios.js"></script>
+    <script src="vistas/js/personas.js"></script>
 </body>
 </html>

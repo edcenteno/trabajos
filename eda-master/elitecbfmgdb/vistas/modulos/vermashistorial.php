@@ -197,12 +197,12 @@ if(empresa =="cabify"){
                         <h5 class="card-subtitle">DNI <?php echo $value['dni']; ?></h5>
                         <h6 class="card-subtitle">Conductor</h6>
                         <?php
-                            /*if ($value['fecha_act'] != "") {
-                                echo '<h5 class="card-subtitle">Fecha de actualización '.$value['fecha_act'].'</h5>';
+                            if ($value['fecha_actualizado'] != "") {
+                                echo '<h5 class="card-subtitle">Fecha de actualización '.$value['fecha_actualizado'].'</h5>';
                             } else {
 
                             }
-*/
+
                         ?>
 
                         <div class="row text-center justify-content-md-center">
@@ -213,20 +213,20 @@ if(empresa =="cabify"){
                             }
 */
                             ?>
-                        <button class="btn btn-success" onclick="actualizararhu()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button>
+                      <!--   <button class="btn btn-success" onclick="actualizararhu()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Actualizar</button> -->
 
 
                         <?php
-                           /* $fecha_actual = date("Y-m-d");
+                            $fecha_actual = date("Y-m-d");
                             $mes = date("Y-m-d",strtotime($fecha_actual."- 20 day"));
                             /*$date = date('Y-m-d h:i:s A');
                             echo $date;*/
-                                /*if ($value['fecha'] < $mes) {
+                                if ($value['fecha'] < $mes) {
                                     echo '<button class="btn btn-warning" onclick="deshabilitar_btnEnviar()">Actualizar</button>';
                                 } else {
 
                                     echo '<button class="btn btn-default" disabled="true">Actualizar</button>';
-                                }*/
+                                }
 
                         ?>
 
@@ -249,18 +249,18 @@ if(empresa =="cabify"){
                         </div>
 
                      <?php
-                    /* if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||   $value['placa'] == "NINGUNA") {
+                     if ($value['placa'] == "NINGUNO" || $value['placa'] == ""  || $value['placa'] == "NINGUNO " ||   $value['placa'] == "NINGUNA") {
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Agregar Placa</button>';
                      }else{
                          echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarplaca" data-whatever="@getbootstrap">Cambiar Placa</button>';
-                     }*/
-                           if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == NULL ||$value['soat'] == "undefined" ) {
+                     }
+                     if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == NULL ||$value['soat'] == "undefined" ) {
 
-                                       echo '
-                                                <button class="btn btn-danger" onclick="actualizarsoats()">ActualizarSOAT</button>
-                                            ';
-
-                                }
+                                /* echo '
+                                          <button class="btn btn-danger" onclick="actualizarsoats()">ActualizarSOAT</button>
+                                      ';
+*/
+                          }
                         ?>
                     <hr>
                     <!-- <div class="card-body"> <small class="text-muted">DNI Digital</small></br> -->
@@ -296,7 +296,7 @@ if(empresa =="cabify"){
 
                         <script>
 
-                            function actualizararhu(){
+                            function deshabilitar_btnEnviar(){
 
                                         placa = '<?php echo $placa ?>'
                                         placa = placa.toUpperCase();
@@ -351,8 +351,53 @@ if(empresa =="cabify"){
                                                 console.log(msg)*/
                                             });
 
+                                      param="&dni=" + dni+
+                                            "&type=" + type+
+                                            "&id=" + id+
+                                            "&placa=" + placa;
+
+                                      $.ajax({
+                                        data:  param,
+                                        url:   'vistas/modulos/reniec/historialsoat.php',
+                                        type:  'post',
+                                        success:  function (response) {
+
+                                        }
+                                        });
+
+                                        setTimeout('document.location.reload()',30000);
+
+                                  }
+                                    })
 
 
+                            }
+
+                            function actsoat(){
+
+                                        placa = '<?php echo $placa ?>'
+                                        placa = placa.toUpperCase();
+                                        type  = 1
+                                        dni   = '<?php echo $idconductor ?>'
+                                        id    = '<?php echo $id ?>'
+
+
+                               swal({
+                                      title: 'Actualizar tiene un costo adicional, ¿esta seguro?',
+                                      text: "¡No podrás revertir esto!",
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#3085d6',
+                                      cancelButtonColor: '#d33',
+                                      confirmButtonText: '¡Si, actualizar!',
+                                      cancelButtonText: '¡No actualizar!',
+                                    }).then((result) => {
+                                      if (result.value) {
+                                        swal(
+                                          'Solicitado!',
+                                          'La actualización puede tardar par de minutos.',
+                                          'success'
+                                        )
 
 
                                       param="&dni=" + dni+
@@ -368,16 +413,6 @@ if(empresa =="cabify"){
 
                                         }
                                         });
-
-                                      $.ajax({
-                                        data:  param,
-                                        url:   'vistas/modulos/reniec/actinfo.php',
-                                        type:  'post',
-                                        success:  function (response) {
-
-                                        }
-                                        });
-
 
                                         setTimeout('document.location.reload()',30000);
 
@@ -402,7 +437,7 @@ if(empresa =="cabify"){
                     <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#datosperso" role="tab"><i class="ti-user"></i> DNI-Datos Personales</a> </li>
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#antecedentes" role="tab"><i class="icon-docs"></i> Antecedentes</a> </li>
                     <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#soat" role="tab"><i class="ti-id-badge"></i> SOAT</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li>-->
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#resultado" role="tab"><i class="ti-id-badge"></i> Resultados</a> </li> -->
                     <?php
 
                         if($_SESSION["perfil"] !="RRHH"){
@@ -862,11 +897,24 @@ if(empresa =="cabify"){
                                     <p class="text-muted"><?php echo $value['TipoCertificado']; ?></p>
                                 </div>
                                 <div class="col-md-2 col-xs-6"> <strong>Titular del SOAT</strong>
-                              <!--  <h5 class="card-subtitle">Fecha de actualización '.$value['fecha_act'].'</h5> -->
+                              <!-- <h5 class="card-subtitle">Fecha de actualización '.$value['fecha_act'].'</h5> -->
 
                                     <br>
                                     <p class="text-muted vehiculo"></p>
                                 </div>
+
+                                <?php
+                                $fecha_actual = date('d/m/Y');
+                             //   echo $fecha_actual;
+                               if ($value['soat'] == "VENCIDO" || $value['soat'] == "El vehiculo consultado no posee SOAT" || $value['fecha_inicio_soat'] == "" ||$value['soat'] == "undefined" ) {
+                                    if ($value['ant_penales'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO") {
+                                       echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
+                                                <br>
+                                                <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>
+                                            </div>';
+                                    }
+                                }
+                               ?>
 
                             </div>
                         </div>
@@ -896,9 +944,6 @@ if(empresa =="cabify"){
                                           'La actualización puede tardar par de minutos.',
                                           'success'
                                         )
-
-
-
 
                                     parametros= "&dni=" + dni+
                                                 "&id=" + id+

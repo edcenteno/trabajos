@@ -1,13 +1,9 @@
 <?php
  include "conex.php";
-
+date_default_timezone_set('America/Lima');
 $dni = $_POST['dni'];
 $placa = $_POST['placa'];
 $id = $_POST['id'];
-/*
-soat
- */
-
 
 if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $placa) &&
    preg_match('/^[a-zA-Z0-9]+$/', $placa) && strlen($placa) == 6){
@@ -84,5 +80,13 @@ if ($estado != "VIGENTE") {
                  WHERE id_historial='".$id."' ";
 
 $mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
-echo $sentencia;
+//echo $sentencia;
+$fecha = date("Y-m-d H:i:s");
+
+ $sentencia="UPDATE historial SET
+                     fecha_actualizado = '".$fecha."',
+                     act = act+1
+                     WHERE dni='".$dni."' ";
+
+$mysqli->query($sentencia) or die ("Error al actualizar datos".mysqli_error($mysqli));
 }

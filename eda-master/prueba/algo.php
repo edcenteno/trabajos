@@ -1,8 +1,39 @@
-    <?php include('conductor.php'); ?>	
-    <script type="text/javascript">
-	$.ajax({ url:"http://127.0.0.1/edarhu/prueba/algo.php",
-	 dataType:"json", method:"POST" }).done(function(r){$('#dni').val(r[0].dni)});
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="typeahead.js"></script>
 
+</head>
+<body>
+
+
+    <div class="bgcolor">
+        <label class="demo-label">Busqueda:</label><br/> <input type="text" name="busqueda" id="busqueda" class="typeahead"/>
+
+    </div>
+
+    <button type="submit">algo</button>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $('#busqueda').typeahead({
+            source: function (query, result) {
+                $.ajax({
+                    url: "server.php",
+                    data: 'query=' + query,
+                    dataType: "json",
+                    type: "POST",
+                    success: function (data) {
+                        result($.map(data, function (item) {
+                            return item;
+                        }));
+                    }
+                });
+            }
+        });
+    });
 </script>
-Introduce dni
-<input type="text" pattern="[0-9]{8}" minlength="8" maxlength="8"name="dni" id="dni" value="" placeholder="DNI" />
+</html>
