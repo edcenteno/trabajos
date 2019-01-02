@@ -1,4 +1,134 @@
- <div class="col p-md-0">
+<script>
+function realizaProceso(){
+
+        parametros="&dni=" + $('#dni').val()+
+                   "&provincia=" + '<?php echo $provincia ?>'+
+                   "&usuario_reg=" + $('#usuario_reg').val();
+
+        $.ajax({
+                data:  parametros,
+                url:   'vistas/modulos/reniec/consulta.php',
+                type:  'post',
+                beforeSend: function () {
+                        $("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+                       // alert(response);
+                        $("#resultado").html(response);
+                        //console.log(response)
+                        var rsp=response;
+                       // consultadni.style.display = 'none'; // No ocupa espacio
+                       if (rsp.length > "1000"){
+                          $("#consultadni").hide("slow");
+                          $("#x").hide("slow");
+                       }
+
+
+                }
+        });
+}
+
+</script>
+
+<script>
+  $(document).ready(function(){
+
+       $('#personal').hide();
+       $('#vehiculocarnet').hide();
+
+    });
+function realizaProcesocarnet(){
+
+ $('#consultacarnet').hide();
+
+    carnet = $('#carnet').val();
+
+    fechaNacimientocarnet = $('#fechaNacimientocarnet').val();
+    filter_number = /^[0-9]+$/;
+
+    if (fechaNacimientocarnet.length < '10') {
+      swal({
+        type: "error",
+        title: "¡Error de los campos no puede ir vacío o llevar caracteres especiales!",
+        showConfirmButton: true,
+        confirmButtonColor: "#dd6b55",
+        confirmButtonText: "Cerrar"
+        })
+
+      }
+      if (carnet.length > '9') {
+      swal({
+        type: "error",
+        title: "¡Error el carné de Extranjeria debe tener Maximo de 9 digitos!",
+        showConfirmButton: true,
+        confirmButtonColor: "#dd6b55",
+        confirmButtonText: "Cerrar"
+        })
+
+
+    }
+
+    if (carnet.length < '9') {
+      swal({
+        type: "error",
+        title: "¡Error el carné de Extranjeria debe tener Minimo de 9 digitos!",
+        showConfirmButton: true,
+        confirmButtonColor: "#dd6b55",
+        confirmButtonText: "Cerrar"
+        })
+    }
+
+    if (!filter_number.test(carnet)) {
+      swal({
+        type: "error",
+        title: "¡Error el carné de Extranjeria NO puede llevar letras o caracteres especiales!",
+        showConfirmButton: true,
+        confirmButtonColor: "#dd6b55",
+        confirmButtonText: "Cerrar"
+        })
+    }
+
+    else{
+
+    $.ajax({
+          type: "POST",
+          url: 'https://captcharh.ddns.net/api/record/principal/carnet',
+          data: {
+              carnet: carnet, //tipo de documento
+          },
+          beforeSend: function () {
+            $("#resultadocarnet").html("Procesando, espere por favor...");
+          },
+
+        }).done(function(msg){
+         // $("#resultado").html(msg);
+          //console.log(msg)
+        if (msg != 'Datos no Encontrados.') {
+           $('#personal').show();
+           $('#nombrecarnet').val(msg['Nombres']);
+           $('#apellidoscarnet').val(msg['ApellidoPaterno'] + ' ' +msg['ApellidoMaterno']);
+
+           $('#vehiculocarnet').show();
+           $("#carnet").attr("readonly","readonly");
+           $("#fechaNacimientocarnet").attr("readonly","readonly");
+           $("#resultadocarnet").hide();
+
+     }else{
+        swal({
+          type: "warning",
+          title: "¡Atención, el numero de carné de extranjeria no encontro datos, verifique los digitos o llenar de forma manual y notificar a nuestro Equipo de soporte!",
+          showConfirmButton: true,
+          confirmButtonColor: "#dd6b55",
+          confirmButtonText: "Cerrar"
+        })
+     }
+      });
+        }
+
+}
+
+</script>
+<div class="col p-md-0">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0)">Administrar</a>
         </li>
@@ -17,16 +147,13 @@
                 <div class="card-body">
                     <button type="button" class="btn btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarConductor"><i class="fa fa-plus-circle"></i> Nueva Persona </button>
                       <div class="table-responsive m-t-20">
-                        <table class="display nowrap table table-hover table-striped table-bordered dt-responsive" id = "tablaConductores" cellspacing="0" width="100%">
+                        <table class="display nowrap table table-hover table-striped table-bordered dt-responsive" id = "tablaPersonas" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>FECHA DE REGISTRO</th>
-                                    <th>PROVINCIA</th>
                                     <th>DNI</th>
                                     <th>NOMBRE</th>
                                     <th>APELLIDO</th>
-                                    <th>PLACA</th>
-                                    <th>EMPRESA</th>
                                     <th>RESULTADO</th>
                                     <th>VER MAS</th>
                                 </tr>
@@ -34,12 +161,9 @@
                             <tfoot>
                                 <tr>
                                    <th>FECHA DE REGISTRO</th>
-                                   <th>PROVINCIA</th>
                                    <th>DNI</th>
                                    <th>NOMBRE</th>
                                    <th>APELLIDO</th>
-                                   <th>PLACA</th>
-                                   <th>EMPRESA</th>
                                    <th>RESULTADO</th>
                                    <th>VER MAS</th>
                                 </tr>

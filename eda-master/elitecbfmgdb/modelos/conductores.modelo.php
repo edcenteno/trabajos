@@ -44,9 +44,21 @@ class ModeloConductor extends Model {
 
 	static public function mdlMostrarConductorProvincia($provincia){
 
+			switch ($provincia) {
+				case '4':
+					$conductores = ModeloConductor::find(['id_provincia' =>['$in'=>['4','8','9']]]);
+					break;
+				case '8':
+					$conductores = ModeloConductor::find(['id_provincia' =>['$in'=>['4','8','9']]]);
+					break;
+				case '9':
+					$conductores = ModeloConductor::find(['id_provincia' =>['$in'=>['4','8','9']]]);
+					break;
 
-
-        	$conductores = ModeloConductor::find(array('id_provincia' => $provincia));
+				default:
+					$conductores = ModeloConductor::find(['id_provincia' => $provincia]);
+					break;
+			}
 
            return $conductores;
 

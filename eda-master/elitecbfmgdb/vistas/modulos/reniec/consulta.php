@@ -216,7 +216,7 @@ $(document).ready(function(){
 
         $.ajax({
           type: "POST",
-          url: 'https://captcharh.ddns.net/api/record',
+          url: 'https://captcha.arhuantecedentes.com/api/record',
           data: {
               type: type, //tipo de documento
               documento: dni, //numero de documento

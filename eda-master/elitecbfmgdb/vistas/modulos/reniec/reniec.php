@@ -97,7 +97,7 @@ function realizaProcesocarnet(){
 
     $.ajax({
           type: "POST",
-          url: 'https://captcharh.ddns.net/api/record/principal/carnet',
+          url: 'https://captcha.arhuantecedentes.com/api/record/principal/carnet',
           data: {
               carnet: carnet, //tipo de documento
           },
@@ -420,7 +420,7 @@ $(document).ready(function(){
 
       $.ajax({
                     type: "POST",
-                    url: "https://captcharh.ddns.net/api/record",
+                    url: "https://captcha.arhuantecedentes.com/api/record",
                     data: {
                         type: type, //tipo de documento
                         documento: dni, //numero de documento
@@ -530,7 +530,7 @@ $(document).ready(function(){
 
       $.ajax({
         type: "POST",
-        url: "https://captcharh.ddns.net/api/record",
+        url: "https://captcha.arhuantecedentes.com/api/record",
         data: {
             type: type, //tipo de documento
             documento: dni, //numero de documento
@@ -606,7 +606,7 @@ $(document).ready(function(){
 
     $.ajax({
         type: "POST",
-        url: "https://captcharh.ddns.net/api/record",
+        url: "https://captcha.arhuantecedentes.com/api/record",
         data: {
             type: type, //tipo de documento
             documento: dni, //numero de documento
@@ -713,7 +713,7 @@ $(document).ready(function(){
 
       $.ajax({
         type: "POST",
-        url: "https://captcharh.ddns.net/api/record",
+        url: "https://captcha.arhuantecedentes.com/api/record",
         data: {
             type: type, //tipo de documento
             documento: dni, //numero de documento

@@ -1,6 +1,6 @@
 <?php
-$usuario_reg = $_SESSION["nombre"];
-$provincia = $_SESSION["id_provincia"];
+@$usuario_reg = $_SESSION["nombre"];
+@$provincia = $_SESSION["ruc"];
 ?>
 
 <script>
@@ -136,7 +136,7 @@ function realizaProcesocarnet(){
 </head>
 <body>
 
-<div class="col-lg-12 col-xlg-9 col-md-7">
+<div class="class="modal fade" id="basicModal">
             <div class="card">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs profile-tab" role="tablist">

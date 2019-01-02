@@ -28,6 +28,7 @@
                     <i class="mdi mdi-office-building"></i><span class="nav-text">Personas</span>
                 </a>
                 <ul aria-expanded="false">
+                    <li><a href="configuracion">Configuracion</a></li>
                     <li><a href="personas">Personas</a></li>
                    <!--  <li><a href="usuarios">Usuarios</a></li> -->
 

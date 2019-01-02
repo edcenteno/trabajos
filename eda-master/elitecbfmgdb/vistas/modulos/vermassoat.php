@@ -33,7 +33,7 @@ $extr=$value['extr'];
 
     $.ajax({
     type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/principal/'+ dni
+    url: 'https://captcha.arhuantecedentes.com/api/record/principal/'+ dni
 
     }).done(function(msg){
         //$("#resultado").html(msg);
@@ -69,7 +69,7 @@ $extr=$value['extr'];
 
     $.ajax({
     type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/multas/'+ dni
+    url: 'https://captcha.arhuantecedentes.com/api/record/multas/'+ dni
 
     }).done(function(msg){
         //$("#resultado").html(msg);
@@ -95,7 +95,7 @@ $extr=$value['extr'];
 
     $.ajax({
     type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/placa/'+placa
+    url: 'https://captcha.arhuantecedentes.com/api/record/placa/'+placa
 
     }).done(function(msg){
         //$("#resultado").html(msg);
@@ -280,7 +280,7 @@ $(document).ready(function(){
 
                                         $.ajax({
                                           type: "POST",
-                                          url: 'https://captcharh.ddns.net/api/record',
+                                          url: 'https://captcha.arhuantecedentes.com/api/record',
                                           data: {
                                               type: type, //tipo de documento
                                               documento: dni, //numero de documento
@@ -296,7 +296,7 @@ $(document).ready(function(){
 
                                         $.ajax({
                                             type: "POST",
-                                            url: 'https://captcharh.ddns.net/api/record',
+                                            url: 'https://captcha.arhuantecedentes.com/api/record',
                                             data: {
                                                 type: '1', //tipo de documento
                                                 documento: placa, //numero de documento
@@ -1095,7 +1095,7 @@ $(document).ready(function(){
 
        /*  $.ajax({
             type: "POST",
-            url: 'https://captcharh.ddns.net/api/record',
+            url: 'https://captcha.arhuantecedentes.com/api/record',
             data: {
                 type: '1', //tipo de documento
                 documento: placa, //numero de documento

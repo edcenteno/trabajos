@@ -53,6 +53,8 @@
                                       <li><a href="busqueda-chiclayo"><i class="ti fa fa-map-marker"></i> Chiclayo</span></a></li>
                                       <li><a href="busqueda-cusco"><i class="ti fa fa-map-marker"></i> Cusco</span></a></li>
                                       <li><a href="busqueda-lima"><i class="ti fa fa-map-marker"></i> Lima</span></a></li>
+                                      <li><a href="busqueda-lima1"><i class="ti fa fa-map-marker"></i> Lima 1</span></a></li>
+                                      <li><a href="busqueda-lima2"><i class="ti fa fa-map-marker"></i> Lima 2</span></a></li>
                                       <li><a href="busqueda-piura"><i class="ti fa fa-map-marker"></i> Piura</span></a></li>
                                       <li><a href="busqueda-trujillo"><i class="ti fa fa-map-marker"></i> Trujillo</span></a></li>
                                   </ul>

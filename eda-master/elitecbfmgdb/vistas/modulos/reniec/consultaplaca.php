@@ -42,7 +42,7 @@ if (isset($_POST['si'])){
 
          $.ajax({
             type: "POST",
-            url: 'https://captcharh.ddns.net/api/record',
+            url: 'https://captcha.arhuantecedentes.com/api/record',
             data: {
                 type: '1', //tipo de documento
                 documento: placa, //numero de documento

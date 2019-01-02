@@ -153,39 +153,41 @@ if ($estado == "VIGENTE") {
 
 
 
-<button class="btn btn-primary" id="registrarNuevo">Registrar</button>
+<span class="btn btn-primary" id="registrarNuevo">Registrar</span>
 
 <script type="text/javascript">
   placa = $('#placa').val();
   placa = placa.toUpperCase();
 
-        $.ajax({
-            type: "POST",
-            url: 'https://captcharh.ddns.net/api/record',
-            data: {
-                type: '1', //tipo de documento
-                documento: placa, //numero de documento
-                datas: 'placa' //tipo de solicitud
-            }
+            $.ajax({
+              type: "POST",
+              url: 'https://captcha.arhuantecedentes.com/api/record',
+              data: {
+                  type: '1', //tipo de documento
+                  documento: placa, //numero de documento
+                  datas: 'placa' //tipo de solicitud
+              }
 
-            }).done(function(msg){
-               /* $("#resultado").html(msg);
-                console.log(msg)*/
-            });
+              }).done(function(msg){
+                /*$("#resultado").html(msg);
+                  console.log(msg)*/
+              });
+
   var crvjs =<?php echo $x ?>;
   $(document).ready(function(){
 
     $('#crv').val(crvjs.message);
 
     $('#registrarNuevo').click(function(){
+      document.getElementById("registrarNuevo").setAttribute('disabled',true);
 
-        return(false);
+        //return(false);
          type= 1;
          dni = $('#dni').val();
 
         $.ajax({
           type: "POST",
-          url: 'https://captcharh.ddns.net/api/record',
+          url: 'https://captcha.arhuantecedentes.com/api/record',
           data: {
               type: type, //tipo de documento
               documento: dni, //numero de documento
@@ -193,12 +195,12 @@ if ($estado == "VIGENTE") {
           }
 
         }).done(function(msg){
-         // $("#resultado").html(msg);
-          //console.log(msg)
+         /*$("#resultado").html(msg);
+          console.log(msg)*/
 
         });
 
-          param="&dni=" + dni;
+          /*param="&dni=" + dni;
           $.ajax({
             data:  param,
             url:   'vistas/modulos/reniec/ruc.php',
@@ -206,7 +208,7 @@ if ($estado == "VIGENTE") {
             success:  function (response) {
 
             }
-            });
+            });*/
 
       cadena="nombre=" + $('#nombre').val() +
           "&apellidos=" + $('#apellidos').val() +

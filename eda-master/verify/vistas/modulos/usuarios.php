@@ -132,7 +132,7 @@ MODAL AGREGAR USUARIO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#6f42c1; color:white">
+        <div class="modal-header">
 
           <h4 class="modal-title">Agregar usuario</h4>
 

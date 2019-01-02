@@ -80,7 +80,7 @@ $dir = 'temp/';
 
 
 	$client = new GuzzleHttp\Client();
-	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/principal/'.$idconductor);
+	$res = $client->request('GET', 'https://captcha.arhuantecedentes.com/api/record/principal/'.$idconductor);
 	$res->getStatusCode();
 
 	$res->getHeader('content-type');
@@ -91,7 +91,7 @@ $dir = 'temp/';
 	}
 	//var_dump($arr);
 
-	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
+	$res = $client->request('GET', 'https://captcha.arhuantecedentes.com/api/record/multas/'.$idconductor);
 	$res->getStatusCode();
 
 	$res->getHeader('content-type');

@@ -32,7 +32,8 @@ class ControladorUsuarios{
                         $_SESSION["foto"] = $respuesta->foto;
                         $_SESSION["perfil"] = $respuesta->perfil;
                         $_SESSION["empresa"] = $respuesta->empresa;
-                        $_SESSION["id_provincia"] = $respuesta->id_provincia;
+                        $_SESSION["ruc"] = $respuesta->ruc;
+
 
                         /*=============================================
                         REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN

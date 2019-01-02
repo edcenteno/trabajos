@@ -99,46 +99,9 @@ if (is_numeric($dni) && strlen($dni) == 8) {
             </div>
         </div>
     </div>
-    <div class="row">
-      <div class="col">
-    <div class="form-check-inline">
-      <label class="custom-control custom-checkbox">
-        <input type="checkbox" name="antecedentes" id="antecedentes" class="form-check-input" value="1">Antecedentes
 
-      </label>
-    </div>
 
-    <div class="form-check-inline">
-      <label class="custom-control custom-checkbox">
-        <input type="checkbox" name="recordconductor" id="recordconductor" class="form-check-input" value="1">Record de conductor
-      </label>
-    </div>
 
-    <div class="form-check-inline">
-      <label class="custom-control custom-checkbox">
-        <input type="checkbox" name="historialacademico" id="historialacademico" class="form-check-input" value="1">Historial académico
-      </label>
-    </div>
-  </div>
-  <div class="col">
-    <div class="form-check-inline">
-      <label class="custom-control custom-checkbox">
-        <input type="checkbox" name="recordcrediticio" id="recordcrediticio" class="form-check-input" value="1">Record crediticio
-
-      </label>
-    </div>
-    <div class="form-check-inline">
-      <label class="custom-control custom-checkbox">
-        <input type="checkbox" name="historial laboral" id="historial laboral" class="form-check-input" value="1">historial Laboral
-      </label>
-    </div>
-    <div class="form-check-inline">
-      <label class="custom-control custom-checkbox">
-        <input type="checkbox" name="verificaciondomiciliaria" id="verificaciondomiciliaria" class="form-check-input" value="1">Verificación domiciliaria
-      </label>
-    </div>
-  </div>
-  </div>
 
 </form>
 <span id="resultado">

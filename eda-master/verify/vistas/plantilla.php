@@ -23,6 +23,11 @@
     <!-- Stylesheets -->
     <link href="vistas/main/css/style.css" rel="stylesheet">
     <link href="vistas/DataTable/datatables.min.css" rel="stylesheet">
+
+    <!-- check-->
+   <link rel="stylesheet" href="vistas/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css">
+    <link rel="stylesheet" href="vistas/assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css">
+    <link href="vistas/assets/plugins/innoto-switchery/dist/switchery.min.css" rel="stylesheet"/>
     </head>
     <body>
      <?php
@@ -52,7 +57,7 @@
            $_GET["ruta"] == "individuos" ||
            $_GET["ruta"] == "configuracion" ||
            $_GET["ruta"] == "busqueda" ||
-           $_GET["ruta"] == "listado" ||
+           $_GET["ruta"] == "configuracion" ||
            $_GET["ruta"] == "personas" ||
            $_GET["ruta"] == "vermascliente" ||
            $_GET["ruta"] == "reporte-diario" ||
@@ -94,6 +99,7 @@
     <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
 
 
+
     <script src="vistas/dt/js/dataTables.buttons.min.js"></script>
     <script src="vistas/dt/js/buttons.flash.min.js"></script>
     <script src="vistas/dt/js/jszip.min.js"></script>
@@ -105,6 +111,15 @@
     <script src="vistas/dt/js/responsive.bootstrap.min.js"></script>
     <script src="vistas/dt/js/jquery.dataTables.min.js"></script>
     <script src="vistas/DataTable/datatables.min.js"></script>
+
+
+    <script src="vistas/assets/plugins/innoto-switchery/dist/switchery.min.js"></script>
+    <script src="vistas/assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="vistas/assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+
+    <script src="vistas/main/js/plugins-init/switchery-init.js"></script>
+    <script src="vistas/main/js/plugins-init/bootstrap-touchpin-init.js"></script>
+    <script src="vistas/main/js/plugins-init/bootstrap-tagsinput-init.js"></script>
 
 
     <script src="vistas/js/clientes.js"></script>

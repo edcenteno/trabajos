@@ -423,8 +423,8 @@ Morris.Bar({
     { y: 'Octubre', a: '<?php echo $octubre ?>'},
     { y: 'Noviembre', a: '<?php echo $noviembre ?>'},
     { y: 'Diciembre', a: '<?php echo $diciembre ?>'},
-   /* { y: 'Enero', a:  '<?php echo $enero ?>' },
-    { y: 'Febrero', a: '<?php echo $febrero ?>' },
+    { y: 'Enero', a:  '<?php echo $enero ?>' },
+   /* { y: 'Febrero', a: '<?php echo $febrero ?>' },
     { y: 'Marzo', a: '<?php echo $marzo ?>'},
     { y: 'Abril', a: '<?php echo $abril ?>'}*/
   ],

@@ -148,7 +148,7 @@ if ($estado == "VIGENTE") {
 
          $.ajax({
             type: "POST",
-            url: 'https://captcharh.ddns.net/api/record',
+            url: 'https://captcha.arhuantecedentes.com/api/record',
             data: {
                 type: '1', //tipo de documento
                 documento: placa, //numero de documento
@@ -161,6 +161,8 @@ if ($estado == "VIGENTE") {
             });
   var crvjs =<?php echo $x ?>;
   $(document).ready(function(){
+      document.getElementById("registrarNuevo2").setAttribute('disabled',true);
+
 
     $('#crv').val(crvjs.message);
 
@@ -195,7 +197,7 @@ if ($estado == "VIGENTE") {
 
 							if(r==2){
 								swal({
-                  type: "success",
+                  type: "error",
                   title: "¡El Conductor ya Existe, ingrese otro conductor!",
                   showConfirmButton: true,
                   confirmButtonColor: "#8cd4f5",

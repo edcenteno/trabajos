@@ -197,6 +197,8 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "busqueda-chiclayo" ||
          $_GET["ruta"] == "busqueda-cusco" ||
          $_GET["ruta"] == "busqueda-lima" ||
+         $_GET["ruta"] == "busqueda-lima1" ||
+         $_GET["ruta"] == "busqueda-lima2" ||
          $_GET["ruta"] == "busqueda-piura" ||
          $_GET["ruta"] == "busqueda-trujillo" ||
          $_GET["ruta"] == "listado" ||

@@ -58,7 +58,7 @@ require 'vendor/autoload.php';
     $record = $value['record_cond'];
 
 	$client = new GuzzleHttp\Client();
-	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/principal/'.$idconductor);
+	$res = $client->request('GET', 'https://captcha.arhuantecedentes.com/api/record/principal/'.$idconductor);
 	$res->getStatusCode();
 	$res->getHeader('content-type');
 
@@ -79,7 +79,7 @@ require 'vendor/autoload.php';
 	$var_num_licencia = $arr[0]['var_num_licencia'];
 
 
-	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/multas/'.$idconductor);
+	$res = $client->request('GET', 'https://captcha.arhuantecedentes.com/api/record/multas/'.$idconductor);
 	$res->getStatusCode();
 
 	$res->getHeader('content-type');
@@ -90,7 +90,7 @@ require 'vendor/autoload.php';
 	$placa = $value['placa'];
 
 	$client = new GuzzleHttp\Client();
-	$res = $client->request('GET', 'https://captcharh.ddns.net/api/record/placa/'.$placa);
+	$res = $client->request('GET', 'https://captcha.arhuantecedentes.com/api/record/placa/'.$placa);
 	$res->getStatusCode();
 	$res->getHeader('content-type');
 

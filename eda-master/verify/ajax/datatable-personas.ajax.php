@@ -1,31 +1,27 @@
 <?php
 
-require_once "../controladores/clientes.controlador.php";
-require_once "../modelos/clientes.modelo.php";
+require_once "../controladores/personas.controlador.php";
+require_once "../modelos/personas.modelo.php";
 
 use Purekid\Mongodm\Model;
 
     $item = null;
     $valor = null;
 
-    $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
+    $personas = ControladorPersonas::ctrMostrarPersonas($item, $valor);
 
           $data=[];
-         foreach ($clientes as $key => $value) {
-            $vermas= "<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermascliente&idcliente=".$value->ruc."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
+         foreach ($personas as $key => $value) {
 
-            if ($value->representantes_legales != NULL) {
-              $nombre= $value->representantes_legales['r1']['nombre'];
-            } else {
-              $nombre= $value->razon_social;
-            }
+            $vermas= "<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermascliente&idpersonas=".$value->dni."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
 
 
             $data[]=[
-                      $value->fecha_registro,
-                      $value->ruc,
-                      $value->razon_social,
-                      $nombre,
+                      $value->fecha,
+                      $value->identificacion,
+                      $value->nombre,
+                      $value->apellido,
+                      $value->resultado,
                       $vermas
                      ];
         }

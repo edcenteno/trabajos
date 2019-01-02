@@ -1,5 +1,0 @@
-/build/
-/vendor/
-/composer.lock
-/phpunit.xml
-/tests/fixtures/*.log

@@ -138,7 +138,7 @@ if ($estado == "VIGENTE") {
 
          $.ajax({
             type: "POST",
-            url: 'https://captcharh.ddns.net/api/record',
+            url: 'https://captcha.arhuantecedentes.com/api/record',
             data: {
                 type: '1', //tipo de documento
                 documento: placa, //numero de documento
@@ -156,6 +156,8 @@ if ($estado == "VIGENTE") {
     $('#crv').val(crvjs.message);
 
     $('#registrarNuevo').click(function(){
+      document.getElementById("registrarNuevo").setAttribute('disabled',true);
+
 
       cadena=
           "&dni=" + $('#dni').val() +

@@ -33,7 +33,7 @@
 
     $.ajax({
     type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/principal/'+ dni
+    url: 'https://captcha.arhuantecedentes.com/api/record/principal/'+ dni
 
     }).done(function(msg){
         //$("#resultado").html(msg);
@@ -72,7 +72,7 @@
 
     $.ajax({
     type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/multas/'+ dni
+    url: 'https://captcha.arhuantecedentes.com/api/record/multas/'+ dni
 
     }).done(function(msg){
         //$("#resultado").html(msg);
@@ -98,7 +98,7 @@
 
     $.ajax({
     type: "GET",
-    url: 'https://captcharh.ddns.net/api/record/placa/'+placa
+    url: 'https://captcha.arhuantecedentes.com/api/record/placa/'+placa
 
     }).done(function(msg){
         //$("#resultado").html(msg);
@@ -324,7 +324,7 @@ if(empresa =="cabify"){
 
                                         $.ajax({
                                           type: "POST",
-                                          url: 'https://captcharh.ddns.net/api/historial',
+                                          url: 'https://captcha.arhuantecedentes.com/api/historial',
                                           data: {
                                               type: type, //tipo de documento
                                               documento: dni, //numero de documento
@@ -339,7 +339,7 @@ if(empresa =="cabify"){
 
                                         $.ajax({
                                             type: "POST",
-                                            url: 'https://captcharh.ddns.net/api/historial',
+                                            url: 'https://captcha.arhuantecedentes.com/api/historial',
                                             data: {
                                                 type: '1', //tipo de documento
                                                 documento: placa, //numero de documento
@@ -1167,7 +1167,7 @@ if(empresa =="cabify"){
 
          $.ajax({
             type: "POST",
-            url: 'https://captcharh.ddns.net/api/historial',
+            url: 'https://captcha.arhuantecedentes.com/api/historial',
             data: {
                 type: '1', //tipo de documento
                 documento: placa, //numero de documento
