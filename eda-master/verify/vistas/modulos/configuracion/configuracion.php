@@ -12,7 +12,7 @@ $clientes = ModeloClientes::one(['ruc'=>$ruc]);
 
 
      $clientes ->update([
-                'config' =>[$form]
+                'config' =>$form
                     ]);
      $clientes->save();
 

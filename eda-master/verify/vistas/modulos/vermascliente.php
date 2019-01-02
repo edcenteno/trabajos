@@ -8,7 +8,7 @@
 
     foreach ($uncliente as $key => $value){
 
-
+    echo $value['config'][1];
 ?>
 
  <div class="col p-md-0">
@@ -113,7 +113,7 @@
 
                             <hr>
                              <div class="row">
-                                <div class="col-md-3 col-xs-6 b-r inf"> <strong>Direccion</strong>
+                                <div class="col-md-6 col-xs-6 b-r inf"> <strong>Direccion</strong>
                                     <br>
                                     <p class="text-muted"><?php echo $value['direccion']; ?></p>
                                 </div>
