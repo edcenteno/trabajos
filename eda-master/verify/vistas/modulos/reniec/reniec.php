@@ -452,7 +452,7 @@ $(document).ready(function(){
               if(r==1){
               swal({
                   type: "success",
-                  title: "¡El Conductor ha sido guardado correctamente!",
+                  title: "¡La Persona ha sido guardado correctamente!",
                   showConfirmButton: true,
                   confirmButtonColor: "#8cd4f5",
                   confirmButtonText: "Cerrar"
@@ -461,7 +461,7 @@ $(document).ready(function(){
 
                   if(result.value){
 
-                    window.location = "conductores";
+                    window.location = "personas";
 
                   }
 
@@ -469,7 +469,7 @@ $(document).ready(function(){
               }else if(r==2){
                 swal({
                     type: "warning",
-                    title: "¡Conductor ya se encuentra registrado al conductor intente nuevamente!",
+                    title: "Persona ya se encuentra registrado intente nuevamente!",
                     showConfirmButton: true,
                      confirmButtonColor: "#dd6b55",
                     confirmButtonText: "Cerrar"
@@ -478,7 +478,7 @@ $(document).ready(function(){
 
                     if(result.value){
 
-                      window.location = "conductores";
+                      window.location = "personas";
 
                     }
 
@@ -638,7 +638,7 @@ $(document).ready(function(){
             if(r==1){
             swal({
                 type: "success",
-                title: "¡El Conductor ha sido guardado correctamente!",
+                title: "La Persona ha sido guardado correctamente!",
                 showConfirmButton: true,
                 confirmButtonColor: "#8cd4f5",
                 confirmButtonText: "Cerrar"
@@ -647,7 +647,7 @@ $(document).ready(function(){
 
                 if(result.value){
 
-                  window.location = "conductores";
+                  window.location = "personas";
 
                 }
 
@@ -655,7 +655,7 @@ $(document).ready(function(){
             }else if(r==2){
               swal({
                   type: "warning",
-                  title: "¡Conductor ya se encuentra registrado al conductor intente nuevamente!",
+                  title: "¡Persona ya se encuentra registrado intente nuevamente!",
                   showConfirmButton: true,
                    confirmButtonColor: "#dd6b55",
                   confirmButtonText: "Cerrar"
@@ -664,7 +664,7 @@ $(document).ready(function(){
 
                   if(result.value){
 
-                    window.location = "conductores";
+                    window.location = "personas";
 
                   }
 
