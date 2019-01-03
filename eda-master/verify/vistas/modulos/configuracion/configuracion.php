@@ -16,5 +16,5 @@ $clientes = ModeloClientes::one(['ruc'=>$ruc]);
                     ]);
      $clientes->save();
 
-
+echo 1;
 ?>

@@ -1,4 +1,5 @@
 <?php
+use modelos\ModeloUsuarios;
 
 class ControladorUsuarios{
 
@@ -15,26 +16,23 @@ class ControladorUsuarios{
 
 			   	$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-				$tabla = "usuarioscabify";
-
 				$item = "usuario";
 				$valor = $_POST["ingUsuario"];
 
-				$respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
-				//var_dump($respuesta);
+				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($item, $valor);
 
-				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
+				if($respuesta->usuario == $_POST["ingUsuario"] && $respuesta->password == $encriptar){
 
-					if($respuesta["estado"] == 1){
+					if($respuesta->estado == 1){
 
 						$_SESSION["iniciarSesion"] = "ok";
-						$_SESSION["id"] = $respuesta["id"];
-						$_SESSION["nombre"] = $respuesta["nombre"];
-						$_SESSION["usuario"] = $respuesta["usuario"];
-						$_SESSION["foto"] = $respuesta["foto"];
-						$_SESSION["perfil"] = $respuesta["perfil"];
-						$_SESSION["empresa"] = $respuesta["empresa"];
-						$_SESSION["id_provincia"] = $respuesta["id_provincia"];
+						$_SESSION["id"] = $respuesta->id;
+						$_SESSION["nombre"] = $respuesta->nombre;
+						$_SESSION["usuario"] = $respuesta->usuario;
+						$_SESSION["foto"] = $respuesta->foto;
+						$_SESSION["perfil"] = $respuesta->perfil;
+						$_SESSION["empresa"] = $respuesta->empresa;
+						$_SESSION["id_provincia"] = $respuesta->id_provincia;
 
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
@@ -51,10 +49,10 @@ class ControladorUsuarios{
 						$item1 = "ultimo_login";
 						$valor1 = $fechaActual;
 
-						$item2 = "id";
-						$valor2 = $respuesta["id"];
+						$item2 = "usuario";
+						$valor2 = $respuesta->usuario;
 
-						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($item1, $valor1, $item2, $valor2);
 
 						if($ultimoLogin == "ok"){
 
@@ -176,8 +174,6 @@ class ControladorUsuarios{
 				}
 
 
-				$tabla = "usuarioscabify";
-
 				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 				$datos = array("nombre" => $_POST["nuevoNombre"],
@@ -191,7 +187,7 @@ class ControladorUsuarios{
 					       	   "id_provincia" => $_POST["nuevoUbicacion"],
 					       	   "telefono" => $_POST["nuevoTelefono"]);
 
-				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
+				$respuesta = ModeloUsuarios::mdlIngresarUsuario($datos);
 
 				if($respuesta == "ok"){
 
@@ -262,9 +258,7 @@ class ControladorUsuarios{
 
 	static public function ctrMostrarUsuarios($item, $valor){
 
-		$tabla = "usuarioscabify";
-
-		$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
+		$respuesta = ModeloUsuarios::MdlMostrarUsuarios($item, $valor);
 
 		return $respuesta;
 	}
@@ -358,7 +352,6 @@ class ControladorUsuarios{
 
 				}
 
-				$tabla = "usuarioscabify";
 
 				if($_POST["editarPassword"] != ""){
 
@@ -401,8 +394,7 @@ class ControladorUsuarios{
 							   "empresa" => $_POST["editarEmpresa"],
 							   "foto" => $ruta);
 
-				$respuesta = ModeloUsuarios::mdlEditarUsuario($tabla, $datos);
-				//var_dump($respuesta);
+				$respuesta = ModeloUsuarios::mdlEditarUsuario($datos);
 
 				if($respuesta == "ok"){
 
@@ -459,10 +451,9 @@ class ControladorUsuarios{
 
 	static public function ctrBorrarUsuario(){
 
-		if(isset($_GET["idUsuario"])){
+		if(isset($_GET["usuario"])){
 
-			$tabla ="usuarioscabify";
-			$datos = $_GET["idUsuario"];
+			$datos = $_GET["usuario"];
 
 			if($_GET["fotoUsuario"] != ""){
 
@@ -471,7 +462,7 @@ class ControladorUsuarios{
 
 			}
 
-			$respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+			$respuesta = ModeloUsuarios::mdlBorrarUsuario($datos);
 
 			if($respuesta == "ok"){
 

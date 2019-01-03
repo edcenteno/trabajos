@@ -13,12 +13,12 @@ use Purekid\Mongodm\Model;
           $data=[];
          foreach ($personas as $key => $value) {
 
-            $vermas= "<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermascliente&idpersonas=".$value->dni."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
+            $vermas= "<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermas&idpersonas=".$value->dni."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
 
 
             $data[]=[
                       $value->fecha,
-                      $value->identificacion,
+                      $value->dni,
                       $value->nombre,
                       $value->apellido,
                       $value->resultado,

@@ -210,7 +210,8 @@ $(document).ready(function(){
   $(document).ready(function(){
 
     $('#registrarNuevo').click(function(){
-
+      $('#registrarNuevo').hide();
+      $('#si').hide();
       type= 1
       dni = $('#dni').val();
 

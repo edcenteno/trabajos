@@ -30,7 +30,9 @@
     <link href="vistas/assets/plugins/innoto-switchery/dist/switchery.min.css" rel="stylesheet"/>
     </head>
     <body>
-     <?php
+    <?php
+
+    /* if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){*/
 
      /*=============================================
     CABEZOTE
@@ -82,6 +84,11 @@
     echo '</div>';
    // include "modulos/footer.php";
 
+  /*}else{
+
+      include "modulos/login.php";
+
+    }*/
 
 
 ?>

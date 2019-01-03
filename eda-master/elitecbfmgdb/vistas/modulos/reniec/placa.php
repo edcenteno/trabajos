@@ -179,7 +179,8 @@ if ($estado == "VIGENTE") {
     $('#crv').val(crvjs.message);
 
     $('#registrarNuevo').click(function(){
-      document.getElementById("registrarNuevo").setAttribute('disabled',true);
+      $('#registrarNuevo').hide();
+
 
         //return(false);
          type= 1;

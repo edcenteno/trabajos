@@ -50,8 +50,6 @@
                             $contador=0;
                             foreach ($usuarios as $key => $value){
 
-
-
                             $contador++;
                               echo ' <tr>
                                       <td>'.($contador).'</td>
@@ -69,7 +67,15 @@
                                       }
 
                                       echo '<td>'.$value->perfil.'</td>';
-                                      echo '<td>'.$value->empresa.'</td>';
+
+                                      $item = 'ruc';
+                                      $valor = $value->empresa;
+                                      $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
+
+                                      foreach ($clientes as $key => $valueclientes) {
+                                        echo '<td>'.$valueclientes['razon_social'].'</td>';
+                                      }
+
 
 
                                       if($value->estado != 0){
@@ -90,7 +96,6 @@
 
                                           <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value->usuario.'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
-                                          <button class="btn btn-danger btnEliminarUsuario" fotoUsuario="'.$value->foto.'" usuario="'.$value->usuario.'"><i class="fa fa-times"></i></button>
 
                                         </div>
 

@@ -29,7 +29,7 @@
         ?>
             <div class="col-sm-6 col-lg-4 col-xl">
                 <div class="form-check mb-5 mr-5">
-                    <input name="check[<?php echo $a ?>]" id="checkbox<?php echo $a ?>" class="form-check-input styled-checkbox" value="<?php echo $value->_id ?>" checked type="checkbox">
+                    <input name="check[<?php echo $a ?>]" id="checkbox<?php echo $a ?>" class="form-check-input styled-checkbox" value="<?php echo $value->_id ?>" type="checkbox">
                     <label for="checkbox<?php echo $a ?>" class="form-check-label check-d-purple"><?php echo $value->descripcion ?></label>
                 </div>
             </div>
@@ -56,13 +56,27 @@ function realizaProceso(){
                 url:   'vistas/modulos/configuracion/configuracion.php',
                 type:  'post',
 
-                success:  function (response) {
-                       // alert(response);
-                        $("#resultado").html(response);
-                        //console.log(response)
+               success:function(r){
 
-                       }
-        });
-}
+            if(r==1){
+            swal({
+                type: "success",
+                title: "La Configuración ha sido guardado correctamente!",
+                showConfirmButton: true,
+                confirmButtonColor: "#8cd4f5",
+                confirmButtonText: "Cerrar"
 
+              }).then(function(result){
+
+                if(result.value){
+
+                  window.location = "configuracion";
+
+                }
+
+              });
+          }
+      }
+      });
+    };
 </script>

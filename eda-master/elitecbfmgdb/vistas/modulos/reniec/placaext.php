@@ -161,12 +161,12 @@ if ($estado == "VIGENTE") {
             });
   var crvjs =<?php echo $x ?>;
   $(document).ready(function(){
-      document.getElementById("registrarNuevo2").setAttribute('disabled',true);
-
 
     $('#crv').val(crvjs.message);
 
     $('#registrarNuevo2').click(function(){
+    $('#registrarNuevo2').hide();
+
 
       cadena="nombre=" + '<?php echo $nombre ?>' +
           "&apellidos=" + '<?php echo $apellidos ?>' +
