@@ -210,9 +210,15 @@ MODAL AGREGAR USUARIO
                     $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
 
                    foreach ($clientes as $key => $value){
-                  ?>
-                    <option value="<?php echo $value['ruc']  ?>" readonly><?php echo $value['razon_social'] ?></option>
-                  <?php
+
+                    if ($_SESSION['empresa'] == "20557675052") {
+
+                      echo '<option value="'.$value->ruc.'" readonly> '.$value->razon_social .' </option>';
+                    } else {
+
+                      echo '<option value="'.$value['ruc'].'" readonly> '.$value['razon_social'].'</option>';
+                    }
+
 
                     }
                   ?>
@@ -294,8 +300,6 @@ MODAL AGREGAR USUARIO
                       break;
 
                       }
-
-
 
                     $rol = ControladorRoles::ctrMostrarRoles($item, $valor);
 

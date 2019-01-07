@@ -11,19 +11,20 @@
                 </a>
 
             </li>
-            <?php
-               /* if ($_SESSION['rol'] == ) {
-                    # code...
-                }*/
 
-            ?>
             <li class="nav-label">Empresas</li>
             <li class="mega-menu mega-menu-lg">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="mdi mdi-office-building"></i><span class="nav-text">Empresas</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="clientes">Clientes</a></li>
+                    <?php
+                        if ($_SESSION['id_rol'] == '5c2f826ea6bbfc38cc6478d1') {
+                           echo '<li><a href="clientes">Clientes</a></li>';
+                        }
+
+                    ?>
+
                     <li><a href="usuarios">Usuarios</a></li>
 
                 </ul>
@@ -34,7 +35,8 @@
                     <i class="mdi mdi-office-building"></i><span class="nav-text">Personas</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="configuracion">Configuracion</a></li>
+
+
                     <li><a href="personas">Personas</a></li>
                    <!--  <li><a href="usuarios">Usuarios</a></li> -->
 

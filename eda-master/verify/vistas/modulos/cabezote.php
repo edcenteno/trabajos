@@ -49,17 +49,20 @@
                             <div class="drop-down dropdown-profile animated bounceInDown">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li><a href="javascript:void()"><i class="icon-user"></i> <span>My Profile</span></a>
+                                        <!-- <li><a href="javascript:void()"><i class="icon-user"></i> <span>My Profile</span></a>
                                         </li>
                                         <li><a href="javascript:void()"><i class="icon-wallet"></i> <span>My Wallet</span></a>
                                         </li>
                                         <li><a href="javascript:void()"><i class="icon-envelope"></i> <span>Inbox</span></a>
-                                        </li>
-                                        <li><a href="javascript:void()"><i class="fa fa-cog"></i> <span>Setting</span></a>
-                                        </li>
-                                        <li><a href="javascript:void()"><i class="icon-lock"></i> <span>Lock Screen</span></a>
-                                        </li>
-                                        <li><a href="javascript:void()"><i class="icon-power"></i> <span>Logout</span></a>
+                                        </li> -->
+                                        <?php
+                                            if ($_SESSION['id_rol'] == '5c2f8290a6bbfc38cc6478d2') {
+                                               echo '<li><a href="configuracion"><i class="fa fa-cog"></i> <span>Configuración</span></a></li>';
+                                            }
+                                        ?>
+                                        <!-- <li><a href="javascript:void()"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                                        </li> -->
+                                        <li><a href="salir"><i class="icon-power"></i> <span>Cerrar Sesión</span></a>
                                         </li>
                                     </ul>
                                 </div>
