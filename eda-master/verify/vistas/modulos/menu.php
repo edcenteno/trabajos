@@ -11,6 +11,12 @@
                 </a>
 
             </li>
+            <?php
+               /* if ($_SESSION['rol'] == ) {
+                    # code...
+                }*/
+
+            ?>
             <li class="nav-label">Empresas</li>
             <li class="mega-menu mega-menu-lg">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">

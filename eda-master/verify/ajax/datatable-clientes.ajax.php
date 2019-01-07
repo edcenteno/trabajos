@@ -12,6 +12,7 @@ use Purekid\Mongodm\Model;
 
           $data=[];
          foreach ($clientes as $key => $value) {
+
             $vermas= "<div class='btn-group'><a class='btn btn-success btnvermas' href='index.php?ruta=vermascliente&idcliente=".$value->ruc."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
 
             if ($value->representantes_legales != NULL) {

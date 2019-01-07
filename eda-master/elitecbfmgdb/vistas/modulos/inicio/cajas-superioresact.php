@@ -1,7 +1,7 @@
 <?php
 
     $suma = ModeloConductor::count([
-                                  'fecha_act' => new MongoRegex("/11/")
+                                  'fecha_act' => new MongoRegex("/$mes/")
                                 ]);
 ?>
 

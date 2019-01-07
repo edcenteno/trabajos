@@ -77,7 +77,6 @@
                                       }
 
 
-
                                       if($value->estado != 0){
 
                                         echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value->usuario.'" estadoUsuario="0">Activado</button></td>';
@@ -199,14 +198,20 @@ MODAL AGREGAR USUARIO
 
 
                   <?php
+
+                    if ($_SESSION['empresa'] == "20557675052") {
                       $item=null;
                       $valor=null;
+                    } else {
+                      $item='ruc';
+                      $valor=$_SESSION['empresa'];
+                    }
 
                     $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
 
                    foreach ($clientes as $key => $value){
                   ?>
-                    <option value="<?php echo $value->ruc  ?>"><?php echo $value->razon_social ?></option>
+                    <option value="<?php echo $value['ruc']  ?>" readonly><?php echo $value['razon_social'] ?></option>
                   <?php
 
                     }
@@ -269,9 +274,43 @@ MODAL AGREGAR USUARIO
                      <span class="input-group-text" id="basic-addon2"><i class="fa fa-lock"></i></span>
                     </div>
 
-                <select class="form-control input-lg" name="nuevoPerfil">
 
-                  <option value="Administrador">Administrador</option>
+
+
+
+                  <?php
+
+                    switch ($_SESSION["id_rol"]) {
+                      case "5c2f826ea6bbfc38cc6478d1": //administrador arhu
+                        $item='descripcion';
+                        $valor='Administrador';
+
+                      break;
+
+                      case "5c2f8290a6bbfc38cc6478d2": //administrador empresa
+                        $item='descripcion';
+                        $valor='Operador';
+
+                      break;
+
+                      }
+
+
+
+                    $rol = ControladorRoles::ctrMostrarRoles($item, $valor);
+
+
+                   foreach ($rol as $key => $value){
+
+                  ?>
+
+
+                    <input type="text" class="form-control" name="" value="<?php echo $value['descripcion'] ?>" required aria-label="" id="" aria-describedby="basic-addon2" readonly>
+
+                  <?php
+
+                    }
+                  ?>
 
                 </select>
 

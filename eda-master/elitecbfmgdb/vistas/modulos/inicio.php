@@ -41,6 +41,12 @@ require 'graficas/querys.php';
                     <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#acthist" role="tab"><i class="ti-reload"></i> Historial Actualizados </a> </li>
                     <?php
                         }
+
+                        if($_SESSION["usuario"] =="karenarhu" || $_SESSION["usuario"] =="edcenteno"){
+                    ?>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#arhu" role="tab"><i class="ti-bar-chart"></i> Relacion Arhu </a> </li>
+                    <?php
+                        }
                     ?>
                 </ul>
              <!-- Tab panes -->
@@ -109,8 +115,6 @@ require 'graficas/querys.php';
                         </div>
                         <?php
                         }
-                        ?>
-                        <?php
 
                         if($_SESSION["perfil"] =="Operador" || $_SESSION["perfil"] =="RRHH" || $_SESSION["perfil"] =="CallCenter"){
 
@@ -214,6 +218,23 @@ require 'graficas/querys.php';
 
                         <?php
                             include "inicio/cajas-superioresacthist.php";
+
+                        ?>
+                        </div>
+
+
+                            </div>
+                         </div>
+                     </div>
+
+                     <div class="tab-pane" id="arhu" role="tabpanel">
+                        <div class="card-body">
+                            <div class="row">
+
+                        <div class="col-lg-12 col-md-6">
+
+                        <?php
+                            include "inicio/cajas-superioresarhu.php";
 
                         ?>
                         </div>

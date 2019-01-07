@@ -29,7 +29,7 @@
                                     </a>
                                 </div>
                                 <h4 class="text-center mt-4">Ingrese a su cuenta administrador</h4>
-                                <form class="mt-5 mb-5">
+                                <form class="mt-5 mb-5" method="post">
                                     <div class="form-group">
                                         <label>RUC</label>
                                         <input type="text" class="form-control" placeholder="RUC" required name="ingRuc">
@@ -43,7 +43,7 @@
                                         <input type="password" class="form-control" placeholder="Password" required name="ingPassword">
                                     </div>
                                     <div class="text-center mb-4 mt-4">
-                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                        <button type="submit" class="btn btn-primary">Ingresar</button>
                                     </div>
                                     <?php
                                         $login = new ControladorUsuarios();

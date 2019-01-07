@@ -21,7 +21,7 @@ class ControladorUsuarios{
 
                 $respuesta = ModeloUsuarios::MdlMostrarUsuarios($item, $valor);
 
-                if($respuesta->usuario == $_POST["ingUsuario"] && $respuesta->password == $encriptar){
+                if($respuesta->usuario == $_POST["ingUsuario"] && $respuesta->empresa == $_POST["ingRuc"] && $respuesta->password == $encriptar){
 
                     if($respuesta->estado == 1){
 
@@ -32,8 +32,7 @@ class ControladorUsuarios{
                         $_SESSION["foto"] = $respuesta->foto;
                         $_SESSION["perfil"] = $respuesta->perfil;
                         $_SESSION["empresa"] = $respuesta->empresa;
-                        $_SESSION["ruc"] = $respuesta->ruc;
-
+                        $_SESSION["id_rol"] = $respuesta->id_rol;
 
                         /*=============================================
                         REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
@@ -73,7 +72,7 @@ class ControladorUsuarios{
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     <h3 class="text-warning"><i class="fa fa-exclamation-triangle"></i> Atención</h3>
-                                            El usuario no está activado, debe comuniquese con nosotros.
+                                            El usuario aún no está activado.
                                 </div>';
 
                     }
@@ -86,7 +85,7 @@ class ControladorUsuarios{
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 <h3 class="text-danger"><i class="fa fa-times"></i> Error</h3>
-                                        Usuario o contraseña erronea, vuelva a intentarlo.
+                                       RUC, Usuario o contraseña erronea, vuelva a intentarlo.
                             </div>';
 
                 }

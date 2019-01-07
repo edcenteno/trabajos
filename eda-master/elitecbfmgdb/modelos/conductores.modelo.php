@@ -46,13 +46,13 @@ class ModeloConductor extends Model {
 
 			switch ($provincia) {
 				case '4':
-					$conductores = ModeloConductor::find(['id_provincia' =>['$in'=>['4','8','9']]]);
+					$conductores = ModeloConductor::find(['id_provincia' =>['$in'=>['4','8','9','11']]]);
 					break;
 				case '8':
-					$conductores = ModeloConductor::find(['id_provincia' =>['$in'=>['4','8','9']]]);
+					$conductores = ModeloConductor::find(['id_provincia' =>['$in'=>['4','8','9','11']]]);
 					break;
 				case '9':
-					$conductores = ModeloConductor::find(['id_provincia' =>['$in'=>['4','8','9']]]);
+					$conductores = ModeloConductor::find(['id_provincia' =>['$in'=>['4','8','9','11']]]);
 					break;
 
 				default:

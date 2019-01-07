@@ -15,6 +15,9 @@
         case "edcenteno":
         # code...
             break;
+        case "karenarhu":
+        # code...
+            break;
 
         default:
         if ($_SESSION["perfil"]!="CallCenter") {

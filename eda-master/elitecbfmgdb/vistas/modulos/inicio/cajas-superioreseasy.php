@@ -37,7 +37,7 @@ $fecha_actual = date("M-Y");
                         <h2 class="counter text-warning"><?php echo $totalClientes ?></h2>
                     </div><br>
                     <?php
-                    $totalClientes = str_replace(',','',$a);
+                        $totalClientes = str_replace(',','',$a);
                      $b = ($totalClientes *100)/2500;
                      ?>
                 </div>

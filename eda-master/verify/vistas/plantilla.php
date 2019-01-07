@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+//error_reporting(0);
+session_start();
+?><!DOCTYPE html>
 <html dir="ltr" lang="en" class="no-outlines">
 <head>
 
@@ -32,7 +35,7 @@
     <body>
     <?php
 
-    /* if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){*/
+     if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
 
      /*=============================================
     CABEZOTE
@@ -84,11 +87,11 @@
     echo '</div>';
    // include "modulos/footer.php";
 
-  /*}else{
+  }else{
 
       include "modulos/login.php";
 
-    }*/
+    }
 
 
 ?>

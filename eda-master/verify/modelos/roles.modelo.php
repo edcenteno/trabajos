@@ -5,9 +5,9 @@ $db = (new MongoDB\Client)->verify;
 
 use Purekid\Mongodm\Model;
 
-class ModeloClientes extends Model {
+class ModeloRoles extends Model {
 
-    static $collection = "clientes";
+    static $collection = "roles";
 
     /** use specific config section **/
     public static $config = 'default';
@@ -16,19 +16,19 @@ class ModeloClientes extends Model {
     MOSTRAR USUARIOS
     =============================================*/
 
-    static public function MdlMostrarClientes($item, $valor){
+    static public function MdlMostrarRoles($item, $valor){
 
         if($item != null){
 
             $params = array($item=>$valor);
-            $clientes = ModeloClientes::one($params);
-           return $clientes;
+            $roles = ModeloRoles::one($params);
+           return $roles;
 
         }else{
 
-           $clientes = ModeloClientes::all();
+           $roles = ModeloRoles::find();
 
-           return $clientes;
+           return $roles;
         }
 
     }
