@@ -37,7 +37,7 @@
 						<input type="text" class="form-control" name="nro" id="nroplaca" placeholder="Ingrese Placa" autofocus>
 					</div>
 					<div class="card-footer text-center">
-						<button type="submit" class="btn btn-success" name="btn-submit" id="btn-submit">
+						<button type="submit" class="btn btn-rounded btn-ft btn-success" name="btn-submit" id="btn-submit">
 							<i class="fa fa-search"></i> Buscar
 						</button>
 					</div>
@@ -140,12 +140,12 @@
 								}
 								$("#error").hide();
 							}
-							
+
 							if(typeof(data['message'])!='undefined')
 							{
 								alert( data['message'] );
 							}
-							
+
 							$.ajaxunblock();
 						}
 						else

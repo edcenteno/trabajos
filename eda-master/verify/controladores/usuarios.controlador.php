@@ -97,6 +97,99 @@ class ControladorUsuarios{
     }
 
     /*=============================================
+    INGRESO DE USUARIO
+    =============================================*/
+
+    static public function ctrIngresoUsuarioOperador(){
+
+        if(isset($_POST["ingUsuario"])){
+
+            if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) &&
+               preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
+
+                $encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+                $item = "usuario";
+                $valor = $_POST["ingUsuario"];
+
+                $respuesta = ModeloUsuarios::MdlMostrarUsuarios($item, $valor);
+
+                if($respuesta->usuario == $_POST["ingUsuario"] && $respuesta->id_rol == "5c2f864ca6bbfc38cc6478d3" && $respuesta->password == $encriptar){
+
+                    if($respuesta->estado == 1){
+
+                        $_SESSION["iniciarSesion"] = "ok";
+                        $_SESSION["id"] = $respuesta->id;
+                        $_SESSION["nombre"] = $respuesta->nombre;
+                        $_SESSION["usuario"] = $respuesta->usuario;
+                        $_SESSION["foto"] = $respuesta->foto;
+                        $_SESSION["perfil"] = $respuesta->perfil;
+                        $_SESSION["empresa"] = $respuesta->empresa;
+                        $_SESSION["id_rol"] = $respuesta->id_rol;
+
+                        /*=============================================
+                        REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
+                        =============================================*/
+
+
+                        date_default_timezone_set('America/Lima');
+
+                        $fecha = date('Y-m-d');
+                        $hora = date('H:i:s');
+
+                        $fechaActual = $fecha.' '.$hora;
+
+                        $item1 = "ultimo_login";
+                        $valor1 = $fechaActual;
+
+                        $item2 = "usuario";
+                        $valor2 = $respuesta->usuario;
+
+                        $ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($item1, $valor1, $item2, $valor2);
+
+                        if($ultimoLogin == "ok"){
+
+                            echo '<script>
+
+                                window.location = "inicio";
+
+                            </script>';
+
+                        }
+
+                    }else{
+
+                        echo '<br>
+                                <div class="alert alert-warning">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h3 class="text-warning"><i class="fa fa-exclamation-triangle"></i> Atención</h3>
+                                            El usuario aún no está activado.
+                                </div>';
+
+                    }
+
+                }else{
+
+                    echo '<br>
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="text-danger"><i class="fa fa-times"></i> Error</h3>
+                                       Usuario, contraseña o perfil erroneo erronea, vuelva a intentarlo.
+                            </div>';
+
+                }
+
+            }
+
+        }
+
+    }
+
+    /*=============================================
     REGISTRO DE USUARIO
     =============================================*/
 

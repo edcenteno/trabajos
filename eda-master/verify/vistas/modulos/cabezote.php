@@ -16,7 +16,7 @@
     <!--**********************************
         Main wrapper start
     ***********************************-->
-    <!-- <div id="main-wrapper"> -->
+   <div id="main-wrapper">
 
         <!--**********************************
             Nav header start
@@ -44,7 +44,22 @@
 
                         <li class="icons">
                             <a href="javascript:void(0)" class="log-user">
-                                <img src="../../assets/images/avatar/1.jpg" alt=""> <span>George Martin</span>  <i class="fa fa-caret-down f-s-14" aria-hidden="true"></i>
+                                <?php
+
+                                    if($_SESSION["foto"] != ""){
+
+                                        echo '<img src="'.$_SESSION["foto"].'" class="user-image">';
+
+                                    }else{
+
+
+                                        echo '<img src="vistas/img/usuarios/default/anonymous.png" class="user-image">';
+
+                                    }
+
+
+                                    ?>
+                            <span><?php  echo $_SESSION["nombre"]; ?></span>  <i class="fa fa-caret-down f-s-14" aria-hidden="true"></i>
                             </a>
                             <div class="drop-down dropdown-profile animated bounceInDown">
                                 <div class="dropdown-content-body">

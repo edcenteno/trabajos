@@ -7,70 +7,65 @@ $fecha_actual = date("Y-m-d");
 $valor2 = date("Y-m",strtotime($fecha_actual."- 1 month"));
 
 //$ventas = ControladorVentas::ctrSumaTotalVentas();
+$ruc=$_SESSION['empresa'];
 
-
-$totalClientes = ControladorConductor::ctrMostrarConductorhoy($item, $valor);
-$totalClientes2 = ControladorConductor::ctrMostrarConductorMes($item, $valor2);
-
-$a = number_format($totalClientes);
+$totalPersonas = ControladorPersonas::ctrMostrarPersonashoy($item, $valor,$ruc);
+$totalPersonas2 = ControladorPersonas::ctrMostrarPersonasMes($item, $valor2,$ruc);
 
 
 ?>
 
 
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-12" style="width: 85%; height: 140px;">
-                <div class="d-flex no-block align-items-center">
-                    <div>
-                        <h2><i class="icon-user-follow"></i></h2>
-                        <h3 class="text-muted">Reporte de conductores mes <?php echo date('M-Y');?></h3>
-                    </div>
-                    <div class="ml-auto">
-                        <h2 class="counter text-info"><?php echo $a ?></h2>
-                    </div><br>
-                    <?php
-                     $ab = str_replace(',','',$a);
-                     $b = (intval($ab) *100)/3500;
-                     ?>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="progress">
 
-                <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: <?php echo intval($b) ?>%;height:35px;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> <?php echo intval($b) ?>%</div>
-            </div>
-        </div>
-        <a href="conductores" class="small-box-footer">
-          Más info <i class="fa fa-arrow-circle-right"></i>
-        </a>
-    </div>
-</div>
-</div>
-
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-12" style="width: 85%; height: 140px;">
-                <div class="d-flex no-block align-items-center">
-                    <div>
-                        <h3><i class="icon-book-open"></i></h3>
-                        <h3 class="text-muted">Reporte de conductores mes <?php echo date("M-Y",strtotime($fecha_actual."- 1 month"));?></h3>
-                    </div>
-                    <div class="ml-auto">
-                        <h2 class="counter text-info"><?php echo number_format($totalClientes2); ?></h2>
+<div class="col-sm-6 col-xl-3">
+                <div class="card bg-dpink text-white widget-media-bordered">
+                    <div class="card-body">
+                        <div class="media py-3 align-items-center media-colored">
+                            <img class="mr-3" src="vistas/assets/images/icons/55.png" alt="">
+                            <div class="media-body">
+                                <p class=" mb-1">Reporte de consultas del mes <?php echo date('M-Y');?></p>
+                                <h2 class="text-white m-0"><?php echo $totalPersonas;?></h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12">
-                <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 85%; height: 25px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="card widget-media-bordered">
+                    <div class="card-body">
+                        <div class="media py-3 align-items-center">
+                            <img class="mr-3" src="vistas/assets/images/icons/56.png" alt="">
+                            <div class="media-body">
+                                <p class="text-pale-sky mb-1">Reporte de consultas mes <?php echo date("M-Y",strtotime($fecha_actual."- 1 month"));?></p>
+                                <h2 class="text-dpink m-0"><?php echo $totalPersonas2;?></h2>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <a href="busqueda" class="small-box-footer">
-          Más info <i class="fa fa-arrow-circle-right"></i>
-        </a>
-    </div>
-</div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="card bg-lgreen text-white widget-media-bordered">
+                    <div class="card-body">
+                        <div class="media py-3 align-items-center media-colored">
+                            <img class="mr-3" src="vistas/assets/images/icons/57.png" alt="">
+                            <div class="media-body">
+                                <p class=" mb-1">Reporte de consultas del mes <?php echo date('M-Y');?></p>
+                                <h2 class="text-white m-0">55250</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="card widget-media-bordered">
+                    <div class="card-body">
+                        <div class="media py-3 align-items-center">
+                            <img class="mr-3" src="vistas/assets/images/icons/58.png" alt="">
+                            <div class="media-body">
+                                <p class="text-pale-sky mb-1">Reporte de consultas del mes <?php echo date('M-Y');?></p>
+                                <h2 class="text-lgreen m-0">250</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

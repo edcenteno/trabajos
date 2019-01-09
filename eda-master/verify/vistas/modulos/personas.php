@@ -145,7 +145,7 @@ function realizaProcesocarnet(){
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <button type="button" class="btn btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarConductor"><i class="fa fa-plus-circle"></i> Nueva Persona </button>
+                    <button type="button" class="btn btn-rounded btn-ft btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarConductor"><i class="fa fa-plus-circle"></i> Nueva Persona </button>
                       <div class="table-responsive m-t-20">
                         <table class="display nowrap table table-hover table-striped table-bordered dt-responsive" id = "tablaPersonas" cellspacing="0" width="100%">
                             <thead>

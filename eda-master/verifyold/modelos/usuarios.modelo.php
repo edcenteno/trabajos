@@ -26,7 +26,7 @@ use Purekid\Mongodm\Model;
 
         }else{
 
-           $usuarioscabify = ModeloUsuarios::find();
+           $usuarioscabify = ModeloUsuarios::all();
 
            return $usuarioscabify;
         }
@@ -51,7 +51,8 @@ use Purekid\Mongodm\Model;
                     'dni' => $datos['dni'],
                     'correo' => $datos['correo'],
                     'telefono' => $datos['telefono'],
-                    'empresa' => $datos['empresa']
+                    'empresa' => $datos['empresa'],
+                    'id_provincia' => $datos['id_provincia'],
                 ]);
 
         $usuarioscabify->save();

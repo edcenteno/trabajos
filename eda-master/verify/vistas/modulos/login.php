@@ -19,7 +19,7 @@
                         <h5>Email: algo@example.com</h5>
                     </div>
                 </div>
-                <div class="col-xl-3 p-0">
+                <div class="col-xl-3 p-0" id="formadmin">
                     <div class="form-input-content login-form bg-white">
                         <div class="card">
                             <div class="card-body">
@@ -43,7 +43,7 @@
                                         <input type="password" class="form-control" placeholder="Password" required name="ingPassword">
                                     </div>
                                     <div class="text-center mb-4 mt-4">
-                                        <button type="submit" class="btn btn-primary">Ingresar</button>
+                                        <button type="submit" class="btn btn-rounded btn-ft btn-primary">Ingresar</button>
                                     </div>
                                     <?php
                                         $login = new ControladorUsuarios();
@@ -53,16 +53,63 @@
                                 <div class="text-center">
                                     <h5 class="mb-5"></h5>
                                     <ul class="list-inline">
-                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-facebook"><i class="fa fa-facebook"></i></a>
+                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-facebook"><i class="fa fa-facebook"></i></a>
                                         </li>
-                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
+                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-twitter"><i class="fa fa-twitter"></i></a>
                                         </li>
-                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                         </li>
-                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-google-plus"><i class="fa fa-google-plus"></i></a>
+                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-google-plus"><i class="fa fa-google-plus"></i></a>
                                         </li>
                                     </ul>
-                                    <p class="mt-5">¿No eres Aministrador? <a href="javascript:void()">Ingresar como Operador</a>
+                                    <p class="mt-5">¿No eres Aministrador? <a id="botonoperador" href="javascript:void()">Ingresar como Operador</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 p-0" id="formoperador">
+                    <div class="form-input-content login-form bg-white">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="logo text-center">
+                                    <a href="index.html">
+                                        <img src="vistas/img/plantilla/logoverifyc.png" width="430px" alt="">
+                                    </a>
+                                </div>
+                                <h4 class="text-center mt-4">Ingrese a su cuenta operador</h4>
+                                <form class="mt-5 mb-5" method="post">
+                                    <div class="form-group">
+                                        <label>Usuario</label>
+                                        <input type="text" class="form-control" placeholder="Usuario" required name="ingUsuario">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" placeholder="Password" required name="ingPassword">
+                                    </div>
+                                    <div class="text-center mb-4 mt-4">
+                                        <button type="submit" class="btn btn-rounded btn-ft btn-primary">Ingresar</button>
+                                    </div>
+                                    <?php
+                                        $login = new ControladorUsuarios();
+                                        $login -> ctrIngresoUsuarioOperador();
+                                    ?>
+                                </form>
+                                <div class="text-center">
+                                    <h5 class="mb-5"></h5>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-facebook"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-twitter"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                        </li>
+                                        <li class="list-inline-item m-t-10"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-google-plus"><i class="fa fa-google-plus"></i></a>
+                                        </li>
+                                    </ul>
+                                    <p class="mt-5">¿Eres Aministrador? <a id="botonadmin" href="javascript:void()">Ingresar como Administrador</a>
                                     </p>
                                 </div>
                             </div>
@@ -72,3 +119,21 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#formoperador').hide();
+
+        $('#botonoperador').click(function(){
+            $('#formadmin').hide();
+            $('#formoperador').show();
+        });
+
+        $('#botonadmin').click(function(){
+            $('#formadmin').show();
+            $('#formoperador').hide();
+        });
+
+    });
+
+</script>

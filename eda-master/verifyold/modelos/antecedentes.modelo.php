@@ -1,13 +1,13 @@
 <?php
-date_default_timezone_set('America/Lima');
-require 'vendor/autoload.php';
 
+require 'vendor/autoload.php'; //
+$db = (new MongoDB\Client)->verify;
 
 use Purekid\Mongodm\Model;
 
 class ModeloAntecedentes extends Model {
 
-    public static $collection = "antecedentes";
+    static $collection = "antecedentes";
 
     /** use specific config section **/
     public static $config = 'default';
@@ -16,28 +16,22 @@ class ModeloAntecedentes extends Model {
     MOSTRAR USUARIOS
     =============================================*/
 
-     public function mdlMostrarAntecedentes($item, $valor){
+    static public function MdlMostrarAntecedentes($item, $valor){
 
         if($item != null){
 
-            $params = ([
-                        $item=>$valor
-                        ]);
-            $conductores = $this->one($params);
-
-           return $conductores;
+            $params = array($item=>$valor);
+            $antecedentes = ModeloAntecedentes::one($params);
+           return $Antecedentes;
 
         }else{
 
-           $conductores = $this->all();
+           $antecedentes = ModeloAntecedentes::find();
 
-           return $conductores;
+           return $antecedentes;
         }
 
     }
-
-
-
 
 
 }

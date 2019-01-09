@@ -19,13 +19,13 @@
                             <div class="text-center">
 
                                 <ul class="list-inline">
-                                    <li class="list-inline-item"><a href="javascript:void()" class="btn btn-facebook"><i class="fa fa-facebook"></i></a>
+                                    <li class="list-inline-item"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-facebook"><i class="fa fa-facebook"></i></a>
                                     </li>
-                                    <li class="list-inline-item"><a href="javascript:void()" class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
+                                    <li class="list-inline-item"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-twitter"><i class="fa fa-twitter"></i></a>
                                     </li>
-                                    <li class="list-inline-item"><a href="javascript:void()" class="btn btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                    <li class="list-inline-item"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                     </li>
-                                    <li class="list-inline-item"><a href="javascript:void()" class="btn btn-google-plus"><i class="fa fa-google-plus"></i></a>
+                                    <li class="list-inline-item"><a href="javascript:void()" class="btn btn-rounded btn-ft btn-google-plus"><i class="fa fa-google-plus"></i></a>
                                     </li>
                                 </ul>
                             </div>

@@ -259,8 +259,8 @@ require 'graficas/querys.php';
     anomes = '<?php echo $anomes ?>'
 
     Morris.Area({
-        element: 'morris-area-chart'
-        , data: [{
+        element: 'morris-area-chart',
+         data: [{
                 period: anomes+'-01'
                 , Conductores: '<?php echo $dia1 ?>'
 
@@ -437,14 +437,14 @@ Morris.Bar({
   element: 'bar-example',
   data: [
     { y: 'Mayo', a: '<?php echo $mayo ?>' },
-    { y: 'Junio', a: '<?php echo $junio ?>' },
+    /*{ y: 'Junio', a: '<?php echo $junio ?>' },
     { y: 'Julio', a: '<?php echo $julio ?>' },
     { y: 'Agosto', a: '<?php echo $agosto ?>'},
     { y: 'Septiembre', a: '<?php echo $septiembre ?>'},
     { y: 'Octubre', a: '<?php echo $octubre ?>'},
     { y: 'Noviembre', a: '<?php echo $noviembre ?>'},
     { y: 'Diciembre', a: '<?php echo $diciembre ?>'},
-    { y: 'Enero', a:  '<?php echo $enero ?>' },
+    { y: 'Enero', a:  '<?php echo $enero ?>' },*/
    /* { y: 'Febrero', a: '<?php echo $febrero ?>' },
     { y: 'Marzo', a: '<?php echo $marzo ?>'},
     { y: 'Abril', a: '<?php echo $abril ?>'}*/

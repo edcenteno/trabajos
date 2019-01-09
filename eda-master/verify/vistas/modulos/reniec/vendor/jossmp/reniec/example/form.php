@@ -35,14 +35,14 @@
 					<input type="number" class="form-control" name="ndni" id="ndni" placeholder="Ingrese DNI" pattern="([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])" autofocus>
 				</div>
 				<div class="card-footer text-center">
-					<button type="submit" class="btn btn-success" name="btn-submit" id="btn-submit">
+					<button type="submit" class="btn btn-rounded btn-ft btn-success" name="btn-submit" id="btn-submit">
 						<i class="fa fa-search"></i> Buscar
 					</button>
 				</div>
 			</div>
 			</form>
 			<div class="p-2 clearfix"></div>
-			
+
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- ads_Content -->
 			<ins class="adsbygoogle"
@@ -52,7 +52,7 @@
 			<script>
 			(adsbygoogle = window.adsbygoogle || []).push({});
 			</script>
-			
+
 			<div class="result">
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item">

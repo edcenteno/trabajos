@@ -130,7 +130,7 @@ if ($estado == "VIGENTE") {
 
 
 
-<span class="btn btn-primary" id="registrarNuevo">Registrar</span>
+<span class="btn btn-rounded btn-ft btn-primary" id="registrarNuevo">Registrar</span>
 
 <script type="text/javascript">
 

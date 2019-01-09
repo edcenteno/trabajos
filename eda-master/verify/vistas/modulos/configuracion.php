@@ -1,7 +1,7 @@
 <?php
-    $item = null;
-    $valor = null;
-    $items = ControladorItems::ctrMostrarItems($item,$valor);
+    $item = 'ruc';
+    $valor = $_SESSION['empresa'];
+    $items = ControladorClientes::ctrMostrarClientes($item,$valor);
 
 ?>
 <div class="col p-md-0">
@@ -29,8 +29,9 @@
         ?>
             <div class="col-sm-6 col-lg-4 col-xl">
                 <div class="form-check mb-5 mr-5">
-                    <input name="check[<?php echo $a ?>]" id="checkbox<?php echo $a ?>" class="form-check-input styled-checkbox" value="<?php echo $value->_id ?>" type="checkbox">
-                    <label for="checkbox<?php echo $a ?>" class="form-check-label check-d-purple"><?php echo $value->descripcion ?></label>
+                    <input name="check[<?php echo $a ?>]" id="checkbox<?php echo $a ?>" class="form-check-input styled-checkbox" value="<?php echo $value['_id'] ?>" type="checkbox">
+                    <label for="checkbox<?php echo $a ?>" class="form-check-label check-d-purple">
+                        <?php echo $items->config ?></label>
                 </div>
             </div>
         <?php
@@ -41,7 +42,7 @@
             <div class="col-sm-6 col-lg-4 col-xl"></div>
 
         </div>
-        <span type="button" onclick="realizaProceso()" class="btn btn-primary btn-ft">Guardar</span>
+        <span type="button" onclick="realizaProceso()" class="btn btn-rounded btn-ft btn-primary btn-ft">Guardar</span>
 
          </form>
 

@@ -17,11 +17,11 @@
     });
 
     // Toolbar extra buttons
-    var btnFinish = $('<button></button>').text('Finish').addClass('btn btn-info').on('click', function(){
-         alert('Thanks for submiting!'); 
+    var btnFinish = $('<button></button>').text('Finish').addClass('btn btn-rounded btn-ft btn-info').on('click', function(){
+         alert('Thanks for submiting!');
     });
-    var btnCancel = $('<button></button>').text('Cancel').addClass('btn btn-danger').on('click', function(){
-         $('#smartwizard1').smartWizard("reset"); 
+    var btnCancel = $('<button></button>').text('Cancel').addClass('btn btn-rounded btn-ft btn-danger').on('click', function(){
+         $('#smartwizard1').smartWizard("reset");
     });
 
     // Smart Wizard

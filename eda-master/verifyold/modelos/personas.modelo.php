@@ -1,78 +1,37 @@
 <?php
-date_default_timezone_set('America/Lima');
-require 'vendor/autoload.php';
 
+require 'vendor/autoload.php'; //
+$db = (new MongoDB\Client)->verify;
 
 use Purekid\Mongodm\Model;
 
 class ModeloPersonas extends Model {
 
-	public static $collection = "individuosarhuinternacionalsac";
+    static $collection = "personas";
 
     /** use specific config section **/
     public static $config = 'default';
 
-	public function setColection($default){
-		//parent::__construct($default);
-		$this->collection=$default;
-	}
-	/*=============================================
-	MOSTRAR USUARIOS
-	=============================================*/
+    /*=============================================
+    MOSTRAR USUARIOS
+    =============================================*/
 
-	 public function mdlMostrarPersonas($item, $valor){
+    static public function MdlMostrarPersonas($item, $valor){
 
-		if($item != null){
+        if($item != null){
 
-            $params = ([
-            			$item=>$valor
-            			]);
-            $conductores = $this->one($params);
-
-           return $conductores;
+            $params = array($item=>$valor);
+            $personas = ModeloPersonas::one($params);
+           return $personas;
 
         }else{
 
-           $conductores = $this->all();
+           $personas = ModeloPersonas::find();
 
-           return $conductores;
+           return $personas;
         }
 
-	}
-
-
-
-
-
-	/*=============================================
-	RANGO FECHAS
-	=============================================*/
-
-	public function mdlRangoFechasConductor($fechaInicial, $fechaFinal){
-	//echo "<script> alert('".$tabla."');</script>";
-		if($fechaInicial == null){
-
-			$conductores = ModeloPersonas::find();
-
-		  	return $conductores;
-
-
-		}else if($fechaInicial == $fechaFinal){
-
-			$conductores = ModeloPersonas::find(array("fecha" => array('$gt' => $fechaInicial)));
-
-	  		return $conductores;
-
-		}else{
-
-			$conductores = ModeloPersonas::find(array("fecha" => array('$gt' => $fechaInicial, '$lte' => $fechaFinal)));
-
-	  		return $conductores;
-
-		}
-
-	}
-
+    }
 
 
 }

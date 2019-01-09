@@ -153,7 +153,7 @@ if ($estado == "VIGENTE") {
 
 
 
-<button class="btn btn-primary" id="registrarNuevo">Registrar</button>
+<button class="btn btn-rounded btn-ft btn-primary" id="registrarNuevo">Registrar</button>
 
 <script type="text/javascript">
   placa = $('#placa').val();

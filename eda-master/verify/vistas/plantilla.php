@@ -1,5 +1,5 @@
 <?php
-//error_reporting(0);
+error_reporting(0);
 session_start();
 ?><!DOCTYPE html>
 <html dir="ltr" lang="en" class="no-outlines">
@@ -16,7 +16,6 @@ session_start();
     <meta name="author" content="Edgar Centeno">
     <meta name="description" content="verify, arhu internacional">
     <meta name="keywords" content="verify, arhu internacional">
-
     <!-- ==== Favicon ==== -->
     <link rel="icon" href="vistas/img/plantilla/logoverify.png">
 
@@ -28,9 +27,32 @@ session_start();
     <link href="vistas/DataTable/datatables.min.css" rel="stylesheet">
 
     <!-- check-->
-   <link rel="stylesheet" href="vistas/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css">
+    <link rel="stylesheet" href="vistas/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css">
     <link rel="stylesheet" href="vistas/assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css">
     <link href="vistas/assets/plugins/innoto-switchery/dist/switchery.min.css" rel="stylesheet"/>
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+
+
+   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+
+      <script src="vistas/assets/plugins/circle-progress/circle-progress.min.js"></script>
+      <script src="vistas/assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+      <script src="vistas/assets/plugins/raphael/raphael.min.js"></script>
+      <script src="vistas/assets/plugins/morris/morris.min.js"></script>
+      <script src="vistas/assets/plugins/chart.js/Chart.bundle.min.js"></script>
+      <script src="vistas/assets/plugins/d3v3/index.js"></script>
+      <script src="vistas/assets/plugins/topojson/topojson.min.js"></script>
+      <script src="vistas/assets/plugins/datamaps/datamaps.world.min.js"></script>
+
+      <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+
+
+
     </head>
     <body>
     <?php
@@ -48,7 +70,7 @@ session_start();
     =============================================*/
 
     include "modulos/menu.php";
-    echo '<div class="main-wrapper">';
+
 
 
     /*=============================================
@@ -57,13 +79,14 @@ session_start();
    // include "modulos/contenido.php";
     if(isset($_GET["ruta"])){
 
-        if($_GET["ruta"] == "inicio" ||
+        if($_GET["ruta"] == "dashboard" ||
+           $_GET["ruta"] == "inicio" ||
            $_GET["ruta"] == "usuarios" ||
            $_GET["ruta"] == "individuos" ||
            $_GET["ruta"] == "configuracion" ||
            $_GET["ruta"] == "busqueda" ||
-           $_GET["ruta"] == "configuracion" ||
            $_GET["ruta"] == "personas" ||
+           $_GET["ruta"] == "vermas" ||
            $_GET["ruta"] == "vermascliente" ||
            $_GET["ruta"] == "reporte-diario" ||
            $_GET["ruta"] == "clientes" ||
@@ -76,16 +99,19 @@ session_start();
         include "modulos/404.php";
 
       }    }else{
+              if ($_SESSION['id_rol'] == '5c2f826ea6bbfc38cc6478d1') {
+                 include "modulos/dashboard.php";
+              }else{
+                include "modulos/inicio.php";
+              }
+            }
 
-      include "modulos/inicio.php";
-
-    }
 
     /*=============================================
     FOOTER
     =============================================*/
     echo '</div>';
-   // include "modulos/footer.php";
+    include "modulos/footer.php";
 
   }else{
 
@@ -95,19 +121,11 @@ session_start();
 
 
 ?>
-
-    <!--**********************************
-        Scripts
-    ***********************************-->
     <script src="vistas/assets/plugins/common/common.min.js"></script>
     <script src="vistas/main/js/custom.min.js"></script>
     <script src="vistas/main/js/settings.js"></script>
     <script src="vistas/main/js/gleek.js"></script>
     <script src="vistas/main/js/styleSwitcher.js"></script>
-    <script src="vistas/assets/plugins/chart.js/Chart.bundle.min.js"></script>
-    <script src="vistas/main/js/plugins-init/chartjs-init.js"></script>
-    <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
-
 
 
     <script src="vistas/dt/js/dataTables.buttons.min.js"></script>
@@ -117,19 +135,10 @@ session_start();
     <script src="vistas/dt/js/vfs_fonts.js"></script>
     <script src="vistas/dt/js/buttons.html5.min.js"></script>
     <script src="vistas/dt/js/buttons.print.min.js"></script>
-    <script src="vistas/dt/js/dataTables.responsive.min.js"></script>
+    <!-- <script src="vistas/dt/js/dataTables.responsive.min.js"></script> -->
     <script src="vistas/dt/js/responsive.bootstrap.min.js"></script>
     <script src="vistas/dt/js/jquery.dataTables.min.js"></script>
     <script src="vistas/DataTable/datatables.min.js"></script>
-
-
-    <script src="vistas/assets/plugins/innoto-switchery/dist/switchery.min.js"></script>
-    <script src="vistas/assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="vistas/assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
-
-    <script src="vistas/main/js/plugins-init/switchery-init.js"></script>
-    <script src="vistas/main/js/plugins-init/bootstrap-touchpin-init.js"></script>
-    <script src="vistas/main/js/plugins-init/bootstrap-tagsinput-init.js"></script>
 
 
     <script src="vistas/js/clientes.js"></script>

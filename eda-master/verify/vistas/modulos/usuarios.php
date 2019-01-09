@@ -11,7 +11,7 @@
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <button type="button" class="btn btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarUsuario"><i class="fa fa-plus-circle"></i> Nuevo Usuario </button>
+            <button type="button" class="btn btn-rounded btn-ft btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarUsuario"><i class="fa fa-plus-circle"></i> Nuevo Usuario </button>
                       <div class="table-responsive m-t-20">
                         <table class="display nowrap table table-hover table-striped table-bordered dt-responsive" id="tablaUsuario" cellspacing="0" width="100%">
                             <thead>
@@ -79,11 +79,11 @@
 
                                       if($value->estado != 0){
 
-                                        echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value->usuario.'" estadoUsuario="0">Activado</button></td>';
+                                        echo '<td><button class="btn btn-rounded btn-ft btn-success btn-xs btnActivar" idUsuario="'.$value->usuario.'" estadoUsuario="0">Activado</button></td>';
 
                                       }else{
 
-                                        echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value->usuario.'" estadoUsuario="1">Desactivado</button></td>';
+                                        echo '<td><button class="btn btn-rounded btn-ft btn-danger btn-xs btnActivar" idUsuario="'.$value->usuario.'" estadoUsuario="1">Desactivado</button></td>';
 
 
                                       }
@@ -93,7 +93,7 @@
 
                                         <div class="btn-group">
 
-                                          <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value->usuario.'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+                                          <button class="btn btn-rounded btn-ft btn-warning btnEditarUsuario" idUsuario="'.$value->usuario.'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
 
                                         </div>
@@ -344,9 +344,9 @@ MODAL AGREGAR USUARIO
 
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-rounded btn-ft btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar usuario</button>
+          <button type="submit" class="btn btn-rounded btn-ft btn-primary">Guardar usuario</button>
 
         </div>
 
@@ -515,9 +515,9 @@ MODAL EDITAR USUARIO
 
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-rounded btn-ft btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Modificar usuario</button>
+          <button type="submit" class="btn btn-rounded btn-ft btn-primary">Modificar usuario</button>
 
         </div>
 

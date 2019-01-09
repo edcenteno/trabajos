@@ -12,7 +12,7 @@
         text: 'This is Navigation Header',
         attachTo: '.nav-header bottom',
         classes: 'example-step-extra-class',
-        advanceOn: '.header-right', 
+        advanceOn: '.header-right',
         buttons: [
           {
             text: 'Next',
@@ -28,8 +28,8 @@
         buttons: [
           {
             text: 'Next',
-            action: tour.next, 
-            classes: 'btn btn-primary'
+            action: tour.next,
+            classes: 'btn btn-rounded btn-ft btn-primary'
           }
         ]
     });

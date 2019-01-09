@@ -5,15 +5,23 @@
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu">
             <li class="nav-label">Dashboard</li>
-            <li class="mega-menu mega-menu-lg">
-                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+            <li class="has-arrow">
+                <?php
+                        if ($_SESSION['id_rol'] == '5c2f826ea6bbfc38cc6478d1') {
+                           echo '<a class="has-arrow" href="dashboard" aria-expanded="false">';
+                        }else{
+                            echo '<a class="has-arrow" href="inicio" aria-expanded="false">';
+                        }
+
+                    ?>
+
                     <i class="mdi mdi-view-dashboard"></i><span class="nav-text">Dashboard</span>
                 </a>
 
             </li>
 
             <li class="nav-label">Empresas</li>
-            <li class="mega-menu mega-menu-lg">
+            <li class="has-arrow">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="mdi mdi-office-building"></i><span class="nav-text">Empresas</span>
                 </a>
@@ -30,7 +38,7 @@
                 </ul>
             </li>
             <li class="nav-label">Personas</li>
-            <li class="mega-menu mega-menu-lg">
+            <li class="has-arrow">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="mdi mdi-office-building"></i><span class="nav-text">Personas</span>
                 </a>

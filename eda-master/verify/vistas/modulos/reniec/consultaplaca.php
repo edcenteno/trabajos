@@ -91,7 +91,7 @@ Introduce placa
             </div>
         </div>
 
-      <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProcesoplaca();return false;" id="consultaplaca" name="consultaplaca">Consultar</button>
+      <button type="button" href="javascript:;" class="btn btn-rounded btn-ft btn-success waves-effect waves-light" onclick="realizaProcesoplaca();return false;" id="consultaplaca" name="consultaplaca">Consultar</button>
 
     </div>
 

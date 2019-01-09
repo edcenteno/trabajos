@@ -49,6 +49,7 @@ $color_vehiculo=$value['color_vehiculo'];
        // console.log(msg)
 
         if (typeof msg[0] == "undefined") {
+
         $('.licencia')[3].innerText = msg['slc'][0]['ESTADO_DE_LA_LICENCIA'];
         $('.licencia')[5].innerText = msg['slc'][0]['VIGENTE_HASTA'];
         $('.licencia')[6].innerText = msg['slc'][0]['NRO_DE_LICENCIA'];
@@ -63,6 +64,7 @@ $color_vehiculo=$value['color_vehiculo'];
         $('.licencia')[0].innerText = msg[0]['var_direccion'];
         $('.licencia')[1].innerText = msg[0]['var_departamento'];
         $('.licencia')[2].innerText = msg[0]['var_distrito'];
+        if (true) {} else {}
         $('.licencia')[3].innerText = msg[0]['var_estado_licencia'];
         $('.licencia')[4].innerText = msg[0]['dat_fecha_expedicion'];
         $('.licencia')[5].innerText = msg[0]['dat_fecha_revalidacion'];
@@ -74,6 +76,7 @@ $color_vehiculo=$value['color_vehiculo'];
         $("#acthoy").hide();
 
          }
+
          if (typeof msg[0] == "El record/placa no recaudo datos. intente de nuevo.") {
         $("#acthoy").hide();
          }

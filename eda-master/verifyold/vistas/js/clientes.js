@@ -1,10 +1,17 @@
 /*=============================================
 CARGAR LA TABLA DINÁMICA
 =============================================*/
+/*  $.ajax({
+        url:"ajax/datatable-clientes.ajax.php",
+        success:function(respuesta){
+            console.log("respuesta", respuesta);
+        }
+
+    });*/
 
 
     $(document).ready(function() {
-    var table = $('.tablaClientes').DataTable( {
+    $('#tablaClientes').DataTable( {
     "ajax": "ajax/datatable-clientes.ajax.php",
     "deferRender": true,
     "retrieve": true,
@@ -41,8 +48,5 @@ CARGAR LA TABLA DINÁMICA
     }
 
     });
-   /* setInterval( function () {
-    table.ajax.reload(null, false); // user paging is not reset on reload
-    }, 30000 );
-*/
+
 } );

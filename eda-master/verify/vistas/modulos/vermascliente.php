@@ -11,15 +11,7 @@
     echo $value['config'][1];
 ?>
 
- <div class="col p-md-0">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="javascript:void(0)">Empresas</a>
-        </li>
-        <li class="breadcrumb-item active">Cliente</li>
-    </ol>
-</div>
-</div>
-</div>
+
 
 
     <!-- ============================================================== -->
@@ -536,13 +528,13 @@
                                     if ($value['ant_penales'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO" && $value['ant_policial'] == "NEGATIVO") {
                                        echo '<div class="col-md-2 col-xs-6"> <strong>Actualizar SOAT</strong>
                                                 <br>
-                                                <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button>
+                                                <button class="btn btn-rounded btn-ft btn-info" onclick="actualizarsoats()">Actualizar</button>
                                             </div>';
                                     }
                                 }
                                ?>
                             </div>
-                            <!-- <button class="btn btn-info" onclick="actualizarsoats()">Actualizar</button> -->
+                            <!-- <button class="btn btn-rounded btn-ft btn-info" onclick="actualizarsoats()">Actualizar</button> -->
                         </div>
                     </div>
 
@@ -739,7 +731,7 @@
       </div>
       <div id="placaactliz"></div>
       <div class="modal-footer">
-       <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProcesoplaca();return false;" id="consultaplaca" name="consultaplaca">Consultar</button>
+       <button type="button" href="javascript:;" class="btn btn-rounded btn-ft btn-success waves-effect waves-light" onclick="realizaProcesoplaca();return false;" id="consultaplaca" name="consultaplaca">Consultar</button>
       </div>
 
     </div>
@@ -771,8 +763,8 @@
          ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="realizamigrar()" id="migrarcond">Migrar</button>
+        <button type="button" class="btn btn-rounded btn-ft btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-rounded btn-ft btn-primary" onclick="realizamigrar()" id="migrarcond">Migrar</button>
 
 
       </div>

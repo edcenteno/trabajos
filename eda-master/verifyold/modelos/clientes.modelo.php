@@ -26,7 +26,7 @@ class ModeloClientes extends Model {
 
         }else{
 
-           $clientes = ModeloClientes::find();
+           $clientes = ModeloClientes::all();
 
            return $clientes;
         }

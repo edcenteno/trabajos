@@ -1,6 +1,0 @@
-/vendor/
-/tests/reports/
-/coverage/
-coverage.xml
-coveralls-upload.json
-.env

@@ -47,7 +47,7 @@ $fecha_nacimiento=$_POST['fechaNacimiento'];
 											'fechanacimiento' => $fecha_nacimiento,
 											'tipo_doc' => $tipoext,
 											'fecha' => $fecha_reg,
-											'cliente_id' => $cliente_id,
+											'empresa' => $ruc,
 											'usuario_reg' => $usuario_reg
 												]);
 //					var_dump($personas);

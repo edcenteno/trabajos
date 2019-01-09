@@ -166,7 +166,7 @@ function realizaProcesocarnet(){
 
                                   <div class="form-group row m-b-0">
                                       <div class="offset-sm-3 col-sm-9">
-                                          <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProceso()" id="consultadni" name="consultadni">Consultar</button>
+                                          <button type="button" href="javascript:;" class="btn btn-rounded btn-ft btn-success waves-effect waves-light" onclick="realizaProceso()" id="consultadni" name="consultadni">Consultar</button>
                                       </div>
                                   </div>
                                 </form>
@@ -260,11 +260,11 @@ function realizaProcesocarnet(){
                                       <div class="col-sm-10">
                                           <div class="input-group">
 
-                                              <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlaca">SI</span>
+                                              <span style="width:80px" class="btn btn-rounded btn-ft btn-success waves-effect waves-light" id="consultarPlaca">SI</span>
 
                                               <input type="text" hidden class="form-control" name="si" id="si" value="Si">
 
-                                              <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevo">NO</span>
+                                              <span style="width:80px" class="btn btn-rounded btn-ft btn-danger waves-effect waves-light" id="registrarNuevo">NO</span>
 
 
                                           </div>
@@ -330,7 +330,7 @@ function realizaProcesocarnet(){
                                     </div>
                                     <div class="form-group row m-b-0">
                                       <div class="offset-sm-3 col-sm-9">
-                                          <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProcesocarnet()" id="consultacarnet" name="consultacarnet">Consultar</button>
+                                          <button type="button" href="javascript:;" class="btn btn-rounded btn-ft btn-success waves-effect waves-light" onclick="realizaProcesocarnet()" id="consultacarnet" name="consultacarnet">Consultar</button>
                                       </div>
                                   </div>
 
@@ -354,11 +354,11 @@ function realizaProcesocarnet(){
                                         <label for="exampleInputuname3" class="col-sm-8 control-label" id="posee" >¿Posee Vehiculo?</label>
                                           <div class="input-group">
 
-                                              <span style="width:80px" class="btn btn-success waves-effect waves-light" id="consultarPlacaCarnet">SI</span>
+                                              <span style="width:80px" class="btn btn-rounded btn-ft btn-success waves-effect waves-light" id="consultarPlacaCarnet">SI</span>
 
                                               <input type="text" hidden class="form-control" name="si" id="si" value="Si">
 
-                                              <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevoCarnet">NO</span>
+                                              <span style="width:80px" class="btn btn-rounded btn-ft btn-danger waves-effect waves-light" id="registrarNuevoCarnet">NO</span>
 
 
                                           </div>

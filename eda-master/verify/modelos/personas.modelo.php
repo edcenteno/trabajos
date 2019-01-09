@@ -33,5 +33,40 @@ class ModeloPersonas extends Model {
 
     }
 
+    /*=============================================
+    MOSTRAR Personas caja superior
+    =============================================*/
+
+    static public function mdlMostrarPersonashoy($item, $valor, $ruc){
+
+        if ($ruc !='20557675052') {
+           $personas = ModeloPersonas::count(['empresa'=>$ruc,
+                                               $item => new MongoRegex("/$valor/")
+                                                ]);
+        } else {
+            $personas = ModeloPersonas::count(array($item => new MongoRegex("/$valor/")));
+        }
+
+
+
+
+         return $personas;
+
+    }
+
+    static public function mdlMostrarPersonasMes($item, $valor2, $ruc){
+
+        if ($ruc !='20557675052') {
+           $personas = ModeloPersonas::count(['empresa'=>$ruc,
+                                               $item => new MongoRegex("/$valor2/")
+                                                ]);
+        } else {
+            $personas = ModeloPersonas::count(array($item => new MongoRegex("/$valor2/")));
+        }
+
+
+       return $personas;
+    }
+
 
 }

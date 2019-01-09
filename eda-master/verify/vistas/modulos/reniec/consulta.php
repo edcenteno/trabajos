@@ -114,7 +114,7 @@ echo '
         <div class="col-sm-8">
             <div class="input-group">
 
-                <span style="width:80px" class="btn btn-danger waves-effect waves-light" id="registrarNuevo">Registrar</span>
+                <span style="width:80px" class="btn btn-rounded btn-ft btn-danger waves-effect waves-light" id="registrarNuevo">Registrar</span>
 
 
             </div>
@@ -215,7 +215,7 @@ echo '
 
                   if(result.value){
 
-                    window.location = "conductores";
+                    window.location = "personas";
 
                   }
 

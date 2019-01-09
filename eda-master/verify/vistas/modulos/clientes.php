@@ -116,7 +116,7 @@ function realizaProceso(){
     <div class="card">
         <div class="card-body">
 
-            <button type="button" class="btn btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarClientes"><i class="fa fa-plus-circle"></i> Nuevo Conductor </button>
+            <button type="button" class="btn btn-rounded btn-ft btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarClientes"><i class="fa fa-plus-circle"></i> Nuevo Conductor </button>
                       <div class="table-responsive m-t-20">
                         <table class="display nowrap table table-hover table-striped table-bordered dt-responsive" style="min-width: 845px" id = "tablaClientes" cellspacing="0" width="100%">
                             <thead>
@@ -190,7 +190,7 @@ MODAL AGREGAR USUARIO
 
                                   <div class="form-group row m-b-0">
                                       <div class="offset-sm-3 col-sm-9">
-                                          <button type="button" href="javascript:;" class="btn btn-success waves-effect waves-light" onclick="realizaProceso()" id="consultaruc" name="consultaruc">Consultar</button>
+                                          <button type="button" href="javascript:;" class="btn btn-rounded btn-ft btn-success waves-effect waves-light" onclick="realizaProceso()" id="consultaruc" name="consultaruc">Consultar</button>
                                       </div>
                                   </div>
                                 </form>
