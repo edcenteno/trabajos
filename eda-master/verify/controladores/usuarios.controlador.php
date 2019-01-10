@@ -55,12 +55,22 @@ class ControladorUsuarios{
                         $ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($item1, $valor1, $item2, $valor2);
 
                         if($ultimoLogin == "ok"){
+                            if ($_SESSION['empresa'] == "20557675052") {
 
-                            echo '<script>
+                                echo '<script>
+
+                                window.location = "dashboard";
+
+                                      </script>';
+                              }else{
+                                echo '<script>
 
                                 window.location = "inicio";
 
-                            </script>';
+                                      </script>';
+                              }
+
+
 
                         }
 

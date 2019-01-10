@@ -99,8 +99,8 @@ session_start();
         include "modulos/404.php";
 
       }    }else{
-              if ($_SESSION['id_rol'] == '5c2f826ea6bbfc38cc6478d1') {
-                 include "modulos/dashboard.php";
+              if ($_SESSION['empresa'] == "20557675052") {
+                include "modulos/dashboard.php";
               }else{
                 include "modulos/inicio.php";
               }
@@ -110,7 +110,7 @@ session_start();
     /*=============================================
     FOOTER
     =============================================*/
-    echo '</div>';
+    //echo '</div>';
     include "modulos/footer.php";
 
   }else{

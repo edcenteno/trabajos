@@ -7,6 +7,7 @@ require_once "controladores/usuarios.controlador.php";
 require_once "controladores/personas.controlador.php";
 require_once "controladores/items.controlador.php";
 require_once "controladores/roles.controlador.php";
+require_once "controladores/antecedentes.controlador.php";
 
 
 //modelos
@@ -15,6 +16,7 @@ require_once "modelos/usuarios.modelo.php";
 require_once "modelos/personas.modelo.php";
 require_once "modelos/items.modelo.php";
 require_once "modelos/roles.modelo.php";
+require_once "modelos/antecedentes.modelo.php";
 
 
 

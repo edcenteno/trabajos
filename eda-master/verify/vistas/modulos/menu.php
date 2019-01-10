@@ -7,7 +7,7 @@
             <li class="nav-label">Dashboard</li>
             <li class="has-arrow">
                 <?php
-                        if ($_SESSION['id_rol'] == '5c2f826ea6bbfc38cc6478d1') {
+                        if ($_SESSION['id_rol'] == '5c2f826ea6bbfc38cc6478d1' || $_SESSION['id_rol'] == '5c2f8260a6bbfc38cc6478d0') {
                            echo '<a class="has-arrow" href="dashboard" aria-expanded="false">';
                         }else{
                             echo '<a class="has-arrow" href="inicio" aria-expanded="false">';

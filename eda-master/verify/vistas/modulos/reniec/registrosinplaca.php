@@ -67,37 +67,37 @@ $fecha_nacimiento=$_POST['fechaNacimiento'];
 							switch ($value) {
 								case "5c1bcfa002c45b42547c87be":
 									$antecedentes = new ModeloAntecedentes([
-													'idPersonas' => $personas->_id,
+													'idpersona' => $dni,
 														]);
 									$antecedentes->save();
 									break;
 								case "5c2698109c07a73c605bc13f":
 									$antecedentes = new ModeloRecordConductor([
-													'idPersonas' => $personas->_id,
+													'idpersona' => $dni,
 														]);
 									$antecedentes->save();
 									break;
 								case "5c2698499c07a73c605bc140":
 									$antecedentes = new ModeloHistorialAcademico([
-													'idPersonas' => $personas->_id,
+													'idpersona' => $dni,
 														]);
 									$antecedentes->save();
 									break;
 								case "5c2698589c07a73c605bc141":
 									$antecedentes = new ModeloRecordCrediticio([
-													'idPersonas' => $personas->_id,
+													'idpersona' => $dni,
 														]);
 									$antecedentes->save();
 									break;
 								case "5c26986d9c07a73c605bc142":
 									$antecedentes = new ModeloHistorialLaboral([
-													'idPersonas' => $personas->_id,
+													'idpersona' => $dni,
 														]);
 									$antecedentes->save();
 									break;
 								case "5c26988e9c07a73c605bc143":
 									$antecedentes = new ModeloVerificacionDomiciliaria([
-													'idPersonas' => $personas->_id,
+													'idpersona' => $dni,
 														]);
 									$antecedentes->save();
 									break;

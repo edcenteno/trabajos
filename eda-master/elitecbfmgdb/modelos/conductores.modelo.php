@@ -309,10 +309,11 @@ class ModeloConductor extends Model {
 
 			$mes = date('m');
 			$mesletra = date('M');
+			$ano = date('Y');
 
 
-		$conductores = ModeloConductor::find(array('fecha_fin_soat' => new MongoRegex("/$mesletra-2018/"),
-												   'fecha_fin_soat' => new MongoRegex("/$mes/2018/"),
+		$conductores = ModeloConductor::find(array('fecha_fin_soat' => new MongoRegex("/$mesletra-$ano/"),
+												   'fecha_fin_soat' => new MongoRegex("/$mes/$ano/"),
 													'resultado' => new MongoRegex("/APTO/")
 												));
 

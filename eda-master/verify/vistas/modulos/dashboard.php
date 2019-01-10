@@ -14,7 +14,7 @@ $fecha_actual = date("Y-m-d");
     </ol>
 </div>
 </div>
-</div>
+
 <div class="row">
 <?php include 'inicio/cajas-superiores.php' ?>
 </div>

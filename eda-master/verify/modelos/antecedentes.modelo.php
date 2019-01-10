@@ -22,7 +22,7 @@ class ModeloAntecedentes extends Model {
 
             $params = array($item=>$valor);
             $antecedentes = ModeloAntecedentes::one($params);
-           return $Antecedentes;
+           return $antecedentes;
 
         }else{
 

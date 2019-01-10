@@ -110,13 +110,13 @@ function realizaProceso(){
     </ol>
 </div>
 </div>
-</div>
+
 <div class="row">
 <div class="col-12">
     <div class="card">
         <div class="card-body">
 
-            <button type="button" class="btn btn-rounded btn-ft btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarClientes"><i class="fa fa-plus-circle"></i> Nuevo Conductor </button>
+            <button type="button" class="btn btn-rounded btn-ft btn-info d-none d-lg-block m-l-15" data-toggle="modal" data-target="#modalAgregarClientes"><i class="fa fa-plus-circle"></i> Nuevo Cliente </button>
                       <div class="table-responsive m-t-20">
                         <table class="display nowrap table table-hover table-striped table-bordered dt-responsive" style="min-width: 845px" id = "tablaClientes" cellspacing="0" width="100%">
                             <thead>

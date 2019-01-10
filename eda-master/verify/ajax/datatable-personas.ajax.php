@@ -12,8 +12,8 @@ use Purekid\Mongodm\Model;
 
           $data=[];
          foreach ($personas as $key => $value) {
-
-            $vermas= "<div class='btn-group'><a class='btn btn-rounded btn-ft btn-success btnvermas' href='index.php?ruta=vermas&idpersonas=".$value->dni."' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
+            //index.php?ruta=vermas&idpersonas=".$value->dni."
+            $vermas= "<div class='btn-group'><a class='btn btn-rounded btn-ft btn-success btnvermas' href='#' target='_blank'>ver<i class='fa fa-fw fa-plus'></i></a></div>";
 
 
             $data[]=[
